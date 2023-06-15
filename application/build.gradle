@@ -1,0 +1,10 @@
+version '1.0.0'
+
+dependencies {
+    implementation 'org.javamoney:moneta:1.4.2'
+    implementation project(":commons:domain-common")
+}
+
+configurations.implementation {
+    exclude group: 'org.testng ', module: 'testng'
+}
