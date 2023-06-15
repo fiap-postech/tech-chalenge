@@ -1,0 +1,15 @@
+rootProject.name = 'tech-challenge'
+
+include 'application'
+
+include 'launcher'
+
+include 'commons:domain-common'
+findProject(':commons:domain-common')?.name = 'domain-common'
+
+include 'adapter:driven:database'
+findProject(':adapter:driven:database')?.name = 'database'
+
+include 'adapter:driver:rest'
+findProject(':adapter:driver:rest')?.name = 'rest'
+
