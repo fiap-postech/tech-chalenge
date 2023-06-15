@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;
-import lombok.experimental.SuperBuilder;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
