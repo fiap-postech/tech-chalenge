@@ -1,14 +1,13 @@
 package br.com.fiap.tech.challenge.domain;
 
+import br.com.fiap.tech.challenge.domain.validation.PriceAmount;
+import br.com.fiap.tech.challenge.domain.validation.PriceCurrency;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
 import static javax.money.Monetary.getCurrency;
 
@@ -20,22 +19,16 @@ public class Price extends ValueObject {
     @Serial
     private static final long serialVersionUID = -1420416290598941259L;
 
+    public static final String DEFAULT_CURRENCY_CODE = "BRL";
+
+    @PriceAmount
+    @PriceCurrency
     private final Money amount;
 
     private Price(Money amount) {
         this.amount = amount;
 
-        assertArgumentEquals(
-                amount.getCurrency().getCurrencyCode(),
-                "BRL",
-                "monetary currency unit should be BRL in this system"
-        );
-
-        assertArgumentAtLeast(
-                amount.getNumberStripped(),
-                new BigDecimal("0.00"),
-                "price cannot be a negative value"
-        );
+        validate();
     }
 
     public Price add(Money money) {
@@ -61,4 +54,5 @@ public class Price extends ValueObject {
     public static Price min(){
         return Price.of(Money.zero(getCurrency("BRL")));
     }
+
 }

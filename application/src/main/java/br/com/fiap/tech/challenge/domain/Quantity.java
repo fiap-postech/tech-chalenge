@@ -1,5 +1,7 @@
 package br.com.fiap.tech.challenge.domain;
 
+import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Min;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -13,17 +15,14 @@ public class Quantity extends ValueObject {
     @Serial
     private static final long serialVersionUID = 5676097435219158623L;
 
+    @Min(0)
+    @Max(Integer.MAX_VALUE)
     private final int value;
 
-    private Quantity(int quantity) {
-        assertArgumentRange(
-                quantity,
-                1,
-                Integer.MAX_VALUE,
-                "quantity should be greater than or equal to 1"
-        );
+    private Quantity(int value) {
+        this.value = value;
 
-        this.value = quantity;
+        validate();
     }
 
     public Quantity increment(){
