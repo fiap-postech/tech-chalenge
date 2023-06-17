@@ -11,6 +11,10 @@ public class AssertionConcern implements Serializable {
     protected AssertionConcern(){
     }
 
+    public void validate(){
+        //will be replaced by feature that add bean validation
+    }
+
     protected void assertArgumentEquals(Object object1, Object object2, String message) {
         if (!object1.equals(object2)) {
             throw new IllegalArgumentException(message);
