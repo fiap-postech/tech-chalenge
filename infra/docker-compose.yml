@@ -15,6 +15,14 @@ services:
     networks:
       - tech-challenge-network
 
+  redis:
+    image: library/redis:6-alpine
+    platform: linux/amd64
+    ports:
+      - "6379:6379"
+    networks:
+      - tech-challenge-network
+
 networks:
   tech-challenge-network:
     driver: bridge
