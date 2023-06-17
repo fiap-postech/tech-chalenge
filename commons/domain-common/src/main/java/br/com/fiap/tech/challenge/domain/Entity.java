@@ -13,11 +13,13 @@ public abstract class Entity extends AssertionConcern {
 
     private UUID uuid;
 
-    public Entity(UUID uuid) {
+    protected Entity(UUID uuid) {
         this.uuid = uuid;
     }
 
     public UUID uuid(){
+        this.ensureUUID();
+
         return uuid;
     }
 
