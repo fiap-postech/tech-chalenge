@@ -15,7 +15,7 @@ public class Main {
         var item = CartItem.builder()
                 .product(product)
                 .price(Price.of(Money.of(new BigDecimal("10.00"), "BRL")))
-                .discount(Price.of(Money.of(new BigDecimal("2.00"), "BRL")))
+                .discount(Discount.of(Money.of(new BigDecimal("2.00"), "BRL")))
                 .quantity(Quantity.of(1))
                 .build();
 

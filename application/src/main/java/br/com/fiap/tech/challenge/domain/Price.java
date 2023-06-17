@@ -8,7 +8,9 @@ import lombok.experimental.Accessors;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
+import java.math.BigDecimal;
 
+import static br.com.fiap.tech.challenge.domain.MoneyConstants.CURRENCY_CODE;
 import static javax.money.Monetary.getCurrency;
 
 @Getter
@@ -18,8 +20,6 @@ public class Price extends ValueObject {
 
     @Serial
     private static final long serialVersionUID = -1420416290598941259L;
-
-    public static final String DEFAULT_CURRENCY_CODE = "BRL";
 
     @PriceAmount
     @PriceCurrency
@@ -52,7 +52,6 @@ public class Price extends ValueObject {
     }
 
     public static Price min(){
-        return Price.of(Money.zero(getCurrency("BRL")));
+        return Price.of(Money.zero(getCurrency(CURRENCY_CODE)));
     }
-
 }

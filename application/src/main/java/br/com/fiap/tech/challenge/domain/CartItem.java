@@ -6,9 +6,6 @@ import lombok.experimental.Accessors;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
-import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
 @Getter
 @Accessors(fluent = true)
@@ -19,13 +16,13 @@ public class CartItem extends ValueObject {
 
     private final Product product;
     private final Price price;
-    private final Price discount;
+    private final Discount discount;
     private final Quantity quantity;
 
     //TODO add method for total item
 
     @Builder(toBuilder = true)
-    public CartItem(Product product, Price price, Price discount, Quantity quantity) {
+    public CartItem(Product product, Price price, Discount discount, Quantity quantity) {
         this.product = product;
         this.price = price;
         this.discount = discount;
@@ -45,37 +42,26 @@ public class CartItem extends ValueObject {
     }
 
     public CartItem applyDiscount(Money money) {
-        var discountToApply = Price.of(money);
+        var newDiscount = Discount.of(money);
 
         return toBuilder()
-                .discount(discount().add(discountToApply))
-                .price(price().subtract(discountToApply))
+                .discount(newDiscount)
+                .price(price().subtract(newDiscount.amount()))
                 .build();
     }
 
     public CartItem applyDiscount(double percentage) {
-        //TODO make a VO for Discount
-        var multiplicand = BigDecimal.valueOf(percentage)
-                .divide(BigDecimal.valueOf(100), new MathContext(2, RoundingMode.HALF_UP));
-
-        var discountValue = price()
-                .amount()
-                .getNumber()
-                .numberValue(BigDecimal.class)
-                .multiply(multiplicand);
-
-        var discountToApply = Price.of(Money.of(discountValue, "BRL"));
+        var newDiscount = Discount.of(price().amount(), percentage);
 
         return toBuilder()
-                .discount(discount().add(discountToApply))
-                .price(price().subtract(discountToApply))
+                .discount(newDiscount)
+                .price(price().subtract(newDiscount.amount()))
                 .build();
     }
 
     public CartItem resetDiscount(){
-        //TODO move this to Discount VO
         return toBuilder()
-                .discount(Price.min())
+                .discount(discount().reset())
                 .price(Price.of(product.price()))
                 .build();
     }
