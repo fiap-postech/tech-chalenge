@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface QueryProductService {
 
-    List<Product> availableProducts();
+    List<Product> allAvailable();
 
 }

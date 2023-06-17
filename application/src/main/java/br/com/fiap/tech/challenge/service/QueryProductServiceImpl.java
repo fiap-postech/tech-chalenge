@@ -9,11 +9,11 @@ import br.com.fiap.tech.challenge.port.driver.QueryProductService;
 
 import java.util.List;
 
-import static br.com.fiap.tech.challenge.util.MoneyUtil.makeMoney;
+import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 class QueryProductServiceImpl implements QueryProductService {
     @Override
-    public List<Product> availableProducts() {
+    public List<Product> allAvailable() {
         return List.of(
                 Sandwich.builder()
                         .name("X-Salada")
