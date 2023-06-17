@@ -10,8 +10,11 @@ findProject(':commons:domain-common')?.name = 'domain-common'
 include 'commons:mapper-common'
 findProject(':commons:mapper-common')?.name = 'mapper-common'
 
-include 'adapter:driven:database'
-findProject(':adapter:driven:database')?.name = 'database'
+include 'adapter:driven:mysql'
+findProject(':adapter:driven:mysql')?.name = 'mysql'
+
+include 'adapter:driven:redis'
+findProject(':adapter:driven:redis')?.name = 'redis'
 
 include 'adapter:driver:rest'
 findProject(':adapter:driver:rest')?.name = 'rest'
