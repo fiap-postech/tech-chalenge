@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.port.driver.QueryProductService;
+import br.com.fiap.tech.challenge.port.driver.ProductReaderService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +9,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfiguration {
 
     @Bean
-    public QueryProductService queryProductService() {
-        return ServiceFactory.queryProductService();
+    public ProductReaderService queryProductService() {
+        return ServiceFactory.productReaderService();
     }
 }

@@ -5,13 +5,13 @@ import br.com.fiap.tech.challenge.domain.Dessert;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
-import br.com.fiap.tech.challenge.port.driver.QueryProductService;
+import br.com.fiap.tech.challenge.port.driver.ProductReaderService;
 
 import java.util.List;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
-class QueryProductServiceImpl implements QueryProductService {
+class ProductReaderServiceImpl implements ProductReaderService {
     @Override
     public List<Product> allAvailable() {
         return List.of(

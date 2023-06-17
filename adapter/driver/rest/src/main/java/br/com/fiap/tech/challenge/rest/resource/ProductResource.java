@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.port.driver.QueryProductService;
+import br.com.fiap.tech.challenge.port.driver.ProductReaderService;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -16,11 +16,11 @@ import java.util.List;
 public class ProductResource {
 
     private ModelMapper mapper;
-    private QueryProductService queryProductService;
+    private ProductReaderService productReaderService;
 
     @GetMapping
     public List<ProductResponse> getAllAvailable(){
-        return queryProductService.allAvailable()
+        return productReaderService.allAvailable()
                 .stream()
                 .map(product -> mapper.map(product, ProductResponse.class))
                 .toList();
