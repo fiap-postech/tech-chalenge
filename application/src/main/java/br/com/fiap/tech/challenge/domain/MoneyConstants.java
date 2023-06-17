@@ -9,6 +9,7 @@ public class MoneyConstants {
 
     public static final String CURRENCY_CODE = "BRL";
     public static final int CURRENCY_PRECISION = 2;
+    public static final RoundingMode CURRENCY_ROUNDING_MODE = RoundingMode.HALF_UP;
 
-    public static final MathContext CURRENCY_MATH_CONTEXT = new MathContext(CURRENCY_PRECISION, RoundingMode.HALF_UP);
+    public static final MathContext CURRENCY_MATH_CONTEXT = new MathContext(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
 }

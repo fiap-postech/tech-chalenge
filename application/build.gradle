@@ -1,11 +1,14 @@
+plugins {
+    id 'java-library'
+}
+
 version '1.0.0'
 
 dependencies {
     compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
 
-    implementation 'org.javamoney:moneta:1.4.2'
-
-    implementation project(":commons:domain-common")
+    api 'org.javamoney:moneta:1.4.2'
+    api project(":commons:domain-common")
 }
 
 configurations.implementation {

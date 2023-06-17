@@ -7,6 +7,9 @@ include 'launcher'
 include 'commons:domain-common'
 findProject(':commons:domain-common')?.name = 'domain-common'
 
+include 'commons:mapper-common'
+findProject(':commons:mapper-common')?.name = 'mapper-common'
+
 include 'adapter:driven:database'
 findProject(':adapter:driven:database')?.name = 'database'
 
