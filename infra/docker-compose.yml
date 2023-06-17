@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: "P@55W0rD"
+      MYSQL_DATABASE: "tech_challenge"
+      MYSQL_USER: "sys_tech_challenge"
+      MYSQL_PASSWORD: "Nosorto7"
+    ports:
+      - "3366:3306"
+    volumes:
+      - ${PWD}/docker/mysql/data:/var/lib/mysql
+      - ${PWD}/docker/mysql/script:/opt/scripts
+    command: --init-file /opt/scripts/setup.sql
+    networks:
+      - tech-challenge-network
+
+networks:
+  tech-challenge-network:
+    driver: bridge
+

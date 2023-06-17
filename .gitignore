@@ -237,3 +237,5 @@ gradle-app.setting
 # End of https://www.toptal.com/developers/gitignore/api/gradle,intellij,visualstudiocode,macos,linux,windows
 
 .idea
+
+infra/docker/mysql/data
