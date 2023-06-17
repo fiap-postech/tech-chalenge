@@ -5,7 +5,7 @@ dependencies {
     
     implementation 'org.javamoney:moneta:1.4.2'
 
-    implementation project(":commons:domain-common")
+    compileOnly project(":commons:domain-common")
 }
 
 configurations.implementation {
