@@ -7,9 +7,8 @@ import org.javamoney.moneta.Money;
 
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.math.MathContext;
-import java.math.RoundingMode;
 
+import static br.com.fiap.tech.challenge.domain.MoneyConstants.CURRENCY_CODE;
 import static javax.money.Monetary.getCurrency;
 
 @Getter
@@ -59,6 +58,6 @@ public class Price extends ValueObject {
     }
 
     public static Price min(){
-        return Price.of(Money.zero(getCurrency("BRL")));
+        return Price.of(Money.zero(getCurrency(CURRENCY_CODE)));
     }
 }
