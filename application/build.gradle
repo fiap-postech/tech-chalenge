@@ -6,7 +6,7 @@ version '1.0.0'
 
 dependencies {
     compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
-    
+
     api 'org.javamoney:moneta:1.4.2'
     api project(":commons:domain-common")
 }

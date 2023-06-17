@@ -1,6 +1,6 @@
 version '1.0.0'
 
-
 dependencies {
+    compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
 }
 

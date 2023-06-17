@@ -1,5 +1,7 @@
 package br.com.fiap.tech.challenge.domain;
 
+import br.com.fiap.tech.challenge.domain.validation.PriceAmount;
+import br.com.fiap.tech.challenge.domain.validation.PriceCurrency;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
@@ -19,22 +21,14 @@ public class Price extends ValueObject {
     @Serial
     private static final long serialVersionUID = -1420416290598941259L;
 
+    @PriceAmount
+    @PriceCurrency
     private final Money amount;
 
     private Price(Money amount) {
         this.amount = amount;
 
-        assertArgumentEquals(
-                amount.getCurrency().getCurrencyCode(),
-                "BRL",
-                "monetary currency unit should be BRL in this system"
-        );
-
-        assertArgumentAtLeast(
-                amount.getNumberStripped(),
-                new BigDecimal("0.00"),
-                "price cannot be a negative value"
-        );
+        validate();
     }
 
     public Price add(Money money) {
