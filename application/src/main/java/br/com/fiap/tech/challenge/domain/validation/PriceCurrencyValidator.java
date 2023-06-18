@@ -4,7 +4,7 @@ import br.com.fiap.tech.challenge.domain.Price;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-import static br.com.fiap.tech.challenge.domain.MoneyConstants.CURRENCY_CODE;
+import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_CODE;
 import static java.util.Objects.isNull;
 
 public class PriceCurrencyValidator implements ConstraintValidator<PriceCurrency, Price> {

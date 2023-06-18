@@ -8,9 +8,8 @@ import lombok.experimental.Accessors;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
-import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.domain.MoneyConstants.CURRENCY_CODE;
+import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_CODE;
 import static javax.money.Monetary.getCurrency;
 
 @Getter
