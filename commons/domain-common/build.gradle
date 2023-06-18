@@ -2,5 +2,6 @@ version '1.0.0'
 
 dependencies {
     compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
+    compileOnly 'org.javamoney:moneta:1.4.2'
 }
 
