@@ -16,12 +16,12 @@ public class SideDish extends Product {
     private static final long serialVersionUID = -4700400815387828057L;
 
     @Builder
-    protected SideDish(UUID uuid, String name, Money price, Money cost) {
-        super(uuid, name, price, cost);
+    public SideDish(UUID uuid, String name, String description, Money price, String image) {
+        super(uuid, name, description, price, image);
     }
 
     @Override
-    public ProductCategory type() {
+    public ProductCategory category() {
         return ProductCategory.SIDE_DISH;
     }
 }

@@ -16,19 +16,18 @@ public abstract class Product extends Entity {
     private static final long serialVersionUID = -556035981231420003L;
 
     private final String name;
+    private final String description;
     private final Money price;
-    private final Money cost;
+    private final String image;
 
-    protected Product(UUID uuid, String name, Money price, Money cost) {
+    protected Product(UUID uuid, String name, String description, Money price, String image) {
         super(uuid);
+
         this.name = name;
+        this.description = description;
         this.price = price;
-        this.cost = cost;
+        this.image = image;
     }
 
-    public abstract ProductCategory type();
-
-    public Money profit() {
-        return price.subtract(cost);
-    }
+    public abstract ProductCategory category();
 }

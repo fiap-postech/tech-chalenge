@@ -16,12 +16,12 @@ public class Dessert extends Product {
     private static final long serialVersionUID = 8359989594372219303L;
 
     @Builder
-    protected Dessert(UUID uuid, String name, Money price, Money cost) {
-        super(uuid, name, price, cost);
+    public Dessert(UUID uuid, String name, String description, Money price, String image) {
+        super(uuid, name, description, price, image);
     }
 
     @Override
-    public ProductCategory type() {
+    public ProductCategory category() {
         return ProductCategory.DESSERT;
     }
 }
