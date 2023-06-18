@@ -1,6 +1,6 @@
 spring:
   profiles.active: local
-  application.name: '@project.name@'
+  application.name: '${project.name}'
   output.ansi.enabled: always
   main.banner-mode: log
 
@@ -15,12 +15,6 @@ management:
   info:
     build.enabled: true
     env.enabled: true
-
-info.application:
-  name: '@project.name@'
-  description: '@project.description@'
-  version: '@project.version@'
-  build-timestamp: '@project.build.timestamp@'
 
 springdoc:
   swagger-ui:
