@@ -18,8 +18,8 @@ public class ProductResponse extends Response {
 
     private String id;
     private String name;
+    private String description;
+    private String image;
     private BigDecimal price;
-    private BigDecimal cost;
-    private BigDecimal profit;
-    private ProductCategory type;
+    private ProductCategory category;
 }

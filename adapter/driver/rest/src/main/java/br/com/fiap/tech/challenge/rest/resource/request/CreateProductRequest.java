@@ -6,7 +6,9 @@ import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
-import br.com.fiap.tech.challenge.rest.resource.response.Response;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.PositiveOrZero;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,23 +17,32 @@ import org.modelmapper.ModelMapper;
 import java.io.Serial;
 import java.math.BigDecimal;
 
-
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CreateProductRequest extends Response {
+public class CreateProductRequest extends Request<Product> {
     @Serial
     private static final long serialVersionUID = 1464909268054662495L;
 
+    @NotBlank
     private String name;
-    private BigDecimal price;
-    private BigDecimal cost;
-    private BigDecimal profit;
-    private ProductCategory type;
 
+    @NotBlank
+    private String description;
+
+    @PositiveOrZero
+    private BigDecimal price;
+
+    @NotBlank
+    private String image;
+
+    @NotNull
+    private ProductCategory category;
+
+    @Override
     public Product toDomain(ModelMapper mapper) {
-        return switch (getType()) {
-            case COMBO -> mapper.map(this, SideDish.class); //TODO put combo here
+        return switch (getCategory()) {
+            case COMBO -> mapper.map(this, SideDish.class); //TODO put right code for combo here
             case SIDE_DISH -> mapper.map(this, SideDish.class);
             case DESSERT -> mapper.map(this, Dessert.class);
             case BEVERAGE -> mapper.map(this, Beverage.class);
