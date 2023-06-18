@@ -2,10 +2,10 @@ package br.com.fiap.tech.challenge.port.driver;
 
 import br.com.fiap.tech.challenge.domain.Product;
 
-import java.util.List;
+import java.util.UUID;
 
-public interface ProductReaderService {
+public interface FindProductByUUIDService {
 
-    List<Product> allAvailable();
+    Product get(UUID uuid);
 
 }
