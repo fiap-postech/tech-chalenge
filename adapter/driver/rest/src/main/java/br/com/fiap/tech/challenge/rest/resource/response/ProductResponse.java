@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource.response;
 
-import br.com.fiap.tech.challenge.domain.ProductType;
+import br.com.fiap.tech.challenge.domain.ProductCategory;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,5 +21,5 @@ public class ProductResponse extends Response {
     private BigDecimal price;
     private BigDecimal cost;
     private BigDecimal profit;
-    private ProductType type;
+    private ProductCategory type;
 }

@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
 import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.ProductType;
+import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.rest.resource.response.Response;
@@ -27,10 +27,11 @@ public class CreateProductRequest extends Response {
     private BigDecimal price;
     private BigDecimal cost;
     private BigDecimal profit;
-    private ProductType type;
+    private ProductCategory type;
 
     public Product toDomain(ModelMapper mapper) {
         return switch (getType()) {
+            case COMBO -> mapper.map(this, SideDish.class); //TODO put combo here
             case SIDE_DISH -> mapper.map(this, SideDish.class);
             case DESSERT -> mapper.map(this, Dessert.class);
             case BEVERAGE -> mapper.map(this, Beverage.class);
