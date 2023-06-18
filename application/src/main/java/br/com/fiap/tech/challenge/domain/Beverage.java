@@ -21,7 +21,7 @@ public class Beverage extends Product {
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.BEVERAGE;
+    public ProductCategory type() {
+        return ProductCategory.BEVERAGE;
     }
 }

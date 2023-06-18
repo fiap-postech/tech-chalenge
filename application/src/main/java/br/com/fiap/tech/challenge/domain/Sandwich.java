@@ -21,7 +21,7 @@ public class Sandwich extends Product {
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.SANDWICH;
+    public ProductCategory type() {
+        return ProductCategory.SANDWICH;
     }
 }

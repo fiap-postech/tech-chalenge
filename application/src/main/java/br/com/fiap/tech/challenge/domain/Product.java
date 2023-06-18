@@ -26,7 +26,7 @@ public abstract class Product extends Entity {
         this.cost = cost;
     }
 
-    public abstract ProductType type();
+    public abstract ProductCategory type();
 
     public Money profit() {
         return price.subtract(cost);

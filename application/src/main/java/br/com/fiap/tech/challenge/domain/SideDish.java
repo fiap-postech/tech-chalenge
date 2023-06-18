@@ -21,7 +21,7 @@ public class SideDish extends Product {
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.SIDE_DISH;
+    public ProductCategory type() {
+        return ProductCategory.SIDE_DISH;
     }
 }

@@ -21,7 +21,7 @@ public class Dessert extends Product {
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.DESSERT;
+    public ProductCategory type() {
+        return ProductCategory.DESSERT;
     }
 }
