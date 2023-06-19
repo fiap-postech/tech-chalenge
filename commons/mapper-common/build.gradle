@@ -7,6 +7,9 @@ version '1.0.0'
 dependencies {
     compileOnly 'org.springframework:spring-core:6.0.10'
     compileOnly 'org.springframework:spring-context:6.0.10'
+    compileOnly 'org.javamoney:moneta:1.4.2'
+
+    compileOnly project(":commons:domain-common")
 
     api 'org.modelmapper:modelmapper:3.1.1'
 }

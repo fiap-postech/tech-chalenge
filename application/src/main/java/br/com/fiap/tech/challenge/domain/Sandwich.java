@@ -16,12 +16,12 @@ public class Sandwich extends Product {
     private static final long serialVersionUID = 270547921615282785L;
 
     @Builder
-    public Sandwich(UUID uuid, String name, Money price, Money cost) {
-        super(uuid, name, price, cost);
+    public Sandwich(UUID uuid, String name, String description, Money price, String image) {
+        super(uuid, name, description, price, image);
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.SANDWICH;
+    public ProductCategory category() {
+        return ProductCategory.SANDWICH;
     }
 }

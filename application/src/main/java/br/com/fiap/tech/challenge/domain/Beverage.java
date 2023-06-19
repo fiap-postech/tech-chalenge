@@ -16,12 +16,12 @@ public class Beverage extends Product {
     private static final long serialVersionUID = 8271359996195513007L;
 
     @Builder
-    protected Beverage(UUID uuid, String name, Money price, Money cost) {
-        super(uuid, name, price, cost);
+    protected Beverage(UUID uuid, String name, String description, Money price, String image) {
+        super(uuid, name, description, price, image);
     }
 
     @Override
-    public ProductType type() {
-        return ProductType.BEVERAGE;
+    public ProductCategory category() {
+        return ProductCategory.BEVERAGE;
     }
 }

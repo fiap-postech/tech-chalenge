@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.domain;
 
-public enum ProductType {
+public enum ProductCategory {
+    COMBO,
     SANDWICH,
     BEVERAGE,
     DESSERT,

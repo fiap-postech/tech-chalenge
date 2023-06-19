@@ -1,8 +1,14 @@
 spring:
   profiles.active: local
-  application.name: '@project.name@'
+  application.name: '${project.name}'
   output.ansi.enabled: always
   main.banner-mode: log
+  datasource:
+    url: jdbc:mysql://\${db.host}:\${db.port}/\${db.schema}?useSSL=false&allowPublicKeyRetrieval=true
+    username: \${db.username}
+    password: \${db.password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa.hibernate.ddl-auto: none
 
 server.port: 8080
 
@@ -15,12 +21,6 @@ management:
   info:
     build.enabled: true
     env.enabled: true
-
-info.application:
-  name: '@project.name@'
-  description: '@project.description@'
-  version: '@project.version@'
-  build-timestamp: '@project.build.timestamp@'
 
 springdoc:
   swagger-ui:
