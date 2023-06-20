@@ -238,4 +238,5 @@ gradle-app.setting
 
 .idea
 
+docker/mysql/data
 infra/docker/mysql/data
