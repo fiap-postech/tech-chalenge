@@ -35,7 +35,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
             return Sandwich.builder()
                     .name(request.getName())
                     .description(request.getDescription())
-                    .price(makeMoney(request.getPrice()))
+                    .price(Price.of(makeMoney(request.getPrice())))
                     .image(Image.of(request.getImage()))
                     .build();
         };
@@ -48,7 +48,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
             return Dessert.builder()
                     .name(request.getName())
                     .description(request.getDescription())
-                    .price(makeMoney(request.getPrice()))
+                    .price(Price.of(makeMoney(request.getPrice())))
                     .image(Image.of(request.getImage()))
                     .build();
         };
@@ -61,7 +61,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
             return Beverage.builder()
                     .name(request.getName())
                     .description(request.getDescription())
-                    .price(makeMoney(request.getPrice()))
+                    .price(Price.of(makeMoney(request.getPrice())))
                     .image(Image.of(request.getImage()))
                     .build();
         };
@@ -74,7 +74,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
             return SideDish.builder()
                     .name(request.getName())
                     .description(request.getDescription())
-                    .price(makeMoney(request.getPrice()))
+                    .price(Price.of(makeMoney(request.getPrice())))
                     .image(Image.of(request.getImage()))
                     .build();
         };

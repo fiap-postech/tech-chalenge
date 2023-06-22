@@ -52,7 +52,7 @@ public class ProductEntity extends JPAEntity {
             case BEVERAGE -> Beverage.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -60,7 +60,7 @@ public class ProductEntity extends JPAEntity {
             case SANDWICH -> Sandwich.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -68,7 +68,7 @@ public class ProductEntity extends JPAEntity {
             case DESSERT -> Dessert.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -76,7 +76,7 @@ public class ProductEntity extends JPAEntity {
             case SIDE_DISH, COMBO -> SideDish.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();

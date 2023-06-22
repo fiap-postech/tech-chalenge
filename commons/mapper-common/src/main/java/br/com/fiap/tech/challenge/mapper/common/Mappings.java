@@ -1,9 +1,8 @@
 package br.com.fiap.tech.challenge.mapper.common;
 
-import br.com.fiap.tech.challenge.util.Moneys;
+import br.com.fiap.tech.challenge.domain.Price;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.javamoney.moneta.Money;
 import org.modelmapper.Converter;
 
 import java.math.BigDecimal;
@@ -15,8 +14,9 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
 
-    public static Converter<Money, BigDecimal> priceToMoneyConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Moneys.zero())
+    public static Converter<Price, BigDecimal> priceToMoneyConverter() {
+        return ctx -> defaultIfNull(ctx.getSource(), Price.min())
+                .amount()
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }

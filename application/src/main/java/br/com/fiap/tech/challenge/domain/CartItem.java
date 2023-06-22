@@ -62,7 +62,7 @@ public class CartItem extends ValueObject {
     public CartItem resetDiscount(){
         return toBuilder()
                 .discount(discount().reset())
-                .price(Price.of(product.price()))
+                .price(product.price())
                 .build();
     }
 }

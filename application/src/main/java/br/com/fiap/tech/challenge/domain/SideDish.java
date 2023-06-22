@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;
-import org.javamoney.moneta.Money;
 
 import java.io.Serial;
 import java.util.UUID;
@@ -16,7 +15,7 @@ public class SideDish extends Product {
     private static final long serialVersionUID = -4700400815387828057L;
 
     @Builder
-    public SideDish(UUID uuid, String name, String description, Money price, Image image) {
+    public SideDish(UUID uuid, String name, String description, Price price, Image image) {
         super(uuid, name, description, price, image);
     }
 

@@ -15,13 +15,13 @@ import static javax.money.Monetary.getCurrency;
 @Getter
 @Accessors(fluent = true)
 @ToString
+@PriceAmount
+@PriceCurrency
 public class Price extends ValueObject {
 
     @Serial
     private static final long serialVersionUID = -1420416290598941259L;
 
-    @PriceAmount
-    @PriceCurrency
     private final Money amount;
 
     private Price(Money amount) {

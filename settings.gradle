@@ -19,3 +19,6 @@ findProject(':adapter:driven:redis')?.name = 'redis'
 include 'adapter:driver:rest'
 findProject(':adapter:driver:rest')?.name = 'rest'
 
+include 'commons:rest-common'
+findProject(':commons:rest-common')?.name = 'rest-common'
+
