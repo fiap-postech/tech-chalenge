@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.response;
 
 import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.rest.common.response.Response;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
