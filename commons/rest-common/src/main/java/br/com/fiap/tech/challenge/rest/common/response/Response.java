@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.rest.resource.response;
+package br.com.fiap.tech.challenge.rest.common.response;
 
 import lombok.EqualsAndHashCode;
 import lombok.ToString;

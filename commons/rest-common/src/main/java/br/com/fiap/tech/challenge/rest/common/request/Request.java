@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.rest.resource.request;
+package br.com.fiap.tech.challenge.rest.common.request;
 
 import br.com.fiap.tech.challenge.AssertionConcern;
 import lombok.EqualsAndHashCode;

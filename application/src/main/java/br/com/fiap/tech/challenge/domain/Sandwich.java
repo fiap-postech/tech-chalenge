@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.domain;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;
-import org.javamoney.moneta.Money;
 
 import java.io.Serial;
 import java.util.UUID;
@@ -16,7 +15,7 @@ public class Sandwich extends Product {
     private static final long serialVersionUID = 270547921615282785L;
 
     @Builder
-    public Sandwich(UUID uuid, String name, String description, Money price, String image) {
+    public Sandwich(UUID uuid, String name, String description, Price price, String image) {
         super(uuid, name, description, price, image);
     }
 

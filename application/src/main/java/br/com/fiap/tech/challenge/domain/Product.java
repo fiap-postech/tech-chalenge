@@ -1,12 +1,11 @@
 package br.com.fiap.tech.challenge.domain;
 
-import br.com.fiap.tech.challenge.domain.validation.PriceAmount;
-import br.com.fiap.tech.challenge.domain.validation.PriceCurrency;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.Accessors;
-import org.javamoney.moneta.Money;
 
 import java.io.Serial;
 import java.util.UUID;
@@ -24,15 +23,15 @@ public abstract class Product extends Entity {
     @NotBlank
     private final String description;
 
-    @PriceAmount
-    @PriceCurrency
-    private final Money price;
+    @NotNull
+    @Valid
+    private final Price price;
 
     @NotBlank
     //TODO create a VO for image
     private final String image;
 
-    protected Product(UUID uuid, String name, String description, Money price, String image) {
+    protected Product(UUID uuid, String name, String description, Price price, String image) {
         super(uuid);
 
         this.name = name;
