@@ -43,7 +43,6 @@ public class ProductResource {
 
     @GetMapping("/{uuid}")
     public ProductResponse getByUUID(@PathVariable String uuid){
-        //TODO create exception handler to generate custom errors
         return mapper.map(
                 findProductByUUIDService.get(UUID.fromString(uuid)),
                 ProductResponse.class

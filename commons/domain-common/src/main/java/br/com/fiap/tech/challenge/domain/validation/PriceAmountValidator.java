@@ -12,7 +12,6 @@ public class PriceAmountValidator implements ConstraintValidator<PriceAmount, Pr
         if (isNull(value) || isNull(value.amount())){
             return false;
         }
-
         return value.amount().isPositiveOrZero();
     }
 }

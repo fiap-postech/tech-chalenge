@@ -13,7 +13,6 @@ public class PriceCurrencyValidator implements ConstraintValidator<PriceCurrency
         if (isNull(value) || isNull(value.amount())){
             return false;
         }
-
         return CURRENCY_CODE.equals(value.amount().getCurrency().getCurrencyCode());
     }
 }
