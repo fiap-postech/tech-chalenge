@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.domain;
 
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -22,6 +23,7 @@ public abstract class Product extends Entity {
     @NotBlank
     private final String description;
 
+    @NotNull
     @Valid
     private final Price price;
 
