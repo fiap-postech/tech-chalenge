@@ -23,6 +23,16 @@ services:
     networks:
       - tech-challenge-network
 
+  cdn:
+    container_name: cdn
+    image: tech-challenge-cdn
+    build:
+      context: ./docker/nginx
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "8888:8080"
+
 networks:
   tech-challenge-network:
     driver: bridge
