@@ -17,7 +17,7 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Constraint(validatedBy = PriceAmountValidator.class)
 @Documented
 public @interface PriceAmount {
-    String message() default "Price should be greater than or 0. Found: ${validatedValue.amount}";
+    String message() default "Price should be greater than or 0. Found: ${validatedValue.number}";
 
     Class<?>[] groups () default {};
 

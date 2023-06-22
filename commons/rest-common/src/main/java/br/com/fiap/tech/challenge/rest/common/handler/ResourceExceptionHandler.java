@@ -7,6 +7,7 @@ import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorField;
 import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.common.response.Response;
 import jakarta.validation.ConstraintViolationException;
+import org.modelmapper.MappingException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -47,7 +48,7 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(ApplicationException.class)
-    public ResponseEntity<? extends Response> handleServiceException(ApplicationException exception, WebRequest request) {
+    public ResponseEntity<? extends Response> handleApplicationException(ApplicationException exception, WebRequest request) {
         var httpStatus = handle(exception.getError().getErrorType());
         var apiError = new ApiError(exception.getData(), exception.getError(), exception.getParameters());
         var apiErrorResponse = this.createApiErrorResponse(request, httpStatus, apiError);
@@ -73,6 +74,14 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         var httpStatus = handle(applicationError.getErrorType());
         var apiError = createApiErrorResponse(request, httpStatus, new ApiError(applicationError, exception.getMessage()));
         return new ResponseEntity<>(apiError, httpStatus);
+    }
+
+    @ExceptionHandler(MappingException.class)
+    public ResponseEntity<? extends Response> handleMappingException(MappingException exception, WebRequest request) {
+        if (exception.getCause() instanceof ConstraintViolationException) {
+            return this.handleConstraintViolation((ConstraintViolationException) exception.getCause(), request);
+        }
+        return this.handleGeneralException(exception, request);
     }
 
     private ApiErrorResponse createApiErrorResponse(WebRequest webRequest, HttpStatus httpStatus, ApiError apiError) {

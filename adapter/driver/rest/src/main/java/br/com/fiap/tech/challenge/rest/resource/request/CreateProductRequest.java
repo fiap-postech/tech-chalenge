@@ -6,6 +6,7 @@ import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.rest.common.request.Request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;

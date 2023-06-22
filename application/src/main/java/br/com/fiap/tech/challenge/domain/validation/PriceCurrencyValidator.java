@@ -1,19 +1,18 @@
 package br.com.fiap.tech.challenge.domain.validation;
 
-import br.com.fiap.tech.challenge.domain.Price;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import org.javamoney.moneta.Money;
 
 import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_CODE;
 import static java.util.Objects.isNull;
 
-public class PriceCurrencyValidator implements ConstraintValidator<PriceCurrency, Price> {
+public class PriceCurrencyValidator implements ConstraintValidator<PriceCurrency, Money> {
     @Override
-    public boolean isValid(Price value, ConstraintValidatorContext context) {
-        if (isNull(value) || isNull(value.amount())){
+    public boolean isValid(Money value, ConstraintValidatorContext context) {
+        if (isNull(value)) {
             return false;
         }
-
-        return CURRENCY_CODE.equals(value.amount().getCurrency().getCurrencyCode());
+        return CURRENCY_CODE.equals(value.getCurrency().getCurrencyCode());
     }
 }
