@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.mapper.common;
 
+import br.com.fiap.tech.challenge.domain.Percentage;
 import br.com.fiap.tech.challenge.util.Moneys;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
@@ -19,5 +20,9 @@ public class Mappings {
         return ctx -> defaultIfNull(ctx.getSource(), Moneys.zero())
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
+    }
+
+    public static Converter<Percentage, BigDecimal> percentageToBigDecimalConverter(){
+        return ctx -> defaultIfNull(ctx.getSource(), Percentage.zero()).value();
     }
 }

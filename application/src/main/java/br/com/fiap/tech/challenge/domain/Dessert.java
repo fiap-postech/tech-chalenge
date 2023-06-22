@@ -16,7 +16,7 @@ public class Dessert extends Product {
     private static final long serialVersionUID = 8359989594372219303L;
 
     @Builder
-    public Dessert(UUID uuid, String name, String description, Money price, String image) {
+    protected Dessert(UUID uuid, String name, String description, Money price, String image) {
         super(uuid, name, description, price, image);
     }
 

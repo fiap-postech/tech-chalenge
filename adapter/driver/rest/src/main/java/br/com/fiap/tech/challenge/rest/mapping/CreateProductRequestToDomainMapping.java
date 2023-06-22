@@ -30,7 +30,6 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                 .setProvider(sideDishProvider());
     }
 
-    //TODO review if create provider is necessary or if we should not use model mapper in this case
     private static Provider<Sandwich> sandwichProvider() {
         return provision -> {
             var request = (CreateProductRequest) provision.getSource();

@@ -7,10 +7,8 @@ import lombok.experimental.Accessors;
 import org.javamoney.moneta.Money;
 
 import java.io.Serial;
-import java.math.BigDecimal;
 
 import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_CODE;
-import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_MATH_CONTEXT;
 import static javax.money.Monetary.getCurrency;
 
 @Getter
@@ -35,18 +33,6 @@ public class Discount extends ValueObject {
 
     public static Discount of(Money amount){
         return new Discount(amount);
-    }
-
-    public static Discount of(Money price, double percentage) {
-        var multiplicand = BigDecimal.valueOf(percentage)
-                .divide(BigDecimal.valueOf(100), CURRENCY_MATH_CONTEXT);
-
-        var discountValue = price
-                .getNumber()
-                .numberValue(BigDecimal.class)
-                .multiply(multiplicand);
-
-        return of(Money.of(discountValue, CURRENCY_CODE));
     }
 
     public static Discount withoutDiscount() {
