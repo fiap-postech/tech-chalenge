@@ -15,7 +15,7 @@ public class Beverage extends Product {
     private static final long serialVersionUID = 8271359996195513007L;
 
     @Builder
-    protected Beverage(UUID uuid, String name, String description, Price price, String image) {
+    protected Beverage(UUID uuid, String name, String description, Price price, Image image) {
         super(uuid, name, description, price, image);
     }
 

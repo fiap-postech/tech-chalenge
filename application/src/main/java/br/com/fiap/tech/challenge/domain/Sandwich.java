@@ -15,7 +15,7 @@ public class Sandwich extends Product {
     private static final long serialVersionUID = 270547921615282785L;
 
     @Builder
-    public Sandwich(UUID uuid, String name, String description, Price price, String image) {
+    public Sandwich(UUID uuid, String name, String description, Price price, Image image) {
         super(uuid, name, description, price, image);
     }
 
