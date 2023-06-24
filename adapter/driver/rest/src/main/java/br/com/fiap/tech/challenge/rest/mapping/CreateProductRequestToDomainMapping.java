@@ -1,12 +1,8 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Price;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
@@ -14,7 +10,7 @@ import org.modelmapper.Provider;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
-public class CreateProductRequestToDomainMapping implements TypeMapConfiguration {
+public class CreateProductRequestToDomainMapping implements RestTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {

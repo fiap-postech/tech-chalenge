@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
+
 @RestController
 @RequestMapping("/product")
 public class ProductResource {
@@ -26,7 +28,7 @@ public class ProductResource {
     private final FindProductByUUIDService findProductByUUIDService;
     private final CreateProductService createProductService;
 
-    public ProductResource(@Qualifier("restModelMapper") ModelMapper mapper, FindAllAvailableProductService findAllAvailableProductService, FindProductByUUIDService findProductByUUIDService, CreateProductService createProductService) {
+    public ProductResource(@Qualifier(REST_MODEL_MAPPER) ModelMapper mapper, FindAllAvailableProductService findAllAvailableProductService, FindProductByUUIDService findProductByUUIDService, CreateProductService createProductService) {
         this.mapper = mapper;
         this.findAllAvailableProductService = findAllAvailableProductService;
         this.findProductByUUIDService = findProductByUUIDService;
@@ -51,7 +53,7 @@ public class ProductResource {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse createProduct(@RequestBody @Valid CreateProductRequest request){
+    public ProductResponse create(@RequestBody @Valid CreateProductRequest request){
         return mapper.map(
                 createProductService.create(request.toDomain(mapper)),
                 ProductResponse.class

@@ -6,7 +6,7 @@ import org.modelmapper.convention.MatchingStrategies;
 import java.util.List;
 
 public interface ModelMapperConfiguration<T extends TypeMapConfiguration> {
-    default ModelMapper getConfiguredMapper(List<T> configurations){
+    default ModelMapper getConfiguredModelMapper(List<T> configurations){
         var mapper =  new ModelMapper();
 
         mapper.getConfiguration().setMatchingStrategy(MatchingStrategies.STRICT);

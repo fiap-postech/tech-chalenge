@@ -1,7 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfiguration;
-import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;

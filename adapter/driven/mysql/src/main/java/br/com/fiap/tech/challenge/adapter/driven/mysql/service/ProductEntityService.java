@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLModelMapperConfiguration.MYSQL_MODEL_MAPPER;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 
 @Service
@@ -23,7 +24,7 @@ public class ProductEntityService implements ProductWriterService, ProductReader
     private final ProductEntityRepository repository;
     private final ModelMapper mapper;
 
-    public ProductEntityService(ProductEntityRepository repository, @Qualifier("mysqlModelMapper") ModelMapper mapper) {
+    public ProductEntityService(ProductEntityRepository repository, @Qualifier(MYSQL_MODEL_MAPPER) ModelMapper mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }
