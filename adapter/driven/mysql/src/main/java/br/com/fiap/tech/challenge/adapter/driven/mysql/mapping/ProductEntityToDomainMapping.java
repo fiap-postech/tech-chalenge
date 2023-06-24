@@ -1,19 +1,15 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 
 @Mapper
-public class ProductEntityToDomainMapping implements TypeMapConfiguration {
+public class ProductEntityToDomainMapping implements MySQLTypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Product.class, ProductEntity.class)
