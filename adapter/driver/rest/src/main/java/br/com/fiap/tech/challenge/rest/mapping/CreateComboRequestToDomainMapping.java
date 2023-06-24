@@ -11,7 +11,6 @@ import org.modelmapper.Provider;
 
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 import static java.util.Objects.isNull;
 
 @Mapper
@@ -33,11 +32,11 @@ public class CreateComboRequestToDomainMapping implements TypeMapConfiguration {
             return Combo.builder()
                     .name(request.getName())
                     .description(request.getDescription())
-                    .price(makeMoney(request.getPrice()))
                     .image(request.getImage())
                     .beverage((Beverage) getProduct(request.getBeverageId()))
                     .sideDish((SideDish) getProduct(request.getSideDishId()))
                     .sandwich((Sandwich) getProduct(request.getSandwichId()))
+                    .enabled(request.isEnabled())
                     .build();
         };
     }

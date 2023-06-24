@@ -7,7 +7,6 @@ import br.com.fiap.tech.challenge.rest.resource.response.ComboResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.percentageToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 
 @Mapper
@@ -35,8 +34,7 @@ public class ProductToProductResponseMapping implements TypeMapConfiguration {
                 .includeBase(Product.class, ProductResponse.class);
 
         mapper.typeMap(Combo.class, ComboResponse.class)
-                .includeBase(Product.class, ProductResponse.class)
-                .addMappings(mapping -> mapping.using(percentageToBigDecimalConverter()).map(Combo::discount, ComboResponse::setDiscount));
+                .includeBase(Product.class, ProductResponse.class);
     }
 
 

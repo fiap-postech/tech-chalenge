@@ -17,7 +17,7 @@ create table product(
     price numeric(12,2) not null,
     image text not null,
     category enum('COMBO', 'SANDWICH', 'BEVERAGE', 'DESSERT', 'SIDE_DISH') not null,
-    active boolean not null,
+    enabled boolean not null,
     created datetime not null,
     last_updated datetime not null,
     version integer not null
@@ -69,6 +69,5 @@ create table payment(
     amount numeric(12,2) not null,
     created datetime not null,
     last_updated datetime not null,
-    version integer not null,
-    constraint fk_purchase_id foreign key (purchase_id) references  purchase(id)
+    version integer not null
 );

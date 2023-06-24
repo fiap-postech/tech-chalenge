@@ -26,22 +26,25 @@ public abstract class Product extends Entity {
     @Valid
     private final Price price;
 
-    private final boolean active;
+    private final boolean enabled;
 
     @NotBlank
     //TODO create a VO for image
     private final String image;
 
-    protected Product(UUID uuid, String name, String description, @NotNull Price price, String image) {
+    protected Product(UUID uuid, String name, String description, @NotNull Price price, String image, boolean enabled) {
         super(uuid);
 
         this.name = name;
         this.description = description;
         this.price = price;
         this.image = image;
+        this.enabled = enabled;
 
         validate();
     }
 
     public abstract ProductCategory category();
+    public abstract Product enable();
+    public abstract Product disable();
 }

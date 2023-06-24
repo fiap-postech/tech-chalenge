@@ -10,7 +10,9 @@ import static java.lang.Boolean.TRUE;
 public enum ApplicationError implements BaseApplicationError {
 
     UNKNOWN_ERROR("AE-001", INTERNAL_SERVER_ERROR, TRUE, "Unexpected error [{}]"),
-    PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]");
+    PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]"),
+    PRODUCT_SHOULD_BE_ENABLED_FOR_COMBO("AE-003", INVALID_PARAMETER, TRUE, "{} should be enabled to be used in new combo"),
+    ;
 
     private final String code;
 

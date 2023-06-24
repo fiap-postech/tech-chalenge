@@ -22,5 +22,4 @@ public class ServiceFactory {
     public static CreateProductService createProductService(ProductWriterService writer) {
         return new CreateProductServiceImpl(writer);
     }
-
 }

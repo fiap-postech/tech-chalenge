@@ -8,30 +8,30 @@ import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
 import br.com.fiap.tech.challenge.util.ResponseList;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springdoc.core.annotations.ParameterObject;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 @RestController
 @RequestMapping("/product")
-@AllArgsConstructor
 public class ProductResource {
 
-    private ModelMapper mapper;
-    private FindAllAvailableProductService findAllAvailableProductService;
-    private FindProductByUUIDService findProductByUUIDService;
-    private CreateProductService createProductService;
+    private final ModelMapper mapper;
+    private final FindAllAvailableProductService findAllAvailableProductService;
+    private final FindProductByUUIDService findProductByUUIDService;
+    private final CreateProductService createProductService;
+
+    public ProductResource(@Qualifier("restModelMapper") ModelMapper mapper, FindAllAvailableProductService findAllAvailableProductService, FindProductByUUIDService findProductByUUIDService, CreateProductService createProductService) {
+        this.mapper = mapper;
+        this.findAllAvailableProductService = findAllAvailableProductService;
+        this.findProductByUUIDService = findProductByUUIDService;
+        this.createProductService = createProductService;
+    }
 
     @GetMapping
     public ResponseList<ProductResponse> getAllAvailable(@ParameterObject Pageable pageable) {
@@ -51,7 +51,7 @@ public class ProductResource {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ProductResponse create(@RequestBody @Valid CreateProductRequest request){
+    public ProductResponse createProduct(@RequestBody @Valid CreateProductRequest request){
         return mapper.map(
                 createProductService.create(request.toDomain(mapper)),
                 ProductResponse.class

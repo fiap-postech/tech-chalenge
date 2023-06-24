@@ -5,7 +5,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
-import java.math.BigDecimal;
 
 @Getter
 @Setter
@@ -17,6 +16,4 @@ public class ComboResponse extends ProductResponse {
     private ProductResponse beverage;
     private ProductResponse sandwich;
     private ProductResponse sideDish;
-    private BigDecimal discount;
-    private BigDecimal price;
 }

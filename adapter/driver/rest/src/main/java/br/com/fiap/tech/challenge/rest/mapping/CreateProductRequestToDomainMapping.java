@@ -40,6 +40,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
                     .image(request.getImage())
+                    .enabled(request.isEnabled())
                     .build();
         };
     }
@@ -53,6 +54,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
                     .image(request.getImage())
+                    .enabled(request.isEnabled())
                     .build();
         };
     }
@@ -66,6 +68,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
                     .image(request.getImage())
+                    .enabled(request.isEnabled())
                     .build();
         };
     }
@@ -79,6 +82,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
                     .image(request.getImage())
+                    .enabled(request.isEnabled())
                     .build();
         };
     }

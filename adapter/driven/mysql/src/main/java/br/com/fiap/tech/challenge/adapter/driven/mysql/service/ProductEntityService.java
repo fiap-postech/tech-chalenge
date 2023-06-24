@@ -8,8 +8,8 @@ import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
 import br.com.fiap.tech.challenge.util.Page;
 import br.com.fiap.tech.challenge.util.ResponseList;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
@@ -18,11 +18,15 @@ import java.util.UUID;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 
 @Service
-@AllArgsConstructor
 public class ProductEntityService implements ProductWriterService, ProductReaderService {
 
-    private ProductEntityRepository repository;
-    private ModelMapper mapper;
+    private final ProductEntityRepository repository;
+    private final ModelMapper mapper;
+
+    public ProductEntityService(ProductEntityRepository repository, @Qualifier("mysqlModelMapper") ModelMapper mapper) {
+        this.repository = repository;
+        this.mapper = mapper;
+    }
 
     @Override
     public ResponseList<Product> readAll(Page page) {

@@ -7,11 +7,7 @@ import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -27,6 +23,7 @@ import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Entity
 @Table(name = "product")
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
 @Getter
 @Setter
 @ToString
@@ -53,7 +50,7 @@ public class ProductEntity extends JPAEntity {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
-    private boolean active;
+    private boolean enabled;
 
     public Product toDomain(){
         return switch (category){
