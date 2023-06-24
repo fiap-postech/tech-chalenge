@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Price;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
@@ -52,12 +53,14 @@ public class ProductEntity extends JPAEntity {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    private boolean active;
+
     public Product toDomain(){
         return switch (category){
             case BEVERAGE -> Beverage.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(getImage())
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -65,7 +68,7 @@ public class ProductEntity extends JPAEntity {
             case SANDWICH -> Sandwich.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(getImage())
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -73,7 +76,7 @@ public class ProductEntity extends JPAEntity {
             case DESSERT -> Dessert.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(getImage())
                     .uuid(UUID.fromString(getUuid()))
                     .build();
@@ -81,7 +84,7 @@ public class ProductEntity extends JPAEntity {
             case SIDE_DISH, COMBO -> SideDish.builder()
                     .name(getName())
                     .description(getDescription())
-                    .price(makeMoney(getPrice()))
+                    .price(Price.of(makeMoney(getPrice())))
                     .image(getImage())
                     .uuid(UUID.fromString(getUuid()))
                     .build();
