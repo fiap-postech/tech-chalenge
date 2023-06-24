@@ -13,7 +13,7 @@ import org.modelmapper.ModelMapper;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 
 @Mapper
-public class ProductEntityToDomainMapping implements TypeMapConfiguration {
+public class ProductToProductEntityMapping implements TypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Product.class, ProductEntity.class)

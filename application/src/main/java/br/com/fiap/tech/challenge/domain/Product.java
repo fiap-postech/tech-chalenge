@@ -23,15 +23,16 @@ public abstract class Product extends Entity {
     @NotBlank
     private final String description;
 
-    @NotNull
     @Valid
     private final Price price;
+
+    private final boolean active;
 
     @NotBlank
     //TODO create a VO for image
     private final String image;
 
-    protected Product(UUID uuid, String name, String description, Price price, String image) {
+    protected Product(UUID uuid, String name, String description, @NotNull Price price, String image) {
         super(uuid);
 
         this.name = name;

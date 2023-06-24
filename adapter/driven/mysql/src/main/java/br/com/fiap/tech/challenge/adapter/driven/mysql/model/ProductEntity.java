@@ -53,6 +53,8 @@ public class ProductEntity extends JPAEntity {
     @Enumerated(EnumType.STRING)
     private ProductCategory category;
 
+    private boolean active;
+
     public Product toDomain(){
         return switch (category){
             case BEVERAGE -> Beverage.builder()
