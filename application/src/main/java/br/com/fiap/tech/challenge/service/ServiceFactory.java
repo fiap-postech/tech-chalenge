@@ -1,7 +1,10 @@
 package br.com.fiap.tech.challenge.service;
 
+import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
+import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
+import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.CreateProductService;
 import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
@@ -21,6 +24,10 @@ public class ServiceFactory {
 
     public static CreateProductService createProductService(ProductWriterService writer) {
         return new CreateProductServiceImpl(writer);
+    }
+
+    public static CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader){
+        return new CreateCustomerServiceImpl(writer, reader);
     }
 
 }
