@@ -1,19 +1,15 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 
 @Mapper
-public class ProductToProductResponseMapping implements TypeMapConfiguration {
+public class ProductToProductResponseMapping implements RestTypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Product.class, ProductResponse.class)
