@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.domain;
 
 import br.com.fiap.tech.challenge.domain.validation.URL;
+import br.com.fiap.tech.challenge.exception.ApplicationException;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,8 +12,9 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
+import static br.com.fiap.tech.challenge.error.ApplicationError.IMAGE_URL_INVALID;
+
 @Accessors(fluent = true)
-@AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
 public class Image extends ValueObject {
     @Serial
@@ -21,11 +23,17 @@ public class Image extends ValueObject {
     @URL
     private final String url;
 
+    private Image(String url) {
+        this.url = url;
+
+        validate();
+    }
+
     public java.net.URL toURL() {
         try {
             return new java.net.URL(url);
         } catch (MalformedURLException e) {
-            throw new RuntimeException(e); //TODO change to specialized exception
+            throw new ApplicationException(IMAGE_URL_INVALID);
         }
     }
 
@@ -33,7 +41,7 @@ public class Image extends ValueObject {
         try {
             return toURL().toURI();
         } catch (URISyntaxException e) {
-            throw new RuntimeException(e); //TODO change to specialized exception
+            throw new ApplicationException(IMAGE_URL_INVALID);
         }
     }
 
