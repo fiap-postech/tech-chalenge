@@ -1,12 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Price;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.ProductCategory;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -59,7 +53,7 @@ public class ProductEntity extends JPAEntity {
                     .name(getName())
                     .description(getDescription())
                     .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
+                    .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
 
@@ -67,7 +61,7 @@ public class ProductEntity extends JPAEntity {
                     .name(getName())
                     .description(getDescription())
                     .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
+                    .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
 
@@ -75,7 +69,7 @@ public class ProductEntity extends JPAEntity {
                     .name(getName())
                     .description(getDescription())
                     .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
+                    .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
 
@@ -83,7 +77,7 @@ public class ProductEntity extends JPAEntity {
                     .name(getName())
                     .description(getDescription())
                     .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
+                    .image(Image.of(getImage()))
                     .uuid(UUID.fromString(getUuid()))
                     .build();
 

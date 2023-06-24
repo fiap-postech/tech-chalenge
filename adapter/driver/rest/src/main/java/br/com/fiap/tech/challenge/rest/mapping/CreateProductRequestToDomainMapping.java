@@ -1,10 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Price;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
@@ -40,7 +36,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -53,7 +49,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -66,7 +62,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -79,7 +75,7 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
