@@ -11,10 +11,11 @@ import java.lang.annotation.Target;
 
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.PARAMETER;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
+@Target({PARAMETER,FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
 @Retention(RUNTIME)
 @Constraint(validatedBy = DocumentValidator.class)
 @Documented

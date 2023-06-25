@@ -25,7 +25,7 @@ public class ProductResponse extends Response {
     private String name;
     @Schema(description = "Descrição do produto", example = "Dois hambúrgueres (100% carne bovina), alface americana, queijo sabor cheddar, molho especial, cebola, picles e pão com gergelim")
     private String description;
-    @Schema(description = "Link da imagem do produto", example = "http://localhost:8080/foto")
+    @Schema(description = "Link da imagem do produto", example = "http://localhost:8888/foto.png")
     private String image;
     @Schema(description = "Preço do produto", example = "23.48")
     private BigDecimal price;

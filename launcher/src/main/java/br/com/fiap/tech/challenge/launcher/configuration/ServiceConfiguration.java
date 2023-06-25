@@ -4,10 +4,7 @@ import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
-import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
-import br.com.fiap.tech.challenge.port.driver.CreateProductService;
-import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
-import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.*;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -33,5 +30,10 @@ public class ServiceConfiguration {
     @Bean
     public CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader) {
         return ServiceFactory.createCustomerService(writer, reader);
+    }
+
+    @Bean
+    public FindCustomerByDocumentService findCustomerByDocumentService (CustomerReaderService reader){
+        return ServiceFactory.findCustomerByDocumentService(reader);
     }
 }
