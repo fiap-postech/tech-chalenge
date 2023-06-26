@@ -2,8 +2,6 @@ package br.com.fiap.tech.challenge.domain;
 
 import br.com.fiap.tech.challenge.domain.validation.URL;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
@@ -12,7 +10,7 @@ import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.IMAGE_URL_INVALID;
+import static br.com.fiap.tech.challenge.exception.error.CommonApplicationError.IMAGE_URL_INVALID;
 
 @Accessors(fluent = true)
 @Getter

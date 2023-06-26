@@ -3,8 +3,6 @@ package br.com.fiap.tech.challenge.domain.validation;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 
-import static java.util.Objects.nonNull;
-
 public class UUIDValidator implements ConstraintValidator<UUID, String> {
 
     @Override
