@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Combo;
+import br.com.fiap.tech.challenge.domain.Image;
 import br.com.fiap.tech.challenge.domain.Price;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.Sandwich;
@@ -39,7 +40,7 @@ public class CreateComboRequestToDomainMapping implements RestTypeMapConfigurati
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .beverage((Beverage) getProduct(request.getBeverageId()))
                     .sideDish((SideDish) getProduct(request.getSideDishId()))
                     .sandwich((Sandwich) getProduct(request.getSandwichId()))
