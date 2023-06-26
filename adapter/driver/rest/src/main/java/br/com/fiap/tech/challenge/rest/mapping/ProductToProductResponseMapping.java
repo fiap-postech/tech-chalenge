@@ -12,6 +12,7 @@ import br.com.fiap.tech.challenge.rest.resource.response.ComboResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 
 @Mapper
@@ -23,9 +24,11 @@ public class ProductToProductResponseMapping implements RestTypeMapConfiguration
                 .addMapping(Product::name, ProductResponse::setName)
                 .addMapping(Product::category, ProductResponse::setCategory)
                 .addMapping(Product::description, ProductResponse::setDescription)
-                .addMapping(Product::image, ProductResponse::setImage)
                 .addMapping(Product::enabled, ProductResponse::setEnabled)
-                .addMappings(mapping -> mapping.using(priceToMoneyConverter()).map(Product::price, ProductResponse::setPrice));
+                .addMappings(mapping -> {
+                    mapping.using(priceToMoneyConverter()).map(Product::price, ProductResponse::setPrice);
+                    mapping.using(imageToStringConverter()).map(Product::image, ProductResponse::setImage);
+                });
 
         mapper.typeMap(Sandwich.class, ProductResponse.class)
                 .includeBase(Product.class, ProductResponse.class);

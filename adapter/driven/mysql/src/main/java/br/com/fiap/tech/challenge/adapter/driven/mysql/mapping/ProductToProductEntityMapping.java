@@ -17,6 +17,7 @@ import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
 import static java.util.Objects.isNull;
 
@@ -34,8 +35,10 @@ public class ProductToProductEntityMapping implements MySQLTypeMapConfiguration 
                 .addMapping(Product::category, ProductEntity::setCategory)
                 .addMapping(Product::description, ProductEntity::setDescription)
                 .addMapping(Product::enabled, ProductEntity::setEnabled)
-                .addMapping(Product::image, ProductEntity::setImage)
-                .addMappings(mapping -> mapping.using(priceToMoneyConverter()).map(Product::price, ProductEntity::setPrice));
+                .addMappings(mapping -> {
+                    mapping.using(priceToMoneyConverter()).map(Product::price, ProductEntity::setPrice);
+                    mapping.using(imageToStringConverter()).map(Product::image, ProductEntity::setImage);
+                });
 
         mapper.typeMap(Sandwich.class, ProductEntity.class)
                 .includeBase(Product.class, ProductEntity.class);
