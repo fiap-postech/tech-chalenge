@@ -27,7 +27,7 @@ public class Combo extends Product {
             @Builder.ObtainVia(method = "name") String name,
             @Builder.ObtainVia(method = "description") String description,
             @Builder.ObtainVia(method = "price") Price price,
-            @Builder.ObtainVia(method = "image") String image,
+            @Builder.ObtainVia(method = "image") Image image,
             Sandwich sandwich,
             Beverage beverage,
             SideDish sideDish,

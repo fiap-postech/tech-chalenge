@@ -24,6 +24,8 @@ public class SideDish extends Product {
             @Builder.ObtainVia(method = "enabled") boolean enabled
     ) {
         super(uuid, name, description, price, image, enabled);
+
+        validate();
     }
 
     @Override
