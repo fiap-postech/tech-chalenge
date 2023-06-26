@@ -30,10 +30,9 @@ public abstract class Product extends Entity {
     private final boolean enabled;
 
     @NotBlank
-    //TODO create a VO for image
-    private final String image;
+    private final Image image;
 
-    protected Product(UUID uuid, String name, String description, @NotNull Price price, String image, boolean enabled) {
+    protected Product(UUID uuid, String name, String description, @NotNull Price price, Image image, boolean enabled) {
         super(uuid);
 
         this.name = name;
