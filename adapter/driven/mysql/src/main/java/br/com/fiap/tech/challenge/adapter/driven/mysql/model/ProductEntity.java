@@ -1,12 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Price;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.ProductCategory;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.*;
+import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -14,16 +9,14 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.util.UUID;
-
-import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Entity
 @Table(name = "product")
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Getter
 @Setter
 @ToString
@@ -52,41 +45,13 @@ public class ProductEntity extends JPAEntity {
 
     private boolean enabled;
 
-    public Product toDomain(){
+    public Product toDomain(ModelMapper mapper){
         return switch (category){
-            case BEVERAGE -> Beverage.builder()
-                    .name(getName())
-                    .description(getDescription())
-                    .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
-                    .uuid(UUID.fromString(getUuid()))
-                    .build();
-
-            case SANDWICH -> Sandwich.builder()
-                    .name(getName())
-                    .description(getDescription())
-                    .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
-                    .uuid(UUID.fromString(getUuid()))
-                    .build();
-
-            case DESSERT -> Dessert.builder()
-                    .name(getName())
-                    .description(getDescription())
-                    .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
-                    .uuid(UUID.fromString(getUuid()))
-                    .build();
-
-            case SIDE_DISH, COMBO -> SideDish.builder()
-                    .name(getName())
-                    .description(getDescription())
-                    .price(Price.of(makeMoney(getPrice())))
-                    .image(getImage())
-                    .uuid(UUID.fromString(getUuid()))
-                    .build();
-
-            //TODO map combo to domain
+            case BEVERAGE -> mapper.map(this, Beverage.class);
+            case SANDWICH -> mapper.map(this, Sandwich.class);
+            case DESSERT -> mapper.map(this, Dessert.class);
+            case SIDE_DISH -> mapper.map(this, SideDish.class);
+            case COMBO -> mapper.map(this, Combo.class);
         };
     }
 }

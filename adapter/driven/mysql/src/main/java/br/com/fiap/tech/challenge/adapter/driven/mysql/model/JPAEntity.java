@@ -31,7 +31,7 @@ public class JPAEntity implements Serializable {
     private static final long serialVersionUID = 3056928393962901003L;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "uuid", unique = true)
