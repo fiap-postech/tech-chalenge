@@ -6,4 +6,8 @@ public interface ProductWriterService {
 
     Product write(Product product);
 
+    Product enable(Product product);
+
+    Product disable(Product product);
+
 }
