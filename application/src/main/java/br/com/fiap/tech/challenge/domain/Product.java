@@ -23,6 +23,7 @@ public abstract class Product extends Entity {
     @NotBlank
     private final String description;
 
+    @NotNull
     @Valid
     private final Price price;
 
@@ -40,8 +41,6 @@ public abstract class Product extends Entity {
         this.price = price;
         this.image = image;
         this.enabled = enabled;
-
-        validate();
     }
 
     public abstract ProductCategory category();
