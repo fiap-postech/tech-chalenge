@@ -1,7 +1,12 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
 import br.com.fiap.tech.challenge.domain.ProductCategory;
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.port.driver.CreateProductService;
+import br.com.fiap.tech.challenge.port.driver.DisableProductService;
+import br.com.fiap.tech.challenge.port.driver.EnableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
@@ -12,7 +17,15 @@ import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
 import java.util.UUID;

@@ -4,7 +4,12 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfig
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
-import br.com.fiap.tech.challenge.domain.*;
+import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Combo;
+import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.Sandwich;
+import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import lombok.AllArgsConstructor;

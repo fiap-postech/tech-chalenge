@@ -2,7 +2,12 @@ package br.com.fiap.tech.challenge.service;
 
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.port.driver.CreateProductService;
+import br.com.fiap.tech.challenge.port.driver.DisableProductService;
+import br.com.fiap.tech.challenge.port.driver.EnableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 
 public class ServiceFactory {
 

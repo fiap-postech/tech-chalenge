@@ -1,6 +1,12 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.*;
+import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Combo;
+import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.domain.Sandwich;
+import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;

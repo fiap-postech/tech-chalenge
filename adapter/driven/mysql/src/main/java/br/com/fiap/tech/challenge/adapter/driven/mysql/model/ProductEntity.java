@@ -1,8 +1,19 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.*;
-import jakarta.persistence.*;
+import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Combo;
+import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.domain.Sandwich;
+import br.com.fiap.tech.challenge.domain.SideDish;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.Inheritance;
+import jakarta.persistence.InheritanceType;
+import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
