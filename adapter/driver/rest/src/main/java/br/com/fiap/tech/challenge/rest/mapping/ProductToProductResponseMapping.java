@@ -19,6 +19,7 @@ public class ProductToProductResponseMapping implements RestTypeMapConfiguration
                 .addMapping(Product::category, ProductResponse::setCategory)
                 .addMapping(Product::description, ProductResponse::setDescription)
                 .addMapping(Product::image, ProductResponse::setImage)
+                .addMapping(Product::enabled, ProductResponse::setEnabled)
                 .addMappings(mapping -> mapping.using(priceToMoneyConverter()).map(Product::price, ProductResponse::setPrice));
 
         mapper.typeMap(Sandwich.class, ProductResponse.class)
@@ -34,6 +35,9 @@ public class ProductToProductResponseMapping implements RestTypeMapConfiguration
                 .includeBase(Product.class, ProductResponse.class);
 
         mapper.typeMap(Combo.class, ComboResponse.class)
-                .includeBase(Product.class, ProductResponse.class);
+                .includeBase(Product.class, ProductResponse.class)
+                .addMapping(Combo::beverage, ComboResponse::setBeverage)
+                .addMapping(Combo::sandwich, ComboResponse::setSandwich)
+                .addMapping(Combo::sideDish, ComboResponse::setSideDish);
     }
 }

@@ -43,4 +43,7 @@ public class ProductResponse extends Response {
 
     @Schema(description = "Categoria do produto", example = "SANDWICH")
     private ProductCategory category;
+
+    @Schema(description = "Indica se o produto está habilitado para uso", example = "true")
+    private Boolean enabled;
 }

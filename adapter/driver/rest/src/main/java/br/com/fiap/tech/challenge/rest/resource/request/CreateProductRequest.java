@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 @EqualsAndHashCode(callSuper = true)
 @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = CreateSingleRequest.class, name = "single"),
-        @JsonSubTypes.Type(value = CreateComboRequest.class, name = "combo")
+        @JsonSubTypes.Type(value = CreateSingleProductRequest.class, name = "single"),
+        @JsonSubTypes.Type(value = CreateComboProductRequest.class, name = "combo")
 })
 public abstract class CreateProductRequest extends Request<Product> {
     @Serial

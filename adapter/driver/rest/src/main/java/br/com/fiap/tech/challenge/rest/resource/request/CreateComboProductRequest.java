@@ -10,7 +10,7 @@ import java.io.Serial;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CreateComboRequest extends CreateProductRequest {
+public class CreateComboProductRequest extends CreateProductRequest {
     @Serial
     private static final long serialVersionUID = 1464909268054662495L;
 
