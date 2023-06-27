@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Image;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
@@ -10,6 +11,7 @@ import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 
 @Mapper
@@ -21,8 +23,10 @@ public class ProductToProductResponseMapping implements RestTypeMapConfiguration
                 .addMapping(Product::name, ProductResponse::setName)
                 .addMapping(Product::category, ProductResponse::setCategory)
                 .addMapping(Product::description, ProductResponse::setDescription)
-                .addMapping(Product::image, ProductResponse::setImage)
-                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductResponse::setPrice));
+                .addMappings(mapping -> mapping.using(ctx -> ((Image) ctx.getSource()).url()).map(Product::image, ProductResponse::setImage))
+                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductResponse::setPrice))
+                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(Product::fullPrice, ProductResponse::setFullPrice))
+                .addMappings(mapping -> mapping.using(discountToBigDecimalConverter()).map(Product::discount, ProductResponse::setDiscount));
 
         mapper.typeMap(Sandwich.class, ProductResponse.class)
                 .includeBase(Product.class, ProductResponse.class);

@@ -31,4 +31,8 @@ public class ProductResponse extends Response {
     private BigDecimal price;
     @Schema(description = "Categoria do produto", example = "SANDWICH")
     private ProductCategory category;
+    @Schema(description = "Preço cheio do produto", example = "23.48")
+    private BigDecimal fullPrice;
+    @Schema(description = "Valor do desconto do produto", example = "23.48")
+    private BigDecimal discount;
 }

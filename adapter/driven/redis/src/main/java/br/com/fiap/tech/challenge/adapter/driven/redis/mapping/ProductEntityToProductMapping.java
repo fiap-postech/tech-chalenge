@@ -12,6 +12,8 @@ import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
+import java.util.UUID;
+
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
@@ -34,52 +36,56 @@ public class ProductEntityToProductMapping implements RedisTypeMapConfiguration 
 
     private static Provider<Sandwich> sandwichProvider() {
         return provision -> {
-            var request = (ProductEntity) provision.getSource();
+            var source = (ProductEntity) provision.getSource();
 
             return Sandwich.builder()
-                    .name(request.getName())
-                    .description(request.getDescription())
-                    .price(Price.of(makeMoney(request.getPrice())))
-                    .image(Image.of(request.getImage()))
+                    .uuid(UUID.fromString(source.getId()))
+                    .name(source.getName())
+                    .description(source.getDescription())
+                    .price(Price.of(makeMoney(source.getPrice())))
+                    .image(Image.of(source.getImage()))
                     .build();
         };
     }
 
     private static Provider<Dessert> dessertProvider() {
         return provision -> {
-            var request = (ProductEntity) provision.getSource();
+            var source = (ProductEntity) provision.getSource();
 
             return Dessert.builder()
-                    .name(request.getName())
-                    .description(request.getDescription())
-                    .price(Price.of(makeMoney(request.getPrice())))
-                    .image(Image.of(request.getImage()))
+                    .uuid(UUID.fromString(source.getId()))
+                    .name(source.getName())
+                    .description(source.getDescription())
+                    .price(Price.of(makeMoney(source.getPrice())))
+                    .image(Image.of(source.getImage()))
                     .build();
         };
     }
 
     private static Provider<Beverage> beverageProvider() {
         return provision -> {
-            var request = (ProductEntity) provision.getSource();
+            var source = (ProductEntity) provision.getSource();
 
             return Beverage.builder()
-                    .name(request.getName())
-                    .description(request.getDescription())
-                    .price(Price.of(makeMoney(request.getPrice())))
-                    .image(Image.of(request.getImage()))
+                    .uuid(UUID.fromString(source.getId()))
+                    .name(source.getName())
+                    .description(source.getDescription())
+                    .price(Price.of(makeMoney(source.getPrice())))
+                    .image(Image.of(source.getImage()))
                     .build();
         };
     }
 
     private static Provider<SideDish> sideDishProvider() {
         return provision -> {
-            var request = (ProductEntity) provision.getSource();
+            var source = (ProductEntity) provision.getSource();
 
             return SideDish.builder()
-                    .name(request.getName())
-                    .description(request.getDescription())
-                    .price(Price.of(makeMoney(request.getPrice())))
-                    .image(Image.of(request.getImage()))
+                    .uuid(UUID.fromString(source.getId()))
+                    .name(source.getName())
+                    .description(source.getDescription())
+                    .price(Price.of(makeMoney(source.getPrice())))
+                    .image(Image.of(source.getImage()))
                     .build();
         };
     }

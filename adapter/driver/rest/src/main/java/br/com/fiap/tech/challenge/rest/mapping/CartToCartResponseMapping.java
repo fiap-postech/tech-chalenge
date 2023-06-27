@@ -12,12 +12,6 @@ public class CartToCartResponseMapping implements RestTypeMapConfiguration {
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Cart.class, CartResponse.class)
                 .addMapping(Cart::uuid, CartResponse::setId)
-                .addMapping(Cart::items, CartResponse::setItems)
-//                .addMapping(Product::name, ProductResponse::setName)
-//                .addMapping(Product::category, ProductResponse::setCategory)
-//                .addMapping(Product::description, ProductResponse::setDescription)
-//                .addMapping(Product::image, ProductResponse::setImage)
-//                .addMappings(mapping -> mapping.using(priceToMoneyConverter()).map(Product::price, ProductResponse::setPrice))
-        ;
+                .addMapping(Cart::items, CartResponse::setItems);
     }
 }

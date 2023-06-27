@@ -5,8 +5,8 @@ import br.com.fiap.tech.challenge.domain.CartItem;
 
 import java.util.UUID;
 
-public interface RemoveCartItemService {
+public interface UpdateCartItemService {
 
-    Cart remove(UUID cartUuid, CartItem item);
+    Cart update(UUID uuid, CartItem item);
 
 }

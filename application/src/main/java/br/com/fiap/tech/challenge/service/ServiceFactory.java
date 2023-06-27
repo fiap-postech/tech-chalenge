@@ -11,6 +11,7 @@ import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
 
 public class ServiceFactory {
 
@@ -37,11 +38,15 @@ public class ServiceFactory {
         return new CreateCartServiceImpl(writer);
     }
 
-    public  static AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer, FindProductByUUIDService findProductByUUIDService) {
-        return new AddCartItemServiceImpl(reader, writer, findProductByUUIDService);
+    public  static AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer) {
+        return new AddCartItemServiceImpl(reader, writer);
     }
 
-    public  static RemoveCartItemService removeCartItemService(CartWriterService writer) {
-        return new RemoveCartItemServiceImpl(writer);
+    public  static UpdateCartItemService updateCartItemService(CartReaderService reader, CartWriterService writer) {
+        return new UpdateCartItemServiceImpl(reader, writer);
+    }
+
+    public  static RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
+        return new RemoveCartItemServiceImpl(reader, writer);
     }
 }

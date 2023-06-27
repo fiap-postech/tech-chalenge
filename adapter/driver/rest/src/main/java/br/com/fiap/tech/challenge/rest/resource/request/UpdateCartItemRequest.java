@@ -14,10 +14,10 @@ import java.io.Serial;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class AddCartItemRequest extends Request<CartItem> {
+public class UpdateCartItemRequest extends Request<CartItem> {
 
     @Serial
-    private static final long serialVersionUID = -64224455952918649L;
+    private static final long serialVersionUID = 9020112551138763090L;
 
     @NotBlank
     private String productId;

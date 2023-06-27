@@ -18,7 +18,7 @@ create table product(
     price numeric(12,2) not null,
     image text not null,
     category enum('COMBO', 'SANDWICH', 'BEVERAGE', 'DESSERT', 'SIDE_DISH') not null,
-    enabled boolean not null,
+    enabled boolean not null default true,
     created datetime not null,
     last_updated datetime not null,
     version integer not null

@@ -28,10 +28,10 @@ public abstract class Product extends Entity {
     @Valid
     private final Price price;
 
-    @NotBlank
+    @Valid
     private final Image image;
 
-    protected Product(UUID uuid, String name, String description, @NotNull Price price, Image image) {
+    protected Product(UUID uuid, String name, String description, @NotNull Price price, @NotNull Image image) {
         super(uuid);
 
         this.name = name;
@@ -43,4 +43,8 @@ public abstract class Product extends Entity {
     }
 
     public abstract ProductCategory category();
+
+    public abstract Price fullPrice();
+
+    public abstract Discount discount();
 }
