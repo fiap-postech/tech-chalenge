@@ -7,6 +7,7 @@ import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorField;
 import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.common.response.Response;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.constraints.NotNull;
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -23,10 +24,11 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import static br.com.fiap.tech.challenge.rest.common.handler.HttpStatusHandler.handle;
 
 @ControllerAdvice
+@SuppressWarnings("squid:S1452")
 public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, @NotNull HttpHeaders headers, @NotNull HttpStatusCode status, @NotNull WebRequest request) {
         var applicationError = CommonApplicationError.INVALID_PARAMETERS;
         var httpStatus = handle(applicationError.getErrorType());
         var fields = exception.getBindingResult().getFieldErrors()
@@ -36,14 +38,18 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
         var error = new ApiError(applicationError, fields);
         var apiError = createApiErrorResponse(request, httpStatus, error);
+
+        logger.error(getLogMessage(request, exception, error.getCode()), exception);
         return new ResponseEntity<>(apiError, httpStatus);
     }
 
     @Override
-    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, @NotNull HttpHeaders headers, @NotNull HttpStatusCode status, @NotNull WebRequest request) {
         var applicationError = CommonApplicationError.INVALID_PARAMETERS;
         var httpStatus = handle(applicationError.getErrorType());
         var apiError = createApiErrorResponse(request, httpStatus, new ApiError(applicationError, exception.getMostSpecificCause().getMessage()));
+
+        logger.error(getLogMessage(request, exception, apiError.getError().getCode()), exception);
         return new ResponseEntity<>(apiError, httpStatus);
     }
 
@@ -52,6 +58,8 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         var httpStatus = handle(exception.getError().getErrorType());
         var apiError = new ApiError(exception.getData(), exception.getError(), exception.getParameters());
         var apiErrorResponse = this.createApiErrorResponse(request, httpStatus, apiError);
+
+        logger.error(getLogMessage(request, exception, apiError.getCode()), exception);
         return new ResponseEntity<>(apiErrorResponse, httpStatus);
     }
 
@@ -65,6 +73,8 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
                 .toList();
         var error = new ApiError(applicationError, fields);
         var apiError = createApiErrorResponse(request, httpStatus, error);
+
+        logger.error(getLogMessage(request, exception, error.getCode()), exception);
         return new ResponseEntity<>(apiError, httpStatus);
     }
 
@@ -73,13 +83,15 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
         var applicationError = CommonApplicationError.GENERIC_ERROR;
         var httpStatus = handle(applicationError.getErrorType());
         var apiError = createApiErrorResponse(request, httpStatus, new ApiError(applicationError, exception.getMessage()));
+
+        logger.error(getLogMessage(request, exception, apiError.getError().getCode()), exception);
         return new ResponseEntity<>(apiError, httpStatus);
     }
 
     @ExceptionHandler(MappingException.class)
     public ResponseEntity<? extends Response> handleMappingException(MappingException exception, WebRequest request) {
-        if (exception.getCause() instanceof ConstraintViolationException) {
-            return this.handleConstraintViolation((ConstraintViolationException) exception.getCause(), request);
+        if (exception.getCause() instanceof ConstraintViolationException cause) {
+            return this.handleConstraintViolation(cause, request);
         }
         return this.handleGeneralException(exception, request);
     }
@@ -87,5 +99,17 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     private ApiErrorResponse createApiErrorResponse(WebRequest webRequest, HttpStatus httpStatus, ApiError apiError) {
         var request = ((ServletWebRequest) webRequest).getRequest();
         return new ApiErrorResponse(httpStatus.value(), httpStatus.getReasonPhrase(), request.getRequestURI(), request.getMethod(), apiError);
+    }
+
+    private String getLogMessage(WebRequest request, Exception exception, String code){
+        var servletRequest = ((ServletWebRequest) request).getRequest();
+
+        return String.format(
+                "httpMethod=%s path=%s stage=error message='%s' errorCode=%s",
+                servletRequest.getMethod(),
+                servletRequest.getRequestURI(),
+                exception.getMessage(),
+                code
+        );
     }
 }
