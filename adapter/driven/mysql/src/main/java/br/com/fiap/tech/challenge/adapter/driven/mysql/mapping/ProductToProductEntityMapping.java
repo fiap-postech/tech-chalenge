@@ -18,7 +18,7 @@ import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static java.util.Objects.isNull;
 
 @Mapper
@@ -36,7 +36,7 @@ public class ProductToProductEntityMapping implements MySQLTypeMapConfiguration 
                 .addMapping(Product::description, ProductEntity::setDescription)
                 .addMapping(Product::enabled, ProductEntity::setEnabled)
                 .addMappings(mapping -> {
-                    mapping.using(priceToMoneyConverter()).map(Product::price, ProductEntity::setPrice);
+                    mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductEntity::setPrice);
                     mapping.using(imageToStringConverter()).map(Product::image, ProductEntity::setImage);
                 });
 
