@@ -75,4 +75,15 @@ public class Combo extends Product {
 
         return enabled;
     }
+
+    @Override
+    public Product update(Product product) {
+        return toBuilder()
+                .name(product.name())
+                .description(product.description())
+                .image(product.image())
+                .price(product.price())
+                .enabled(product.enabled())
+                .build();
+    }
 }

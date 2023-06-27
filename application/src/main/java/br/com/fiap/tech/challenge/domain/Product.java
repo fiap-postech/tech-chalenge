@@ -46,4 +46,5 @@ public abstract class Product extends Entity {
     public abstract ProductCategory category();
     public abstract Product enable();
     public abstract Product disable();
+    public abstract Product update(Product product);
 }

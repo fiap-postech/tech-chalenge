@@ -12,6 +12,6 @@ class EnableProductServiceImpl implements EnableProductService {
 
     @Override
     public Product enable(Product product) {
-        return writerService.enable(product);
+        return writerService.write(product.enable());
     }
 }

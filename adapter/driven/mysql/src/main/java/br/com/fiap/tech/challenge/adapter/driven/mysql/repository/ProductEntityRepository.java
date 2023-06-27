@@ -9,6 +9,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 
 public interface ProductEntityRepository extends JpaRepository<ProductEntity, Long> {
+
+    boolean existsByUuid(String uuid);
+
     Optional<ProductEntity> findByUuid(String uuid);
 
     Page<ProductEntity> findAllByEnabledTrue(Pageable pageable);

@@ -26,23 +26,27 @@ public class ProductEntityWriterService implements ProductWriterService {
 
     @Override
     public Product write(Product product) {
+        if (repository.existsByUuid(product.uuid().toString())){
+            return update(product);
+        }
+
+        return insert(product);
+    }
+
+    private Product insert(Product product) {
         return repository.save(toProductEntity(mapper, product)).toDomain(mapper);
     }
 
-    @Override
-    public Product enable(Product product) {
-        return changeAvailability(product, true);
-    }
-
-    @Override
-    public Product disable(Product product) {
-        return changeAvailability(product, false);
-    }
-
-    private Product changeAvailability(Product product, boolean enabled){
+    private Product update(Product product) {
         var entity = getByUUID(product.uuid().toString());
 
-        entity.setEnabled(enabled);
+        mapper.map(product, entity);
+
+//        entity.setEnabled(product.enabled());
+//        entity.setName(product.name());
+//        entity.setDescription(product.description());
+//        entity.setPrice(product.price().amount().getNumberStripped());
+//        entity.setImage(product.image().url());
 
         return repository.save(entity).toDomain(mapper);
     }

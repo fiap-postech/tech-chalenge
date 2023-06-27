@@ -12,6 +12,6 @@ class DisableProductServiceImpl implements DisableProductService {
 
     @Override
     public Product disable(Product product) {
-        return writerService.disable(product);
+        return writerService.write(product.disable());
     }
 }
