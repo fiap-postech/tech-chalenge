@@ -15,7 +15,7 @@ public class SideDish extends Product {
     private static final long serialVersionUID = -4700400815387828057L;
 
     @Builder
-    public SideDish(UUID uuid, String name, String description, Price price, String image) {
+    public SideDish(UUID uuid, String name, String description, Price price, Image image) {
         super(uuid, name, description, price, image);
     }
 

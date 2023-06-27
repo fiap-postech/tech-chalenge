@@ -9,7 +9,6 @@ import org.springframework.context.annotation.Import;
 
 @Configuration
 @Import({
-        ModelMapperConfiguration.class,
         RestConfiguration.class,
         MySQLConfiguration.class,
         RedisConfiguration.class
