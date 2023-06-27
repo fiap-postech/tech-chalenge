@@ -7,6 +7,7 @@ import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
+import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import jakarta.validation.Valid;
@@ -89,7 +90,7 @@ public class CartResource {
 
     @DeleteMapping("{cartId}/item")
     @ResponseStatus(HttpStatus.OK)
-    public CartResponse removeItem(@PathVariable("cartId") String cartId, @RequestBody @Valid AddCartItemRequest request) {
+    public CartResponse removeItem(@PathVariable("cartId") String cartId, @RequestBody @Valid RemoveCartItemRequest request) {
         return mapper.map(
                 removeCartItemService.remove(fromString(cartId), request.toDomain(mapper)),
                 CartResponse.class

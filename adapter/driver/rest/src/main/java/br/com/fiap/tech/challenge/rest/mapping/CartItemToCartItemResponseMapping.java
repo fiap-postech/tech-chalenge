@@ -11,7 +11,7 @@ import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecima
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.quantityToIntegerConverter;
 
 @Mapper
-public class CartItemToCartResponseMapping implements RestTypeMapConfiguration {
+public class CartItemToCartItemResponseMapping implements RestTypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(CartItem.class, CartItemResponse.class)

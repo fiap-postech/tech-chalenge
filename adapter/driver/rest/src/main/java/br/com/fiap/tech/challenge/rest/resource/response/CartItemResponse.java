@@ -18,10 +18,18 @@ public class CartItemResponse extends Response {
     @Serial
     private static final long serialVersionUID = 5960662426733468603L;
 
+    @Schema(description = "Produto do carrinho")
     private ProductResponse product;
-    private int quantity;
-    private BigDecimal total;
-    private BigDecimal subtotal;
-    private BigDecimal discount;
 
+    @Schema(description = "Quantidade do produto do item do carrinho", example = "1")
+    private int quantity;
+
+    @Schema(description = "Valor total do item do carrinho", example = "9.05")
+    private BigDecimal total;
+
+    @Schema(description = "Subtotal do valor do item do carrinho", example = "10.95")
+    private BigDecimal subtotal;
+
+    @Schema(description = "Desconto do item do carrinho", example = "1.90")
+    private BigDecimal discount;
 }
