@@ -29,6 +29,7 @@ create table combo(
     sandwich_id bigint not null,
     beverage_id bigint not null,
     side_dish_id  bigint not null,
+    constraint uk_combo_items unique (sandwich_id, beverage_id, side_dish_id),
     constraint fk_combo_id foreign key (id) references product(id),
     constraint fk_sandwich_id foreign key (sandwich_id) references product(id),
     constraint fk_beverage_id foreign key (beverage_id) references product(id),

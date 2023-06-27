@@ -7,6 +7,7 @@ import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorField;
 import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.common.response.Response;
 import jakarta.validation.ConstraintViolationException;
+import jakarta.validation.constraints.NotNull;
 import org.modelmapper.MappingException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -27,7 +28,7 @@ import static br.com.fiap.tech.challenge.rest.common.handler.HttpStatusHandler.h
 public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Override
-    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException exception, @NotNull HttpHeaders headers, @NotNull HttpStatusCode status, @NotNull WebRequest request) {
         var applicationError = CommonApplicationError.INVALID_PARAMETERS;
         var httpStatus = handle(applicationError.getErrorType());
         var fields = exception.getBindingResult().getFieldErrors()
@@ -43,7 +44,7 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @Override
-    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, HttpHeaders headers, HttpStatusCode status, WebRequest request) {
+    public ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException exception, @NotNull HttpHeaders headers, @NotNull HttpStatusCode status, @NotNull WebRequest request) {
         var applicationError = CommonApplicationError.INVALID_PARAMETERS;
         var httpStatus = handle(applicationError.getErrorType());
         var apiError = createApiErrorResponse(request, httpStatus, new ApiError(applicationError, exception.getMostSpecificCause().getMessage()));
