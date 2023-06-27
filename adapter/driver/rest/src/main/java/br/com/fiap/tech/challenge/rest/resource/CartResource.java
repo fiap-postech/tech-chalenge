@@ -8,8 +8,8 @@ import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import jakarta.validation.Valid;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,18 +20,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static java.util.UUID.fromString;
 
 @RestController
 @RequestMapping("/cart")
-@AllArgsConstructor
 public class CartResource {
 
-    private ModelMapper mapper;
-    private FindCartByUUIDService findCartByUUIDService;
-    private CreateCartService createCartService;
-    private AddCartItemService addCartItemService;
-    private RemoveCartItemService removeCartItemService;
+    private final ModelMapper mapper;
+    private final FindCartByUUIDService findCartByUUIDService;
+    private final CreateCartService createCartService;
+    private final AddCartItemService addCartItemService;
+    private final RemoveCartItemService removeCartItemService;
+
+    public CartResource(@Qualifier(REST_MODEL_MAPPER) ModelMapper mapper, FindCartByUUIDService findCartByUUIDService, CreateCartService createCartService, AddCartItemService addCartItemService, RemoveCartItemService removeCartItemService) {
+        this.mapper = mapper;
+        this.findCartByUUIDService = findCartByUUIDService;
+        this.createCartService = createCartService;
+        this.addCartItemService = addCartItemService;
+        this.removeCartItemService = removeCartItemService;
+    }
 
     @GetMapping("/{uuid}")
     @ResponseStatus(HttpStatus.OK)

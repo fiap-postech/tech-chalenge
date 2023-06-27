@@ -4,19 +4,22 @@ import br.com.fiap.tech.challenge.domain.CartItem;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.Quantity;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
-import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
 import java.util.UUID;
 
 @Mapper
-public class AddCartItemRequestToDomainMapping implements TypeMapConfiguration {
+public class AddCartItemRequestToDomainMapping implements RestTypeMapConfiguration {
 
-    private FindProductByUUIDService findProductByUUIDService;
+    private final FindProductByUUIDService findProductByUUIDService;
+
+    public AddCartItemRequestToDomainMapping(FindProductByUUIDService findProductByUUIDService) {
+        this.findProductByUUIDService = findProductByUUIDService;
+    }
 
     @Override
     public void configure(ModelMapper mapper) {

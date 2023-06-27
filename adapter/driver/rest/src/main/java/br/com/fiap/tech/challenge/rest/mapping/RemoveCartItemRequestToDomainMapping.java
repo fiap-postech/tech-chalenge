@@ -1,22 +1,16 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.CartItem;
-import br.com.fiap.tech.challenge.domain.Discount;
-import br.com.fiap.tech.challenge.domain.Price;
 import br.com.fiap.tech.challenge.domain.Quantity;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
-import java.util.UUID;
-
-import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
-
 @Mapper
 //TODO: deletar
-public class RemoveCartItemRequestToDomainMapping implements TypeMapConfiguration {
+public class RemoveCartItemRequestToDomainMapping implements RestTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {

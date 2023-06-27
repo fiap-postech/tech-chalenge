@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
@@ -7,13 +8,12 @@ import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 
 @Mapper
-public class ProductToProductEntityMapping implements TypeMapConfiguration {
+public class ProductToProductEntityMapping implements RedisTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {

@@ -1,20 +1,21 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Image;
 import br.com.fiap.tech.challenge.domain.Price;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
-public class ProductEntityToProductMapping implements TypeMapConfiguration {
+public class ProductEntityToProductMapping implements RedisTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {
@@ -39,7 +40,7 @@ public class ProductEntityToProductMapping implements TypeMapConfiguration {
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -52,7 +53,7 @@ public class ProductEntityToProductMapping implements TypeMapConfiguration {
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -65,7 +66,7 @@ public class ProductEntityToProductMapping implements TypeMapConfiguration {
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -78,7 +79,7 @@ public class ProductEntityToProductMapping implements TypeMapConfiguration {
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }

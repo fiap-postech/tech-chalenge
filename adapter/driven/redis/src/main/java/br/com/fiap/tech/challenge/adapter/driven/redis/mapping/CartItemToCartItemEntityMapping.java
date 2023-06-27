@@ -1,17 +1,15 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartItemEntity;
 import br.com.fiap.tech.challenge.domain.CartItem;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import org.modelmapper.ModelMapper;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.quantityToIntegerConverter;
 
 @Mapper
-public class CartItemToCartItemEntityMapping implements TypeMapConfiguration {
+public class CartItemToCartItemEntityMapping implements RedisTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {

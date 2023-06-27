@@ -2,16 +2,14 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.CartItem;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.CartItemResponse;
 import org.modelmapper.ModelMapper;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.quantityToIntegerConverter;
 
 @Mapper
-public class CartItemToCartResponseMapping implements TypeMapConfiguration {
+public class CartItemToCartResponseMapping implements RestTypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(CartItem.class, CartItemResponse.class)

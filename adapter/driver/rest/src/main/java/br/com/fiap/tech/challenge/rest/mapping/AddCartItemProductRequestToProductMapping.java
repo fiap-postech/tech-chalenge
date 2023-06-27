@@ -2,11 +2,12 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Image;
 import br.com.fiap.tech.challenge.domain.Price;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemProductRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
@@ -16,7 +17,7 @@ import java.util.UUID;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
-public class AddCartItemProductRequestToProductMapping implements TypeMapConfiguration {
+public class AddCartItemProductRequestToProductMapping implements RestTypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(AddCartItemProductRequest.class, Sandwich.class)
@@ -40,7 +41,7 @@ public class AddCartItemProductRequestToProductMapping implements TypeMapConfigu
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -53,7 +54,7 @@ public class AddCartItemProductRequestToProductMapping implements TypeMapConfigu
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -66,7 +67,7 @@ public class AddCartItemProductRequestToProductMapping implements TypeMapConfigu
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }
@@ -79,7 +80,7 @@ public class AddCartItemProductRequestToProductMapping implements TypeMapConfigu
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
-                    .image(request.getImage())
+                    .image(Image.of(request.getImage()))
                     .build();
         };
     }

@@ -1,6 +1,10 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.*;
+import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Dessert;
+import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.Sandwich;
+import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;

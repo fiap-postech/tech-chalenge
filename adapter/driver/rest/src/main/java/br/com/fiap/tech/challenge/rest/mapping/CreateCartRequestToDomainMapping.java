@@ -2,13 +2,13 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.Cart;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
-import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
+import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
 @Mapper
-public class CreateCartRequestToDomainMapping implements TypeMapConfiguration {
+public class CreateCartRequestToDomainMapping implements RestTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {
