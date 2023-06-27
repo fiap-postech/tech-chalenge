@@ -8,6 +8,7 @@ import br.com.fiap.tech.challenge.port.driver.EnableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
 import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.UpdateProductService;
 
 public class ServiceFactory {
 
@@ -28,6 +29,10 @@ public class ServiceFactory {
 
     public static CreateProductService createProductService(ProductWriterService writer) {
         return new CreateProductServiceImpl(writer);
+    }
+
+    public static UpdateProductService updateProductService(ProductReaderService reader, ProductWriterService writer) {
+        return new UpdateProductServiceImpl(reader, writer);
     }
 
     public static EnableProductService enableProductService(ProductWriterService writer) {

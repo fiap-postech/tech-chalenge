@@ -48,7 +48,7 @@ public class Sandwich extends Product {
     }
 
     @Override
-    public Product update(Product product) {
+    public Product doUpdate(Product product) {
         return toBuilder()
                 .name(product.name())
                 .description(product.description())

@@ -15,8 +15,6 @@ class UpdateProductServiceImpl implements UpdateProductService {
     @Override
     public Product update(Product product) {
         var storedProduct = readerService.readById(product.uuid());
-
-//        storedProduct.to
-        return null;
+        return writerService.write(storedProduct.update(product));
     }
 }

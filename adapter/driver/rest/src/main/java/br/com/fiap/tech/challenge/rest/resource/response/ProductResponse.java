@@ -38,8 +38,14 @@ public class ProductResponse extends Response {
     @Schema(description = "Link da imagem do produto", example = "http://localhost:8080/foto")
     private String image;
 
-    @Schema(description = "Preço do produto", example = "23.48")
+    @Schema(description = "Preço do produto (pode ter desconto)", example = "20.00")
     private BigDecimal price;
+
+    @Schema(description = "Preço readl do produto", example = "23.48")
+    private BigDecimal fullPrice;
+
+    @Schema(description = "Desconto aplicado no produto", example = "3.48")
+    private BigDecimal discount;
 
     @Schema(description = "Categoria do produto", example = "SANDWICH")
     private ProductCategory category;

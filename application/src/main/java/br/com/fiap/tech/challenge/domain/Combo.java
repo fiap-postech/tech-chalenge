@@ -68,16 +68,20 @@ public class Combo extends Product {
                 .build();
     }
 
-    private static boolean currentEnabled(boolean enabled, Boolean... dependentsEnabled){
-        if (Stream.of(dependentsEnabled).anyMatch(b -> !b)){
-            return false;
-        }
-
-        return enabled;
+    @Override
+    public Price fullPrice() {
+        return Stream.of(beverage, sideDish, sandwich)
+                .map(Product::price)
+                .reduce(Price.min(), Price::add);
     }
 
     @Override
-    public Product update(Product product) {
+    public Discount discount() {
+        return Discount.of(fullPrice().subtract(price()).amount());
+    }
+
+    @Override
+    public Product doUpdate(Product product) {
         return toBuilder()
                 .name(product.name())
                 .description(product.description())
@@ -85,5 +89,13 @@ public class Combo extends Product {
                 .price(product.price())
                 .enabled(product.enabled())
                 .build();
+    }
+
+    private static boolean currentEnabled(boolean enabled, Boolean... dependentsEnabled){
+        if (Stream.of(dependentsEnabled).anyMatch(b -> !b)){
+            return false;
+        }
+
+        return enabled;
     }
 }
