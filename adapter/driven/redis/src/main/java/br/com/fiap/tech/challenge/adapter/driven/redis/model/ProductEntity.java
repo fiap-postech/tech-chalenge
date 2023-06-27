@@ -11,17 +11,14 @@ import lombok.Setter;
 import lombok.ToString;
 import org.modelmapper.ModelMapper;
 
-import java.io.Serial;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @ToString
-public class ProductEntity extends RedisEntity {
+public class ProductEntity {
 
-    @Serial
-    private static final long serialVersionUID = 4133068390918202607L;
-
+    private String id;
     private String name;
     private String description;
     private BigDecimal price;

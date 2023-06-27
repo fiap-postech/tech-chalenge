@@ -23,4 +23,14 @@ public class Dessert extends Product {
     public ProductCategory category() {
         return ProductCategory.DESSERT;
     }
+
+    @Override
+    public Price fullPrice() {
+        return price();
+    }
+
+    @Override
+    public Discount discount() {
+        return Discount.withoutDiscount();
+    }
 }

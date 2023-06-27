@@ -5,25 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.modelmapper.ModelMapper;
-import org.springframework.data.redis.core.RedisHash;
-import org.springframework.data.redis.core.index.Indexed;
 
-import java.io.Serial;
 import java.math.BigDecimal;
 
 import static java.util.Objects.nonNull;
 
-@RedisHash(value = "cart_item")
 @Getter
 @Setter
 @ToString
-public class CartItemEntity extends RedisEntity {
-
-    @Serial
-    private static final long serialVersionUID = 1112704544079814369L;
-
-    @Indexed
-    private String cartId;
+public class CartItemEntity {
 
     private ProductEntity product;
     private BigDecimal price;

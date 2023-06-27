@@ -15,8 +15,6 @@ public class CartItemToCartItemEntityMapping implements RedisTypeMapConfiguratio
     public void configure(ModelMapper mapper) {
         mapper.typeMap(CartItem.class, CartItemEntity.class)
                 .addMapping(CartItem::product, CartItemEntity::setProduct)
-//                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(CartItem::price, CartItemEntity::setPrice))
-//                .addMappings(mapping -> mapping.using(discountToBigDecimalConverter()).map(CartItem::discount, CartItemEntity::setDiscount))
                 .addMappings(mapping -> mapping.using(quantityToIntegerConverter()).map(CartItem::quantity, CartItemEntity::setQuantity))
         ;
     }

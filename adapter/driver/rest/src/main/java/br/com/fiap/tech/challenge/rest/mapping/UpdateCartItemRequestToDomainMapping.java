@@ -6,7 +6,7 @@ import br.com.fiap.tech.challenge.domain.Quantity;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
-import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
+import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
@@ -15,19 +15,19 @@ import java.util.UUID;
 
 @Mapper
 @AllArgsConstructor
-public class AddCartItemRequestToDomainMapping implements RestTypeMapConfiguration {
+public class UpdateCartItemRequestToDomainMapping implements RestTypeMapConfiguration {
 
     private final FindProductByUUIDService findProductByUUIDService;
 
     @Override
     public void configure(ModelMapper mapper) {
-        mapper.typeMap(AddCartItemRequest.class, CartItem.class)
+        mapper.typeMap(UpdateCartItemRequest.class, CartItem.class)
                 .setProvider(cartItemProvider());
     }
 
     private Provider<CartItem> cartItemProvider() {
         return provision -> {
-            var request = (AddCartItemRequest) provision.getSource();
+            var request = (UpdateCartItemRequest) provision.getSource();
             var product = getProduct(request.getProductId());
             return CartItem.builder()
                     .product(product)

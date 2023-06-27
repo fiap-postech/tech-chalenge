@@ -5,12 +5,15 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import org.modelmapper.ModelMapper;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
+import org.springframework.data.redis.core.TimeToLive;
 
 import java.io.Serial;
+import java.io.Serializable;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Collectors;
+import java.util.concurrent.TimeUnit;
 
 import static org.springframework.util.CollectionUtils.isEmpty;
 
@@ -18,10 +21,16 @@ import static org.springframework.util.CollectionUtils.isEmpty;
 @Getter
 @Setter
 @ToString
-public class CartEntity extends RedisEntity {
+public class CartEntity implements Serializable {
 
     @Serial
     private static final long serialVersionUID = -1085132067646799595L;
+
+    @Id
+    private String id;
+
+    @TimeToLive(unit = TimeUnit.MILLISECONDS)
+    private Long ttl;
 
     private List<CartItemEntity> items;
 
@@ -31,7 +40,7 @@ public class CartEntity extends RedisEntity {
         if (!isEmpty(this.getItems())) {
             builder.items(this.getItems().stream()
                     .map(c -> c.toDomain(mapper))
-                    .collect(Collectors.toSet()));
+                    .toList());
         }
 
         return builder

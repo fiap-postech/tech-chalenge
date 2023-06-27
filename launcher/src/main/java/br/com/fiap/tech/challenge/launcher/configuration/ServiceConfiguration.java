@@ -11,6 +11,7 @@ import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -44,12 +45,17 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer, FindProductByUUIDService findProductByUUIDService) {
-        return ServiceFactory.addCartItemService(reader, writer, findProductByUUIDService);
+    public AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer) {
+        return ServiceFactory.addCartItemService(reader, writer);
     }
 
     @Bean
-    public RemoveCartItemService removeCartItemService(CartWriterService writer) {
-        return ServiceFactory.removeCartItemService(writer);
+    public UpdateCartItemService updateCartItemService(CartReaderService reader, CartWriterService writer) {
+        return ServiceFactory.updateCartItemService(reader, writer);
+    }
+
+    @Bean
+    public RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
+        return ServiceFactory.removeCartItemService(reader, writer);
     }
 }

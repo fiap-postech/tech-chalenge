@@ -21,9 +21,6 @@ public class CartItemEntityToCartItemMapping implements RedisTypeMapConfiguratio
         return provision -> {
             var entity = (CartItemEntity) provision.getSource();
             return CartItem.builder()
-//                    .uuid(UUID.fromString(entity.getId()))
-//                    .discount(Discount.of(makeMoney(entity.getDiscount())))
-//                    .price(Price.of(makeMoney(entity.getPrice())))
                     .quantity(Quantity.of(entity.getQuantity()))
                     .build();
         };

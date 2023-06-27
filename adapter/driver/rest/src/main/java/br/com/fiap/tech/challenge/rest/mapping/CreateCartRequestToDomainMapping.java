@@ -17,9 +17,6 @@ public class CreateCartRequestToDomainMapping implements RestTypeMapConfiguratio
     }
 
     private static Provider<Cart> cartProvider() {
-        return provision -> {
-            var request = (CreateCartRequest) provision.getSource();
-            return Cart.builder().build();
-        };
+        return provision -> Cart.builder().build();
     }
 }

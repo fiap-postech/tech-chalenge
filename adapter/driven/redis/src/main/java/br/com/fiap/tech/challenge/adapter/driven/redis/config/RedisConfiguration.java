@@ -19,7 +19,7 @@ import static org.springframework.data.redis.core.RedisKeyValueAdapter.EnableKey
 @EnableRedisRepositories(basePackages = "br.com.fiap.tech.challenge.adapter.driven.redis.repository", enableKeyspaceEvents = OFF)
 public class RedisConfiguration {
 
-    private static final String CACHE_REDIS_TTL = "spring.data.redis.time-to-live:";
+    public static final String CACHE_REDIS_TTL = "spring.data.redis.time-to-live";
     private static final int TTL_ONE_DAY_MILLIS = 86400000;
 
     @Bean

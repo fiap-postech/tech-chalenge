@@ -1,16 +1,22 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.domain.CartItem;
-import br.com.fiap.tech.challenge.domain.Quantity;
+import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
+import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
+import java.util.UUID;
+
 @Mapper
-//TODO: deletar
+@AllArgsConstructor
 public class RemoveCartItemRequestToDomainMapping implements RestTypeMapConfiguration {
+
+    private final FindProductByUUIDService findProductByUUIDService;
 
     @Override
     public void configure(ModelMapper mapper) {
@@ -18,15 +24,17 @@ public class RemoveCartItemRequestToDomainMapping implements RestTypeMapConfigur
                 .setProvider(cartItemProvider());
     }
 
-    private static Provider<CartItem> cartItemProvider() {
+    private Provider<CartItem> cartItemProvider() {
         return provision -> {
             var request = (RemoveCartItemRequest) provision.getSource();
+            var product = getProduct(request.getProductId());
             return CartItem.builder()
-//                    .uuid(UUID.fromString(request.getId()))
-//                    .discount(Discount.of(makeMoney(request.getDiscount())))
-//                    .price(Price.of(makeMoney(request.getPrice())))
-                    .quantity(Quantity.of(request.getQuantity()))
+                    .product(product)
                     .build();
         };
+    }
+
+    private Product getProduct(String uuid) {
+        return findProductByUUIDService.get(UUID.fromString(uuid));
     }
 }

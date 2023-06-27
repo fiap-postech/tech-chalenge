@@ -18,10 +18,10 @@ public class CartItemResponse extends Response {
     @Serial
     private static final long serialVersionUID = 5960662426733468603L;
 
-    private String id;
     private ProductResponse product;
-    private BigDecimal price;
-    private BigDecimal discount;
     private int quantity;
+    private BigDecimal total;
+    private BigDecimal subtotal;
+    private BigDecimal discount;
 
 }
