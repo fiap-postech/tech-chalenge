@@ -7,35 +7,36 @@ import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
-import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
+import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemProductRequest;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
+
+import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
-public class CreateProductRequestToDomainMapping implements TypeMapConfiguration {
-
+public class AddCartItemProductRequestToProductMapping implements TypeMapConfiguration {
     @Override
     public void configure(ModelMapper mapper) {
-        mapper.typeMap(CreateProductRequest.class, Sandwich.class)
+        mapper.typeMap(AddCartItemProductRequest.class, Sandwich.class)
                 .setProvider(sandwichProvider());
 
-        mapper.typeMap(CreateProductRequest.class, Dessert.class)
+        mapper.typeMap(AddCartItemProductRequest.class, Dessert.class)
                 .setProvider(dessertProvider());
 
-        mapper.typeMap(CreateProductRequest.class, Beverage.class)
+        mapper.typeMap(AddCartItemProductRequest.class, Beverage.class)
                 .setProvider(beverageProvider());
 
-        mapper.typeMap(CreateProductRequest.class, SideDish.class)
+        mapper.typeMap(AddCartItemProductRequest.class, SideDish.class)
                 .setProvider(sideDishProvider());
     }
 
     private static Provider<Sandwich> sandwichProvider() {
         return provision -> {
-            var request = (CreateProductRequest) provision.getSource();
-
+            var request = (AddCartItemProductRequest) provision.getSource();
             return Sandwich.builder()
+                    .uuid(UUID.fromString(request.getId()))
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
@@ -46,9 +47,9 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
 
     private static Provider<Dessert> dessertProvider() {
         return provision -> {
-            var request = (CreateProductRequest) provision.getSource();
-
+            var request = (AddCartItemProductRequest) provision.getSource();
             return Dessert.builder()
+                    .uuid(UUID.fromString(request.getId()))
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
@@ -59,9 +60,9 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
 
     private static Provider<Beverage> beverageProvider() {
         return provision -> {
-            var request = (CreateProductRequest) provision.getSource();
-
+            var request = (AddCartItemProductRequest) provision.getSource();
             return Beverage.builder()
+                    .uuid(UUID.fromString(request.getId()))
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))
@@ -72,9 +73,9 @@ public class CreateProductRequestToDomainMapping implements TypeMapConfiguration
 
     private static Provider<SideDish> sideDishProvider() {
         return provision -> {
-            var request = (CreateProductRequest) provision.getSource();
-
+            var request = (AddCartItemProductRequest) provision.getSource();
             return SideDish.builder()
+                    .uuid(UUID.fromString(request.getId()))
                     .name(request.getName())
                     .description(request.getDescription())
                     .price(Price.of(makeMoney(request.getPrice())))

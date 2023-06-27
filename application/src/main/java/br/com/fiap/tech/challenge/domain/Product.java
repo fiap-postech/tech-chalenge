@@ -5,6 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
@@ -13,6 +14,7 @@ import java.util.UUID;
 @Getter
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = true)
+@ToString
 public abstract class Product extends Entity {
     @Serial
     private static final long serialVersionUID = -556035981231420003L;

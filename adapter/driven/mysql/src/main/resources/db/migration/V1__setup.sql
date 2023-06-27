@@ -55,7 +55,7 @@ create table purchase_item(
     last_updated datetime not null,
     version integer not null,
     constraint fk_product_id foreign key (product_id) references product(id),
-    constraint fk_purchase_id foreign key (purchase_id) references  purchase(id),
+    constraint fk_purchase_item_purchase_id foreign key (purchase_id) references  purchase(id),
     constraint pk_purchase_item primary key (purchase_id, product_id)
 );
 
@@ -69,5 +69,5 @@ create table payment(
     created datetime not null,
     last_updated datetime not null,
     version integer not null,
-    constraint fk_purchase_id foreign key (purchase_id) references  purchase(id)
+    constraint fk_payment_purchase_id foreign key (purchase_id) references  purchase(id)
 );

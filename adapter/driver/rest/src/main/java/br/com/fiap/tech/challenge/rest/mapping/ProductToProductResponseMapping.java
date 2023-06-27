@@ -10,7 +10,7 @@ import br.com.fiap.tech.challenge.mapper.common.TypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToMoneyConverter;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 
 @Mapper
 public class ProductToProductResponseMapping implements TypeMapConfiguration {
@@ -22,7 +22,7 @@ public class ProductToProductResponseMapping implements TypeMapConfiguration {
                 .addMapping(Product::category, ProductResponse::setCategory)
                 .addMapping(Product::description, ProductResponse::setDescription)
                 .addMapping(Product::image, ProductResponse::setImage)
-                .addMappings(mapping -> mapping.using(priceToMoneyConverter()).map(Product::price, ProductResponse::setPrice));
+                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductResponse::setPrice));
 
         mapper.typeMap(Sandwich.class, ProductResponse.class)
                 .includeBase(Product.class, ProductResponse.class);

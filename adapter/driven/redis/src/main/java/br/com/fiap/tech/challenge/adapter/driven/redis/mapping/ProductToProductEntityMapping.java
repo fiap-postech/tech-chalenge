@@ -1,6 +1,6 @@
-package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
+package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
-import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
+import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.Beverage;
 import br.com.fiap.tech.challenge.domain.Dessert;
 import br.com.fiap.tech.challenge.domain.Product;
@@ -13,11 +13,12 @@ import org.modelmapper.ModelMapper;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 
 @Mapper
-public class ProductEntityToDomainMapping implements TypeMapConfiguration {
+public class ProductToProductEntityMapping implements TypeMapConfiguration {
+
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Product.class, ProductEntity.class)
-                .addMapping(Product::uuid, ProductEntity::setUuid)
+                .addMapping(Product::uuid, ProductEntity::setId)
                 .addMapping(Product::name, ProductEntity::setName)
                 .addMapping(Product::category, ProductEntity::setCategory)
                 .addMapping(Product::description, ProductEntity::setDescription)

@@ -10,7 +10,10 @@ import static java.lang.Boolean.TRUE;
 public enum ApplicationError implements BaseApplicationError {
 
     UNKNOWN_ERROR("AE-001", INTERNAL_SERVER_ERROR, TRUE, "Unexpected error [{}]"),
-    PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]");
+    PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]"),
+    CART_NOT_FOUND_BY_UUID("AE-003", INVALID_PARAMETER, TRUE, "Cart not found [uuid={}]"),
+    CART_ITEM_NOT_FOUND_BY_CART_UUID_AND_CART_ITEM_UUID("AE-004", INVALID_PARAMETER, TRUE, "Cart item not found [cartUuid={} cartItemUuid={}]")
+    ;
 
     private final String code;
 

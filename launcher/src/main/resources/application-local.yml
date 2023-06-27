@@ -7,3 +7,10 @@ db:
   username: sys_tech_challenge
   password: 6#233zJMNTjkQb#sgps#
   port: 3366
+
+spring:
+  data:
+    redis:
+      host: localhost
+      port: 6380
+      time-to-live:
