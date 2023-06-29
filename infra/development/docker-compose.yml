@@ -2,16 +2,17 @@ version: "3.9"
 
 services:
   mysql:
-    image: mysql:8.0
+    container_name: mysql
+    image: tech-challenge-mysql
+    build:
+      context: ../docker/mysql
+      dockerfile: ../mysql/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: "P@55W0rD"
     ports:
       - "3366:3306"
     volumes:
-      - ./docker/mysql/data:/var/lib/mysql
-      - ./docker/mysql/script:/opt/scripts
-      - ./docker/mysql/script/setup.sql:/docker-entrypoint-initdb.d/1.sql
-    command: --default-authentication-plugin=mysql_native_password
+      - ../docker/mysql/data:/var/lib/mysql
     networks:
       - tech-challenge-network
 
@@ -27,8 +28,8 @@ services:
     container_name: cdn
     image: tech-challenge-cdn
     build:
-      context: ./docker/nginx
-      dockerfile: Dockerfile
+      context: ../docker/nginx
+      dockerfile: ../nginx/Dockerfile
     restart: always
     ports:
       - "8888:8080"
