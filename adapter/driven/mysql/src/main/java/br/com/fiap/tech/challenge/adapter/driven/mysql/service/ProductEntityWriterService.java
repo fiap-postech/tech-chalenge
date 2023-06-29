@@ -42,12 +42,6 @@ public class ProductEntityWriterService implements ProductWriterService {
 
         mapper.map(product, entity);
 
-//        entity.setEnabled(product.enabled());
-//        entity.setName(product.name());
-//        entity.setDescription(product.description());
-//        entity.setPrice(product.price().amount().getNumberStripped());
-//        entity.setImage(product.image().url());
-
         return repository.save(entity).toDomain(mapper);
     }
 
