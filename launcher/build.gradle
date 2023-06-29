@@ -41,6 +41,10 @@ java {
     }
 }
 
+jar {
+    archiveFileName = "tech-challenge.jar"
+}
+
 springBoot {
     buildInfo {
         properties {
