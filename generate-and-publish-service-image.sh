@@ -3,10 +3,10 @@
 echo "building jar file..."
 ./gradlew :launcher:build
 
-echo "generating image..."
-docker build -t tech-challenge-service .
-
 VERSION=$(./gradlew :launcher:properties | sed -n '/^version/p' | sed "s/version: //")
+
+echo "generating image..."
+docker build --build-arg VERSION=$VERSION -t tech-challenge-service .
 
 echo "generating docker tag for version: $VERSION"
 docker tag tech-challenge-service "fiapsoat2grupo13/tech-challenge-service:$VERSION"
