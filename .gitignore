@@ -240,3 +240,5 @@ gradle-app.setting
 
 docker/mysql/data
 infra/docker/mysql/data
+
+docker-hub-env.sh
