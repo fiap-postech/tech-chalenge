@@ -8,7 +8,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
-class SandwichUpdateStrategy extends AbstractUpdateStrategy {
+class SandwichUpdateStrategy extends AbstractProductUpdateStrategy {
     public SandwichUpdateStrategy(UpdateProductRequest request) {
         super(request);
     }

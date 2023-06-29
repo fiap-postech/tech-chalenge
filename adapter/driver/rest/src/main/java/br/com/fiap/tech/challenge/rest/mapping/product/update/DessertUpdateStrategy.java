@@ -8,7 +8,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
-class DessertUpdateStrategy extends AbstractUpdateStrategy {
+class DessertUpdateStrategy extends AbstractProductUpdateStrategy {
     public DessertUpdateStrategy(UpdateProductRequest request) {
         super(request);
     }
