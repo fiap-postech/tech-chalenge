@@ -13,7 +13,7 @@ import static java.math.BigInteger.TEN;
 import static java.math.BigInteger.ZERO;
 
 
-public class DocumentValidator implements ConstraintValidator<Document, String> {
+public class DocumentValidator implements ConstraintValidator<DocumentCustomer, String> {
     //TODO: verificar se teremos Customer de PJ???
     public static final int ELEVEN = 11;
     public static final int FOURTEEN = 14;

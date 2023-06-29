@@ -1,7 +1,5 @@
 package br.com.fiap.tech.challenge.domain;
 
-import br.com.fiap.tech.challenge.domain.validation.Document;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -14,7 +12,6 @@ import java.util.UUID;
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = true)
 public class Customer extends Entity{
-    //TODO: verificar mantemos email e document como String e validamos, ou deveriam ser VO? Qual o ganho deles como VO?
 
     @Serial
     private static final long serialVersionUID = 213659655671060163L;
@@ -22,21 +19,29 @@ public class Customer extends Entity{
     @NotBlank
     private final String name;
 
-    @NotBlank
-    @Email
-    private final String email;
+    private final EmailRegistration email;
 
-    @Document
-    private final String document;
+    private final Document document;
+
+    private boolean enabled;
 
     @Builder
-    public Customer(UUID uuid, String name, String email, String document) {
+    public Customer(UUID uuid, String name, EmailRegistration email, Document document, boolean enabled) {
         super(uuid);
 
         this.name = name;
         this.email = email;
         this.document = document;
+        this.enabled = enabled;
 
         validate();
+    }
+
+    public String toDocument() {
+        return document.document();
+    }
+
+    public String toEmail() {
+        return email.email();
     }
 }

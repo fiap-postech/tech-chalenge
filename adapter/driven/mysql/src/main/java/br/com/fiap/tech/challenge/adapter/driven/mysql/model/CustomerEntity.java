@@ -1,16 +1,18 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
 import br.com.fiap.tech.challenge.domain.Customer;
-import br.com.fiap.tech.challenge.domain.validation.Document;
+import br.com.fiap.tech.challenge.domain.Document;
+import br.com.fiap.tech.challenge.domain.EmailRegistration;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serial;
+import java.util.UUID;
 
 @Entity
 @Table(name = "customer")
@@ -25,17 +27,21 @@ public class CustomerEntity extends JPAEntity{
     private String name;
 
     @NotBlank
-    @Email
+    @Column(columnDefinition = "text")
     private String email;
 
-    @Document
+    @NotBlank
+    @Column(columnDefinition = "text")
     private String document;
+
+    private boolean enabled;
 
     public Customer toDomain(){
         return Customer.builder()
+                .uuid(UUID.fromString(getUuid()))
                 .name(getName())
-                .email(getEmail())
-                .document(getDocument())
+                .email(EmailRegistration.of(getEmail()))
+                .document(Document.of(getDocument()))
                 .build();
     }
 }

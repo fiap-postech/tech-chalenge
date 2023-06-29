@@ -36,4 +36,9 @@ public class ServiceConfiguration {
     public FindCustomerByDocumentService findCustomerByDocumentService (CustomerReaderService reader){
         return ServiceFactory.findCustomerByDocumentService(reader);
     }
+
+    @Bean
+    public UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer) {
+        return ServiceFactory.upgradeCustomerService(writer);
+    }
 }

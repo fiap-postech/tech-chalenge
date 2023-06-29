@@ -31,4 +31,8 @@ public class ServiceFactory {
         return new FindCustomerByDocumentServiceImpl(reader);
     }
 
+    public static UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer){
+        return new UpgradeCustomerServiceImpl(writer);
+    }
+
 }

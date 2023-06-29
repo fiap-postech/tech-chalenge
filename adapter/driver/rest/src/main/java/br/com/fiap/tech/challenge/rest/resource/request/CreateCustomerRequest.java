@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.domain.Customer;
-import br.com.fiap.tech.challenge.domain.validation.Document;
+import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
@@ -21,7 +21,7 @@ public class CreateCustomerRequest extends Request<Customer> {
     @Email
     private String email;
 
-    @Document
+    @DocumentCustomer
     private String document;
 
     @Override

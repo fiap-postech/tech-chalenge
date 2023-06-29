@@ -19,9 +19,9 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 @Retention(RUNTIME)
 @Constraint(validatedBy = DocumentValidator.class)
 @Documented
-public @interface Document {
+public @interface DocumentCustomer {
 
-    String message() default "O documento informado é inválido";
+    String message() default "The provided document is invalid";
 
     Class<?>[] groups () default {};
 
