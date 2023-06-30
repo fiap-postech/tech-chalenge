@@ -51,7 +51,9 @@ public class CartItem extends ValueObject {
     }
 
     public CartItem applyDiscount(double percentage) {
-        var newDiscount = Discount.of(price().amount(), percentage);
+        var newDiscount = Discount.of(
+                Percentage.of(percentage).apply(price().amount())
+        );
 
         return toBuilder()
                 .discount(newDiscount)
@@ -59,7 +61,7 @@ public class CartItem extends ValueObject {
                 .build();
     }
 
-    public CartItem resetDiscount(){
+    public CartItem resetDiscount() {
         return toBuilder()
                 .discount(discount().reset())
                 .price(product.price())

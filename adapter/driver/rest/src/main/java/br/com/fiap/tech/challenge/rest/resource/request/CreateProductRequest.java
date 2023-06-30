@@ -1,12 +1,15 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Combo;
 import br.com.fiap.tech.challenge.domain.Dessert;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
 import br.com.fiap.tech.challenge.domain.Sandwich;
 import br.com.fiap.tech.challenge.domain.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -21,7 +24,12 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class CreateProductRequest extends Request<Product> {
+@JsonTypeInfo(use = JsonTypeInfo.Id.NAME, property = "type")
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = CreateSingleProductRequest.class, name = "single"),
+        @JsonSubTypes.Type(value = CreateComboProductRequest.class, name = "combo")
+})
+public abstract class CreateProductRequest extends Request<Product> {
     @Serial
     private static final long serialVersionUID = 1464909268054662495L;
 
@@ -40,10 +48,12 @@ public class CreateProductRequest extends Request<Product> {
     @NotNull
     private ProductCategory category;
 
+    private boolean enabled = true;
+
     @Override
     public Product toDomain(ModelMapper mapper) {
         return switch (getCategory()) {
-            case COMBO -> mapper.map(this, SideDish.class); //TODO put right code for combo here
+            case COMBO -> mapper.map(this, Combo.class);
             case SIDE_DISH -> mapper.map(this, SideDish.class);
             case DESSERT -> mapper.map(this, Dessert.class);
             case BEVERAGE -> mapper.map(this, Beverage.class);

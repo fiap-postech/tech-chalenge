@@ -10,16 +10,17 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
+@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE, TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = URLValidator.class)
+@Constraint(validatedBy = ComboValidator.class)
 @Documented
-public @interface URL {
-    String message() default "URL should respect format specified in RFC 2396";
+public @interface ComboValid {
+    String message() default "Combo should have a sandwich, beverage and side dish";
 
-    Class<?>[] groups () default {};
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload () default {};
+    Class<? extends Payload>[] payload() default {};
 }

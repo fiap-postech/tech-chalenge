@@ -12,7 +12,8 @@ public enum ApplicationError implements BaseApplicationError {
     UNKNOWN_ERROR("AE-001", INTERNAL_SERVER_ERROR, TRUE, "Unexpected error [{}]"),
     PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]"),
     IMAGE_URL_INVALID("AE-003", INVALID_PARAMETER, FALSE, "Image has invalid url"),
-    CUSTOMER_HAS_REGISTRATION("AE-004", CONFLICT, FALSE, "Customer already has registration")
+    CUSTOMER_HAS_REGISTRATION("AE-004", CONFLICT, FALSE, "Customer already has registration"),
+    PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE("AE-005", INVALID_PARAMETER, TRUE, "Product should be updated by one that have same category (stored: {}, received: {})"),
     ;
 
     private final String code;

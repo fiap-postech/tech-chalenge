@@ -14,13 +14,47 @@ public class SideDish extends Product {
     @Serial
     private static final long serialVersionUID = -4700400815387828057L;
 
-    @Builder
-    public SideDish(UUID uuid, String name, String description, Price price, Image image) {
-        super(uuid, name, description, price, image);
+    @Builder(toBuilder = true)
+    protected SideDish(
+            @Builder.ObtainVia(method = "uuid") UUID uuid,
+            @Builder.ObtainVia(method = "name") String name,
+            @Builder.ObtainVia(method = "description") String description,
+            @Builder.ObtainVia(method = "price") Price price,
+            @Builder.ObtainVia(method = "image") Image image,
+            @Builder.ObtainVia(method = "enabled") boolean enabled
+    ) {
+        super(uuid, name, description, price, image, enabled);
+
+        validate();
     }
 
     @Override
     public ProductCategory category() {
         return ProductCategory.SIDE_DISH;
+    }
+
+    @Override
+    public Product enable() {
+        return toBuilder()
+                .enabled(true)
+                .build();
+    }
+
+    @Override
+    public Product disable() {
+        return toBuilder()
+                .enabled(false)
+                .build();
+    }
+
+    @Override
+    public Product doUpdate(Product product) {
+        return toBuilder()
+                .name(product.name())
+                .description(product.description())
+                .image(product.image())
+                .price(product.price())
+                .enabled(product.enabled())
+                .build();
     }
 }

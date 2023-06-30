@@ -4,7 +4,16 @@ import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
+import br.com.fiap.tech.challenge.port.driver.CreateProductService;
+import br.com.fiap.tech.challenge.port.driver.DisableProductService;
+import br.com.fiap.tech.challenge.port.driver.EnableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindCustomerByDocumentService;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.UpdateProductService;
+import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;
 
 public class ServiceFactory {
 
@@ -15,6 +24,10 @@ public class ServiceFactory {
         return new FindAllAvailableProductServiceImpl(reader);
     }
 
+    public static FindAllAvailableProductByCategory findAllAvailableProductByCategory(ProductReaderService reader) {
+        return new FindAllAvailableProductByCategoryImpl(reader);
+    }
+
     public static FindProductByUUIDService findProductByUUIDService(ProductReaderService reader) {
         return new FindProductByUUIDServiceImpl(reader);
     }
@@ -23,6 +36,17 @@ public class ServiceFactory {
         return new CreateProductServiceImpl(writer);
     }
 
+    public static UpdateProductService updateProductService(ProductReaderService reader, ProductWriterService writer) {
+        return new UpdateProductServiceImpl(reader, writer);
+    }
+
+    public static EnableProductService enableProductService(ProductWriterService writer) {
+        return new EnableProductServiceImpl(writer);
+    }
+
+    public static DisableProductService disableProductService(ProductWriterService writer) {
+        return new DisableProductServiceImpl(writer);
+    }
     public static CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader){
         return new CreateCustomerServiceImpl(writer, reader);
     }
