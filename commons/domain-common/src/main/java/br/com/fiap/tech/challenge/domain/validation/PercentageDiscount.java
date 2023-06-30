@@ -14,10 +14,14 @@ import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
 @Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = URLValidator.class)
+@Constraint(validatedBy = PercentageDiscountValidator.class)
 @Documented
-public @interface URL {
-    String message() default "URL should respect format specified in RFC 2396";
+public @interface PercentageDiscount {
+    String message() default "Percentage discount should be between {min}% and {max}%";
+
+    long min() default 0;
+
+    long max() default 50;
 
     Class<?>[] groups () default {};
 

@@ -10,16 +10,17 @@ import java.lang.annotation.Target;
 import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
+@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE, TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = URLValidator.class)
+@Constraint(validatedBy = UUIDValidator.class)
 @Documented
-public @interface URL {
-    String message() default "URL should respect format specified in RFC 2396";
+public @interface UUID {
+    String message() default "{value} should be a valid UUID";
 
-    Class<?>[] groups () default {};
+    Class<?>[] groups() default {};
 
-    Class<? extends Payload>[] payload () default {};
+    Class<? extends Payload>[] payload() default {};
 }
