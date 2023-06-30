@@ -3,8 +3,7 @@ package br.com.fiap.tech.challenge.error;
 import br.com.fiap.tech.challenge.exception.error.BaseApplicationError;
 import br.com.fiap.tech.challenge.exception.error.ErrorType;
 
-import static br.com.fiap.tech.challenge.exception.error.ErrorType.INTERNAL_SERVER_ERROR;
-import static br.com.fiap.tech.challenge.exception.error.ErrorType.INVALID_PARAMETER;
+import static br.com.fiap.tech.challenge.exception.error.ErrorType.*;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
@@ -12,7 +11,9 @@ public enum ApplicationError implements BaseApplicationError {
 
     UNKNOWN_ERROR("AE-001", INTERNAL_SERVER_ERROR, TRUE, "Unexpected error [{}]"),
     PRODUCT_NOT_FOUND_BY_UUID("AE-002", INVALID_PARAMETER, TRUE, "Product not found [uuid={}]"),
-    PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE("AE-003", INVALID_PARAMETER, TRUE, "Product should be updated by one that have same category (stored: {}, received: {})"),
+    IMAGE_URL_INVALID("AE-003", INVALID_PARAMETER, FALSE, "Image has invalid url"),
+    CUSTOMER_HAS_REGISTRATION("AE-004", CONFLICT, FALSE, "Customer already has registration"),
+    PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE("AE-005", INVALID_PARAMETER, TRUE, "Product should be updated by one that have same category (stored: {}, received: {})"),
     ;
 
     private final String code;
