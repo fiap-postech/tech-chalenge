@@ -53,9 +53,6 @@ services:
     container_name: app
     image: fiapsoat2grupo13/tech-challenge-service
     platform: linux/amd64
-    build:
-      context: ../
-      dockerfile: Dockerfile
     restart: on-failure
     ports:
       - "8080:8080"
