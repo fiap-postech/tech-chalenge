@@ -16,8 +16,6 @@ public class UUIDValidator implements ConstraintValidator<UUID, String> {
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        context.disableDefaultConstraintViolation();
-
         if (isNull(value) && !this.required) {
             return true;
         }
