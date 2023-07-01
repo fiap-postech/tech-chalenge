@@ -70,7 +70,7 @@ public class CartResource {
         );
     }
 
-    @PostMapping("{cartId}/item")
+    @PostMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse addItem(@PathVariable("cartId") String cartId, @RequestBody @Valid AddCartItemRequest request) {
         return mapper.map(
@@ -79,7 +79,7 @@ public class CartResource {
         );
     }
 
-    @PatchMapping("{cartId}/item")
+    @PatchMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse updateItem(@PathVariable("cartId") String cartId, @RequestBody @Valid UpdateCartItemRequest request) {
         return mapper.map(
@@ -88,7 +88,7 @@ public class CartResource {
         );
     }
 
-    @DeleteMapping("{cartId}/item")
+    @DeleteMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse removeItem(@PathVariable("cartId") String cartId, @RequestBody @Valid RemoveCartItemRequest request) {
         return mapper.map(
