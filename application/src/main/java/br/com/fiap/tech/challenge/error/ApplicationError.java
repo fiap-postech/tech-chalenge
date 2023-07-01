@@ -6,6 +6,7 @@ import br.com.fiap.tech.challenge.exception.error.ErrorType;
 import static br.com.fiap.tech.challenge.exception.error.ErrorType.CONFLICT;
 import static br.com.fiap.tech.challenge.exception.error.ErrorType.INTERNAL_SERVER_ERROR;
 import static br.com.fiap.tech.challenge.exception.error.ErrorType.INVALID_PARAMETER;
+import static br.com.fiap.tech.challenge.exception.error.ErrorType.UNPROCESSABLE_ENTITY;
 import static java.lang.Boolean.FALSE;
 import static java.lang.Boolean.TRUE;
 
