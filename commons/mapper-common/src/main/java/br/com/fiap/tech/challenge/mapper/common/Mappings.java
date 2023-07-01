@@ -4,6 +4,7 @@ import br.com.fiap.tech.challenge.domain.Discount;
 import br.com.fiap.tech.challenge.domain.Image;
 import br.com.fiap.tech.challenge.domain.Percentage;
 import br.com.fiap.tech.challenge.domain.Price;
+import br.com.fiap.tech.challenge.domain.Quantity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.modelmapper.Converter;
@@ -46,5 +47,10 @@ public class Mappings {
 
             return image.url();
         };
+    }
+
+    public static Converter<Quantity, Integer> quantityToIntegerConverter() {
+        return ctx -> defaultIfNull(ctx.getSource(), Quantity.min())
+                .value();
     }
 }

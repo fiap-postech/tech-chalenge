@@ -1,70 +1,57 @@
 package br.com.fiap.tech.challenge.domain;
 
 import lombok.Builder;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
-import org.javamoney.moneta.Money;
 
 import java.io.Serial;
 
+import static java.util.Objects.isNull;
+
 @Getter
 @Accessors(fluent = true)
+@EqualsAndHashCode(callSuper = true)
+@ToString
 public class CartItem extends ValueObject {
 
     @Serial
     private static final long serialVersionUID = -8071866742749224693L;
 
     private final Product product;
-    private final Price price;
-    private final Discount discount;
     private final Quantity quantity;
 
-    //TODO add method for total item
-
     @Builder(toBuilder = true)
-    public CartItem(Product product, Price price, Discount discount, Quantity quantity) {
+    public CartItem(Product product, Quantity quantity) {
         this.product = product;
-        this.price = price;
-        this.discount = discount;
         this.quantity = quantity;
     }
 
-    public CartItem incrementQuantity() {
-        return toBuilder()
-                .quantity(quantity().increment(1))
-                .build();
+    public Price total() {
+        if (isNull(product) || isNull(quantity)) {
+            return Price.min();
+        }
+        return product.price().multiply(quantity);
     }
 
-    public CartItem decrementQuantity() {
-        return toBuilder()
-                .quantity(quantity().decrement(1))
-                .build();
+    public Price subtotal() {
+        if (isNull(product) || isNull(quantity)) {
+            return Price.min();
+        }
+        return product.fullPrice().multiply(quantity);
     }
 
-    public CartItem applyDiscount(Money money) {
-        var newDiscount = Discount.of(money);
-
-        return toBuilder()
-                .discount(newDiscount)
-                .price(price().subtract(newDiscount.amount()))
-                .build();
+    public Discount discount() {
+        if (isNull(product) || isNull(quantity)) {
+            return Discount.withoutDiscount();
+        }
+        return product.discount().multiply(quantity);
     }
 
-    public CartItem applyDiscount(double percentage) {
-        var newDiscount = Discount.of(
-                Percentage.of(percentage).apply(price().amount())
-        );
-
-        return toBuilder()
-                .discount(newDiscount)
-                .price(price().subtract(newDiscount.amount()))
-                .build();
-    }
-
-    public CartItem resetDiscount() {
-        return toBuilder()
-                .discount(discount().reset())
-                .price(product.price())
+    public CartItem incrementQuantity(Quantity quantity) {
+        return this.toBuilder()
+                .quantity(Quantity.of(this.quantity().value() + quantity.value()))
                 .build();
     }
 }
