@@ -48,4 +48,10 @@ public class CartItem extends ValueObject {
         }
         return product.discount().multiply(quantity);
     }
+
+    public CartItem incrementQuantity(Quantity quantity) {
+        return this.toBuilder()
+                .quantity(Quantity.of(this.quantity().value() + quantity.value()))
+                .build();
+    }
 }

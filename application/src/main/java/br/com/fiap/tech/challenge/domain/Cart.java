@@ -46,9 +46,9 @@ public class Cart extends Entity {
                 .findFirst()
                 .ifPresentOrElse(i -> {
                     var newItem = i.toBuilder()
-                            .quantity(Quantity.of(i.quantity().value() + cartItem.quantity().value()))
                             .product(cartItem.product())
-                            .build();
+                            .build()
+                            .incrementQuantity(cartItem.quantity());
 
                     newItems.set(items.indexOf(i), newItem);
                 }, () -> newItems.add(cartItem));
