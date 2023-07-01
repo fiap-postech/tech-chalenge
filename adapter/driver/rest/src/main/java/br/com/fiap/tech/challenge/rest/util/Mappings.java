@@ -8,9 +8,15 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;
 
+import static java.util.Objects.isNull;
+
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
-    public static ProductResponse toProductResponse(ModelMapper mapper, Product product){
+    public static ProductResponse toProductResponse(ModelMapper mapper, Product product) {
+        if (isNull(product)) {
+            return null;
+        }
+
         if (product instanceof Combo){
             return mapper.map(product, ComboResponse.class);
         }

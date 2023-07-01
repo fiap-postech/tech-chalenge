@@ -42,6 +42,7 @@ public class CustomerEntity extends JPAEntity{
                 .name(getName())
                 .email(EmailRegistration.of(getEmail()))
                 .document(Document.of(getDocument()))
+                .enabled(isEnabled())
                 .build();
     }
 }
