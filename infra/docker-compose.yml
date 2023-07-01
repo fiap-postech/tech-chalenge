@@ -5,8 +5,8 @@ services:
     container_name: mysql
     image: tech-challenge-mysql
     build:
-      context: ../docker/mysql
-      dockerfile: ../mysql/Dockerfile
+      context: docker/mysql
+      dockerfile: docker/mysql/Dockerfile
     environment:
       MYSQL_ROOT_PASSWORD: "P@55W0rD"
     ports:
@@ -36,8 +36,8 @@ services:
     container_name: cdn
     image: tech-challenge-cdn
     build:
-      context: ../docker/nginx
-      dockerfile: ../nginx/Dockerfile
+      context: docker/nginx
+      dockerfile: docker/nginx/Dockerfile
     restart: always
     ports:
       - "8888:8080"
