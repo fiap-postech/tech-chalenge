@@ -40,9 +40,6 @@ services:
     container_name: cdn
     image: nginx:alpine
     platform: linux/amd64
-    build:
-      context: docker/nginx
-      dockerfile: docker/nginx/Dockerfile
     restart: always
     ports:
       - "8888:8080"
@@ -55,6 +52,9 @@ services:
   app:
     container_name: app
     image: tech-challenge-app
+    build:
+      context: ../
+      dockerfile: Dockerfile
     platform: linux/amd64a
     restart: on-failure
     ports:
