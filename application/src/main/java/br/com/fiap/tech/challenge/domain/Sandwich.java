@@ -14,9 +14,18 @@ public class Sandwich extends Product {
     @Serial
     private static final long serialVersionUID = 270547921615282785L;
 
-    @Builder
-    public Sandwich(UUID uuid, String name, String description, Price price, Image image) {
-        super(uuid, name, description, price, image);
+    @Builder(toBuilder = true)
+    protected Sandwich(
+            @Builder.ObtainVia(method = "uuid") UUID uuid,
+            @Builder.ObtainVia(method = "name") String name,
+            @Builder.ObtainVia(method = "description") String description,
+            @Builder.ObtainVia(method = "price") Price price,
+            @Builder.ObtainVia(method = "image") Image image,
+            @Builder.ObtainVia(method = "enabled") boolean enabled
+    ) {
+        super(uuid, name, description, price, image, enabled);
+
+        validate();
     }
 
     @Override
@@ -25,12 +34,27 @@ public class Sandwich extends Product {
     }
 
     @Override
-    public Price fullPrice() {
-        return price();
+    public Product enable() {
+        return toBuilder()
+                .enabled(true)
+                .build();
     }
 
     @Override
-    public Discount discount() {
-        return Discount.withoutDiscount();
+    public Product disable() {
+        return toBuilder()
+                .enabled(false)
+                .build();
+    }
+
+    @Override
+    public Product doUpdate(Product product) {
+        return toBuilder()
+                .name(product.name())
+                .description(product.description())
+                .image(product.image())
+                .price(product.price())
+                .enabled(product.enabled())
+                .build();
     }
 }

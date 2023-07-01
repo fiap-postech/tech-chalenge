@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.domain.CartItem;
+import br.com.fiap.tech.challenge.domain.validation.UUID;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
@@ -22,6 +23,7 @@ public class AddCartItemRequest extends Request<CartItem> {
     private static final long serialVersionUID = -64224455952918649L;
 
     @NotBlank
+    @UUID
     @Schema(description = "Identificador do produto que será adicionado ao carrinho", example = "12d1b555-6b86-41d8-afb6-17a01b293869")
     private String productId;
 

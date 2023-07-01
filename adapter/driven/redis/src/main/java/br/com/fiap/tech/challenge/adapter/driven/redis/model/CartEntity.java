@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
 import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.Customer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
+import static java.util.Objects.nonNull;
 import static org.springframework.util.CollectionUtils.isEmpty;
 
 @RedisHash(value = "cart")
@@ -29,10 +31,12 @@ public class CartEntity implements Serializable {
     @Id
     private String id;
 
-    @TimeToLive(unit = TimeUnit.MILLISECONDS)
-    private Long ttl;
+    private CustomerEntity customer;
 
     private List<CartItemEntity> items;
+
+    @TimeToLive(unit = TimeUnit.MILLISECONDS)
+    private Long ttl;
 
     public Cart toDomain(ModelMapper mapper) {
         var builder = Cart.builder();
@@ -41,6 +45,10 @@ public class CartEntity implements Serializable {
             builder.items(this.getItems().stream()
                     .map(c -> c.toDomain(mapper))
                     .toList());
+        }
+
+        if (nonNull(this.customer)) {
+            builder.customer(mapper.map(this.customer, Customer.class));
         }
 
         return builder

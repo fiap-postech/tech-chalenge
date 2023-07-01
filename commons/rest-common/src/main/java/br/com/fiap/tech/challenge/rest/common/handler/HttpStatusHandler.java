@@ -18,7 +18,9 @@ public class HttpStatusHandler {
         return ofEntries(
                 entry(ErrorType.INTERNAL_SERVER_ERROR, HttpStatus.INTERNAL_SERVER_ERROR),
                 entry(ErrorType.INVALID_PARAMETER, HttpStatus.BAD_REQUEST),
-                entry(ErrorType.NOT_FOUND, HttpStatus.NOT_FOUND)
+                entry(ErrorType.NOT_FOUND, HttpStatus.NOT_FOUND),
+                entry(ErrorType.CONFLICT, HttpStatus.CONFLICT),
+                entry(ErrorType.UNPROCESSABLE_ENTITY, HttpStatus.UNPROCESSABLE_ENTITY)
         );
     }
 }

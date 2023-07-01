@@ -1,5 +1,7 @@
 package br.com.fiap.tech.challenge.domain;
 
+import br.com.fiap.tech.challenge.error.ApplicationError;
+import br.com.fiap.tech.challenge.exception.ApplicationException;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -22,44 +24,49 @@ public class Cart extends Entity {
     @Serial
     private static final long serialVersionUID = -7454461774303685197L;
 
+    private final Customer customer;
+
     private final List<CartItem> items;
 
     @Builder(toBuilder = true)
-    public Cart(@Builder.ObtainVia(method = "uuid") UUID uuid, List<CartItem> items) {
+    public Cart(@Builder.ObtainVia(method = "uuid") UUID uuid, List<CartItem> items, Customer customer) {
         super(uuid);
+        this.customer = customer;
         this.items = defaultIfNull(items, new ArrayList<>());
     }
 
-    public Cart addItem(CartItem item) {
-        var newItems = new ArrayList<>(items);
+    public Cart addItem(CartItem cartItem) {
+        if (!cartItem.product().enabled()) {
+            throw new ApplicationException(ApplicationError.CART_ITEM_NOT_AVAILABLE, this.uuid(), cartItem.product().uuid());
+        }
 
+        var newItems = new ArrayList<>(items);
         items.stream()
-                .filter(i -> i.product().uuid().equals(item.product().uuid()))
+                .filter(i -> i.product().uuid().equals(cartItem.product().uuid()))
                 .findFirst()
                 .ifPresentOrElse(i -> {
                     var newItem = i.toBuilder()
-                            .quantity(Quantity.of(i.quantity().value() + item.quantity().value()))
-                            .product(item.product())
+                            .quantity(Quantity.of(i.quantity().value() + cartItem.quantity().value()))
+                            .product(cartItem.product())
                             .build();
 
                     newItems.set(items.indexOf(i), newItem);
-                }, () -> newItems.add(item));
+                }, () -> newItems.add(cartItem));
 
         return toBuilder()
                 .items(newItems)
                 .build();
     }
 
-    public Cart updateItem(CartItem item) {
+    public Cart updateItem(CartItem cartItem) {
         var newItems = new ArrayList<>(items);
-
         items.stream()
-                .filter(i -> i.product().uuid().equals(item.product().uuid()))
+                .filter(i -> i.product().uuid().equals(cartItem.product().uuid()))
                 .findFirst()
                 .ifPresent(i -> {
                     var newItem = i.toBuilder()
-                            .quantity(item.quantity())
-                            .product(item.product())
+                            .quantity(cartItem.quantity())
+                            .product(cartItem.product())
                             .build();
 
                     newItems.set(items.indexOf(i), newItem);
@@ -70,9 +77,9 @@ public class Cart extends Entity {
                 .build();
     }
 
-    public Cart removeItem(CartItem item) {
+    public Cart removeItem(CartItem cartItem) {
         var newItems = new ArrayList<>(items);
-        newItems.removeIf(i -> i.product().uuid().equals(item.product().uuid()));
+        newItems.removeIf(i -> i.product().uuid().equals(cartItem.product().uuid()));
 
         return toBuilder()
                 .items(newItems)

@@ -35,27 +35,19 @@ cd tech-chalenge
 ```sh
 ./gradlew build
 ```
-5) Navegue até o diretório do docker-compose.yml para provisionar a infra local do projeto via terminal/cmd
+5) Execute o docker-compose.yml para iniciar o provisionamento da infra local
 ```sh
-cd infra
-```
-6) Execute o docker-compose.yml para iniciar o provisionamento da infra local
-```sh
-docker-compose up -d
+docker-compose --project-directory infra up -d
 ```
 7) Ao executar o docker-compose será provisionado:
    * Database - MySQL [8.0] - `localhost:3366`
-   * In-Memory Database - Redis [6-alphine] - `localhost:6379`
+   * In-Memory Database - Redis [6-alphine] - `localhost:6380`
 <br><br>
-8) Para executar o projeto em gradle retorne a raiz do projeto
-```sh
-cd ..
-```
-9) Estando na raiz do projeto `./tech-chalenge` para subir o projeto execute:
+8) Execute o comando gradle abaixo para subir o projeto:
 ```sh
 ./gradlew bootRun
 ```
-10) Para conexão do database - MySQL, basta utilizar as seguintes infos de conexão:
+9) Para conexão do database - MySQL, basta utilizar as seguintes infos de conexão:
 ```sh
 Host: localhost
 Port: 3366

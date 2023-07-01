@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;
 
 @Mapper
-public class CartItemEntityToCartItemMapping implements RedisTypeMapConfiguration {
+public class RedisCartItemEntityToCartItemMapping implements RedisTypeMapConfiguration {
 
     @Override
     public void configure(ModelMapper mapper) {

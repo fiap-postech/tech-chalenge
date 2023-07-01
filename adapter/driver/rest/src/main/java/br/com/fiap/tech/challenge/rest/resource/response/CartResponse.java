@@ -33,6 +33,9 @@ public class CartResponse extends Response {
     @Schema(description = "Desconto do carrinho", example = "1.90")
     private BigDecimal discount;
 
+    @Schema(description = "Cliente do carrinho")
+    private CustomerResponse customer;
+
     @Schema(description = "Lista de itens do carrinho")
     private List<CartItemResponse> items;
 }

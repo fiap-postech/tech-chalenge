@@ -12,7 +12,7 @@ import static br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisConfig
 
 @Mapper
 @AllArgsConstructor
-public class CartToCartEntityMapping implements RedisTypeMapConfiguration {
+public class RedisCartToCartEntityMapping implements RedisTypeMapConfiguration {
 
     private Environment env;
 
@@ -20,6 +20,7 @@ public class CartToCartEntityMapping implements RedisTypeMapConfiguration {
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Cart.class, CartEntity.class)
                 .addMapping(Cart::uuid, CartEntity::setId)
+                .addMapping(Cart::customer, CartEntity::setCustomer)
                 .addMapping(Cart::items, CartEntity::setItems)
                 .addMappings(m -> m.map(src -> env.getProperty(CACHE_REDIS_TTL, Long.class), CartEntity::setTtl));
     }

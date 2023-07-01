@@ -14,10 +14,12 @@ import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_ROUNDING_M
 
 @Mapper
 public class CartToCartResponseMapping implements RestTypeMapConfiguration {
+
     @Override
     public void configure(ModelMapper mapper) {
         mapper.typeMap(Cart.class, CartResponse.class)
                 .addMapping(Cart::uuid, CartResponse::setId)
+                .addMapping(Cart::customer, CartResponse::setCustomer)
                 .addMapping(Cart::items, CartResponse::setItems)
                 .setProvider(cartResponseProvider());
     }

@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
 import br.com.fiap.tech.challenge.domain.Beverage;
+import br.com.fiap.tech.challenge.domain.Combo;
 import br.com.fiap.tech.challenge.domain.Dessert;
 import br.com.fiap.tech.challenge.domain.Product;
 import br.com.fiap.tech.challenge.domain.ProductCategory;
@@ -24,14 +25,15 @@ public class ProductEntity {
     private BigDecimal price;
     private String image;
     private ProductCategory category;
+    private Boolean enabled;
 
     public Product toDomain(ModelMapper mapper) {
         return switch (getCategory()) {
-            case COMBO -> mapper.map(this, SideDish.class); //TODO put right code for combo here
             case SIDE_DISH -> mapper.map(this, SideDish.class);
             case DESSERT -> mapper.map(this, Dessert.class);
             case BEVERAGE -> mapper.map(this, Beverage.class);
             case SANDWICH -> mapper.map(this, Sandwich.class);
+            case COMBO -> mapper.map(this, Combo.class);
         };
     }
 }
