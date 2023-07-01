@@ -52,10 +52,10 @@ services:
   app:
     container_name: app
     image: tech-challenge-app
+    platform: linux/amd64
     build:
       context: ../
       dockerfile: Dockerfile
-    platform: linux/amd64a
     restart: on-failure
     ports:
       - "8080:8080"
