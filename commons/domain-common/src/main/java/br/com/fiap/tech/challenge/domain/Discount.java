@@ -38,4 +38,8 @@ public class Discount extends ValueObject {
     public static Discount withoutDiscount() {
         return of(Money.zero(getCurrency(CURRENCY_CODE)));
     }
+
+    public Discount multiply(Quantity quantity) {
+        return of(amount().multiply(quantity.value()));
+    }
 }
