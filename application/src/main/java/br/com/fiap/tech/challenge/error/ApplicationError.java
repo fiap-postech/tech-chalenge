@@ -14,6 +14,7 @@ public enum ApplicationError implements BaseApplicationError {
     IMAGE_URL_INVALID("AE-003", INVALID_PARAMETER, FALSE, "Image has invalid url"),
     CUSTOMER_HAS_REGISTRATION("AE-004", CONFLICT, FALSE, "Customer already has registration"),
     PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE("AE-005", INVALID_PARAMETER, TRUE, "Product should be updated by one that have same category (stored: {}, received: {})"),
+    PAYMENT_ERROR("AE-006", UNPROCESSABLE_ENTITY, TRUE, "There was an error in payment attempt, please try again soon"),
     ;
 
     private final String code;

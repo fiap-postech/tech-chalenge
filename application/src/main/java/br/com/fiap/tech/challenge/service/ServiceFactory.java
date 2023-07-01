@@ -2,8 +2,10 @@ package br.com.fiap.tech.challenge.service;
 
 import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
+import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.CreateProductService;
 import br.com.fiap.tech.challenge.port.driver.DisableProductService;
@@ -57,6 +59,10 @@ public class ServiceFactory {
 
     public static UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer){
         return new UpgradeCustomerServiceImpl(writer);
+    }
+
+    public static CheckoutService checkoutService(PaymentGatewayService paymentGateway) {
+        return new CheckoutServiceImpl(paymentGateway);
     }
 
 }

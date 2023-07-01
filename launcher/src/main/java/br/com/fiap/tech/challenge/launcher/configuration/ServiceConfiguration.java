@@ -2,8 +2,10 @@ package br.com.fiap.tech.challenge.launcher.configuration;
 
 import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
+import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.CreateProductService;
 import br.com.fiap.tech.challenge.port.driver.DisableProductService;
@@ -69,5 +71,10 @@ public class ServiceConfiguration {
     @Bean
     public UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer) {
         return ServiceFactory.upgradeCustomerService(writer);
+    }
+
+    @Bean
+    public CheckoutService checkoutService(PaymentGatewayService paymentGateway) {
+        return ServiceFactory.checkoutService(paymentGateway);
     }
 }

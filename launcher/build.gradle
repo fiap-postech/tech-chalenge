@@ -32,6 +32,7 @@ dependencies {
     implementation project(":application")
     implementation project(":adapter:driver:rest")
     implementation project(":adapter:driven:mysql")
+    implementation project(":adapter:driven:payment-gateway")
     implementation project(":commons:mapper-common")
 }
 
