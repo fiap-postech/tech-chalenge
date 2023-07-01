@@ -51,7 +51,7 @@ services:
 
   app:
     container_name: app
-    image: tech-challenge-app
+    image: tech-challenge-service
     platform: linux/amd64
     build:
       context: ../
