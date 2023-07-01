@@ -26,7 +26,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-        name: Test Docker Image
+
+      - name: Test Docker Image
         run: docker-compose -f infra/docker-compose-ga.yml up -d
 
   push_to_registry:
