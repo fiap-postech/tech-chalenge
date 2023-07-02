@@ -41,7 +41,7 @@ create table purchase(
     uuid varchar(36) not null unique,
     customer_id bigint,
     status enum('PAID', 'PREPARING', 'DONE', 'FINISHED') not null default 'PAID',
-    date datetime not null default now(),
+    date date not null default (curdate()),
     created datetime not null,
     last_updated datetime not null,
     version integer not null,
@@ -63,11 +63,12 @@ create table purchase_item(
 );
 
 create table payment(
-    id bigint auto_increment not null primary key ,
+    id bigint auto_increment not null primary key,
+    uuid varchar(36) not null unique,
     purchase_id bigint not null,
     method enum('MERCADO_PAGO') not null,
-    date datetime not null default now(),
-    status enum('PAID') not null default 'PAID',
+    date date not null default (curdate()),
+    status enum('CREATED', 'PAID', 'ERROR') not null default 'PAID',
     amount numeric(12,2) not null,
     created datetime not null,
     last_updated datetime not null,
