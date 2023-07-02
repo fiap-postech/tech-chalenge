@@ -24,31 +24,49 @@ public class PurchaseItem extends ValueObject {
     @Valid
     private final Quantity quantity;
 
+    @NotNull
+    private final Price fullPrice;
+
+    @NotNull
+    private final Price price;
+
+    @NotNull
+    private final Discount discount;
+
     @Builder(toBuilder = true)
-    public PurchaseItem(@NotNull Product product, @NotNull Quantity quantity) {
+    public PurchaseItem(@NotNull Product product,
+                        @NotNull Quantity quantity,
+                        @NotNull Price fullPrice,
+                        @NotNull Price price,
+                        @NotNull Discount discount) {
         this.product = product;
         this.quantity = quantity;
+        this.fullPrice = fullPrice;
+        this.price = price;
+        this.discount = discount;
 
         validate();
-    }
-
-    public Price unitPrice() {
-        return product().fullPrice();
-    }
-
-    public Discount unitDiscount() {
-        return product().discount();
     }
 
     public Price subTotal() {
         return product().fullPrice().multiply(quantity());
     }
 
-    public Discount discount() {
+    public Discount totalDiscount() {
         return product().discount().multiply(quantity());
     }
 
     public Price total() {
         return product().price().multiply(quantity());
+    }
+
+    public static PurchaseItem of(CartItem item) {
+        return PurchaseItem.builder()
+                .discount(item.product().discount())
+                .fullPrice(item.product().fullPrice())
+                .price(item.product().price())
+                .quantity(item.quantity())
+                .product(item.product())
+                .build();
     }
 }

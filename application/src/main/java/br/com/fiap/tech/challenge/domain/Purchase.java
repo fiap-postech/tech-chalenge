@@ -21,8 +21,10 @@ public class Purchase extends Entity {
     @Serial
     private static final long serialVersionUID = -9196907733871633595L;
 
+    private final Customer customer;
+
     @NotNull
-    private final OrderStatus status;
+    private final PurchaseStatus status;
 
     @NotNull
     private final LocalDate date;
@@ -34,30 +36,35 @@ public class Purchase extends Entity {
 
     @Builder(toBuilder = true)
     public Purchase(@Builder.ObtainVia(method = "uuid") UUID uuid,
-                    @NotNull OrderStatus status,
+                    @NotNull Customer customer,
+                    @NotNull PurchaseStatus status,
                     @NotNull LocalDate date,
                     @NotNull List<PurchaseItem> items) {
         super(uuid);
+
+        this.customer = customer;
         this.status = status;
         this.date = date;
         this.items = items;
+
+        validate();
     }
 
     public Purchase prepared() {
         return toBuilder()
-                .status(OrderStatus.MADE)
+                .status(PurchaseStatus.MADE)
                 .build();
     }
 
     public Purchase delivered() {
         return toBuilder()
-                .status(OrderStatus.DELIVERED)
+                .status(PurchaseStatus.DONE)
                 .build();
     }
 
-    public Purchase done() {
+    public Purchase finished() {
         return toBuilder()
-                .status(OrderStatus.DONE)
+                .status(PurchaseStatus.FINISHED)
                 .build();
     }
 
@@ -65,11 +72,28 @@ public class Purchase extends Entity {
         var item = PurchaseItem.builder()
                 .product(product)
                 .quantity(quantity)
+                .price(product.price())
+                .fullPrice(product.fullPrice())
+                .discount(product.discount())
                 .build();
 
         var itemList = items();
         itemList.add(item);
 
         return toBuilder().items(itemList).build();
+    }
+
+    public static Purchase newPurchase(Cart cart) {
+        return Purchase.builder()
+                .date(LocalDate.now())
+                .customer(cart.customer())
+                .status(PurchaseStatus.PAID)
+                .items(
+                        cart.items()
+                                .stream()
+                                .map(PurchaseItem::of)
+                                .toList()
+                )
+                .build();
     }
 }
