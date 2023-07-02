@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
+import br.com.fiap.tech.challenge.domain.Purchase;
 import br.com.fiap.tech.challenge.domain.PurchaseStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
@@ -12,6 +13,7 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.time.LocalDate;
@@ -52,5 +54,9 @@ public class PurchaseEntity extends JPAEntity {
     public void setItems(List<PurchaseItemEntity> items) {
         this.items = items;
         this.items.forEach(i -> i.setPurchase(this));
+    }
+
+    public Purchase toDomain(ModelMapper mapper) {
+        return mapper.map(this, Purchase.class);
     }
 }
