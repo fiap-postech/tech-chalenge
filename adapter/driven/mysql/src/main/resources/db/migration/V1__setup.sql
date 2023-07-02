@@ -39,7 +39,7 @@ create table combo(
 create table purchase(
     id bigint auto_increment not null primary key,
     uuid varchar(36) not null unique,
-    customer_id bigint not null,
+    customer_id bigint,
     status enum('PAID', 'PREPARING', 'DONE', 'FINISHED') not null default 'PAID',
     date datetime not null default now(),
     created datetime not null,
