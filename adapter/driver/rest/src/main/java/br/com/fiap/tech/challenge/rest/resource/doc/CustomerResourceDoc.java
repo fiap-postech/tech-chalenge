@@ -13,33 +13,33 @@ import org.springframework.http.ResponseEntity;
 public interface CustomerResourceDoc {
 
     @Operation(
-            summary = "Endpoint that returns a customer by Document",
-            description = "Get a customer registered in the database by Document.",
+            summary = "Endpoint que retorna um cliente pelo Documento",
+            description = "Busca um cliente cadastrado no banco de dados pelo Documento informado",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success a customer according to request", useReturnTypeSchema = true),
-                @ApiResponse(responseCode = "204", description = "The customer with given Document was not found.", content = { @Content(schema = @Schema()) }),
-                @ApiResponse(responseCode = "400", description = "Returns informing that the customer document is incorrect", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno dos dados do cliente em caso de sucesso de acordo com a requisição pedida", useReturnTypeSchema = true),
+                @ApiResponse(responseCode = "204", description = "O cliente para o documento fornecido não foi encontrado", content = { @Content(schema = @Schema()) }),
+                @ApiResponse(responseCode = "400", description = "Retorno em caso que o documento informado é inválido", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
-    ResponseEntity<CustomerResponse> getByDocument(@Parameter(description = "Document for search a customer", required = true) String document);
+    ResponseEntity<CustomerResponse> getByDocument(@Parameter(description = "Documento para pesquisa de um cliente", required = true) String document);
     @Operation(
-            summary = "Endpoint to register a new customer",
-            description = "Register a new customer in database.",
+            summary = "Endpoint para cadastrar um novo cliente",
+            description = "Cadastra um novo cliente no banco de dados.",
             responses = {
-                @ApiResponse(responseCode = "201", description = "Return with success if a customer was registered", content = { @Content(schema = @Schema(implementation = CustomerResponse.class), mediaType = "application/json") }),
-                @ApiResponse(responseCode = "400", description = "Returns informing which field of the customer is incorrect and why", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "201", description = "Retorno em caso de sucesso em que o cliente foi cadastrado", content = { @Content(schema = @Schema(implementation = CustomerResponse.class), mediaType = "application/json") }),
+                @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do cliente está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
     CustomerResponse create(CreateCustomerRequest request);
 
     @Operation(
-            summary = "Endpoint to disable a customer",
-            description = "Disables a customer that has a enabled status in the database.",
+            summary = "Endpoint para desabilitar um cliente",
+            description = "Desabilita um cliente que tem um status habilitado no banco de dados",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success if a customer was disabled", useReturnTypeSchema = true),
-                @ApiResponse(responseCode = "204", description = "The customer with given Document was not found for disable", content = { @Content(schema = @Schema()) }),
-                @ApiResponse(responseCode = "400", description = "Returns informing that the customer document is incorrect", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o cliente foi desabilitado", useReturnTypeSchema = true),
+                @ApiResponse(responseCode = "204", description = "O cliente para o documento fornecido não foi encontrado.", content = { @Content(schema = @Schema()) }),
+                @ApiResponse(responseCode = "400", description = "Retorno em caso que o documento informado é inválido", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
-    ResponseEntity<CustomerResponse> disable(@Parameter(description = "Document for disable a customer", required = true) String document);
+    ResponseEntity<CustomerResponse> disable(@Parameter(description = "Documento para desabilitar um cliente", required = true) String document);
 }

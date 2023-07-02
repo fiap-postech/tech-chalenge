@@ -16,54 +16,54 @@ import org.springframework.data.domain.Pageable;
 public interface ProductResourceDoc {
 
     @Operation(
-        summary = "Endpoint that returns all products",
-        description = "Get all products registered in the database according to request.",
+        summary = "Endpoint que retorna todos os produtos",
+        description = "Busca todos os produtos cadastrados no banco de dados de acordo com a requisição",
         responses = {
-            @ApiResponse(responseCode = "200", description = "OK - Return with success all products according to request", useReturnTypeSchema = true)
+            @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso todos os produtos de acordo com a requisição", useReturnTypeSchema = true)
     })
     ResponseList<ProductResponse> getAllAvailable(Pageable pageable,
-                                                  @Parameter(description = "Filter by product category", required = true) ProductCategory category);
+                                                  @Parameter(description = "Filtra pela categoria do produto", required = true) ProductCategory category);
     @Operation(
-            summary = "Endpoint that returns a product by UUID",
-            description = "Get a product registered in the database by UUID.",
+            summary = "Endpoint que retorna um produto pelo UUID",
+            description = "Busca o produto registrado no banco de dados daquele UUID",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success a product according to request", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
-                @ApiResponse(responseCode = "400", description = "The Product with given UUID was not found.", content = { @Content(schema = @Schema()) })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso um produto de acordo com a requisição", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
+                @ApiResponse(responseCode = "400", description = "O UUID de produto fornecido não foi encontrado", content = { @Content(schema = @Schema()) })
             }
     )
-    ProductResponse getByUUID(@Parameter(description = "UUID for search a product", required = true) String uuid);
+    ProductResponse getByUUID(@Parameter(description = "UUID de produto a ser pesquisado", required = true) String uuid);
     @Operation(
-            summary = "Endpoint to register a new product",
-            description = "Register a new product in database.",
+            summary = "Endpoint para cadastrar um novo produto",
+            description = "Cadastra um novo produto no banco de dados.",
             responses = {
-                @ApiResponse(responseCode = "201", description = "Return with success if a product was registered", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
-                @ApiResponse(responseCode = "400", description = "Returns informing which field of the product is incorrect and why", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "201", description = "Retorno em caso de sucesso se um produto foi cadastrado", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
+                @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do produto está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
     ProductResponse create(CreateProductRequest request);
     @Operation(
-            summary = "Endpoint to update a product",
-            description = "Updates product data in database.",
+            summary = "Endpoint para atualizar um produto",
+            description = "Atualiza os dados do produto no banco de dados",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success if a product was updated", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
-                @ApiResponse(responseCode = "400", description = "Returns informing which field of the product is incorrect and why", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o produto foi atualizado", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") }),
+                @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do produto está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
     ProductResponse update(UpdateProductRequest request);
     @Operation(
-            summary = "Endpoint to enable a product",
-            description = "Enables a product that has a disabled status in the database.",
+            summary = "Endpoint para habilitar um produto",
+            description = "Habilita um produto com status desabilitado no banco de dados.",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success if a product was enabled", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que produto foi habilitado", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") })
             }
     )
-    ProductResponse enable(@Parameter(description = "UUID for enable a product", required = true) String uuid);
+    ProductResponse enable(@Parameter(description = "UUID do produto a ser habilitado", required = true) String uuid);
     @Operation(
-            summary = "Endpoint to disable a product",
-            description = "Disables a product that has a enabled status in the database.",
+            summary = "Endpoint para desabilitar um produto",
+            description = "Desabilita um produto com status habilitado no banco de dados.",
             responses = {
-                @ApiResponse(responseCode = "200", description = "OK - Return with success if a product was disabled", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") })
+                @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso se um produto foi desabilitado", content = { @Content(schema = @Schema(implementation = ProductResponse.class), mediaType = "application/json") })
             }
     )
-    ProductResponse disable(@Parameter(description = "UUID for disable a product", required = true) String uuid);
+    ProductResponse disable(@Parameter(description = "UUID do produto a ser desabilitado", required = true) String uuid);
 }

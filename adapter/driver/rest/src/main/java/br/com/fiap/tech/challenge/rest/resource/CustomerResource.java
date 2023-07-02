@@ -17,7 +17,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
-@Tag(name = "CustomerResource", description = "API responsible for customer CRUD")
+@Tag(name = "CustomerResource", description = "API responsável pelo CRUD de Cliente")
 @RestController
 @RequestMapping("/customer")
 @Validated

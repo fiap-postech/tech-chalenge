@@ -41,7 +41,7 @@ public class ProductResponse extends Response {
     @Schema(description = "Preço do produto (pode ter desconto)", example = "20.00")
     private BigDecimal price;
 
-    @Schema(description = "Preço readl do produto", example = "23.48")
+    @Schema(description = "Preço real do produto", example = "23.48")
     private BigDecimal fullPrice;
 
     @Schema(description = "Desconto aplicado no produto", example = "3.48")

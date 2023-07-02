@@ -37,7 +37,7 @@ import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
-@Tag(name = "ProductResource", description = "API responsible for product CRUD")
+@Tag(name = "ProductResource", description = "API responsável pelo CRUD do Produto")
 @RestController
 @RequestMapping("/product")
 public class ProductResource implements ProductResourceDoc {

@@ -19,7 +19,7 @@ import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static java.util.UUID.fromString;
-@Tag(name = "CartResource", description = "API responsible for cart CRUD")
+@Tag(name = "CartResource", description = "API responsável pelo CRUD do Carrinho")
 @RestController
 @RequestMapping("/cart")
 public class CartResource implements CartResourceDoc {
