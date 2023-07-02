@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
 import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
@@ -10,6 +11,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.OrderResponse;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -24,6 +26,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.UUID;
+
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static java.util.UUID.fromString;
 
@@ -37,19 +41,22 @@ public class CartResource {
     private final AddCartItemService addCartItemService;
     private final UpdateCartItemService updateCartItemService;
     private final RemoveCartItemService removeCartItemService;
+    private final CheckoutService checkoutService;
 
     public CartResource(@Qualifier(REST_MODEL_MAPPER) ModelMapper mapper,
                         FindCartByUUIDService findCartByUUIDService,
                         CreateCartService createCartService,
                         AddCartItemService addCartItemService,
                         UpdateCartItemService updateCartItemService,
-                        RemoveCartItemService removeCartItemService) {
+                        RemoveCartItemService removeCartItemService,
+                        CheckoutService checkoutService) {
         this.mapper = mapper;
         this.findCartByUUIDService = findCartByUUIDService;
         this.createCartService = createCartService;
         this.addCartItemService = addCartItemService;
         this.updateCartItemService = updateCartItemService;
         this.removeCartItemService = removeCartItemService;
+        this.checkoutService = checkoutService;
     }
 
     @GetMapping("/{uuid}")
@@ -95,5 +102,14 @@ public class CartResource {
                 removeCartItemService.remove(fromString(cartId), request.toDomain(mapper)),
                 CartResponse.class
         );
+    }
+    @PostMapping("/{uuid}/checkout")
+    @ResponseStatus(HttpStatus.CREATED)
+    public OrderResponse checkout(@PathVariable String uuid) {
+        checkoutService.checkout(UUID.fromString(uuid));
+
+        //TODO get response and map it properly
+
+        return new OrderResponse().setId(UUID.randomUUID().toString());
     }
 }
