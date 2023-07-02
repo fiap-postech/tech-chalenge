@@ -8,12 +8,11 @@ import lombok.Getter;
 import lombok.experimental.Accessors;
 
 import java.io.Serial;
-import java.io.Serializable;
 
 @Getter
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = true)
-public class OrderItem extends ValueObject implements Serializable {
+public class PurchaseItem extends ValueObject {
     @Serial
     private static final long serialVersionUID = -2071891141308689952L;
 
@@ -26,7 +25,7 @@ public class OrderItem extends ValueObject implements Serializable {
     private final Quantity quantity;
 
     @Builder(toBuilder = true)
-    public OrderItem(@NotNull Product product, @NotNull Quantity quantity) {
+    public PurchaseItem(@NotNull Product product, @NotNull Quantity quantity) {
         this.product = product;
         this.quantity = quantity;
 

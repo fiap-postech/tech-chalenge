@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.port.driven;
 
-import br.com.fiap.tech.challenge.domain.Order;
+import br.com.fiap.tech.challenge.domain.Purchase;
 
 public interface StoreOrderService {
-    Order store(Order order);
+    Purchase store(Purchase purchase);
 }

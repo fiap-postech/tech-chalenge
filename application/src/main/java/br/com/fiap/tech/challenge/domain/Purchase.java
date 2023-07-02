@@ -16,7 +16,7 @@ import java.util.UUID;
 @Getter
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = true)
-public class Order extends Entity {
+public class Purchase extends Entity {
 
     @Serial
     private static final long serialVersionUID = -9196907733871633595L;
@@ -30,39 +30,39 @@ public class Order extends Entity {
     @NotNull
     @NotEmpty
     @Valid
-    private final List<OrderItem> items;
+    private final List<PurchaseItem> items;
 
     @Builder(toBuilder = true)
-    public Order(@Builder.ObtainVia(method = "uuid") UUID uuid,
-                 @NotNull OrderStatus status,
-                 @NotNull LocalDate date,
-                 @NotNull List<OrderItem> items) {
+    public Purchase(@Builder.ObtainVia(method = "uuid") UUID uuid,
+                    @NotNull OrderStatus status,
+                    @NotNull LocalDate date,
+                    @NotNull List<PurchaseItem> items) {
         super(uuid);
         this.status = status;
         this.date = date;
         this.items = items;
     }
 
-    public Order prepared() {
+    public Purchase prepared() {
         return toBuilder()
                 .status(OrderStatus.MADE)
                 .build();
     }
 
-    public Order delivered() {
+    public Purchase delivered() {
         return toBuilder()
                 .status(OrderStatus.DELIVERED)
                 .build();
     }
 
-    public Order done() {
+    public Purchase done() {
         return toBuilder()
                 .status(OrderStatus.DONE)
                 .build();
     }
 
-    public Order addItem(Product product, Quantity quantity) {
-        var item = OrderItem.builder()
+    public Purchase addItem(Product product, Quantity quantity) {
+        var item = PurchaseItem.builder()
                 .product(product)
                 .quantity(quantity)
                 .build();
