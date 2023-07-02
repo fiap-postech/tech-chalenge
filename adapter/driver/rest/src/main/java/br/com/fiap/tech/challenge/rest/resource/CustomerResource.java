@@ -4,8 +4,10 @@ import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.FindCustomerByDocumentService;
 import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;
+import br.com.fiap.tech.challenge.rest.resource.doc.CustomerResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCustomerRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CustomerResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,11 +17,11 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
-
+@Tag(name = "CustomerResource", description = "API responsible for customer CRUD")
 @RestController
 @RequestMapping("/customer")
 @Validated
-public class CustomerResource {
+public class CustomerResource implements CustomerResourceDoc {
 
     private final CreateCustomerService createCustomerService;
     private final FindCustomerByDocumentService findCustomerByDocumentService;

@@ -8,11 +8,13 @@ import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
 import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.UpdateProductService;
+import br.com.fiap.tech.challenge.rest.resource.doc.ProductResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
 import br.com.fiap.tech.challenge.util.ResponseList;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springdoc.core.annotations.ParameterObject;
@@ -35,10 +37,10 @@ import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
-
+@Tag(name = "ProductResource", description = "API responsible for product CRUD")
 @RestController
 @RequestMapping("/product")
-public class ProductResource {
+public class ProductResource implements ProductResourceDoc {
 
     private final ModelMapper mapper;
     private final FindAllAvailableProductService findAllAvailableProductService;

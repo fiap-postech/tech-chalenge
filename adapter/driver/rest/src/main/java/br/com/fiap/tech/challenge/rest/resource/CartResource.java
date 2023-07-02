@@ -1,39 +1,28 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
-import br.com.fiap.tech.challenge.port.driver.CheckoutService;
-import br.com.fiap.tech.challenge.port.driver.CreateCartService;
-import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
-import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
+import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.rest.resource.doc.CartResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.OrderResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static java.util.UUID.fromString;
-
+@Tag(name = "CartResource", description = "API responsible for cart CRUD")
 @RestController
 @RequestMapping("/cart")
-public class CartResource {
+public class CartResource implements CartResourceDoc {
 
     private final ModelMapper mapper;
     private final FindCartByUUIDService findCartByUUIDService;
