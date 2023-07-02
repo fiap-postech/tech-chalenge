@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.domain;
 
+import br.com.fiap.tech.challenge.domain.entity.Payment;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -34,18 +35,23 @@ public class Purchase extends Entity {
     @Valid
     private final List<PurchaseItem> items;
 
+    @NotNull
+    private final Payment payment;
+
     @Builder(toBuilder = true)
     public Purchase(@Builder.ObtainVia(method = "uuid") UUID uuid,
-                    @NotNull Customer customer,
+                    Customer customer,
                     @NotNull PurchaseStatus status,
                     @NotNull LocalDate date,
-                    @NotNull List<PurchaseItem> items) {
+                    @NotNull List<PurchaseItem> items,
+                    @NotNull Payment payment) {
         super(uuid);
 
         this.customer = customer;
         this.status = status;
         this.date = date;
         this.items = items;
+        this.payment = payment;
 
         validate();
     }
@@ -83,7 +89,7 @@ public class Purchase extends Entity {
         return toBuilder().items(itemList).build();
     }
 
-    public static Purchase newPurchase(Cart cart) {
+    public static Purchase newPurchase(Cart cart, Payment payment) {
         return Purchase.builder()
                 .date(LocalDate.now())
                 .customer(cart.customer())
@@ -94,6 +100,7 @@ public class Purchase extends Entity {
                                 .map(PurchaseItem::of)
                                 .toList()
                 )
+                .payment(payment)
                 .build();
     }
 }
