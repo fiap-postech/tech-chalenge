@@ -7,11 +7,13 @@ import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
-import br.com.fiap.tech.challenge.port.driver.CheckoutService;
+import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
 import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.CreateProductService;
+import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.DisableProductService;
 import br.com.fiap.tech.challenge.port.driver.EnableProductService;
 import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
@@ -112,7 +114,14 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public CheckoutService checkoutService(PaymentGatewayService paymentGateway) {
-        return ServiceFactory.checkoutService(paymentGateway);
+    public CheckoutService checkoutService(FindCartByUUIDService findCartService,
+                                           CreatePurchaseService purchaseService,
+                                           PaymentGatewayService paymentGateway) {
+        return ServiceFactory.checkoutService(findCartService, purchaseService, paymentGateway);
+    }
+
+    @Bean
+    public CreatePurchaseService createPurchaseService(PurchaseWriterService writer) {
+        return ServiceFactory.createPurchaseService(writer);
     }
 }
