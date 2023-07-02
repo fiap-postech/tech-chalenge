@@ -12,12 +12,13 @@ import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import lombok.experimental.Accessors;
 
 import java.io.Serial;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+
+import static jakarta.persistence.CascadeType.ALL;
 
 @Entity
 @Table(name = "purchase")
@@ -40,12 +41,12 @@ public class PurchaseEntity extends JPAEntity {
     private LocalDate date;
 
     @NotNull
-    @OneToMany(mappedBy = "purchase")
+    @OneToMany(mappedBy = "purchase", cascade = ALL)
     private List<PurchaseItemEntity> items = new ArrayList<>();
 
-    public PurchaseEntity addItem(PurchaseItemEntity item) {
+    public void addItem(PurchaseItemEntity item) {
+        item.setPurchase(this);
         getItems().add(item);
-        return this;
     }
 
     public void setItems(List<PurchaseItemEntity> items) {

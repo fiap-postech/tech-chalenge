@@ -3,6 +3,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 import br.com.fiap.tech.challenge.domain.Purchase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import jakarta.persistence.IdClass;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
@@ -22,7 +23,8 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
-public class PurchaseItemEntity extends JPAEntity {
+@IdClass(PurchaseItemEntityId.class)
+public class PurchaseItemEntity extends AuditedEntity {
 
     @Serial
     private static final long serialVersionUID = 4093240394595882516L;
@@ -39,7 +41,7 @@ public class PurchaseItemEntity extends JPAEntity {
 
     @NotNull
     @Positive
-    private Long quantity;
+    private Integer quantity;
 
     @NotNull
     @Positive
