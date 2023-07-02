@@ -16,6 +16,9 @@ findProject(':adapter:driven:mysql')?.name = 'mysql'
 include 'adapter:driven:redis'
 findProject(':adapter:driven:redis')?.name = 'redis'
 
+include 'adapter:driven:payment-gateway'
+findProject(':adapter:driven:payment-gateway')?.name = 'payment-gateway'
+
 include 'adapter:driver:rest'
 findProject(':adapter:driver:rest')?.name = 'rest'
 

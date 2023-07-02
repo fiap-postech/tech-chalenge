@@ -4,8 +4,10 @@ import br.com.fiap.tech.challenge.port.driven.CartReaderService;
 import br.com.fiap.tech.challenge.port.driven.CartWriterService;
 import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
+import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
 import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
@@ -107,5 +109,10 @@ public class ServiceConfiguration {
     @Bean
     public RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
         return ServiceFactory.removeCartItemService(reader, writer);
+    }
+
+    @Bean
+    public CheckoutService checkoutService(PaymentGatewayService paymentGateway) {
+        return ServiceFactory.checkoutService(paymentGateway);
     }
 }
