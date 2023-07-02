@@ -8,51 +8,38 @@ Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo
 
 ## Tópicos
 
-- [Pré-Requisitos](#pre-requisitos)
-- [Utilização](#utilização)
+- [Pré-Requisitos](#pré-requisitos-)
+- [Como executar o projeto](#como-executar-o-projeto-)
+- [Funcionalidades](#funcionalidades-)
 
 ## Pré-Requisitos ⚙️
 
 <br>![Static Badge](https://img.shields.io/badge/java-v17.0.0-blue)
 <br>![Static Badge](https://img.shields.io/badge/docker-latest-blue)
-<br>![Static Badge](https://img.shields.io/badge/gradle-v8.1.1-blue)
 
-## Utilização 💻
+## Como executar o projeto? 💻
 
-1) Clone o projeto desse repositório do Github
-```sh
-git clone https://github.com/fiap-postech/tech-chalenge.git
-```
-2) Acesse a pasta do projeto pelo terminal/cmd
-```sh
-cd tech-chalenge
-```
-3) Execute o comando para instalação das dependências
-```sh
-./gradlew install
-```
-4) Execute após o comando de build do projeto
-```sh
-./gradlew build
-```
-5) Execute o docker-compose.yml para iniciar o provisionamento da infra local
-```sh
-docker-compose --project-directory infra up -d
-```
-7) Ao executar o docker-compose será provisionado:
-   * Database - MySQL [8.0] - `localhost:3366`
-   * In-Memory Database - Redis [6-alphine] - `localhost:6380`
+Esse projeto está configurado de forma a ser executado de 3 formas:
+
+- **[Aprovisionamento apenas das dependências externas do projeto](RUN-OWN-CODE.md)**: indicado para os desenvolvedores 
+que estiverem atuando no projeto, pois constrói as dependências externas, baseadas em container, e deixa a carga da IDE 
+a execução do serviço em si.
 <br><br>
-8) Execute o comando gradle abaixo para subir o projeto:
-```sh
-./gradlew bootRun
-```
-9) Para conexão do database - MySQL, basta utilizar as seguintes infos de conexão:
-```sh
-Host: localhost
-Port: 3366
-User: sys_tech_challenge
-Password: 6#233zJMNTjkQb#sgps#
-```
+- **[Aprovisionamento do ambiente completo incluindo build da imagem do serviço](RUN-BUILDING-IMAGE.md)**: indicado quem
+ quer construir a imagem Docker do serviço localmente e usá-la para executar a aplicação como um todo (incluindo as 
+- dependências externas).
+<br><br>
+- **[Aprovisionamento do ambinete completo fazendo uso da imagem do DockerHub](RUN-DOCKER-HUB-IMAGE.md)**: indicado para
+ quem apenas quer executar o projeto sem precisar construir nada na máquina. Nesse caso, todos os containers serão 
+baixados e executados. Esse projeto conta com um job, via Github Action, que atualiza a imagem no Docker Hub sempre que 
+ocorre uma alteração na branch master.
+
+  
 ## Funcionalidades ✅
-> De repente trazer aqui as funcionalidades que teremos no projeto?
+
+Para ter acesso à documentação das API's expostas nesse serviço acesse:
+
+> **localhost:8080/doc** e terá acesso ao swagger da aplicação.
+> 
+> Observação: caso opte por rodar o código direto, a porta deverá ser: 8688
+
