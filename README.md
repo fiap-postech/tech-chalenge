@@ -26,8 +26,7 @@ que estiverem atuando no projeto, pois constrói as dependências externas, base
 a execução do serviço em si.
 <br><br>
 - **[Aprovisionamento do ambiente completo incluindo build da imagem do serviço](RUN-BUILDING-IMAGE.md)**: indicado quem
- quer construir a imagem Docker do serviço localmente e usá-la para executar a aplicação como um todo (incluindo as 
-- dependências externas).
+ quer construir a imagem Docker do serviço localmente e usá-la para executar a aplicação como um todo (incluindo as dependências externas).
 <br><br>
 - **[Aprovisionamento do ambinete completo fazendo uso da imagem do DockerHub](RUN-DOCKER-HUB-IMAGE.md)**: indicado para
  quem apenas quer executar o projeto sem precisar construir nada na máquina. Nesse caso, todos os containers serão 

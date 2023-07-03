@@ -8,11 +8,11 @@ Independente da forma que escolha para executar o projeto, temos o seguinte proc
 
 1. Clone o projeto desse repositório do Github
 ```sh
-git clone https://github.com/fiap-postech/tech-chalenge.git
+git https://github.com/fiap-postech/tech-challenge.git
 ```
 2. Acesse a pasta do projeto pelo terminal/cmd
 ```sh
-cd tech-chalenge
+cd tech-challenge
 ```
 3. Execute o comando para instalação das dependências
 ```sh
