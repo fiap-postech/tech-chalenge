@@ -4,6 +4,8 @@ import br.com.fiap.tech.challenge.domain.Purchase;
 
 import java.util.UUID;
 
-public interface CheckoutService {
-    Purchase checkout(UUID cartId);
+public interface FindPurchaseByUUIDService {
+
+    Purchase get(UUID uuid);
+
 }
