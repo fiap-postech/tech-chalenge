@@ -8,12 +8,13 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-
+@Tag(name = "Cliente", description = "API responsável pelo gerenciamento de Cliente")
 public interface CustomerResourceDoc {
 
     @Operation(
-            summary = "Endpoint que retorna um cliente pelo Documento",
+            summary = "Retorna um cliente pelo Documento",
             description = "Busca um cliente cadastrado no banco de dados pelo Documento informado",
             responses = {
                 @ApiResponse(responseCode = "200", description = "OK - Retorno dos dados do cliente em caso de sucesso de acordo com a requisição pedida", useReturnTypeSchema = true),
@@ -23,7 +24,7 @@ public interface CustomerResourceDoc {
     )
     ResponseEntity<CustomerResponse> getByDocument(@Parameter(description = "Documento para pesquisa de um cliente", required = true) String document);
     @Operation(
-            summary = "Endpoint para cadastrar um novo cliente",
+            summary = "Cadastra um novo cliente",
             description = "Cadastra um novo cliente no banco de dados.",
             responses = {
                 @ApiResponse(responseCode = "201", description = "Retorno em caso de sucesso em que o cliente foi cadastrado", content = { @Content(schema = @Schema(implementation = CustomerResponse.class), mediaType = "application/json") }),
@@ -33,7 +34,7 @@ public interface CustomerResourceDoc {
     CustomerResponse create(CreateCustomerRequest request);
 
     @Operation(
-            summary = "Endpoint para desabilitar um cliente",
+            summary = "Desabilita um cliente",
             description = "Desabilita um cliente que tem um status habilitado no banco de dados",
             responses = {
                 @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o cliente foi desabilitado", useReturnTypeSchema = true),

@@ -12,12 +12,14 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.tags.Tag;
 
+@Tag(name = "Carrinho", description = "API responsável pelo gerenciamento de Carrinho")
 public interface CartResourceDoc {
 
     @Operation(
-            summary = "Endpoint que retorna um carrinho pelo seu UUID",
-            description = "Busca um carrinho cadastrado no memory database através do UUID",
+            summary = "Retorna um carrinho pelo seu UUID",
+            description = "Busca um carrinho cadastrado no banco de dados em memória através do UUID",
             responses = {
                     @ApiResponse(responseCode = "200", description = "OK - Retorno do carrinho em caso de sucesso conforme requisição solicitada", content = { @Content(schema = @Schema(implementation = CartResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno em caso de carrinho não encontrado pelo UUID informado", content = { @Content(schema = @Schema()) })
@@ -25,8 +27,8 @@ public interface CartResourceDoc {
     )
     CartResponse get(@Parameter(description = "UUID para pesquisar um carrinho", required = true) String uuid);
     @Operation(
-            summary = "Endpoint para cadastrar um novo carrinho",
-            description = "Cadastra um novo carrinho no memory database",
+            summary = "Cadastra um novo carrinho",
+            description = "Cadastra um novo carrinho no banco de dados em memória",
             responses = {
                     @ApiResponse(responseCode = "201", description = "Retorno em caso de sucesso em que o carrinho foi cadastrado", content = { @Content(schema = @Schema(implementation = CartResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do carrinho está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
@@ -34,8 +36,8 @@ public interface CartResourceDoc {
     )
     CartResponse create(CreateCartRequest request);
     @Operation(
-            summary = "Endpoint para adicionar novo item do carrinho",
-            description = "Adiciona o item ao carrinho e salva no memory database",
+            summary = "Adiciona um novo item no carrinho",
+            description = "Adiciona o item ao carrinho e salva no banco de dados em memória",
             responses = {
                     @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o item foi adicionado do carrinho", content = { @Content(schema = @Schema(implementation = CartResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do carrinho está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
@@ -43,8 +45,8 @@ public interface CartResourceDoc {
     )
     CartResponse addItem(@Parameter(description = "CartId do carrinho ao qual se deseja adicionar o item", required = true) String cartId, AddCartItemRequest request);
     @Operation(
-            summary = "Endpoint para atualizar o item do carrinho",
-            description = "Atualiza o item no carrinho e salve no memory database",
+            summary = "Atualiza um item do carrinho",
+            description = "Atualiza o item no carrinho e salve no banco de dados em memória",
             responses = {
                     @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o item foi atualizado do carrinho", content = { @Content(schema = @Schema(implementation = CartResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do carrinho está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
@@ -52,8 +54,8 @@ public interface CartResourceDoc {
     )
     CartResponse updateItem(@Parameter(description = "CartId do carrinho ao qual se deseja atualizar o item", required = true) String cartId, UpdateCartItemRequest request);
     @Operation(
-            summary = "Endpoint para remover item do carrinho",
-            description = "Remove o item do carrinho e salva no memory database",
+            summary = "Remove um item do carrinho",
+            description = "Remove o item do carrinho e salva no banco de dados em memória",
             responses = {
                     @ApiResponse(responseCode = "200", description = "OK - Retorno em caso de sucesso em que o item foi removido do carrinho", content = { @Content(schema = @Schema(implementation = CartResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno informando qual campo do carrinho está incorreto e por qual motivo", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
@@ -61,7 +63,7 @@ public interface CartResourceDoc {
     )
     CartResponse removeItem(@Parameter(description = "CartId do carrinho ao qual se deseja remover o item", required = true) String cartId, RemoveCartItemRequest request);
     @Operation(
-            summary = "Endpoint que efetua o checkout do carrinho",
+            summary = "Efetua o checkout do carrinho",
             description = "Faz o checkout do carrinho, efetuando o pagamento e criando o pedido",
             responses = {
                     @ApiResponse(responseCode = "201", description = "OK - Retorno em caso de sucesso com o pedido criado após o checkout ter sido realizado", content = { @Content(schema = @Schema(implementation = OrderResponse.class), mediaType = "application/json") }),

@@ -8,7 +8,6 @@ import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.OrderResponse;
-import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -19,7 +18,6 @@ import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguration.REST_MODEL_MAPPER;
 import static java.util.UUID.fromString;
-@Tag(name = "CartResource", description = "API responsável pelo CRUD do Carrinho")
 @RestController
 @RequestMapping("/cart")
 public class CartResource implements CartResourceDoc {
