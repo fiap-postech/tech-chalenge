@@ -64,7 +64,7 @@ public class Purchase extends Entity {
 
     public Purchase delivered() {
         return toBuilder()
-                .status(PurchaseStatus.DONE)
+                .status(PurchaseStatus.DELIVERED)
                 .build();
     }
 

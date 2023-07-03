@@ -4,6 +4,6 @@ public enum PurchaseStatus {
     PAID,
     PREPARING,
     MADE,
-    DONE,
+    DELIVERED,
     FINISHED
 }
