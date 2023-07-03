@@ -6,7 +6,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
-import br.com.fiap.tech.challenge.rest.resource.response.OrderResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -66,9 +66,9 @@ public interface CartResourceDoc {
             summary = "Efetua o checkout do carrinho",
             description = "Faz o checkout do carrinho, efetuando o pagamento e criando o pedido",
             responses = {
-                    @ApiResponse(responseCode = "201", description = "OK - Retorno em caso de sucesso com o pedido criado após o checkout ter sido realizado", content = { @Content(schema = @Schema(implementation = OrderResponse.class), mediaType = "application/json") }),
+                    @ApiResponse(responseCode = "201", description = "OK - Retorno em caso de sucesso com o pedido criado após o checkout ter sido realizado", content = { @Content(schema = @Schema(implementation = PurchseResponse.class), mediaType = "application/json") }),
                     @ApiResponse(responseCode = "400", description = "Retorno em caso em que o CartId informando está incorreto", content = { @Content(schema = @Schema(implementation = ApiErrorResponse.class), mediaType = "application/json") })
             }
     )
-    OrderResponse checkout(@Parameter(description = "CartId do carrinho que será feito o checkout", required = true) String uuid);
+    PurchseResponse checkout(@Parameter(description = "CartId do carrinho que será feito o checkout", required = true) String uuid);
 }
