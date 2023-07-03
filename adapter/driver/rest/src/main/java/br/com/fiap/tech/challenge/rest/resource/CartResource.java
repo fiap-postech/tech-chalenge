@@ -11,7 +11,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
-import br.com.fiap.tech.challenge.rest.resource.response.OrderResponse;
+import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import jakarta.validation.Valid;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -105,11 +105,10 @@ public class CartResource {
     }
     @PostMapping("/{uuid}/checkout")
     @ResponseStatus(HttpStatus.CREATED)
-    public OrderResponse checkout(@PathVariable String uuid) {
-        checkoutService.checkout(UUID.fromString(uuid));
-
-        //TODO get response and map it properly
-
-        return new OrderResponse().setId(UUID.randomUUID().toString());
+    public PurchseResponse checkout(@PathVariable String uuid) {
+        return mapper.map(
+                checkoutService.checkout(UUID.fromString(uuid)),
+                PurchseResponse.class
+        );
     }
 }

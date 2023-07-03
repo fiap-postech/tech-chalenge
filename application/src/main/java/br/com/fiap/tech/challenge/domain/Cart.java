@@ -85,4 +85,10 @@ public class Cart extends Entity {
                 .items(newItems)
                 .build();
     }
+
+    public Price total() {
+        return items().stream()
+                .map(CartItem::total)
+                .reduce(Price.min(), Price::add);
+    }
 }

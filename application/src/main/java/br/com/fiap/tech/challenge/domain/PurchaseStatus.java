@@ -1,11 +1,9 @@
 package br.com.fiap.tech.challenge.domain;
 
-public enum OrderStatus {
+public enum PurchaseStatus {
     PAID,
     MAKING,
     MADE,
-    DELIVERING,
     DELIVERED,
-    DONE,
-    CANCELED
+    FINISHED
 }
