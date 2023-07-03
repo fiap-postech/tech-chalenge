@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.domain;
 
 public enum PurchaseStatus {
     PAID,
-    PREPARING,
+    MAKING,
     MADE,
     DELIVERED,
     FINISHED

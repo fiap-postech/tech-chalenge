@@ -56,7 +56,7 @@ public class Purchase extends Entity {
         validate();
     }
 
-    public Purchase prepared() {
+    public Purchase made() {
         return toBuilder()
                 .status(PurchaseStatus.MADE)
                 .build();
