@@ -44,4 +44,8 @@ public class Quantity extends ValueObject {
     public static Quantity of(int value){
         return new Quantity(value);
     }
+
+    public static Quantity min(){
+        return Quantity.of(0);
+    }
 }

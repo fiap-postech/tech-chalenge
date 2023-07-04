@@ -46,6 +46,10 @@ public class Price extends ValueObject {
         return subtract(price.amount());
     }
 
+    public Price multiply(Quantity quantity) {
+        return of(amount().multiply(quantity.value()));
+    }
+
     public static Price of(Money money) {
         return new Price(money);
     }
