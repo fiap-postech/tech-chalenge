@@ -47,3 +47,6 @@ Para ter acesso à documentação das API's expostas nesse serviço acesse:
 > 
 > Observação: caso opte por rodar o código direto, a porta deverá ser: 8688
 
+Caso prefira executar as API's via a ferramenta Postman, a collection está disponível em:
+
+> [Tech Challenge API](./documentation/Tech%20Challenge%20API.postman_collection.json)
