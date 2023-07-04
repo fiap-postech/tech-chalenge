@@ -14,11 +14,7 @@ git clone https://github.com/fiap-postech/tech-challenge.git
 ```sh
 cd tech-challenge
 ```
-3. Execute o comando para instalação das dependências
-```sh
-./gradlew install
-```
-4. Execute após o comando de build do projeto
+3. Execute o comando de build do projeto
 ```sh
 ./gradlew build
 ```
