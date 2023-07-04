@@ -6,6 +6,11 @@ Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Por
 ## Descrição do Sistema
 Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo permitir que a rede de fast food possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada assim viabilizando a expansão da rede. 
 
+## Event Storming
+
+O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos de DDD, cujo Event Storming pode ser acessado [Aqui](https://miro.com/app/board/uXjVM5IDnUo=/?share_link_id=798761038531).
+
+
 ## Tópicos
 
 - [Pré-Requisitos](#pré-requisitos-)
