@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource.doc;
 
-import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;

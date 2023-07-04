@@ -4,8 +4,8 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfig
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.PurchaseItem;
+import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import lombok.RequiredArgsConstructor;

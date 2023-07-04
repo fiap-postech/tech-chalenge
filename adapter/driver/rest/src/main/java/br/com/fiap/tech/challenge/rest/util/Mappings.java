@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.util;
 
-import br.com.fiap.tech.challenge.domain.Combo;
-import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.entity.Combo;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.rest.resource.response.ComboResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import lombok.AccessLevel;

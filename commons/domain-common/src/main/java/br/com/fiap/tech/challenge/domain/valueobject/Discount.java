@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.valueobject;
 
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;

@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Purchase;
-import br.com.fiap.tech.challenge.domain.PurchaseStatus;
+import br.com.fiap.tech.challenge.domain.entity.Purchase;
+import br.com.fiap.tech.challenge.domain.enums.PurchaseStatus;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;

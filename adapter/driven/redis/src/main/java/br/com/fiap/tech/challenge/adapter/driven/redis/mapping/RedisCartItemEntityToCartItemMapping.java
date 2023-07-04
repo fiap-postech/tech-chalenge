@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartItemEntity;
-import br.com.fiap.tech.challenge.domain.CartItem;
-import br.com.fiap.tech.challenge.domain.Quantity;
+import br.com.fiap.tech.challenge.domain.entity.CartItem;
+import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.Provider;

@@ -1,6 +1,10 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.validation.ComboValid;
+import br.com.fiap.tech.challenge.domain.valueobject.Discount;
+import br.com.fiap.tech.challenge.domain.valueobject.Image;
+import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;

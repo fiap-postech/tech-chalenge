@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Customer;
-import br.com.fiap.tech.challenge.domain.Document;
-import br.com.fiap.tech.challenge.domain.EmailRegistration;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
+import br.com.fiap.tech.challenge.domain.valueobject.Document;
+import br.com.fiap.tech.challenge.domain.valueobject.EmailRegistration;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;

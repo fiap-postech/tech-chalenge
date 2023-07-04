@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
 import br.com.fiap.tech.challenge.port.driven.CartReaderService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
 import lombok.AllArgsConstructor;

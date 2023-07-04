@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.CustomerEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.CustomerEntityRepository;
-import br.com.fiap.tech.challenge.domain.Customer;
-import br.com.fiap.tech.challenge.domain.Document;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
+import br.com.fiap.tech.challenge.domain.valueobject.Document;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;

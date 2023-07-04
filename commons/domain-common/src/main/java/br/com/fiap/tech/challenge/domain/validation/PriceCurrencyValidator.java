@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.domain.validation;
 
-import br.com.fiap.tech.challenge.domain.Price;
+import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 

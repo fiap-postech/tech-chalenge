@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.payment.gateway.service;
 
-import br.com.fiap.tech.challenge.domain.PaymentMethod;
+import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
 import br.com.fiap.tech.challenge.domain.entity.Payment;
 import io.vavr.Lazy;
 import org.springframework.stereotype.Service;

@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
 import java.time.LocalDateTime;
 
