@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.rest.resource;
 
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
+import br.com.fiap.tech.challenge.rest.resource.doc.PurchaseResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
 import br.com.fiap.tech.challenge.util.ResponseList;
@@ -20,7 +21,7 @@ import static br.com.fiap.tech.challenge.rest.config.RestModelMapperConfiguratio
 
 @RestController
 @RequestMapping("/purchase")
-public class PurchaseResource {
+public class PurchaseResource implements PurchaseResourceDoc {
 
     private final ModelMapper mapper;
     private final FindAllPurchasesService findAllPurchasesService;
