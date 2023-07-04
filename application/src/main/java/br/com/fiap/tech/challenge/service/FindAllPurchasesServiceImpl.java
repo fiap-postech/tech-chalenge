@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.Purchase;
+import br.com.fiap.tech.challenge.domain.entity.Purchase;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
 import br.com.fiap.tech.challenge.util.Page;

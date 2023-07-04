@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.port.driver;
 
-import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
 
 public interface CreateCartService {
 

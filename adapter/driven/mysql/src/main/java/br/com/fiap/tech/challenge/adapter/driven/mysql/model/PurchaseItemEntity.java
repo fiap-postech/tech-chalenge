@@ -1,6 +1,5 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Purchase;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.IdClass;
@@ -10,7 +9,6 @@ import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

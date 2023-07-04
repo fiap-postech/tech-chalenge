@@ -1,5 +1,7 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
+import br.com.fiap.tech.challenge.domain.valueobject.Document;
+import br.com.fiap.tech.challenge.domain.valueobject.EmailRegistration;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
@@ -11,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Accessors(fluent = true)
 @EqualsAndHashCode(callSuper = true)
-public class Customer extends Entity{
+public class Customer extends Entity {
 
     @Serial
     private static final long serialVersionUID = 213659655671060163L;

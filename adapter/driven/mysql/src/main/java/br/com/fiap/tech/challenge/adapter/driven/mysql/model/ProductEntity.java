@@ -1,12 +1,12 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Combo;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.ProductCategory;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.entity.Beverage;
+import br.com.fiap.tech.challenge.domain.entity.Combo;
+import br.com.fiap.tech.challenge.domain.entity.Dessert;
+import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.domain.entity.Sandwich;
+import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;

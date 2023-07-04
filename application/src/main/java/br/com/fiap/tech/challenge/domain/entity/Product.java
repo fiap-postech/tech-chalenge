@@ -1,5 +1,9 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.domain.valueobject.Discount;
+import br.com.fiap.tech.challenge.domain.valueobject.Image;
+import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;

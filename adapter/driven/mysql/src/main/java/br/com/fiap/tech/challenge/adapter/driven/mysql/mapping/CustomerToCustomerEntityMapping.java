@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.CustomerEntity;
-import br.com.fiap.tech.challenge.domain.Customer;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import org.modelmapper.ModelMapper;
 

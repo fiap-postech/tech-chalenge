@@ -5,7 +5,7 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
-import br.com.fiap.tech.challenge.domain.Purchase;
+import br.com.fiap.tech.challenge.domain.entity.Purchase;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Qualifier;

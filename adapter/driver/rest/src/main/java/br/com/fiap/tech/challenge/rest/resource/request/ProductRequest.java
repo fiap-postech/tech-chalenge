@@ -1,11 +1,11 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.Beverage;
-import br.com.fiap.tech.challenge.domain.Dessert;
-import br.com.fiap.tech.challenge.domain.Product;
-import br.com.fiap.tech.challenge.domain.ProductCategory;
-import br.com.fiap.tech.challenge.domain.Sandwich;
-import br.com.fiap.tech.challenge.domain.SideDish;
+import br.com.fiap.tech.challenge.domain.entity.Beverage;
+import br.com.fiap.tech.challenge.domain.entity.Dessert;
+import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.domain.entity.Sandwich;
+import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

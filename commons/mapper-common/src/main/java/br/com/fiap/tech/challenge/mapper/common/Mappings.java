@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.mapper.common;
 
-import br.com.fiap.tech.challenge.domain.Discount;
-import br.com.fiap.tech.challenge.domain.Image;
-import br.com.fiap.tech.challenge.domain.Percentage;
-import br.com.fiap.tech.challenge.domain.Price;
-import br.com.fiap.tech.challenge.domain.Quantity;
+import br.com.fiap.tech.challenge.domain.valueobject.Discount;
+import br.com.fiap.tech.challenge.domain.valueobject.Image;
+import br.com.fiap.tech.challenge.domain.valueobject.Percentage;
+import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.javamoney.moneta.Money;

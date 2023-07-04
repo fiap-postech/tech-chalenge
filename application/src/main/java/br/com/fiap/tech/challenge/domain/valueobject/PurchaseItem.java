@@ -1,5 +1,7 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.valueobject;
 
+import br.com.fiap.tech.challenge.domain.entity.CartItem;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotNull;
 import lombok.Builder;

@@ -4,8 +4,8 @@ import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfig
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ComboProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.CartItem;
-import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.entity.CartItem;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;

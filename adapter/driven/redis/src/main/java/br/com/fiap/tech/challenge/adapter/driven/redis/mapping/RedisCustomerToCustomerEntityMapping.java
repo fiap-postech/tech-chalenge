@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CustomerEntity;
-import br.com.fiap.tech.challenge.domain.Customer;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import org.modelmapper.ModelMapper;
 

@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.Customer;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import io.swagger.v3.oas.annotations.media.Schema;

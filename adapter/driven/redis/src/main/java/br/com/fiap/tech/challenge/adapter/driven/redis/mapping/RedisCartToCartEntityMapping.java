@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.config.RedisTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartEntity;
-import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import lombok.AllArgsConstructor;
 import org.modelmapper.ModelMapper;

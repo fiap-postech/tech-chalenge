@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.DomainEventSubscriber;
+import br.com.fiap.tech.challenge.domain.entity.DomainEventSubscriber;
 
 public class MakeComboService implements DomainEventSubscriber<String> {
     @Override

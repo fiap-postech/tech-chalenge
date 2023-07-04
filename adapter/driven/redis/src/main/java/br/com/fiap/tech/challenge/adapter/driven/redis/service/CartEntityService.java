@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.service;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartEntity;
 import br.com.fiap.tech.challenge.adapter.driven.redis.repository.CartEntityRepository;
-import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.CartReaderService;
 import br.com.fiap.tech.challenge.port.driven.CartWriterService;

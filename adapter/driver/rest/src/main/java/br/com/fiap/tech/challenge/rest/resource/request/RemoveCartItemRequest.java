@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.CartItem;
+import br.com.fiap.tech.challenge.domain.entity.CartItem;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;

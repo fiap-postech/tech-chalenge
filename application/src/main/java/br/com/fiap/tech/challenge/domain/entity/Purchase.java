@@ -1,6 +1,8 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
-import br.com.fiap.tech.challenge.domain.entity.Payment;
+import br.com.fiap.tech.challenge.domain.enums.PurchaseStatus;
+import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
+import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
