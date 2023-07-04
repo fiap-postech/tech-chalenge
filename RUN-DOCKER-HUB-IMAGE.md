@@ -8,7 +8,7 @@ Independente da forma que escolha para executar o projeto, temos o seguinte proc
 
 1. Clone o projeto desse repositório do Github
 ```sh
-git https://github.com/fiap-postech/tech-challenge.git
+git clone https://github.com/fiap-postech/tech-challenge.git
 ```
 2. Acesse a pasta do projeto pelo terminal/cmd
 ```sh
