@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping.product.update;
 
-import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;

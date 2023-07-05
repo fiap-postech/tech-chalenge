@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.valueobject;
 
 import br.com.fiap.tech.challenge.domain.validation.URL;
 import br.com.fiap.tech.challenge.exception.ApplicationException;

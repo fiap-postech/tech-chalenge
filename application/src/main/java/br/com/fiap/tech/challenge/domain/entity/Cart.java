@@ -1,5 +1,6 @@
-package br.com.fiap.tech.challenge.domain;
+package br.com.fiap.tech.challenge.domain.entity;
 
+import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import br.com.fiap.tech.challenge.error.ApplicationError;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import lombok.Builder;

@@ -92,6 +92,8 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<? extends Response> handleMappingException(MappingException exception, WebRequest request) {
         if (exception.getCause() instanceof ConstraintViolationException cause) {
             return this.handleConstraintViolation(cause, request);
+        } else if (exception.getCause() instanceof ApplicationException cause) {
+            return this.handleApplicationException(cause, request);
         }
         return this.handleGeneralException(exception, request);
     }

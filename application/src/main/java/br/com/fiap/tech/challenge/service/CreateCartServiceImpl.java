@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.CartWriterService;
 import br.com.fiap.tech.challenge.port.driver.CreateCartService;

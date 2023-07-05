@@ -1,9 +1,9 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.Cart;
-import br.com.fiap.tech.challenge.domain.PaymentMethod;
-import br.com.fiap.tech.challenge.domain.PaymentStatus;
-import br.com.fiap.tech.challenge.domain.Purchase;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
+import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
+import br.com.fiap.tech.challenge.domain.enums.PaymentStatus;
+import br.com.fiap.tech.challenge.domain.entity.Purchase;
 import br.com.fiap.tech.challenge.domain.entity.Payment;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;

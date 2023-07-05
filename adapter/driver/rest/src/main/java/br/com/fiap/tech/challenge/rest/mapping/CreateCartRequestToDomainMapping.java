@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.Cart;
-import br.com.fiap.tech.challenge.domain.Customer;
+import br.com.fiap.tech.challenge.domain.entity.Cart;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;

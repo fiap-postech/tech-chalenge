@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.domain.ProductCategory;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.port.driver.*;
 import br.com.fiap.tech.challenge.rest.resource.doc.ProductResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;

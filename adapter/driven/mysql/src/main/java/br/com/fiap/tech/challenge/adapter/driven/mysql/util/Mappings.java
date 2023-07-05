@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.util;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.Product;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.modelmapper.ModelMapper;

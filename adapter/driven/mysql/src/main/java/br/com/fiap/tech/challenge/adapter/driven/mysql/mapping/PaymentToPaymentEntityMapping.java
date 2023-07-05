@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLTypeMapConfiguration;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PaymentEntity;
-import br.com.fiap.tech.challenge.domain.PaymentMethod;
+import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
 import br.com.fiap.tech.challenge.domain.entity.Payment;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import lombok.RequiredArgsConstructor;

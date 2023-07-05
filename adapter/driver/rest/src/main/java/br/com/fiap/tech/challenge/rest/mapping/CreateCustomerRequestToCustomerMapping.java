@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.Customer;
-import br.com.fiap.tech.challenge.domain.Document;
-import br.com.fiap.tech.challenge.domain.EmailRegistration;
+import br.com.fiap.tech.challenge.domain.entity.Customer;
+import br.com.fiap.tech.challenge.domain.valueobject.Document;
+import br.com.fiap.tech.challenge.domain.valueobject.EmailRegistration;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCustomerRequest;

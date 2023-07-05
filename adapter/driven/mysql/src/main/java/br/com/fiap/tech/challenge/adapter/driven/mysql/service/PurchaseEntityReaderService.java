@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
-import br.com.fiap.tech.challenge.domain.Purchase;
+import br.com.fiap.tech.challenge.domain.entity.Purchase;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.util.Page;
