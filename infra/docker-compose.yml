@@ -52,6 +52,7 @@ services:
   app:
     container_name: app
     image: fiapsoat2grupo13/tech-challenge-service
+    pull_policy: always
     platform: linux/amd64
     restart: on-failure
     ports:
