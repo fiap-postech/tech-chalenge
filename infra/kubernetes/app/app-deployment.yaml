@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app
+  labels:
+    app: app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: app
+  template:
+    metadata:
+      labels:
+        app: app
+    spec:
+      containers:
+        - name: container-app
+          image: fiapsoat2grupo13/tech-challenge-service
+          ports:
+            - containerPort: 80
+              hostPort: 8080
+          env:
+            - name: "spring.profiles.active"
+              value: "prod"
+            - name: "server.port"
+              value: "8080"
