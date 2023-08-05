@@ -14,7 +14,7 @@ function executeCommand(command) {
         console.log(`${stdout}`);
     });
 }
-
+executeCommand('kubectl apply -f infra/kubernetes/components.yaml');
 executeCommand('node infra/kubernetes/script/cdn.js');
 executeCommand('node infra/kubernetes/script/redis.js');
 executeCommand('node infra/kubernetes/script/mysql.js');

@@ -17,3 +17,4 @@ function executeCommand(command) {
 
 executeCommand('kubectl apply -f infra/kubernetes/app/app-deployment.yaml');
 executeCommand('kubectl apply -f infra/kubernetes/app/app-service.yaml');
+executeCommand('kubectl apply -f infra/kubernetes/app/app-hpa.yaml');
