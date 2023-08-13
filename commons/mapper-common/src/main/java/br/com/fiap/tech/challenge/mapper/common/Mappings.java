@@ -29,8 +29,8 @@ public class Mappings {
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }
 
-    public static Converter<Money, BigDecimal> moneyToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Money.zero(getCurrency(CURRENCY_CODE)))
+    public static BigDecimal moneyToBigDecimalConverter(Money source) {
+        return defaultIfNull(source, Money.zero(getCurrency(CURRENCY_CODE)))
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }

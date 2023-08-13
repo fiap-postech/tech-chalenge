@@ -23,13 +23,21 @@ public interface PaymentMapper {
     Payment toPayment(PaymentEntity payment);
 
 
+    @Mapping(target = "amount", expression = "java(Mappings.moneyToBigDecimalConverter(payment.amount()))")
+    @Mapping(target = "method", constant = "MERCADO_PAGO")
+    PaymentEntity toPaymentEntity(Payment payment);
+
+
     @Named("getAmount")
     static Money getAmount (BigDecimal amount){
         return makeMoney(amount);
     }
 
+
+
     @Named("getPayment")
     static PaymentMethod getPayment(String method) {
+        var teste  = "teste";
         if ("MERCADO_PAGO".equals(method)) {
             return PaymentMethod.PAID_MARKET;
         }

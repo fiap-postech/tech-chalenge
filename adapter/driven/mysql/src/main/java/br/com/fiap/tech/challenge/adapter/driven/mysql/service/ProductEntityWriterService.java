@@ -34,7 +34,7 @@ public class ProductEntityWriterService implements ProductWriterService {
     }
 
     private Product insert(Product product) {
-        return repository.save(toProductEntity(mapper, product)).toDomain(mapper);
+        return repository.save(toProductEntity(mapper, product)).toDomain();
     }
 
     private Product update(Product product) {
@@ -42,7 +42,7 @@ public class ProductEntityWriterService implements ProductWriterService {
 
         mapper.map(product, entity);
 
-        return repository.save(entity).toDomain(mapper);
+        return repository.save(entity).toDomain();
     }
 
     private ProductEntity getByUUID(String uuid){

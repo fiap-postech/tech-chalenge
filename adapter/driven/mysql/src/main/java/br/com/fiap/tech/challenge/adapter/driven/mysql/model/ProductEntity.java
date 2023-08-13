@@ -1,26 +1,16 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.*;
+import br.com.fiap.tech.challenge.domain.entity.*;
 import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
-import jakarta.persistence.Inheritance;
-import jakarta.persistence.InheritanceType;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.math.BigDecimal;
@@ -56,13 +46,13 @@ public class ProductEntity extends JPAEntity {
 
     private boolean enabled;
 
-    public Product toDomain(ModelMapper mapper){
+    public Product toDomain(){
         return switch (category){
-            case BEVERAGE -> mapper.map(this, Beverage.class);
-            case SANDWICH -> mapper.map(this, Sandwich.class);
-            case DESSERT -> mapper.map(this, Dessert.class);
-            case SIDE_DISH -> mapper.map(this, SideDish.class);
-            case COMBO -> mapper.map(this, Combo.class);
+            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(this);
+            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(this);
+            case DESSERT -> DessertMapper.INSTANCE.toDessert(this);
+            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(this);
+            case COMBO -> ComboMapper.INSTANCE.toCombo(this);
         };
     }
 }
