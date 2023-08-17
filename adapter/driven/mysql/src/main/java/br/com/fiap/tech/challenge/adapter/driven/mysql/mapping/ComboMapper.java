@@ -11,6 +11,8 @@ import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
 
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper(uses = {BeverageMapper.class, SideDishMapper.class, SandwichMapper.class})
@@ -20,15 +22,30 @@ public interface ComboMapper {
 
     @Mapping(target = "price", source = "price", qualifiedByName = "getComboPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
-    Combo toCombo(ProductEntity request);
+    Combo toCombo(ProductEntity source);
+
+    @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
+    @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
+    @Mapping(target = "category", expression = "java(combo.category())")
+    ProductEntity toProductType(Combo combo);
 
     @Named("getComboPrice")
     static Price map(BigDecimal source){
         return Price.of(makeMoney(source));
     }
 
+    @Named("priceToBigDecimalCombo")
+    static BigDecimal priceToBigDecimal(Combo source){
+        return priceToBigDecimalConverter(source.price());
+    }
+
     @Named("getComboImage")
     static Image map(String source){
         return Image.of(source);
+    }
+
+    @Named("imageToStringConverterCombo")
+    static String imageConverter(Combo source){
+        return imageToStringConverter(source.image());
     }
 }

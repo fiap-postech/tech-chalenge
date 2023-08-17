@@ -11,6 +11,7 @@ import org.mapstruct.Named;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.moneyToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
@@ -23,7 +24,7 @@ public interface PaymentMapper {
     Payment toPayment(PaymentEntity payment);
 
 
-    @Mapping(target = "amount", expression = "java(Mappings.moneyToBigDecimalConverter(payment.amount()))")
+    @Mapping(target = "amount", source = "payment", qualifiedByName = "moneyToBigDecimalConverter")
     @Mapping(target = "method", constant = "MERCADO_PAGO")
     PaymentEntity toPaymentEntity(Payment payment);
 
@@ -34,10 +35,14 @@ public interface PaymentMapper {
     }
 
 
+    @Named("moneyToBigDecimalConverter")
+    static BigDecimal getAmount (Payment payment){
+        return moneyToBigDecimalConverter(payment.amount());
+    }
+
 
     @Named("getPayment")
     static PaymentMethod getPayment(String method) {
-        var teste  = "teste";
         if ("MERCADO_PAGO".equals(method)) {
             return PaymentMethod.PAID_MARKET;
         }

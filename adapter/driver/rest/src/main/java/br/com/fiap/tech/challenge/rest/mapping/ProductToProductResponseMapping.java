@@ -1,11 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
-import br.com.fiap.tech.challenge.domain.entity.Product;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
+import br.com.fiap.tech.challenge.domain.entity.*;
 import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.rest.config.RestTypeMapConfiguration;
 import br.com.fiap.tech.challenge.rest.resource.response.ComboResponse;
@@ -13,8 +8,6 @@ import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 
 @Mapper
 public class ProductToProductResponseMapping implements RestTypeMapConfiguration {
@@ -27,10 +20,10 @@ public class ProductToProductResponseMapping implements RestTypeMapConfiguration
                 .addMapping(Product::description, ProductResponse::setDescription)
                 .addMapping(Product::enabled, ProductResponse::setEnabled)
                 .addMappings(mapping -> {
-                    mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductResponse::setPrice);
-                    mapping.using(priceToBigDecimalConverter()).map(Product::fullPrice, ProductResponse::setFullPrice);
+ //                   mapping.using(priceToBigDecimalConverter()).map(Product::price, ProductResponse::setPrice);
+ //                   mapping.using(priceToBigDecimalConverter()).map(Product::fullPrice, ProductResponse::setFullPrice);
                     mapping.using(discountToBigDecimalConverter()).map(Product::discount, ProductResponse::setDiscount);
-                    mapping.using(imageToStringConverter()).map(Product::image, ProductResponse::setImage);
+  //                  mapping.using(imageToStringConverter()).map(Product::image, ProductResponse::setImage);
                 });
 
         mapper.typeMap(Sandwich.class, ProductResponse.class)

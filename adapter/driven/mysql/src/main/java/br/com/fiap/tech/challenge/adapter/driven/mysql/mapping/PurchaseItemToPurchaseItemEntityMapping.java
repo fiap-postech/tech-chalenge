@@ -14,7 +14,6 @@ import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.quantityToIntegerConverter;
 import static java.util.Objects.isNull;
 
@@ -28,7 +27,7 @@ public class PurchaseItemToPurchaseItemEntityMapping implements MySQLTypeMapConf
     public void configure(ModelMapper mapper) {
        mapper.typeMap(PurchaseItem.class, PurchaseItemEntity.class)
                .addMappings(mapping -> mapping.using(discountToBigDecimalConverter()).map(PurchaseItem::discount, PurchaseItemEntity::setDiscount))
-               .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(PurchaseItem::price, PurchaseItemEntity::setPrice))
+//             .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(PurchaseItem::price, PurchaseItemEntity::setPrice))
                .addMappings(mapping -> mapping.using(quantityToIntegerConverter()).map(PurchaseItem::quantity, PurchaseItemEntity::setQuantity))
                .addMappings(mapping -> mapping.using(productConverter()).map(PurchaseItem::product, PurchaseItemEntity::setProduct));
     }

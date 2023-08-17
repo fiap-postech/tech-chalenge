@@ -12,6 +12,8 @@ import org.mapstruct.factory.Mappers;
 import java.math.BigDecimal;
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
@@ -24,9 +26,20 @@ public interface BeverageMapper {
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Beverage toBeverage(ProductEntity request);
 
+
+    @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
+    @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
+    ProductEntity toProductEntity(Beverage source);
+
     @Named("generateUuid")
     static UUID generateUuid(String uuid){
         return UUID.fromString(uuid);
+    }
+
+    @Named("priceToBigDecimal")
+    static BigDecimal priceToBigDecimal(Beverage source){
+        return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getPrice")
@@ -37,5 +50,10 @@ public interface BeverageMapper {
     @Named("getImage")
     static Image getImage(String source){
         return Image.of(source);
+    }
+
+    @Named("imageToStringConverter")
+    static String imageConverter(Beverage source){
+        return imageToStringConverter(source.image());
     }
 }

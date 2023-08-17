@@ -22,8 +22,8 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
 
-    public static Converter<Price, BigDecimal> priceToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Price.min())
+    public static BigDecimal priceToBigDecimalConverter(Price source) {
+        return defaultIfNull(source, Price.min())
                 .amount()
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
@@ -46,16 +46,9 @@ public class Mappings {
         return ctx -> defaultIfNull(ctx.getSource(), Percentage.zero()).value();
     }
 
-    public static Converter<Image, String> imageToStringConverter() {
-        return ctx -> {
-            var image = ctx.getSource();
-
-            if (isNull(image)){
-                return null;
-            }
-
-            return image.url();
-        };
+    public static String imageToStringConverter(Image source) {
+        if (isNull(source)) return null;
+        return source.url();
     }
 
     public static Converter<Quantity, Integer> quantityToIntegerConverter() {

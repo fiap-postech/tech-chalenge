@@ -10,7 +10,6 @@ import org.modelmapper.Converter;
 import org.modelmapper.ModelMapper;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.discountToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.quantityToIntegerConverter;
 import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
 
@@ -20,8 +19,8 @@ public class CartItemToCartItemResponseMapping implements RestTypeMapConfigurati
     public void configure(ModelMapper mapper) {
         mapper.typeMap(CartItem.class, CartItemResponse.class)
                 .addMappings(mapping -> mapping.using(productConverter(mapper)).map(CartItem::product, CartItemResponse::setProduct))
-                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(CartItem::total, CartItemResponse::setTotal))
-                .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(CartItem::subtotal, CartItemResponse::setSubtotal))
+                //         .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(CartItem::total, CartItemResponse::setTotal))
+                //           .addMappings(mapping -> mapping.using(priceToBigDecimalConverter()).map(CartItem::subtotal, CartItemResponse::setSubtotal))
                 .addMappings(mapping -> mapping.using(discountToBigDecimalConverter()).map(CartItem::discount, CartItemResponse::setDiscount))
                 .addMappings(mapping -> mapping.using(quantityToIntegerConverter()).map(CartItem::quantity, CartItemResponse::setQuantity));
     }
