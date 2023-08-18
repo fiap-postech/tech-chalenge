@@ -1,6 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.mysql.model.CustomerEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.CustomerEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
 import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.domain.entity.Payment;
@@ -14,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+import static br.com.fiap.tech.challenge.error.ApplicationError.CUSTOMER_NOT_FOUND_BY_UUID;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PAYMENT_NOT_FOUND;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
@@ -26,11 +29,17 @@ public abstract class PurchaseMapper {
     protected PaymentEntityRepository paymentRepository;
 
     @Autowired
+    protected CustomerEntityRepository customerRepository;
+
+    @Autowired
     protected PaymentMapper paymentMapper;
 
     @Autowired
     protected PurchaseItemMapper purchaseItemMapper;
 
+    @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomerEntity")
+    @Mapping(target = "items", ignore = true)
     public abstract PurchaseEntity toPurchaseEntity (Purchase source);
 
     @Mapping(target = "payment", source = "source", qualifiedByName = "getPayment")
@@ -51,6 +60,16 @@ public abstract class PurchaseMapper {
     Customer getCustomer(PurchaseEntity source) {
         if (isNull(source.getCustomer())) return null;
         return source.getCustomer().toDomain();
+    }
+
+    @Named("getCustomerEntity")
+    CustomerEntity getCustomerEntity(Purchase source) {
+        if (isNull(source.customer())) return null;
+
+        var customerUuid = source.customer().uuid().toString();
+
+        return customerRepository.findByUuid(customerUuid)
+                .orElseThrow(() -> new ApplicationException(CUSTOMER_NOT_FOUND_BY_UUID, customerUuid));
     }
 
     @Named("getItems")

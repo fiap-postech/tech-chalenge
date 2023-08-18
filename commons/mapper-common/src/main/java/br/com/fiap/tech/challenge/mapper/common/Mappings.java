@@ -35,8 +35,8 @@ public class Mappings {
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }
 
-    public static Converter<Discount, BigDecimal> discountToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Discount.withoutDiscount())
+    public static BigDecimal discountToBigDecimalConverter(Discount discount) {
+        return defaultIfNull(discount, Discount.withoutDiscount())
                 .amount()
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
@@ -51,8 +51,8 @@ public class Mappings {
         return source.url();
     }
 
-    public static Converter<Quantity, Integer> quantityToIntegerConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Quantity.min())
+    public static Integer quantityToIntegerConverter(Quantity quantity) {
+        return defaultIfNull(quantity, Quantity.min())
                 .value();
     }
 }
