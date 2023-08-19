@@ -91,11 +91,11 @@ public abstract class PurchaseItemMapper {
         if(isNull(productEntity)) return null;
 
         return switch (productEntity.getCategory()){
-            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(this);
-            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(this);
-            case DESSERT -> DessertMapper.INSTANCE.toDessert(this);
-            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(this);
-            case COMBO -> ComboMapper.INSTANCE.toCombo(this);
+            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(productEntity);
+            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(productEntity);
+            case DESSERT -> DessertMapper.INSTANCE.toDessert(productEntity);
+            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(productEntity);
+            case COMBO -> ComboMapper.INSTANCE.toCombo(productEntity);
         };
     }
 }
