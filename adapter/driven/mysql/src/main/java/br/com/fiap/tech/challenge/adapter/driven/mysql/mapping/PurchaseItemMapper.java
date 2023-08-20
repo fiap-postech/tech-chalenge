@@ -37,8 +37,8 @@ public abstract class PurchaseItemMapper {
     public abstract PurchaseItemEntity toPurchaseItemEntity(PurchaseItem source);
 
     @Mapping(target = "discount", source = "source", qualifiedByName = "getDiscount")
-    @Mapping(target = "price", source = "source.getPrice()", qualifiedByName = "getPrice")
-    @Mapping(target = "fullPrice", source = "source.getFullPrice()", qualifiedByName = "getPrice")
+    @Mapping(target = "price", source = "source.price", qualifiedByName = "getPrice")
+    @Mapping(target = "fullPrice", source = "source.fullPrice", qualifiedByName = "getPrice")
     @Mapping(target = "quantity", source = "source", qualifiedByName = "getQuantity")
     @Mapping(target = "product", source = "source", qualifiedByName = "getProduct")
     public abstract PurchaseItem toPurchaseItem(PurchaseItemEntity source);

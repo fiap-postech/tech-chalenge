@@ -1,9 +1,12 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
+import br.com.fiap.tech.challenge.domain.entity.Beverage;
 import br.com.fiap.tech.challenge.domain.entity.Combo;
+import br.com.fiap.tech.challenge.domain.entity.Sandwich;
+import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductRequest;
+import br.com.fiap.tech.challenge.rest.resource.request.CreateComboProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -14,6 +17,7 @@ import java.math.BigDecimal;
 
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.rest.util.Mappings.getProduct;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper(uses = {BeverageMapper.class, SideDishMapper.class, SandwichMapper.class})
@@ -23,7 +27,10 @@ public interface ComboMapper {
 
     @Mapping(target = "price", source = "price", qualifiedByName = "getComboPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
-    Combo toCombo(CreateSingleProductRequest source);
+    @Mapping(target = "beverage", source = "source", qualifiedByName = "getBeverage")
+    @Mapping(target = "sideDish", source = "source", qualifiedByName = "getSideDish")
+    @Mapping(target = "sandwich", source = "source", qualifiedByName = "getSandwich")
+    Combo toCombo(CreateComboProductRequest source);
 
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
@@ -48,5 +55,20 @@ public interface ComboMapper {
     @Named("imageToStringConverterCombo")
     static String imageConverter(Combo source){
         return imageToStringConverter(source.image());
+    }
+
+    @Named("getBeverage")
+    static Beverage getBeverage(CreateComboProductRequest source){
+        return (Beverage) getProduct(source.getBeverageId());
+    }
+
+    @Named("getSideDish")
+    static SideDish getSideDish(CreateComboProductRequest source){
+        return (SideDish) getProduct(source.getBeverageId());
+    }
+
+    @Named("getSandwich")
+    static Sandwich getSandwich(CreateComboProductRequest source){
+        return (Sandwich) getProduct(source.getBeverageId());
     }
 }

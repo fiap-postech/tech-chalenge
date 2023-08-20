@@ -22,20 +22,20 @@ public interface SandwichMapper {
 
     SandwichMapper INSTANCE = Mappers.getMapper(SandwichMapper.class);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "generateUuid")
+    @Mapping(target = "uuid", source = "request", qualifiedByName = "generateUuid")
     @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Sandwich toSandwich(CreateSingleProductRequest request);
 
-    @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductResponse toProductEntity(Sandwich source);
 
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
-        return UUID.fromString(uuid);
+    static UUID generateUuid(CreateSingleProductRequest uuid){
+        return UUID.randomUUID();
     }
 
     @Named("priceToBigDecimal")

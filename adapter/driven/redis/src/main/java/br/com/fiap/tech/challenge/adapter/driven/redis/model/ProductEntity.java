@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.*;
 import br.com.fiap.tech.challenge.domain.entity.Beverage;
 import br.com.fiap.tech.challenge.domain.entity.Combo;
 import br.com.fiap.tech.challenge.domain.entity.Dessert;
@@ -27,13 +28,13 @@ public class ProductEntity {
     private ProductCategory category;
     private Boolean enabled;
 
-    public Product toDomain(ModelMapper mapper) {
+    public Product toDomain() {
         return switch (getCategory()) {
-            case SIDE_DISH -> mapper.map(this, SideDish.class);
-            case DESSERT -> mapper.map(this, Dessert.class);
-            case BEVERAGE -> mapper.map(this, Beverage.class);
-            case SANDWICH -> mapper.map(this, Sandwich.class);
-            case COMBO -> mapper.map(this, Combo.class);
+            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(this);
+            case DESSERT -> DessertMapper.INSTANCE.toDessert(this);
+            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(this);
+            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(this);
+            case COMBO -> ComboMapper.INSTANCE.toCombo(this);
         };
     }
 }

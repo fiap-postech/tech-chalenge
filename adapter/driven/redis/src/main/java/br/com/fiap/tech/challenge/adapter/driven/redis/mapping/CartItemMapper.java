@@ -28,6 +28,7 @@ public interface CartItemMapper {
 
 
     @Mapping(target = "quantity", source = "source", qualifiedByName = "getQuantity")
+    @Mapping(target = "product", source = "source", qualifiedByName = "getProduct")
     CartItem toCartItemEntity (CartItemEntity source);
     
     
@@ -54,5 +55,12 @@ public interface CartItemMapper {
             case SIDE_DISH -> SideDishMapper.INSTANCE.toProductEntity((SideDish) product);
             case COMBO -> ComboMapper.INSTANCE.toProductType((Combo) product);
         };
+    }
+
+    @Named("getProduct")
+    static Product getProduct(CartItemEntity source){
+        var productEntity = source.getProduct();
+        if(isNull(productEntity)) return null;
+        return productEntity.toDomain();
     }
 }

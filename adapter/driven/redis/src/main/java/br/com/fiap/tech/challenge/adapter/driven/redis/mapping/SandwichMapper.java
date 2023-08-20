@@ -21,12 +21,12 @@ public interface SandwichMapper {
 
     SandwichMapper INSTANCE = Mappers.getMapper(SandwichMapper.class);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "generateUuid")
+    @Mapping(target = "uuid", source = "id", qualifiedByName = "generateUuid")
     @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Sandwich toSandwich(ProductEntity request);
 
-    @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Sandwich source);

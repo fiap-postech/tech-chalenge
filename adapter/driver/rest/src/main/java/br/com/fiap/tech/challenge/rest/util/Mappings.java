@@ -1,15 +1,23 @@
 package br.com.fiap.tech.challenge.rest.util;
 
 import br.com.fiap.tech.challenge.domain.entity.*;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.rest.mapping.*;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import lombok.AccessLevel;
-import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.UUID;
 
 import static java.util.Objects.isNull;
 
-@NoArgsConstructor(access = AccessLevel.PRIVATE)
+@AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
+
+    @Autowired
+    private static FindProductByUUIDService findProductByUUIDService;
+
     public static ProductResponse toProductResponse(Product product) {
         if(isNull(product)) return null;
 
@@ -20,5 +28,10 @@ public class Mappings {
             case SIDE_DISH -> SideDishMapper.INSTANCE.toProductEntity((SideDish) product);
             case COMBO -> ComboMapper.INSTANCE.toProductType((Combo) product);
         };
+    }
+
+
+    public static Product getProduct(String productId){
+        return isNull(productId)? null : findProductByUUIDService.get(UUID.fromString(productId));
     }
 }

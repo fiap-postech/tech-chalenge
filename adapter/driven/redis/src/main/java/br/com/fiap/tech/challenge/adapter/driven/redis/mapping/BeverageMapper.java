@@ -21,13 +21,13 @@ public interface BeverageMapper {
 
     BeverageMapper INSTANCE = Mappers.getMapper(BeverageMapper.class);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "generateUuid")
+    @Mapping(target = "uuid", source = "id", qualifiedByName = "generateUuid")
     @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Beverage toBeverage(ProductEntity request);
 
 
-    @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Beverage source);
