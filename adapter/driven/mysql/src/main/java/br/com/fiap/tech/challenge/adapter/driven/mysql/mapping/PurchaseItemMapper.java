@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
+import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.*;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.domain.valueobject.Discount;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PAYMENT_NOT_FOUND;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 import static br.com.fiap.tech.challenge.mapper.common.Mappings.*;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
@@ -88,14 +87,14 @@ public abstract class PurchaseItemMapper {
     Product getProduct(PurchaseItemEntity purchaseItemEntity) {
         var productEntity = purchaseItemEntity.getProduct();
 
-        if(isNull(productEntity)) return null;
+        if (isNull(productEntity)) return null;
 
-        return switch (productEntity.getCategory()){
+        return switch (productEntity.getCategory()) {
             case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(productEntity);
             case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(productEntity);
             case DESSERT -> DessertMapper.INSTANCE.toDessert(productEntity);
             case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(productEntity);
-            case COMBO -> ComboMapper.INSTANCE.toCombo(productEntity);
+            case COMBO -> ComboMapper.INSTANCE.toCombo((ComboEntity) productEntity);
         };
     }
 }

@@ -4,9 +4,9 @@ import br.com.fiap.tech.challenge.domain.entity.Dessert;
 import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.mapper.common.Mapper;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
@@ -22,35 +22,35 @@ public interface DessertMapper {
 
     DessertMapper INSTANCE = Mappers.getMapper(DessertMapper.class);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "generateUuid")
+    @Mapping(target = "uuid", source = "request", qualifiedByName = "generateUuid")
     @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Dessert toDessert(CreateSingleProductRequest request);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "getUuid")
-    @Mapping(target = "price", source = "price", qualifiedByName = "priceToBigDecimal")
-    @Mapping(target = "image", source = "image", qualifiedByName = "imageToStringConverter")
-    @Mapping(target = "name", expression = "java(source.name())")
-    @Mapping(target = "description", expression = "java(source.description())")
-    @Mapping(target = "fullPrice", source = "source", qualifiedByName = "getFullPrice")
-    @Mapping(target = "discount", source = "source", qualifiedByName = "getDiscount")
-    @Mapping(target = "enabled", expression = "java(source.enabled())")
-    @Mapping(target = "category", source = "source", qualifiedByName = "getCategory")
+    @Mapping(target = "id", source = "request", qualifiedByName = "getUuid")
+    @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")
+    @Mapping(target = "image", source = "request", qualifiedByName = "imageToStringConverter")
+    @Mapping(target = "name", expression = "java(request.name())")
+    @Mapping(target = "description", expression = "java(request.description())")
+    @Mapping(target = "fullPrice", source = "request", qualifiedByName = "getFullPrice")
+    @Mapping(target = "discount", source = "request", qualifiedByName = "getDiscount")
+    @Mapping(target = "enabled", expression = "java(request.enabled())")
+    @Mapping(target = "category", source = "request", qualifiedByName = "getCategory")
     ProductResponse toProductEntity(Dessert request);
 
     @Named("getUuid")
-    static String getUuid(UUID uuid) {
-        return uuid.toString();
+    static String getUuid(Dessert request) {
+        return request.uuid().toString();
     }
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid) {
-        return UUID.fromString(uuid);
+    static UUID generateUuid(CreateSingleProductRequest request) {
+        return UUID.randomUUID();
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Price price) {
-        return priceToBigDecimalConverter(price);
+    static BigDecimal priceToBigDecimal(Dessert request) {
+        return priceToBigDecimalConverter(request.price());
     }
 
     @Named("getPrice")
@@ -59,18 +59,18 @@ public interface DessertMapper {
     }
 
     @Named("getFullPrice")
-    static BigDecimal getFullPrice(Dessert source) {
-        return priceToBigDecimalConverter(source.fullPrice());
+    static BigDecimal getFullPrice(Dessert request) {
+        return priceToBigDecimalConverter(request.fullPrice());
     }
 
     @Named("getDiscount")
-    static BigDecimal getDiscount(Dessert source) {
-        return discountToBigDecimalConverter(source.discount());
+    static BigDecimal getDiscount(Dessert request) {
+        return discountToBigDecimalConverter(request.discount());
     }
 
     @Named("getCategory")
-    static ProductCategory getCategory(Dessert source) {
-        return source.category();
+    static ProductCategory getCategory(Dessert request) {
+        return request.category();
     }
 
     @Named("getImage")
@@ -79,7 +79,7 @@ public interface DessertMapper {
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(Image source) {
-        return imageToStringConverter(source);
+    static String imageConverter(Dessert request) {
+        return imageToStringConverter(request.image());
     }
 }

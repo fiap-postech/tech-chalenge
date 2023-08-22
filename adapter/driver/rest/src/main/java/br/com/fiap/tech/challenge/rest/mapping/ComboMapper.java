@@ -39,6 +39,7 @@ public interface ComboMapper {
     @Mapping(target = "fullPrice", source = "combo", qualifiedByName = "getFullPrice")
     @Mapping(target = "discount", source = "combo", qualifiedByName = "getDiscount")
     @Mapping(target = "enabled", expression = "java(combo.enabled())")
+    @Mapping(target = "id", expression = "java(combo.uuid().toString())")
     @Mapping(target = "category", source = "combo", qualifiedByName = "getCategory")
     ProductResponse toProductType(Combo combo);
 

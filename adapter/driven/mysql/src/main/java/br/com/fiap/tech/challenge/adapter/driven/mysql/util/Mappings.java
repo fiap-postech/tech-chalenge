@@ -1,19 +1,21 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.util;
 
-import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.*;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.domain.entity.*;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
-import org.modelmapper.ModelMapper;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
 
-    public static ProductEntity toProductEntity(ModelMapper mapper, Product product){
-        return switch (product.category()){
-            case COMBO -> mapper.map(product, ComboEntity.class);
-            case DESSERT, SANDWICH, BEVERAGE, SIDE_DISH -> mapper.map(product, ProductEntity.class);
+    public static ProductEntity toProductEntity(Product product) {
+        return switch (product.category()) {
+            case SIDE_DISH -> SideDishMapper.INSTANCE.toProductEntity((SideDish) product);
+            case DESSERT -> DessertMapper.INSTANCE.toProductEntity((Dessert) product);
+            case BEVERAGE -> BeverageMapper.INSTANCE.toProductEntity((Beverage) product);
+            case SANDWICH -> SandwichMapper.INSTANCE.toProductEntity((Sandwich) product);
+            case COMBO -> ComboMapper.INSTANCE.toProductType((Combo) product);
         };
     }
 }

@@ -1,9 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.*;
-import br.com.fiap.tech.challenge.domain.entity.*;
+import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import jakarta.persistence.Entity;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -46,13 +45,13 @@ public class ProductEntity extends JPAEntity {
 
     private boolean enabled;
 
-    public Product toDomain(){
-        return switch (category){
+    public Product toDomain() {
+        return switch (category) {
             case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage(this);
             case SANDWICH -> SandwichMapper.INSTANCE.toSandwich(this);
             case DESSERT -> DessertMapper.INSTANCE.toDessert(this);
             case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish(this);
-            case COMBO -> ComboMapper.INSTANCE.toCombo(this);
+            case COMBO -> ComboMapper.INSTANCE.toCombo((ComboEntity) this);
         };
     }
 }

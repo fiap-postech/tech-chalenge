@@ -27,33 +27,36 @@ public interface SandwichMapper {
     Sandwich toSandwich(ProductEntity request);
 
     @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "name", expression = "java(source.name())")
+    @Mapping(target = "category", expression = "java(source.category())")
+    @Mapping(target = "description", expression = "java(source.description())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Sandwich source);
 
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Sandwich source){
+    static BigDecimal priceToBigDecimal(Sandwich source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getPrice")
-    static Price getPrice(BigDecimal source){
+    static Price getPrice(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("getImage")
-    static Image getImage(String source){
+    static Image getImage(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(Sandwich source){
+    static String imageConverter(Sandwich source) {
         return imageToStringConverter(source.image());
     }
 

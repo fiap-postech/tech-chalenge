@@ -4,7 +4,7 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.entity.Dessert;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.mapper.common.Mapper;
+import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
 import org.mapstruct.factory.Mappers;
@@ -26,38 +26,38 @@ public interface DessertMapper {
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Dessert toDessert(ProductEntity request);
 
-    @Mapping(target = "uuid", source = "uuid", qualifiedByName = "getUuid")
-    @Mapping(target = "price", source = "price", qualifiedByName = "priceToBigDecimal")
-    @Mapping(target = "image", source = "image", qualifiedByName = "imageToStringConverter")
+    @Mapping(target = "uuid", source = "request", qualifiedByName = "getUuid")
+    @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")
+    @Mapping(target = "image", source = "request", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Dessert request);
 
     @Named("getUuid")
-    static String getUuid(UUID uuid){
-        return uuid.toString();
+    static String getUuid(Dessert request) {
+        return request.uuid().toString();
     }
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Price price){
-        return priceToBigDecimalConverter(price);
+    static BigDecimal priceToBigDecimal(Dessert request) {
+        return priceToBigDecimalConverter(request.price());
     }
 
     @Named("getPrice")
-    static Price getPrice(BigDecimal source){
+    static Price getPrice(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("getImage")
-    static Image getImage(String source){
+    static Image getImage(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(Image source){
-        return imageToStringConverter(source);
+    static String imageConverter(Dessert request) {
+        return imageToStringConverter(request.image());
     }
 }
