@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 
-import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.CustomerMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.CustomerMapperMySQL;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.CustomerEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.CustomerEntityRepository;
 import br.com.fiap.tech.challenge.domain.entity.Customer;
@@ -19,9 +19,9 @@ import static br.com.fiap.tech.challenge.error.ApplicationError.CUSTOMER_NOT_FOU
 public class CustomerEntityService implements CustomerWriterService, CustomerReaderService {
 
     private final CustomerEntityRepository repository;
-    private final CustomerMapper mapper;
+    private final CustomerMapperMySQL mapper;
 
-    public CustomerEntityService(CustomerEntityRepository repository, CustomerMapper mapper) {
+    public CustomerEntityService(CustomerEntityRepository repository, CustomerMapperMySQL mapper) {
         this.repository = repository;
         this.mapper = mapper;
     }

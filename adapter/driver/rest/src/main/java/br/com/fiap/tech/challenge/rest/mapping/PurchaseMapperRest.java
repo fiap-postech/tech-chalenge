@@ -15,17 +15,16 @@ import java.util.List;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public abstract class PurchaseMapper {
+public abstract class PurchaseMapperRest {
 
     @Autowired
-    protected PaymentMapper paymentMapper;
+    protected PaymentMapperRest paymentMapperRest;
 
     @Autowired
-    protected CustomerMapper customerMapper;
+    protected CustomerMapperRest customerMapperRest;
 
     @Autowired
-    protected PurchaseItemMapper purchaseItemMapper;
-
+    protected PurchaseItemMapperRest purchaseItemMapperRest;
 
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
@@ -36,19 +35,19 @@ public abstract class PurchaseMapper {
 
 
     @Named("getPaymentResponse")
-    PaymentResponse getPaymentResponse(Purchase source){
-        return paymentMapper.toPaymentResponse(source.payment());
+    PaymentResponse getPaymentResponse(Purchase source) {
+        return paymentMapperRest.toPaymentResponse(source.payment());
     }
 
     @Named("getCustomerResponse")
-    CustomerResponse getCustomerResponse(Purchase source){
-        return customerMapper.toCustomerResponse(source.customer());
+    CustomerResponse getCustomerResponse(Purchase source) {
+        return customerMapperRest.toCustomerResponse(source.customer());
     }
 
     @Named("getPurchaseItemResponse")
-    List<PurchaseItemResponse> getPurchaseItemResponse(Purchase source){
+    List<PurchaseItemResponse> getPurchaseItemResponse(Purchase source) {
         return source.items().stream()
-                .map(purchaseItemMapper::toPurchaseItemResponse)
+                .map(purchaseItemMapperRest::toPurchaseItemResponse)
                 .toList();
     }
 }

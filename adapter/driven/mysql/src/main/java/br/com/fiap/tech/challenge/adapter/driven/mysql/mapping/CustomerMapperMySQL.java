@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public interface CustomerMapper {
+public interface CustomerMapperMySQL {
 
     @Mapping(target = "document", expression = "java(customer.toDocument())")
     @Mapping(target = "email", expression = "java(customer.toEmail())")

@@ -3,13 +3,14 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 import br.com.fiap.tech.challenge.domain.entity.Customer;
 import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
+import br.com.fiap.tech.challenge.rest.mapping.CustomerMapperRestImpl;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
+
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
@@ -30,7 +31,8 @@ public class CreateCustomerRequest extends Request<Customer> {
     private String document;
 
     @Override
-    public Customer toDomain(ModelMapper mapper) {
-        return mapper.map(this, Customer.class);
+    public Customer toDomain() {
+        var customerMapperRest = new CustomerMapperRestImpl();
+        return customerMapperRest.toCustomer(this);
     }
 }

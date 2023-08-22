@@ -8,7 +8,7 @@ import org.mapstruct.Mapping;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public interface PaymentMapper {
+public interface PaymentMapperRest {
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
     PaymentResponse toPaymentResponse(Payment source);

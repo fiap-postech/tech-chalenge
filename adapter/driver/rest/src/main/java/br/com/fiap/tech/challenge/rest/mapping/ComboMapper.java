@@ -4,6 +4,7 @@ import br.com.fiap.tech.challenge.domain.entity.Beverage;
 import br.com.fiap.tech.challenge.domain.entity.Combo;
 import br.com.fiap.tech.challenge.domain.entity.Sandwich;
 import br.com.fiap.tech.challenge.domain.entity.SideDish;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateComboProductRequest;
@@ -15,8 +16,7 @@ import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.mapper.common.Mappings.*;
 import static br.com.fiap.tech.challenge.rest.util.Mappings.getProduct;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
@@ -34,41 +34,61 @@ public interface ComboMapper {
 
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
-    @Mapping(target = "category", expression = "java(combo.category())")
+    @Mapping(target = "name", expression = "java(combo.name())")
+    @Mapping(target = "description", expression = "java(combo.description())")
+    @Mapping(target = "fullPrice", source = "combo", qualifiedByName = "getFullPrice")
+    @Mapping(target = "discount", source = "combo", qualifiedByName = "getDiscount")
+    @Mapping(target = "enabled", expression = "java(combo.enabled())")
+    @Mapping(target = "category", source = "combo", qualifiedByName = "getCategory")
     ProductResponse toProductType(Combo combo);
 
     @Named("getComboPrice")
-    static Price map(BigDecimal source){
+    static Price map(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("priceToBigDecimalCombo")
-    static BigDecimal priceToBigDecimal(Combo source){
+    static BigDecimal priceToBigDecimal(Combo source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getComboImage")
-    static Image map(String source){
+    static Image map(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverterCombo")
-    static String imageConverter(Combo source){
+    static String imageConverter(Combo source) {
         return imageToStringConverter(source.image());
     }
 
     @Named("getBeverage")
-    static Beverage getBeverage(CreateComboProductRequest source){
+    static Beverage getBeverage(CreateComboProductRequest source) {
         return (Beverage) getProduct(source.getBeverageId());
     }
 
     @Named("getSideDish")
-    static SideDish getSideDish(CreateComboProductRequest source){
+    static SideDish getSideDish(CreateComboProductRequest source) {
         return (SideDish) getProduct(source.getBeverageId());
     }
 
     @Named("getSandwich")
-    static Sandwich getSandwich(CreateComboProductRequest source){
+    static Sandwich getSandwich(CreateComboProductRequest source) {
         return (Sandwich) getProduct(source.getBeverageId());
+    }
+
+    @Named("getFullPrice")
+    static BigDecimal getFullPrice(Combo combo) {
+        return priceToBigDecimalConverter(combo.fullPrice());
+    }
+
+    @Named("getDiscount")
+    static BigDecimal getDiscount(Combo combo) {
+        return discountToBigDecimalConverter(combo.discount());
+    }
+
+    @Named("getCategory")
+    static ProductCategory getCategory(Combo combo) {
+        return ProductCategory.COMBO;
     }
 }

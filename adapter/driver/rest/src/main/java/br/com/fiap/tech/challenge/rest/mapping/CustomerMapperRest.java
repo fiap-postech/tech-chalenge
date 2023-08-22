@@ -12,9 +12,10 @@ import org.mapstruct.Named;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public interface CustomerMapper {
+public interface CustomerMapperRest {
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
+    @Mapping(target = "name", expression = "java(source.name())")
     @Mapping(target = "email", expression = "java(source.toEmail())")
     @Mapping(target = "document", expression = "java(source.toDocument())")
     CustomerResponse toCustomerResponse(Customer source);
@@ -26,12 +27,12 @@ public interface CustomerMapper {
 
 
     @Named("getEmail")
-    static EmailRegistration getEmail(CreateCustomerRequest source){
+    static EmailRegistration getEmail(CreateCustomerRequest source) {
         return EmailRegistration.of(source.getEmail());
     }
 
     @Named("getDocument")
-    static Document getDocument(CreateCustomerRequest source){
+    static Document getDocument(CreateCustomerRequest source) {
         return Document.of(source.getDocument());
     }
 

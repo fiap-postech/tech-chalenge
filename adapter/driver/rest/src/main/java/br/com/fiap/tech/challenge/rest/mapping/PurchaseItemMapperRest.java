@@ -15,7 +15,7 @@ import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public interface PurchaseItemMapper {
+public interface PurchaseItemMapperRest {
 
 
     @Mapping(target = "price", source = "source", qualifiedByName = "getPrice")
@@ -23,30 +23,30 @@ public interface PurchaseItemMapper {
     @Mapping(target = "discount", source = "source", qualifiedByName = "getDiscount")
     @Mapping(target = "quantity", source = "source", qualifiedByName = "getQuantity")
     @Mapping(target = "product", source = "source", qualifiedByName = "getProductResponse")
-    PurchaseItemResponse toPurchaseItemResponse (PurchaseItem source);
+    PurchaseItemResponse toPurchaseItemResponse(PurchaseItem source);
 
     @Named("getPrice")
-    static BigDecimal getPrice(PurchaseItem source){
+    static BigDecimal getPrice(PurchaseItem source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getFullPrice")
-    static BigDecimal getFullPrice(PurchaseItem source){
+    static BigDecimal getFullPrice(PurchaseItem source) {
         return priceToBigDecimalConverter(source.fullPrice());
     }
 
     @Named("getDiscount")
-    static BigDecimal getDiscount(PurchaseItem source){
+    static BigDecimal getDiscount(PurchaseItem source) {
         return discountToBigDecimalConverter(source.discount());
     }
 
     @Named("getQuantity")
-    static Integer getQuantity(PurchaseItem source){
+    static Integer getQuantity(PurchaseItem source) {
         return quantityToIntegerConverter(source.quantity());
     }
 
     @Named("getProductResponse")
-    static ProductResponse getProductResponse(PurchaseItem source){
+    static ProductResponse getProductResponse(PurchaseItem source) {
         return toProductResponse(source.product());
     }
 

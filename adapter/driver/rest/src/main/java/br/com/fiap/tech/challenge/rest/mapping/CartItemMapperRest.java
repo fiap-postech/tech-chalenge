@@ -14,7 +14,7 @@ import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public interface CartItemMapper {
+public interface CartItemMapperRest {
 
 
     @Mapping(target = "product", source = "source", qualifiedByName = "getProductResponse")
@@ -26,27 +26,27 @@ public interface CartItemMapper {
 
 
     @Named("getProductResponse")
-    static ProductResponse getProductResponse(CartItem source){
+    static ProductResponse getProductResponse(CartItem source) {
         return toProductResponse(source.product());
     }
 
     @Named("getTotal")
-    static BigDecimal getTotal(CartItem source){
+    static BigDecimal getTotal(CartItem source) {
         return priceToBigDecimalConverter(source.total());
     }
 
     @Named("getSubtotal")
-    static BigDecimal getSubtotal(CartItem source){
+    static BigDecimal getSubtotal(CartItem source) {
         return priceToBigDecimalConverter(source.subtotal());
     }
 
     @Named("getDiscount")
-    static BigDecimal getDiscount(CartItem source){
+    static BigDecimal getDiscount(CartItem source) {
         return discountToBigDecimalConverter(source.discount());
     }
 
     @Named("getQuantity")
-    static Integer getQuantity(CartItem source){
+    static Integer getQuantity(CartItem source) {
         return quantityToIntegerConverter(source.quantity());
     }
 

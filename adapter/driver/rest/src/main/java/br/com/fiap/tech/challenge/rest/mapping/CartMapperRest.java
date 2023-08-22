@@ -17,13 +17,13 @@ import static br.com.fiap.tech.challenge.util.MoneyConstants.CURRENCY_ROUNDING_M
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
-public abstract class CartMapper {
+public abstract class CartMapperRest {
 
     @Autowired
-    protected CartItemMapper cartItemMapper;
+    protected CartItemMapperRest cartItemMapperRest;
 
     @Autowired
-    protected CustomerMapper customerMapper;
+    protected CustomerMapperRest customerMapperRest;
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomer")
@@ -34,19 +34,19 @@ public abstract class CartMapper {
     public abstract CartResponse toCartResponse(Cart source);
 
     @Named("getCustomer")
-    CustomerResponse getCustomer(Cart source){
-        return customerMapper.toCustomerResponse(source.customer());
+    CustomerResponse getCustomer(Cart source) {
+        return customerMapperRest.toCustomerResponse(source.customer());
     }
 
     @Named("getCartItemsResponse")
-    List<CartItemResponse> getCartItemsResponse(Cart source){
+    List<CartItemResponse> getCartItemsResponse(Cart source) {
         return source.items().stream()
-                .map(cartItemMapper::toCartItemResponse)
+                .map(cartItemMapperRest::toCartItemResponse)
                 .toList();
     }
 
     @Named("getTotal")
-    BigDecimal getTotal(Cart source){
+    BigDecimal getTotal(Cart source) {
         return source.items().stream()
                 .map(i -> i.total().amount().getNumberStripped())
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -54,7 +54,7 @@ public abstract class CartMapper {
     }
 
     @Named("getSubtotal")
-    BigDecimal getSubtotal(Cart source){
+    BigDecimal getSubtotal(Cart source) {
         return source.items().stream()
                 .map(i -> i.subtotal().amount().getNumberStripped())
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
@@ -62,7 +62,7 @@ public abstract class CartMapper {
     }
 
     @Named("getDiscount")
-    BigDecimal getDiscount(Cart source){
+    BigDecimal getDiscount(Cart source) {
         return source.items().stream()
                 .map(i -> i.discount().amount().getNumberStripped())
                 .reduce(BigDecimal.ZERO, BigDecimal::add)
