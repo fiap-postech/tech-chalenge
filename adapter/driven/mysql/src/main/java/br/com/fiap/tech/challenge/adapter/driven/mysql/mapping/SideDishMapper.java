@@ -27,6 +27,10 @@ public interface SideDishMapper {
     SideDish toSideDish(ProductEntity request);
 
     @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "name", expression = "java(source.name())")
+    @Mapping(target = "category", expression = "java(source.category())")
+    @Mapping(target = "description", expression = "java(source.description())")
+    @Mapping(target = "enabled", expression = "java(source.enabled())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(SideDish source);

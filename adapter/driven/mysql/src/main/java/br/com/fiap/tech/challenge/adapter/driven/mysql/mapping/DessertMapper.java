@@ -27,6 +27,10 @@ public interface DessertMapper {
     Dessert toDessert(ProductEntity request);
 
     @Mapping(target = "uuid", source = "request", qualifiedByName = "getUuid")
+    @Mapping(target = "name", expression = "java(request.name())")
+    @Mapping(target = "category", expression = "java(request.category())")
+    @Mapping(target = "description", expression = "java(request.description())")
+    @Mapping(target = "enabled", expression = "java(request.enabled())")
     @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "request", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Dessert request);

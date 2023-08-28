@@ -29,6 +29,9 @@ public interface ComboMapper {
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
     @Mapping(target = "category", expression = "java(combo.category())")
+    @Mapping(target = "name", expression = "java(combo.name())")
+    @Mapping(target = "description", expression = "java(combo.description())")
+    @Mapping(target = "enabled", expression = "java(combo.enabled())")
     ComboEntity toProductType(Combo combo);
 
     @Named("generateUuidCombo")
