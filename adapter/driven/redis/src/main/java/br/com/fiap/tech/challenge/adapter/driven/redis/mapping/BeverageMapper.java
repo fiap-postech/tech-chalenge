@@ -28,32 +28,35 @@ public interface BeverageMapper {
 
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
+    @Mapping(target = "name", expression = "java(source.name())")
+    @Mapping(target = "description", expression = "java(source.description())")
+    @Mapping(target = "enabled", expression = "java(source.enabled())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Beverage source);
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Beverage source){
+    static BigDecimal priceToBigDecimal(Beverage source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getPrice")
-    static Price getPrice(BigDecimal source){
+    static Price getPrice(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("getImage")
-    static Image getImage(String source){
+    static Image getImage(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(Beverage source){
+    static String imageConverter(Beverage source) {
         return imageToStringConverter(source.image());
     }
 }

@@ -29,35 +29,38 @@ public interface DessertMapper {
     @Mapping(target = "uuid", source = "uuid", qualifiedByName = "getUuid")
     @Mapping(target = "price", source = "price", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "image", qualifiedByName = "imageToStringConverter")
+    @Mapping(target = "name", expression = "java(request.name())")
+    @Mapping(target = "description", expression = "java(request.description())")
+    @Mapping(target = "enabled", expression = "java(request.enabled())")
     ProductEntity toProductEntity(Dessert request);
 
     @Named("getUuid")
-    static String getUuid(UUID uuid){
+    static String getUuid(UUID uuid) {
         return uuid.toString();
     }
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Price price){
+    static BigDecimal priceToBigDecimal(Price price) {
         return priceToBigDecimalConverter(price);
     }
 
     @Named("getPrice")
-    static Price getPrice(BigDecimal source){
+    static Price getPrice(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("getImage")
-    static Image getImage(String source){
+    static Image getImage(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(Image source){
+    static String imageConverter(Image source) {
         return imageToStringConverter(source);
     }
 }

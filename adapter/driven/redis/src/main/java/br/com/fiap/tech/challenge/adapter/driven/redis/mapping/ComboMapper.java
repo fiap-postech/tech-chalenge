@@ -27,25 +27,28 @@ public interface ComboMapper {
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
     @Mapping(target = "category", expression = "java(combo.category())")
+    @Mapping(target = "name", expression = "java(combo.name())")
+    @Mapping(target = "description", expression = "java(combo.description())")
+    @Mapping(target = "enabled", expression = "java(combo.enabled())")
     ProductEntity toProductType(Combo combo);
 
     @Named("getComboPrice")
-    static Price map(BigDecimal source){
+    static Price map(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("priceToBigDecimalCombo")
-    static BigDecimal priceToBigDecimal(Combo source){
+    static BigDecimal priceToBigDecimal(Combo source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getComboImage")
-    static Image map(String source){
+    static Image map(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverterCombo")
-    static String imageConverter(Combo source){
+    static String imageConverter(Combo source) {
         return imageToStringConverter(source.image());
     }
 }

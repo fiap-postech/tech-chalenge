@@ -1,8 +1,11 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 
+import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
+import br.com.fiap.tech.challenge.domain.entity.Combo;
 import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.ProductWriterService;
 import org.springframework.stereotype.Service;
@@ -32,7 +35,18 @@ public class ProductEntityWriterService implements ProductWriterService {
     }
 
     private Product insert(Product product) {
-        return repository.save(toProductEntity(product)).toDomain();
+        var productEntity = toProductEntity(product);
+        decorateIfCombo(product, (ComboEntity) productEntity);
+        return repository.save(productEntity).toDomain();
+    }
+
+    private void decorateIfCombo(Product product, ComboEntity productEntity) {
+        if (product.category().equals(ProductCategory.COMBO)) {
+            var combo = (Combo) product;
+            productEntity.setBeverage(getByUUID(combo.beverage().uuid().toString()));
+            productEntity.setSandwich(getByUUID(combo.sandwich().uuid().toString()));
+            productEntity.setSideDish(getByUUID(combo.sideDish().uuid().toString()));
+        }
     }
 
     private Product update(Product product) {

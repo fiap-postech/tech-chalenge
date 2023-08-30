@@ -7,7 +7,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.mapstruct.factory.Mappers;
 
 import java.util.UUID;
 
@@ -17,8 +17,9 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 @Mapper(componentModel = SPRING)
 public abstract class CreateCartRequestMapper {
 
-    @Autowired
-    protected FindCustomerByUUIDService findCustomerByUUIDService;
+    public static CreateCartRequestMapper INSTANCE = Mappers.getMapper(CreateCartRequestMapper.class);
+
+    protected static FindCustomerByUUIDService findCustomerByUUIDService;
 
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomer")
     @Mapping(target = "items", ignore = true)
@@ -26,8 +27,13 @@ public abstract class CreateCartRequestMapper {
 
 
     @Named("getCustomer")
-    Customer getCustomer(CreateCartRequest source){
+    Customer getCustomer(CreateCartRequest source) {
         var customerId = source.getCustomerId();
-        return isNull(customerId)? null : findCustomerByUUIDService.get(UUID.fromString(customerId));
+        return isNull(customerId) ? null : findCustomerByUUIDService.get(UUID.fromString(customerId));
+    }
+
+    public static CreateCartRequestMapper init(FindCustomerByUUIDService service) {
+        findCustomerByUUIDService = service;
+        return CreateCartRequestMapper.INSTANCE;
     }
 }

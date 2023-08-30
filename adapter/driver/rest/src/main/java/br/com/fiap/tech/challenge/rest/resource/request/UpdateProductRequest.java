@@ -8,8 +8,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serial;
 import java.math.BigDecimal;
@@ -22,9 +20,6 @@ public class UpdateProductRequest extends Request<Product> {
     @Serial
     private static final long serialVersionUID = 3075479575539176960L;
 
-    @Autowired
-    private UpdateProductRequestMapper updateProductRequestMapper;
-
     @NotBlank
     private String id;
     private String name;
@@ -35,6 +30,6 @@ public class UpdateProductRequest extends Request<Product> {
 
     @Override
     public Product toDomain() {
-        return updateProductRequestMapper.toProduct(this);
+        return UpdateProductRequestMapper.INSTANCE.toProduct(this);
     }
 }

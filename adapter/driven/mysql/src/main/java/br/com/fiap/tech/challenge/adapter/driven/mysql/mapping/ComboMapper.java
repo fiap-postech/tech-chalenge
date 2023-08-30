@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.domain.entity.Combo;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
@@ -26,12 +27,16 @@ public interface ComboMapper {
     @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
     Combo toCombo(ComboEntity source);
 
+    @Mapping(target = "uuid", expression = "java(combo.uuid().toString())")
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
     @Mapping(target = "category", expression = "java(combo.category())")
     @Mapping(target = "name", expression = "java(combo.name())")
     @Mapping(target = "description", expression = "java(combo.description())")
     @Mapping(target = "enabled", expression = "java(combo.enabled())")
+    @Mapping(target = "beverage", source = "combo", qualifiedByName = "toBeverageEntity")
+    @Mapping(target = "sideDish", source = "combo", qualifiedByName = "toSideDishEntity")
+    @Mapping(target = "sandwich", source = "combo", qualifiedByName = "toSandwichEntity")
     ComboEntity toProductType(Combo combo);
 
     @Named("generateUuidCombo")
@@ -57,5 +62,20 @@ public interface ComboMapper {
     @Named("imageToStringConverterCombo")
     static String imageConverter(Combo source) {
         return imageToStringConverter(source.image());
+    }
+
+    @Named("toBeverageEntity")
+    static ProductEntity mapBeverageToEntity(Combo combo) {
+        return BeverageMapper.INSTANCE.toProductEntity(combo.beverage());
+    }
+
+    @Named("toSideDishEntity")
+    static ProductEntity mapSideDishToEntity(Combo combo) {
+        return SideDishMapper.INSTANCE.toProductEntity(combo.sideDish());
+    }
+
+    @Named("toSandwichEntity")
+    static ProductEntity mapSandwichToEntity(Combo combo) {
+        return SandwichMapper.INSTANCE.toProductEntity(combo.sandwich());
     }
 }

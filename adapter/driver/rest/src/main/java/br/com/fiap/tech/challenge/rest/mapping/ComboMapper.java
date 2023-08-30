@@ -70,12 +70,12 @@ public interface ComboMapper {
 
     @Named("getSideDish")
     static SideDish getSideDish(CreateComboProductRequest source) {
-        return (SideDish) getProduct(source.getBeverageId());
+        return (SideDish) getProduct(source.getSideDishId());
     }
 
     @Named("getSandwich")
     static Sandwich getSandwich(CreateComboProductRequest source) {
-        return (Sandwich) getProduct(source.getBeverageId());
+        return (Sandwich) getProduct(source.getSandwichId());
     }
 
     @Named("getFullPrice")

@@ -36,27 +36,27 @@ public interface SideDishMapper {
     ProductEntity toProductEntity(SideDish source);
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 
     @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(SideDish source){
+    static BigDecimal priceToBigDecimal(SideDish source) {
         return priceToBigDecimalConverter(source.price());
     }
 
     @Named("getPrice")
-    static Price getPrice(BigDecimal source){
+    static Price getPrice(BigDecimal source) {
         return Price.of(makeMoney(source));
     }
 
     @Named("getImage")
-    static Image getImage(String source){
+    static Image getImage(String source) {
         return Image.of(source);
     }
 
     @Named("imageToStringConverter")
-    static String imageConverter(SideDish source){
+    static String imageConverter(SideDish source) {
         return imageToStringConverter(source.image());
     }
 }
