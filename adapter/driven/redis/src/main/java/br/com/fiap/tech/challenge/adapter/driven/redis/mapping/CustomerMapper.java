@@ -14,6 +14,10 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 public interface CustomerMapper {
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
+    @Mapping(target = "name", expression = "java(source.name())")
+    @Mapping(target = "email", expression = "java(source.email())")
+    @Mapping(target = "document", expression = "java(source.document())")
+    @Mapping(target = "enabled", expression = "java(source.enabled())")
     CustomerEntity toCustomerEntity(Customer source);
 
     @Mapping(target = "uuid", source = "source", qualifiedByName = "generateUuid")
@@ -21,7 +25,7 @@ public interface CustomerMapper {
 
 
     @Named("generateUuid")
-    static UUID generateUuid(CustomerEntity source){
+    static UUID generateUuid(CustomerEntity source) {
         return UUID.fromString(source.getId());
     }
 }

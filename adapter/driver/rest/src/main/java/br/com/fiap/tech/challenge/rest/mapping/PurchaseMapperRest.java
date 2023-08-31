@@ -28,6 +28,8 @@ public abstract class PurchaseMapperRest {
 
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
+    @Mapping(target = "date", expression = "java(source.date())")
+    @Mapping(target = "status", expression = "java(source.status())")
     @Mapping(target = "payment", source = "source", qualifiedByName = "getPaymentResponse")
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomerResponse")
     @Mapping(target = "items", source = "source", qualifiedByName = "getPurchaseItemResponse")

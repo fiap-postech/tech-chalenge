@@ -30,6 +30,7 @@ public interface DessertMapper {
     @Mapping(target = "price", source = "price", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "image", qualifiedByName = "imageToStringConverter")
     @Mapping(target = "name", expression = "java(request.name())")
+    @Mapping(target = "category", expression = "java(request.category())")
     @Mapping(target = "description", expression = "java(request.description())")
     @Mapping(target = "enabled", expression = "java(request.enabled())")
     ProductEntity toProductEntity(Dessert request);

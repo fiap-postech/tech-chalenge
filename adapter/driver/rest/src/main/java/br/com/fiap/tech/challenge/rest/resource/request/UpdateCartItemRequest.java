@@ -9,7 +9,6 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.io.Serial;
 
@@ -22,9 +21,6 @@ public class UpdateCartItemRequest extends Request<CartItem> {
     @Serial
     private static final long serialVersionUID = 9020112551138763090L;
 
-    @Autowired
-    private UpdateCartItemRequestMapper updateCartItemRequestMapper;
-
     @NotBlank
     @Schema(description = "Identificador do produto que será atualizado no carrinho", example = "12d1b555-6b86-41d8-afb6-17a01b293869")
     private String productId;
@@ -35,6 +31,6 @@ public class UpdateCartItemRequest extends Request<CartItem> {
 
     @Override
     public CartItem toDomain() {
-        return updateCartItemRequestMapper.toCartItem(this);
+        return UpdateCartItemRequestMapper.INSTANCE.toCartItem(this);
     }
 }

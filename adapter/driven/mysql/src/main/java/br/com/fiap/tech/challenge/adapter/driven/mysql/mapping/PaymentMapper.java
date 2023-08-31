@@ -25,18 +25,21 @@ public interface PaymentMapper {
 
 
     @Mapping(target = "amount", source = "payment", qualifiedByName = "moneyToBigDecimalConverter")
+    @Mapping(target = "status", expression = "java(payment.status())")
+    @Mapping(target = "uuid", expression = "java(payment.uuid().toString())")
+    @Mapping(target = "date", expression = "java(payment.date())")
     @Mapping(target = "method", constant = "MERCADO_PAGO")
     PaymentEntity toPaymentEntity(Payment payment);
 
 
     @Named("getAmount")
-    static Money getAmount (BigDecimal amount){
+    static Money getAmount(BigDecimal amount) {
         return makeMoney(amount);
     }
 
 
     @Named("moneyToBigDecimalConverter")
-    static BigDecimal getAmount (Payment payment){
+    static BigDecimal getAmount(Payment payment) {
         return moneyToBigDecimalConverter(payment.amount());
     }
 
@@ -51,7 +54,7 @@ public interface PaymentMapper {
     }
 
     @Named("generateUuid")
-    static UUID generateUuid(String uuid){
+    static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
     }
 }

@@ -31,6 +31,7 @@ public interface BeverageMapper {
     @Mapping(target = "name", expression = "java(source.name())")
     @Mapping(target = "description", expression = "java(source.description())")
     @Mapping(target = "enabled", expression = "java(source.enabled())")
+    @Mapping(target = "category", expression = "java(source.category())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "source", qualifiedByName = "imageToStringConverter")
     ProductEntity toProductEntity(Beverage source);

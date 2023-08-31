@@ -1,11 +1,11 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.CartItemMapper;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.CustomerMapper;
 import br.com.fiap.tech.challenge.domain.entity.Cart;
-import br.com.fiap.tech.challenge.domain.entity.Customer;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.redis.core.RedisHash;
 import org.springframework.data.redis.core.TimeToLive;
@@ -38,17 +38,17 @@ public class CartEntity implements Serializable {
     @TimeToLive(unit = TimeUnit.MILLISECONDS)
     private Long ttl;
 
-    public Cart toDomain(ModelMapper mapper) {
+    public Cart toDomain(CartItemMapper cartItemMapper, CustomerMapper customerMapper) {
         var builder = Cart.builder();
 
         if (!isEmpty(this.getItems())) {
             builder.items(this.getItems().stream()
-                    .map(c -> c.toDomain(mapper))
+                    .map(c -> c.toDomain(cartItemMapper))
                     .toList());
         }
 
         if (nonNull(this.customer)) {
-            builder.customer(mapper.map(this.customer, Customer.class));
+            builder.customer(customerMapper.toCustomer(this.customer));
         }
 
         return builder

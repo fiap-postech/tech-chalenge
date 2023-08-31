@@ -5,8 +5,6 @@ import br.com.fiap.tech.challenge.domain.entity.CartItem;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
@@ -17,15 +15,12 @@ import static java.util.Objects.nonNull;
 @ToString
 public class CartItemEntity {
 
-    @Autowired
-    private CartItemMapper cartItemMapper;
-
     private ProductEntity product;
     private BigDecimal price;
     private BigDecimal discount;
     private int quantity;
 
-    public CartItem toDomain(ModelMapper mapper) {
+    public CartItem toDomain(CartItemMapper cartItemMapper) {
         var cartItem = cartItemMapper.toCartItemEntity(this);
 
         var builder = cartItem.toBuilder();

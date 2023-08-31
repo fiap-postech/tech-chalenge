@@ -38,9 +38,11 @@ public abstract class PurchaseMapper {
     protected PurchaseItemMapper purchaseItemMapper;
 
     @Mapping(target = "uuid", expression = "java(source.uuid().toString())")
+    @Mapping(target = "status", expression = "java(source.status())")
+    @Mapping(target = "date", expression = "java(source.date())")
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomerEntity")
     @Mapping(target = "items", ignore = true)
-    public abstract PurchaseEntity toPurchaseEntity (Purchase source);
+    public abstract PurchaseEntity toPurchaseEntity(Purchase source);
 
     @Mapping(target = "payment", source = "source", qualifiedByName = "getPayment")
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomer")
