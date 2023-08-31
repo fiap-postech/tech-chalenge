@@ -1,11 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
 import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -13,7 +9,6 @@ import jakarta.validation.constraints.PositiveOrZero;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.math.BigDecimal;
@@ -42,13 +37,7 @@ public class ProductRequest extends Request<Product> {
     private ProductCategory category;
 
     @Override
-    public Product toDomain(ModelMapper mapper) {
-        return switch (getCategory()) {
-            case COMBO -> mapper.map(this, SideDish.class); //TODO put right code for combo here
-            case SIDE_DISH -> mapper.map(this, SideDish.class);
-            case DESSERT -> mapper.map(this, Dessert.class);
-            case BEVERAGE -> mapper.map(this, Beverage.class);
-            case SANDWICH -> mapper.map(this, Sandwich.class);
-        };
+    public Product toDomain() {
+        return null;
     }
 }

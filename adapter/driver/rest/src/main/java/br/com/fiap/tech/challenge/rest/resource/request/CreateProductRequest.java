@@ -8,6 +8,7 @@ import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.entity.Sandwich;
 import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
+import br.com.fiap.tech.challenge.rest.mapping.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotBlank;
@@ -51,13 +52,13 @@ public abstract class CreateProductRequest extends Request<Product> {
     private boolean enabled = true;
 
     @Override
-    public Product toDomain(ModelMapper mapper) {
+    public Product toDomain() {
         return switch (getCategory()) {
-            case COMBO -> mapper.map(this, Combo.class);
-            case SIDE_DISH -> mapper.map(this, SideDish.class);
-            case DESSERT -> mapper.map(this, Dessert.class);
-            case BEVERAGE -> mapper.map(this, Beverage.class);
-            case SANDWICH -> mapper.map(this, Sandwich.class);
+            case COMBO -> ComboMapper.INSTANCE.toCombo((CreateComboProductRequest) this);
+            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish((CreateSingleProductRequest) this);
+            case DESSERT -> DessertMapper.INSTANCE.toDessert((CreateSingleProductRequest) this);
+            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage((CreateSingleProductRequest) this);
+            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich((CreateSingleProductRequest) this);
         };
     }
 }

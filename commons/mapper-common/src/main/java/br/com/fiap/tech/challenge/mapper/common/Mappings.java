@@ -22,21 +22,21 @@ import static org.apache.commons.lang3.ObjectUtils.defaultIfNull;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
 
-    public static Converter<Price, BigDecimal> priceToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Price.min())
+    public static BigDecimal priceToBigDecimalConverter(Price source) {
+        return defaultIfNull(source, Price.min())
                 .amount()
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }
 
-    public static Converter<Money, BigDecimal> moneyToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Money.zero(getCurrency(CURRENCY_CODE)))
+    public static BigDecimal moneyToBigDecimalConverter(Money source) {
+        return defaultIfNull(source, Money.zero(getCurrency(CURRENCY_CODE)))
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
     }
 
-    public static Converter<Discount, BigDecimal> discountToBigDecimalConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Discount.withoutDiscount())
+    public static BigDecimal discountToBigDecimalConverter(Discount discount) {
+        return defaultIfNull(discount, Discount.withoutDiscount())
                 .amount()
                 .getNumberStripped()
                 .setScale(CURRENCY_PRECISION, CURRENCY_ROUNDING_MODE);
@@ -46,20 +46,13 @@ public class Mappings {
         return ctx -> defaultIfNull(ctx.getSource(), Percentage.zero()).value();
     }
 
-    public static Converter<Image, String> imageToStringConverter() {
-        return ctx -> {
-            var image = ctx.getSource();
-
-            if (isNull(image)){
-                return null;
-            }
-
-            return image.url();
-        };
+    public static String imageToStringConverter(Image source) {
+        if (isNull(source)) return null;
+        return source.url();
     }
 
-    public static Converter<Quantity, Integer> quantityToIntegerConverter() {
-        return ctx -> defaultIfNull(ctx.getSource(), Quantity.min())
+    public static Integer quantityToIntegerConverter(Quantity quantity) {
+        return defaultIfNull(quantity, Quantity.min())
                 .value();
     }
 }

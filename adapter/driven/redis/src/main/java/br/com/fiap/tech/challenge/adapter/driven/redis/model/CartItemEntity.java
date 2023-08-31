@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.CartItemMapper;
 import br.com.fiap.tech.challenge.domain.entity.CartItem;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 
@@ -20,12 +20,12 @@ public class CartItemEntity {
     private BigDecimal discount;
     private int quantity;
 
-    public CartItem toDomain(ModelMapper mapper) {
-        var cartItem = mapper.map(this, CartItem.class);
+    public CartItem toDomain(CartItemMapper cartItemMapper) {
+        var cartItem = cartItemMapper.toCartItemEntity(this);
 
         var builder = cartItem.toBuilder();
         if (nonNull(this.getProduct())) {
-            builder.product(this.getProduct().toDomain(mapper));
+            builder.product(this.getProduct().toDomain());
         }
 
         return builder.build();

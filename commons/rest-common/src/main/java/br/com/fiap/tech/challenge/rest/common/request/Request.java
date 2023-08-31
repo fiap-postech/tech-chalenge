@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.rest.common.request;
 import br.com.fiap.tech.challenge.AssertionConcern;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.io.Serializable;
@@ -16,6 +15,6 @@ public abstract class Request<T extends AssertionConcern> implements Serializabl
     @Serial
     private static final long serialVersionUID = -529940882058735178L;
 
-    public abstract T toDomain(ModelMapper mapper);
+    public abstract T toDomain();
 
 }

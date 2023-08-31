@@ -2,13 +2,13 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.domain.entity.CartItem;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
+import br.com.fiap.tech.challenge.rest.mapping.UpdateCartItemRequestMapper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 
@@ -30,7 +30,7 @@ public class UpdateCartItemRequest extends Request<CartItem> {
     private int quantity;
 
     @Override
-    public CartItem toDomain(ModelMapper mapper) {
-        return mapper.map(this, CartItem.class);
+    public CartItem toDomain() {
+        return UpdateCartItemRequestMapper.INSTANCE.toCartItem(this);
     }
 }

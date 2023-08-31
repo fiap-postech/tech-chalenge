@@ -8,8 +8,6 @@ import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.util.Page;
 import br.com.fiap.tech.challenge.util.ResponseList;
-import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -17,18 +15,15 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.function.Function;
 
-import static br.com.fiap.tech.challenge.adapter.driven.mysql.config.MySQLModelMapperConfiguration.MYSQL_MODEL_MAPPER;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 
 @Service
 public class ProductEntityReaderService implements ProductReaderService {
 
     private final ProductEntityRepository repository;
-    private final ModelMapper mapper;
 
-    public ProductEntityReaderService(ProductEntityRepository repository, @Qualifier(MYSQL_MODEL_MAPPER) ModelMapper mapper) {
+    public ProductEntityReaderService(ProductEntityRepository repository) {
         this.repository = repository;
-        this.mapper = mapper;
     }
 
     @Override
@@ -44,7 +39,7 @@ public class ProductEntityReaderService implements ProductReaderService {
     @Override
     public Product readById(UUID id) {
         return repository.findByUuid(id.toString())
-                .map(entity -> entity.toDomain(mapper))
+                .map(ProductEntity::toDomain)
                 .orElseThrow(() -> new ApplicationException(PRODUCT_NOT_FOUND_BY_UUID, id.toString()));
     }
 
@@ -56,7 +51,7 @@ public class ProductEntityReaderService implements ProductReaderService {
                 result.getSize(),
                 result.getNumberOfElements(),
                 result.getTotalElements(),
-                result.getContent().stream().map(p -> p.toDomain(mapper)).toList()
+                result.getContent().stream().map(ProductEntity::toDomain).toList()
         );
     }
 }

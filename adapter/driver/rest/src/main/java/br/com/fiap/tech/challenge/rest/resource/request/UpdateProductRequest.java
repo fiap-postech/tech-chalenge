@@ -2,12 +2,12 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
+import br.com.fiap.tech.challenge.rest.mapping.UpdateProductRequestMapper;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import java.io.Serial;
 import java.math.BigDecimal;
@@ -29,7 +29,7 @@ public class UpdateProductRequest extends Request<Product> {
     private Boolean enabled;
 
     @Override
-    public Product toDomain(ModelMapper mapper) {
-        return mapper.map(this, Product.class);
+    public Product toDomain() {
+        return UpdateProductRequestMapper.INSTANCE.toProduct(this);
     }
 }
