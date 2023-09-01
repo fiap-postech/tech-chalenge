@@ -1,5 +1,6 @@
-package br.com.fiap.tech.challenge.domain.valueobject;
+package br.com.fiap.tech.challenge.enterprise.valueobject;
 
+import br.com.fiap.tech.challenge.domain.valueobject.ValueObject;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;

@@ -1,8 +1,8 @@
-package br.com.fiap.tech.challenge.domain.entity;
+package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.experimental.Accessors;
@@ -12,13 +12,13 @@ import java.util.UUID;
 
 @Getter
 @Accessors(fluent = true)
-public class Beverage extends Product {
+public class Dessert extends Product {
 
     @Serial
-    private static final long serialVersionUID = 8271359996195513007L;
+    private static final long serialVersionUID = 8359989594372219303L;
 
     @Builder(toBuilder = true)
-    protected Beverage(
+    protected Dessert(
             @Builder.ObtainVia(method = "uuid") UUID uuid,
             @Builder.ObtainVia(method = "name") String name,
             @Builder.ObtainVia(method = "description") String description,
@@ -33,7 +33,7 @@ public class Beverage extends Product {
 
     @Override
     public ProductCategory category() {
-        return ProductCategory.BEVERAGE;
+        return ProductCategory.DESSERT;
     }
 
     @Override

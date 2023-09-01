@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.error;
+package br.com.fiap.tech.challenge.enterprise.error;
 
 import br.com.fiap.tech.challenge.exception.error.BaseApplicationError;
 import br.com.fiap.tech.challenge.exception.error.ErrorType;

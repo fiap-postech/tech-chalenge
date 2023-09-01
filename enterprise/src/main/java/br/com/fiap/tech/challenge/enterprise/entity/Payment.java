@@ -1,7 +1,8 @@
-package br.com.fiap.tech.challenge.domain.entity;
+package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
-import br.com.fiap.tech.challenge.domain.enums.PaymentStatus;
+import br.com.fiap.tech.challenge.domain.entity.Entity;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import lombok.Builder;

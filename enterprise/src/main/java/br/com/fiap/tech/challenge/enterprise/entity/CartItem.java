@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain.entity;
+package br.com.fiap.tech.challenge.enterprise.entity;
 
 import br.com.fiap.tech.challenge.domain.valueobject.Discount;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;

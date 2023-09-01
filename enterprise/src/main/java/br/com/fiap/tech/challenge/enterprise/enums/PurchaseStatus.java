@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain.enums;
+package br.com.fiap.tech.challenge.enterprise.enums;
 
 public enum PurchaseStatus {
     PAID,

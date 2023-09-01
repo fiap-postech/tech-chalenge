@@ -1,9 +1,10 @@
-package br.com.fiap.tech.challenge.domain.entity;
+package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.domain.entity.Entity;
 import br.com.fiap.tech.challenge.domain.valueobject.Discount;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
@@ -15,7 +16,7 @@ import lombok.experimental.Accessors;
 import java.io.Serial;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE;
 
 @Getter
 @Accessors(fluent = true)

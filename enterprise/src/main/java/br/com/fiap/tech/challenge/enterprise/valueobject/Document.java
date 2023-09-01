@@ -1,6 +1,7 @@
-package br.com.fiap.tech.challenge.domain.valueobject;
+package br.com.fiap.tech.challenge.enterprise.valueobject;
 
 import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
+import br.com.fiap.tech.challenge.domain.valueobject.ValueObject;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
@@ -12,6 +13,7 @@ public class Document extends ValueObject {
     @Serial
     private static final long serialVersionUID = -7027977210412190271L;
 
+    @SuppressWarnings({"java:S1700"})
     @DocumentCustomer
     private final String document;
 
