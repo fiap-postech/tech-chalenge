@@ -13,8 +13,8 @@ import org.mapstruct.factory.Mappers;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper(uses = {BeverageMapper.class, SideDishMapper.class, SandwichMapper.class})
@@ -37,6 +37,10 @@ public interface ComboMapper {
     @Mapping(target = "beverage", source = "combo", qualifiedByName = "toBeverageEntity")
     @Mapping(target = "sideDish", source = "combo", qualifiedByName = "toSideDishEntity")
     @Mapping(target = "sandwich", source = "combo", qualifiedByName = "toSandwichEntity")
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
     ComboEntity toProductType(Combo combo);
 
     @Named("generateUuidCombo")

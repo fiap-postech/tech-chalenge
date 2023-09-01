@@ -42,6 +42,10 @@ public abstract class PurchaseMapper {
     @Mapping(target = "date", expression = "java(source.date())")
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomerEntity")
     @Mapping(target = "items", ignore = true)
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
     public abstract PurchaseEntity toPurchaseEntity(Purchase source);
 
     @Mapping(target = "payment", source = "source", qualifiedByName = "getPayment")

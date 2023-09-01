@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.*;
+import static br.com.fiap.tech.challenge.util.Mappings.discountToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.quantityToIntegerConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 import static java.util.Objects.isNull;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
@@ -33,6 +35,10 @@ public abstract class PurchaseItemMapper {
     @Mapping(target = "price", source = "source", qualifiedByName = "getPriceEntity")
     @Mapping(target = "quantity", source = "source", qualifiedByName = "getQuantityEntity")
     @Mapping(target = "product", source = "source", qualifiedByName = "getProductEntity")
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "purchase", ignore = true)
+    @Mapping(target = "version", ignore = true)
     public abstract PurchaseItemEntity toPurchaseItemEntity(PurchaseItem source);
 
     @Mapping(target = "discount", source = "source", qualifiedByName = "getDiscount")
@@ -76,7 +82,6 @@ public abstract class PurchaseItemMapper {
     @Named("getProductEntity")
     ProductEntity getProductEntity(PurchaseItem purchaseItem) {
         var product = purchaseItem.product();
-        if (isNull(product)) return null;
         var uuid = product.uuid().toString();
 
         return productRepository.findByUuid(uuid)

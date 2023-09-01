@@ -12,8 +12,8 @@ import org.springframework.stereotype.Service;
 
 import static br.com.fiap.tech.challenge.adapter.driven.mysql.util.Mappings.toProductEntity;
 import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 
 @Service
 public class ProductEntityWriterService implements ProductWriterService {

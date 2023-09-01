@@ -11,7 +11,7 @@ import org.mapstruct.Named;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.moneyToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.moneyToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
@@ -29,6 +29,11 @@ public interface PaymentMapper {
     @Mapping(target = "uuid", expression = "java(payment.uuid().toString())")
     @Mapping(target = "date", expression = "java(payment.date())")
     @Mapping(target = "method", constant = "MERCADO_PAGO")
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "purchase", ignore = true)
+    @Mapping(target = "version", ignore = true)
     PaymentEntity toPaymentEntity(Payment payment);
 
 

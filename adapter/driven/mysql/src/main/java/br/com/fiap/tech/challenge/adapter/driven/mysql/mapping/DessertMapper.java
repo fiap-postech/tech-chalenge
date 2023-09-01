@@ -12,8 +12,8 @@ import org.mapstruct.factory.Mappers;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
@@ -33,6 +33,10 @@ public interface DessertMapper {
     @Mapping(target = "enabled", expression = "java(request.enabled())")
     @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")
     @Mapping(target = "image", source = "request", qualifiedByName = "imageToStringConverter")
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
     ProductEntity toProductEntity(Dessert request);
 
     @Named("getUuid")

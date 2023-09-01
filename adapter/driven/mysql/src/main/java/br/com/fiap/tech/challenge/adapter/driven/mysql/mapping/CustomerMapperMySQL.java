@@ -15,5 +15,9 @@ public interface CustomerMapperMySQL {
     @Mapping(target = "name", expression = "java(customer.name())")
     @Mapping(target = "enabled", expression = "java(customer.enabled())")
     @Mapping(target = "uuid", expression = "java(customer.uuid().toString())")
+    @Mapping(target = "created", ignore = true)
+    @Mapping(target = "lastUpdated", ignore = true)
+    @Mapping(target = "id", ignore = true)
+    @Mapping(target = "version", ignore = true)
     CustomerEntity toCustomerEntity(Customer customer);
 }
