@@ -31,10 +31,10 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
     implementation project(":application")
-    implementation project(":adapter:driver:rest")
-    implementation project(":adapter:driven:mysql")
-    implementation project(":adapter:driven:redis")
-    implementation project(":adapter:driven:payment-gateway")
+    implementation project(":drivers:rest")
+    implementation project(":drivers:mysql")
+    implementation project(":drivers:redis")
+    implementation project(":drivers:payment-gateway")
 }
 
 java {
