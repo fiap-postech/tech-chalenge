@@ -2,8 +2,14 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CartItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.*;
 import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
+import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
+import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
+import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

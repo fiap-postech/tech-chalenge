@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.CartItem;
+import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.rest.resource.response.CartItemResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.mapstruct.Mapper;

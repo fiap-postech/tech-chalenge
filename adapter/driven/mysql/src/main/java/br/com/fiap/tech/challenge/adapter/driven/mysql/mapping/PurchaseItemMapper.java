@@ -4,10 +4,10 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseItemEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.domain.valueobject.Discount;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
+import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
 import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import org.mapstruct.Mapper;
@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 import static br.com.fiap.tech.challenge.util.Mappings.discountToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Mappings.quantityToIntegerConverter;

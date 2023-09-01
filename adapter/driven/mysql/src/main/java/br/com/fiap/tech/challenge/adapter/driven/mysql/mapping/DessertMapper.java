@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
+import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import org.mapstruct.Mapper;

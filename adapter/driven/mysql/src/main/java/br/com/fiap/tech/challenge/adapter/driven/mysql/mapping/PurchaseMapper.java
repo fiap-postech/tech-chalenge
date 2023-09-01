@@ -4,10 +4,10 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.CustomerEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.CustomerEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.Customer;
-import br.com.fiap.tech.challenge.domain.entity.Payment;
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
-import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
+import br.com.fiap.tech.challenge.enterprise.entity.Customer;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -16,8 +16,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.CUSTOMER_NOT_FOUND_BY_UUID;
-import static br.com.fiap.tech.challenge.error.ApplicationError.PAYMENT_NOT_FOUND;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.CUSTOMER_NOT_FOUND_BY_UUID;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PAYMENT_NOT_FOUND;
 import static java.util.Collections.emptyList;
 import static java.util.Objects.isNull;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;

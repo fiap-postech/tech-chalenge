@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.CartItem;
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

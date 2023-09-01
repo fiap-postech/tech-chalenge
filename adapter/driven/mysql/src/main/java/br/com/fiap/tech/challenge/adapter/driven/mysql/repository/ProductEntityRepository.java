@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.repository;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;

@@ -1,7 +1,13 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
+import br.com.fiap.tech.challenge.port.driver.CreateProductService;
+import br.com.fiap.tech.challenge.port.driver.DisableProductService;
+import br.com.fiap.tech.challenge.port.driver.EnableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
+import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductService;
+import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.UpdateProductService;
 import br.com.fiap.tech.challenge.rest.resource.doc.ProductResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;

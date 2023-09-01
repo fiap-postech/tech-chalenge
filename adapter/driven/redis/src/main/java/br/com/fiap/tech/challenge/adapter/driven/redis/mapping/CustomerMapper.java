@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.CustomerEntity;
-import br.com.fiap.tech.challenge.domain.entity.Customer;
+import br.com.fiap.tech.challenge.enterprise.entity.Customer;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;

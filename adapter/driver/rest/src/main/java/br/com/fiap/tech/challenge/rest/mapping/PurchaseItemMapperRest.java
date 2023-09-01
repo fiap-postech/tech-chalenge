@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
 
-import br.com.fiap.tech.challenge.domain.valueobject.PurchaseItem;
+import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchaseItemResponse;
 import org.mapstruct.Mapper;

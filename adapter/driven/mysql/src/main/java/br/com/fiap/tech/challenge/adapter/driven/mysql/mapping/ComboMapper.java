@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ComboEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import org.mapstruct.Mapper;

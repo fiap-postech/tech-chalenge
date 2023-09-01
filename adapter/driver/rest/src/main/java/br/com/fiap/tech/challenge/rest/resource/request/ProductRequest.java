@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.entity.Product;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

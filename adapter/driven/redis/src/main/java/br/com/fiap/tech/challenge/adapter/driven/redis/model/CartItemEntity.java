@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.CartItemMapper;
-import br.com.fiap.tech.challenge.domain.entity.CartItem;
+import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;

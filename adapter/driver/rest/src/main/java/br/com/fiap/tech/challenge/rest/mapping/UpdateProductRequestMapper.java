@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.rest.mapping.product.update.UpdateStrategyFactory;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import org.mapstruct.Mapper;

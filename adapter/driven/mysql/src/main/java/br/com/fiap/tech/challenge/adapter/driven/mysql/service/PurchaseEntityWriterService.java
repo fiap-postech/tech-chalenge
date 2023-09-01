@@ -6,7 +6,7 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PurchaseMapper;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

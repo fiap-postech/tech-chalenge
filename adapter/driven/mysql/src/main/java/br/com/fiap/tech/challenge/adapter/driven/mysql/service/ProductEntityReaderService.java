@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.ProductEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.Product;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
 import br.com.fiap.tech.challenge.util.Page;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.function.Function;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PRODUCT_NOT_FOUND_BY_UUID;
 
 @Service
 public class ProductEntityReaderService implements ProductReaderService {

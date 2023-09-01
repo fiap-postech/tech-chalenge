@@ -1,8 +1,17 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.util;
 
-import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.*;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.BeverageMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.ComboMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.DessertMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.SandwichMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.SideDishMapper;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.*;
+import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
+import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

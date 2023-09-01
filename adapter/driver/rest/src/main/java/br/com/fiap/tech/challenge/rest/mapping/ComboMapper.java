@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
+import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateComboProductRequest;

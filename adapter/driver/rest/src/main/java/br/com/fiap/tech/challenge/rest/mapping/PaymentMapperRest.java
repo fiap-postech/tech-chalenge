@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.Payment;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 import br.com.fiap.tech.challenge.rest.resource.response.PaymentResponse;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PaymentEntity;
-import br.com.fiap.tech.challenge.domain.entity.Payment;
-import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
 import org.javamoney.moneta.Money;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

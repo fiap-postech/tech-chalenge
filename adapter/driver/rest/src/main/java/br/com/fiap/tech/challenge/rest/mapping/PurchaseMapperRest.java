@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.rest.resource.response.CustomerResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.PaymentResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchaseItemResponse;

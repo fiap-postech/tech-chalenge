@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.response;
 
-import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
-import br.com.fiap.tech.challenge.domain.enums.PaymentStatus;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
 import br.com.fiap.tech.challenge.rest.common.response.Response;
 import lombok.Data;
 import lombok.EqualsAndHashCode;

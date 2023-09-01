@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.*;
-import br.com.fiap.tech.challenge.domain.entity.Product;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;

@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PurchaseMapper;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.util.Page;
@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.UUID;
 import java.util.function.Function;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PURCHASE_NOT_FOUND_BY_UUID;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PURCHASE_NOT_FOUND_BY_UUID;
 
 @Service
 public class PurchaseEntityReaderService implements PurchaseReaderService {

@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PurchaseMapper;
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
-import br.com.fiap.tech.challenge.domain.enums.PurchaseStatus;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
 import lombok.Getter;

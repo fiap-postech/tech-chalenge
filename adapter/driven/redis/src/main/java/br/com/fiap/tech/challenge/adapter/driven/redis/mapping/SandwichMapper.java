@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.domain.valueobject.Image;
 import br.com.fiap.tech.challenge.domain.valueobject.Price;
 import org.mapstruct.Mapper;

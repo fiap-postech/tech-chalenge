@@ -1,12 +1,12 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
-import br.com.fiap.tech.challenge.domain.entity.Product;
-import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
+import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
+import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
+import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import br.com.fiap.tech.challenge.rest.mapping.*;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
