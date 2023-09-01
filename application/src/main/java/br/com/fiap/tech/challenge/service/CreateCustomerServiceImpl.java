@@ -1,13 +1,14 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.entity.Customer;
+import br.com.fiap.tech.challenge.enterprise.entity.Customer;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
 import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import lombok.RequiredArgsConstructor;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.CUSTOMER_HAS_REGISTRATION;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.CUSTOMER_HAS_REGISTRATION;
+
 
 @RequiredArgsConstructor
 class CreateCustomerServiceImpl implements CreateCustomerService {

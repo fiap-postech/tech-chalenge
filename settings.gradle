@@ -4,24 +4,23 @@ include 'application'
 
 include 'launcher'
 
-include 'commons:domain-common'
-findProject(':commons:domain-common')?.name = 'domain-common'
+include 'enterprise'
 
-include 'commons:mapper-common'
-findProject(':commons:mapper-common')?.name = 'mapper-common'
-
-include 'adapter:driven:mysql'
+include 'drivers:mysql'
 findProject(':adapter:driven:mysql')?.name = 'mysql'
 
-include 'adapter:driven:redis'
+include 'drivers:redis'
 findProject(':adapter:driven:redis')?.name = 'redis'
 
-include 'adapter:driven:payment-gateway'
+include 'drivers:payment-gateway'
 findProject(':adapter:driven:payment-gateway')?.name = 'payment-gateway'
 
-include 'adapter:driver:rest'
+include 'drivers:rest'
 findProject(':adapter:driver:rest')?.name = 'rest'
 
-include 'commons:rest-common'
-findProject(':commons:rest-common')?.name = 'rest-common'
+include 'common-libraries:domain-common'
+findProject(':common-libraries:domain-common')?.name = 'domain-common'
+
+include 'common-libraries:rest-common'
+findProject(':common-libraries:rest-common')?.name = 'rest-common'
 

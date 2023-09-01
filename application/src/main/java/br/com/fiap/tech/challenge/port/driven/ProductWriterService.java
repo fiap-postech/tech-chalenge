@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.port.driven;
 
-import br.com.fiap.tech.challenge.domain.entity.Product;
+import br.com.fiap.tech.challenge.enterprise.entity.Product;
 
 public interface ProductWriterService {
 

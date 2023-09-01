@@ -1,0 +1,16 @@
+plugins {
+    id 'java-library'
+}
+
+version '1.0.0'
+
+dependencies {
+    compileOnly "org.springframework.boot:spring-boot-starter-web:$springBootVersion"
+    compileOnly "org.springframework.data:spring-data-commons:$springDataCommonsVersion"
+    compileOnly "org.springdoc:springdoc-openapi-starter-webmvc-ui:$springDocOpenapiStarterWebmvcUIVersion"
+
+    compileOnly project(":application")
+
+    api project(":common-libraries:rest-common")
+}
+

@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.domain.entity.Cart;
-import br.com.fiap.tech.challenge.domain.enums.PaymentMethod;
-import br.com.fiap.tech.challenge.domain.enums.PaymentStatus;
-import br.com.fiap.tech.challenge.domain.entity.Purchase;
-import br.com.fiap.tech.challenge.domain.entity.Payment;
+import br.com.fiap.tech.challenge.enterprise.entity.Cart;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
+import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
@@ -15,7 +15,7 @@ import lombok.RequiredArgsConstructor;
 import java.time.LocalDate;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.error.ApplicationError.PAYMENT_ERROR;
+import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PAYMENT_ERROR;
 
 @RequiredArgsConstructor
 class CheckoutServiceImpl implements CheckoutService {
