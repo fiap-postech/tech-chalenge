@@ -11,8 +11,8 @@ import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper(uses = {BeverageMapper.class, SideDishMapper.class, SandwichMapper.class})
@@ -30,6 +30,7 @@ public interface ComboMapper {
     @Mapping(target = "name", expression = "java(combo.name())")
     @Mapping(target = "description", expression = "java(combo.description())")
     @Mapping(target = "enabled", expression = "java(combo.enabled())")
+    @Mapping(target = "id", ignore = true)
     ProductEntity toProductType(Combo combo);
 
     @Named("getComboPrice")

@@ -1,17 +1,15 @@
 package br.com.fiap.tech.challenge.adapter.driven.redis.model;
 
-import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.*;
-import br.com.fiap.tech.challenge.domain.entity.Beverage;
-import br.com.fiap.tech.challenge.domain.entity.Combo;
-import br.com.fiap.tech.challenge.domain.entity.Dessert;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.BeverageMapper;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.ComboMapper;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.DessertMapper;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.SandwichMapper;
+import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.SideDishMapper;
 import br.com.fiap.tech.challenge.domain.entity.Product;
 import br.com.fiap.tech.challenge.domain.enums.ProductCategory;
-import br.com.fiap.tech.challenge.domain.entity.Sandwich;
-import br.com.fiap.tech.challenge.domain.entity.SideDish;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import org.modelmapper.ModelMapper;
 
 import java.math.BigDecimal;
 

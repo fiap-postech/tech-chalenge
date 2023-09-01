@@ -12,8 +12,8 @@ import org.mapstruct.factory.Mappers;
 import java.math.BigDecimal;
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
