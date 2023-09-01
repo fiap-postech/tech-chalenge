@@ -4,8 +4,7 @@ include 'application'
 
 include 'launcher'
 
-include 'enterprise:entity'
-findProject(':enterprise:entity')?.name = 'entity'
+include 'enterprise'
 
 include 'common-libraries:domain-common'
 findProject(':common-libraries:domain-common')?.name = 'domain-common'
