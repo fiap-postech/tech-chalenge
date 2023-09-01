@@ -8,7 +8,6 @@ import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.common.response.Response;
 import jakarta.validation.ConstraintViolationException;
 import jakarta.validation.constraints.NotNull;
-import org.modelmapper.MappingException;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -86,16 +85,6 @@ public class ResourceExceptionHandler extends ResponseEntityExceptionHandler {
 
         logger.error(getLogMessage(request, exception, apiError.getError().getCode()), exception);
         return new ResponseEntity<>(apiError, httpStatus);
-    }
-
-    @ExceptionHandler(MappingException.class)
-    public ResponseEntity<? extends Response> handleMappingException(MappingException exception, WebRequest request) {
-        if (exception.getCause() instanceof ConstraintViolationException cause) {
-            return this.handleConstraintViolation(cause, request);
-        } else if (exception.getCause() instanceof ApplicationException cause) {
-            return this.handleApplicationException(cause, request);
-        }
-        return this.handleGeneralException(exception, request);
     }
 
     private ApiErrorResponse createApiErrorResponse(WebRequest webRequest, HttpStatus httpStatus, ApiError apiError) {
