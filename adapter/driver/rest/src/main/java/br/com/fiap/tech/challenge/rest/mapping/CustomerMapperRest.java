@@ -23,6 +23,7 @@ public interface CustomerMapperRest {
     @Mapping(target = "email", source = "source", qualifiedByName = "getEmail")
     @Mapping(target = "document", source = "source", qualifiedByName = "getDocument")
     @Mapping(target = "enabled", expression = "java(Boolean.TRUE)")
+    @Mapping(target = "uuid", ignore = true)
     Customer toCustomer(CreateCustomerRequest source);
 
 

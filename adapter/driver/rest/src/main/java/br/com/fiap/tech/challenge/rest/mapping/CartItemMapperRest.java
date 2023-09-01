@@ -9,8 +9,10 @@ import org.mapstruct.Named;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.*;
 import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
+import static br.com.fiap.tech.challenge.util.Mappings.discountToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.quantityToIntegerConverter;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)

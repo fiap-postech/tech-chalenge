@@ -15,14 +15,16 @@ import static java.util.Objects.isNull;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
+@SuppressWarnings({"java:S6548"})
 public abstract class CreateCartRequestMapper {
 
-    public static CreateCartRequestMapper INSTANCE = Mappers.getMapper(CreateCartRequestMapper.class);
+    public static final CreateCartRequestMapper INSTANCE = Mappers.getMapper(CreateCartRequestMapper.class);
 
     protected static FindCustomerByUUIDService findCustomerByUUIDService;
 
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomer")
     @Mapping(target = "items", ignore = true)
+    @Mapping(target = "uuid", ignore = true)
     public abstract Cart toCart(CreateCartRequest source);
 
 

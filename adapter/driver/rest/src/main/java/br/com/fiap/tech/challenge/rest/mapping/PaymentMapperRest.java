@@ -8,7 +8,7 @@ import org.mapstruct.Named;
 
 import java.math.BigDecimal;
 
-import static br.com.fiap.tech.challenge.mapper.common.Mappings.moneyToBigDecimalConverter;
+import static br.com.fiap.tech.challenge.util.Mappings.moneyToBigDecimalConverter;
 import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 
 @Mapper(componentModel = SPRING)
