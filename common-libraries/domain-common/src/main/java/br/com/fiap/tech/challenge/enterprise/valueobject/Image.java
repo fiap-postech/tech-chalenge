@@ -1,6 +1,6 @@
-package br.com.fiap.tech.challenge.domain.valueobject;
+package br.com.fiap.tech.challenge.enterprise.valueobject;
 
-import br.com.fiap.tech.challenge.domain.validation.URL;
+import br.com.fiap.tech.challenge.enterprise.validation.URL;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import lombok.Getter;
 import lombok.experimental.Accessors;

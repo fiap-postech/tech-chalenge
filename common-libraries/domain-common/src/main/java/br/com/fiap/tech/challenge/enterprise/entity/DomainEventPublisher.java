@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain.entity;
+package br.com.fiap.tech.challenge.enterprise.entity;
 
 import java.util.ArrayList;
 import java.util.Collection;

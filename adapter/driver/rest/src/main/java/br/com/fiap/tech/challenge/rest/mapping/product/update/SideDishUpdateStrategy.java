@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.mapping.product.update;
 
-import br.com.fiap.tech.challenge.domain.valueobject.Image;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;

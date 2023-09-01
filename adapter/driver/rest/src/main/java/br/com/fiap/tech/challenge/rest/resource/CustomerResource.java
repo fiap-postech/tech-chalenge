@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
+import br.com.fiap.tech.challenge.enterprise.validation.DocumentCustomer;
 import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
 import br.com.fiap.tech.challenge.port.driver.FindCustomerByDocumentService;
 import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;

@@ -1,9 +1,9 @@
 package br.com.fiap.tech.challenge.util;
 
-import br.com.fiap.tech.challenge.domain.valueobject.Discount;
-import br.com.fiap.tech.challenge.domain.valueobject.Image;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Discount;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.javamoney.moneta.Money;

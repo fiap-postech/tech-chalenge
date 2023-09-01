@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
-import br.com.fiap.tech.challenge.domain.validation.UUID;
+import br.com.fiap.tech.challenge.enterprise.validation.UUID;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
 import br.com.fiap.tech.challenge.rest.mapping.AddCartItemRequestMapper;
 import io.swagger.v3.oas.annotations.media.Schema;

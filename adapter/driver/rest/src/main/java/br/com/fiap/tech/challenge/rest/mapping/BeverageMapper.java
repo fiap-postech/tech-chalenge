@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.domain.valueobject.Image;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import org.mapstruct.Mapper;

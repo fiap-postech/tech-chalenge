@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.domain.validation.UUID;
+import br.com.fiap.tech.challenge.enterprise.validation.UUID;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;

@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
-import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import org.mapstruct.Mapper;

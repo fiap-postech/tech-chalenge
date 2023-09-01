@@ -1,7 +1,6 @@
 package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.entity.Entity;
-import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
 import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
 import jakarta.validation.Valid;

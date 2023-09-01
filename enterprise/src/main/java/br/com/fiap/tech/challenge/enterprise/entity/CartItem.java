@@ -1,9 +1,9 @@
 package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.valueobject.Discount;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
-import br.com.fiap.tech.challenge.domain.valueobject.ValueObject;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Discount;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
+import br.com.fiap.tech.challenge.enterprise.valueobject.ValueObject;
 import lombok.Builder;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

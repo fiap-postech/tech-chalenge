@@ -1,7 +1,6 @@
 package br.com.fiap.tech.challenge.enterprise.valueobject;
 
-import br.com.fiap.tech.challenge.domain.validation.DocumentCustomer;
-import br.com.fiap.tech.challenge.domain.valueobject.ValueObject;
+import br.com.fiap.tech.challenge.enterprise.validation.DocumentCustomer;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 

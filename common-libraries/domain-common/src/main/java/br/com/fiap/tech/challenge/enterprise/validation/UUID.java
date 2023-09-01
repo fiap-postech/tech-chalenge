@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain.validation;
+package br.com.fiap.tech.challenge.enterprise.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

@@ -1,9 +1,5 @@
 package br.com.fiap.tech.challenge.enterprise.valueobject;
 
-import br.com.fiap.tech.challenge.domain.valueobject.Discount;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
-import br.com.fiap.tech.challenge.domain.valueobject.Quantity;
-import br.com.fiap.tech.challenge.domain.valueobject.ValueObject;
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import jakarta.validation.Valid;

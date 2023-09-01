@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.domain.valueobject;
+package br.com.fiap.tech.challenge.enterprise.valueobject;
 
 import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;

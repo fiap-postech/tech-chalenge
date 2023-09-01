@@ -1,6 +1,5 @@
 package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.domain.entity.Entity;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Document;
 import br.com.fiap.tech.challenge.enterprise.valueobject.EmailRegistration;
 import jakarta.validation.constraints.NotBlank;

@@ -1,7 +1,7 @@
-package br.com.fiap.tech.challenge.domain.valueobject;
+package br.com.fiap.tech.challenge.enterprise.valueobject;
 
-import br.com.fiap.tech.challenge.domain.validation.PriceAmount;
-import br.com.fiap.tech.challenge.domain.validation.PriceCurrency;
+import br.com.fiap.tech.challenge.enterprise.validation.PriceAmount;
+import br.com.fiap.tech.challenge.enterprise.validation.PriceCurrency;
 import lombok.Getter;
 import lombok.ToString;
 import lombok.experimental.Accessors;

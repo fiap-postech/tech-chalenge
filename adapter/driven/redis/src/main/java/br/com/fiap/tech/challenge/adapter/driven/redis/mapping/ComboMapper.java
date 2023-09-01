@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.driven.redis.mapping;
 
 import br.com.fiap.tech.challenge.adapter.driven.redis.model.ProductEntity;
 import br.com.fiap.tech.challenge.enterprise.entity.Combo;
-import br.com.fiap.tech.challenge.domain.valueobject.Image;
-import br.com.fiap.tech.challenge.domain.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -22,6 +22,7 @@ public interface ComboMapper {
 
     @Mapping(target = "price", source = "price", qualifiedByName = "getComboPrice")
     @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
+    //TODO Antonio: pls review if this mapping is correct
     Combo toCombo(ProductEntity source);
 
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")

@@ -1,5 +1,4 @@
-package br.com.fiap.tech.challenge.domain.validation;
-
+package br.com.fiap.tech.challenge.enterprise.validation;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;
@@ -8,20 +7,21 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.Target;
 
-
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.ElementType.CONSTRUCTOR;
 import static java.lang.annotation.ElementType.FIELD;
-import static java.lang.annotation.ElementType.PARAMETER;
-import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
 import static java.lang.annotation.RetentionPolicy.RUNTIME;
 
-@Target({PARAMETER,FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
+@Target({FIELD, CONSTRUCTOR, ANNOTATION_TYPE})
 @Retention(RUNTIME)
-@Constraint(validatedBy = DocumentValidator.class)
+@Constraint(validatedBy = PercentageDiscountValidator.class)
 @Documented
-public @interface DocumentCustomer {
+public @interface PercentageDiscount {
+    String message() default "Percentage discount should be between {min}% and {max}%";
 
-    String message() default "The provided document is invalid";
+    long min() default 0;
+
+    long max() default 50;
 
     Class<?>[] groups () default {};
 
