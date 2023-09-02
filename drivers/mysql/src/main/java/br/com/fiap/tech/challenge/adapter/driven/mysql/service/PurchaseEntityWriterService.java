@@ -3,11 +3,13 @@ package br.com.fiap.tech.challenge.adapter.driven.mysql.service;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PaymentMapper;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PurchaseItemMapper;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.mapping.PurchaseMapper;
+import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PaymentEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -39,7 +41,7 @@ public class PurchaseEntityWriterService implements PurchaseWriterService {
     public Purchase write(Purchase purchase) {
         var purchaseEntity = savePurchase(purchase);
 
-        var paymentEntity = paymentMapper.toPaymentEntity(purchase.payment());
+        var paymentEntity = getPaymentEntity(purchase);
         paymentEntity.setPurchase(purchaseEntity);
 
         paymentRepository.save(paymentEntity);
@@ -47,13 +49,28 @@ public class PurchaseEntityWriterService implements PurchaseWriterService {
         return purchaseEntity.toDomain(purchaseMapper);
     }
 
+    private PaymentEntity getPaymentEntity(Purchase purchase) {
+        return paymentRepository.findByPurchaseUuid(purchase.uuid().toString())
+                .orElse(paymentMapper.toPaymentEntity(purchase.payment()));
+    }
+
     private PurchaseEntity savePurchase(Purchase purchase) {
-        var purchaseEntity = purchaseMapper.toPurchaseEntity(purchase);
-
-        purchase.items().stream()
-                .map(purchaseItemMapper::toPurchaseItemEntity)
-                .forEach(purchaseEntity::addItem);
-
+        var purchaseEntity = getPurchaseEntity(purchase);
         return purchaseRepository.save(purchaseEntity);
+    }
+
+    private PurchaseEntity getPurchaseEntity(Purchase purchase) {
+        var purchaseEntity = purchaseMapper.toPurchaseEntity(purchase);
+        var purchaseEntityOpt = purchaseRepository.findByUuid(purchase.uuid().toString());
+
+        if (purchaseEntityOpt.isPresent()) {
+            BeanUtils.copyProperties(purchaseEntityOpt.get(), purchaseEntity, "status");
+        } else {
+            purchase.items().stream()
+                    .map(purchaseItemMapper::toPurchaseItemEntity)
+                    .forEach(purchaseEntity::addItem);
+        }
+
+        return purchaseEntity;
     }
 }

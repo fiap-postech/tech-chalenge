@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.enterprise.entity;
 
-import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
 import br.com.fiap.tech.challenge.enterprise.valueobject.PurchaseItem;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
@@ -61,6 +61,12 @@ public class Purchase extends Entity {
     public Purchase made() {
         return toBuilder()
                 .status(PurchaseStatus.MADE)
+                .build();
+    }
+
+    public Purchase making() {
+        return toBuilder()
+                .status(PurchaseStatus.MAKING)
                 .build();
     }
 
