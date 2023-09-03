@@ -35,11 +35,11 @@ public class ProductUseCaseFactory {
         return new UpdateProductUseCaseImpl(reader, writer);
     }
 
-    public static EnableProductUseCase enableProductService(ProductWriterGateway writer) {
-        return new EnableProductUseCaseImpl(writer);
+    public static EnableProductUseCase enableProductService(ProductWriterGateway writer, ProductReaderGateway reader) {
+        return new EnableProductUseCaseImpl(reader, writer);
     }
 
-    public static DisableProductUseCase disableProductService(ProductWriterGateway writer) {
-        return new DisableProductUseCaseImpl(writer);
+    public static DisableProductUseCase disableProductService(ProductWriterGateway writer, ProductReaderGateway reader) {
+        return new DisableProductUseCaseImpl(reader, writer);
     }
 }
