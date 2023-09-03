@@ -1,17 +1,16 @@
-package br.com.fiap.tech.challenge.service;
+package br.com.fiap.tech.challenge.usecase.customer;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Customer;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Document;
-import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
-import br.com.fiap.tech.challenge.port.driver.FindCustomerByDocumentService;
+import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Optional;
 
 @RequiredArgsConstructor
-class FindCustomerByDocumentServiceImpl implements FindCustomerByDocumentService {
+class FindCustomerByDocumentUseCaseImpl implements FindCustomerByDocumentUseCase {
 
-    private final CustomerReaderService readerService;
+    private final CustomerReaderGateway readerService;
 
     @Override
     public Optional<Customer> get(String document) {
