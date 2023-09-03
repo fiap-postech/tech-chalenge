@@ -1,24 +1,24 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
 import br.com.fiap.tech.challenge.adapter.controller.product.CreateProductController;
+import br.com.fiap.tech.challenge.adapter.controller.product.FindAllAvailableProductByCategoryController;
+import br.com.fiap.tech.challenge.adapter.controller.product.FindAllAvailableProductController;
+import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDController;
+import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
+import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
 import br.com.fiap.tech.challenge.adapter.dto.ComboDTO;
+import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.rest.mapping.CreateProductMapper;
 import br.com.fiap.tech.challenge.rest.mapping.ProductResponseMapper;
+import br.com.fiap.tech.challenge.rest.mapping.UpdateProductMapper;
 import br.com.fiap.tech.challenge.rest.resource.doc.ProductResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateComboProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
-import br.com.fiap.tech.challenge.rest.util.Mappings;
 import br.com.fiap.tech.challenge.rest.util.Pages;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCategoryUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
 import br.com.fiap.tech.challenge.util.ResponseList;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -37,9 +37,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Optional;
-import java.util.UUID;
-
-import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
 
 @RestController
 @RequestMapping("/product")
@@ -47,15 +44,15 @@ import static br.com.fiap.tech.challenge.rest.util.Mappings.toProductResponse;
 public class ProductResource implements ProductResourceDoc {
 
     private final CreateProductMapper createProductMapper;
+    private final UpdateProductMapper updateProductMapper;
     private final ProductResponseMapper productResponseMapper;
 
-    private final FindAllAvailableProductUseCase findAllAvailableProductUseCase;
-    private final FindAllAvailableProductByCategoryUseCase findAllAvailableProductByCategoryUseCase;
-    private final FindProductByUUIDUseCase findProductByUUIDUseCase;
+    private final FindAllAvailableProductController findAllAvailableProductController;
+    private final FindAllAvailableProductByCategoryController findAllAvailableProductByCategoryController;
+    private final FindProductByUUIDController findProductByUUIDController;
     private final CreateProductController createProductController;
-    private final UpdateProductUseCase updateProductUseCase;
-    private final EnableProductUseCase enableProductUseCase;
-    private final DisableProductUseCase disableProductUseCase;
+    private final UpdateProductController updateProductController;
+    private final ManageProductController manageProductController;
 
 
     @GetMapping
@@ -63,43 +60,49 @@ public class ProductResource implements ProductResourceDoc {
                                                          @RequestParam(required = false) ProductCategory category) {
 
         var result = Optional.ofNullable(category)
-                .map(c -> findAllAvailableProductByCategoryUseCase.list(c, Pages.of(pageable)))
-                .orElseGet(() -> findAllAvailableProductUseCase.list(Pages.of(pageable)));
+                .map(c -> findAllAvailableProductByCategoryController.list(c, Pages.of(pageable)))
+                .orElseGet(() -> findAllAvailableProductController.list(Pages.of(pageable)));
 
-        return ResponseList.from(result, Mappings::toProductResponse);
+        return ResponseList.from(result, this::toResponse);
     }
 
     @GetMapping("/{uuid}")
     public ProductResponse getByUUID(@PathVariable String uuid) {
-        return toProductResponse(findProductByUUIDUseCase.get(UUID.fromString(uuid)));
+        return toResponse(findProductByUUIDController.get(uuid));
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public ProductResponse create(@RequestBody @Valid CreateProductRequest request) {
         if (request instanceof CreateComboProductRequest comboRequest) {
-            return productResponseMapper.toResponse(
-                    (ComboDTO) createProductController.create(createProductMapper.fromRequest(comboRequest))
-            );
+            return toResponse(createProductController.create(createProductMapper.fromRequest(comboRequest)));
         }
 
-        return productResponseMapper.toResponse(
+        return toResponse(
                 createProductController.create(createProductMapper.fromRequest((CreateSingleProductRequest) request))
         );
     }
 
     @PutMapping
     public ProductResponse update(@RequestBody @Valid UpdateProductRequest request) {
-        return toProductResponse(updateProductUseCase.update(request.toDomain()));
+        return toResponse(updateProductController.update(updateProductMapper.toDTO(request)));
     }
 
     @PatchMapping("/{uuid}/enable")
     public ProductResponse enable(@PathVariable String uuid) {
-        return toProductResponse(enableProductUseCase.enable(findProductByUUIDUseCase.get(UUID.fromString(uuid))));
+        return toResponse(manageProductController.enable(uuid));
     }
 
     @PatchMapping("/{uuid}/disable")
     public ProductResponse disable(@PathVariable String uuid) {
-        return toProductResponse(disableProductUseCase.disable(findProductByUUIDUseCase.get(UUID.fromString(uuid))));
+        return toResponse(manageProductController.disable(uuid));
+    }
+
+    private ProductResponse toResponse(ProductDTO dto) {
+        if (dto instanceof ComboDTO combo) {
+            return productResponseMapper.toResponse(combo);
+        }
+
+        return productResponseMapper.toResponse(dto);
     }
 }
