@@ -51,12 +51,6 @@ public abstract class CreateProductRequest extends Request<Product> {
 
     @Override
     public Product toDomain() {
-        return switch (getCategory()) {
-            case COMBO -> ComboMapper.INSTANCE.toCombo((CreateComboProductRequest) this);
-            case SIDE_DISH -> SideDishMapper.INSTANCE.toSideDish((CreateSingleProductRequest) this);
-            case DESSERT -> DessertMapper.INSTANCE.toDessert((CreateSingleProductRequest) this);
-            case BEVERAGE -> BeverageMapper.INSTANCE.toBeverage((CreateSingleProductRequest) this);
-            case SANDWICH -> SandwichMapper.INSTANCE.toSandwich((CreateSingleProductRequest) this);
-        };
+        throw new IllegalStateException("this method is deprecated and will be removed soon");
     }
 }
