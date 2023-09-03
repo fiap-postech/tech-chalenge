@@ -7,7 +7,7 @@ import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-class ProductController implements CreateProductController{
+class CreateProductControllerImpl implements CreateProductController {
 
     private final CreateProductUseCase createProductUseCase;
     private final ProductPresenter productPresenter;
