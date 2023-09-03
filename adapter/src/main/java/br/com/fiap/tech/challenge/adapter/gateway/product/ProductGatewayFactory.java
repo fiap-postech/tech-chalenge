@@ -8,7 +8,7 @@ import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
-public class GatewayFactory {
+public class ProductGatewayFactory {
 
     public static ProductReaderGateway productReaderGateway(ProductReaderRepository repository){
         return new ProductReaderGatewayImpl(repository);
