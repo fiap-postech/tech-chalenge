@@ -13,7 +13,6 @@ import java.math.BigDecimal;
 import java.util.UUID;
 
 import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
-import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper
@@ -26,19 +25,6 @@ public interface DessertMapper {
     @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
     Dessert toDessert(ProductEntity request);
 
-    @Mapping(target = "uuid", source = "request", qualifiedByName = "getUuid")
-    @Mapping(target = "name", expression = "java(request.name())")
-    @Mapping(target = "category", expression = "java(request.category())")
-    @Mapping(target = "description", expression = "java(request.description())")
-    @Mapping(target = "enabled", expression = "java(request.enabled())")
-    @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")
-    @Mapping(target = "image", source = "request", qualifiedByName = "imageToStringConverter")
-    @Mapping(target = "created", ignore = true)
-    @Mapping(target = "lastUpdated", ignore = true)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "version", ignore = true)
-    ProductEntity toProductEntity(Dessert request);
-
     @Named("getUuid")
     static String getUuid(Dessert request) {
         return request.uuid().toString();
@@ -47,11 +33,6 @@ public interface DessertMapper {
     @Named("generateUuid")
     static UUID generateUuid(String uuid) {
         return UUID.fromString(uuid);
-    }
-
-    @Named("priceToBigDecimal")
-    static BigDecimal priceToBigDecimal(Dessert request) {
-        return priceToBigDecimalConverter(request.price());
     }
 
     @Named("getPrice")
