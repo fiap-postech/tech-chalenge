@@ -1,0 +1,15 @@
+plugins {
+    id 'java-library'
+}
+
+version '1.0.0'
+
+dependencies {
+    compileOnly 'org.springframework:spring-core:6.0.10'
+    compileOnly 'org.springframework:spring-context:6.0.10'
+    compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
+
+    implementation 'io.vavr:vavr:0.10.4'
+
+    compileOnly project(":application")
+}
