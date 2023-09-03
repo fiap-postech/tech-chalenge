@@ -1,5 +1,10 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
+import br.com.fiap.tech.challenge.adapter.controller.customer.CreateCustomerController;
+import br.com.fiap.tech.challenge.adapter.controller.customer.CustomerControllerFactory;
+import br.com.fiap.tech.challenge.adapter.controller.customer.FindCustomerByDocumentController;
+import br.com.fiap.tech.challenge.adapter.controller.customer.FindCustomerByUUIDController;
+import br.com.fiap.tech.challenge.adapter.controller.customer.UpgradeCustomerController;
 import br.com.fiap.tech.challenge.adapter.controller.product.CreateProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.FindAllAvailableProductByCategoryController;
 import br.com.fiap.tech.challenge.adapter.controller.product.FindAllAvailableProductController;
@@ -7,7 +12,12 @@ import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDCo
 import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
+import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
+import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
+import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
+import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.customer.UpgradeCustomerUseCase;
 import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
 import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
 import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
@@ -49,5 +59,25 @@ public class ControllerConfiguration {
     @Bean
     public FindProductByUUIDController findProductByUUIDController(FindProductByUUIDUseCase useCase, ProductPresenter presenter) {
         return ProductControllerFactory.findProductByUUIDController(useCase, presenter);
+    }
+
+    @Bean
+    public CreateCustomerController createCustomerController(CreateCustomerUseCase useCase, CustomerPresenter presenter) {
+        return CustomerControllerFactory.createCustomerController(useCase, presenter);
+    }
+
+    @Bean
+    public FindCustomerByDocumentController findCustomerByDocumentController(FindCustomerByDocumentUseCase useCase, CustomerPresenter presenter) {
+        return CustomerControllerFactory.findCustomerByDocumentController(useCase, presenter);
+    }
+
+    @Bean
+    public FindCustomerByUUIDController findCustomerByUUIDController(FindCustomerByUUIDUseCase useCase, CustomerPresenter presenter) {
+        return CustomerControllerFactory.findCustomerByUUIDController(useCase, presenter);
+    }
+
+    @Bean
+    public UpgradeCustomerController upgradeCustomerController(UpgradeCustomerUseCase useCase, CustomerPresenter presenter) {
+        return CustomerControllerFactory.upgradeCustomerController(useCase, presenter);
     }
 }
