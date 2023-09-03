@@ -1,17 +1,17 @@
-package br.com.fiap.tech.challenge.service;
+package br.com.fiap.tech.challenge.usecase.product.impl;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.port.driven.ProductReaderService;
-import br.com.fiap.tech.challenge.port.driver.FindAllAvailableProductByCategory;
+import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
+import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCategoryUseCase;
 import br.com.fiap.tech.challenge.util.Page;
 import br.com.fiap.tech.challenge.util.ResponseList;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-class FindAllAvailableProductByCategoryImpl implements FindAllAvailableProductByCategory {
+class FindAllAvailableProductByCategoryUseCaseImpl implements FindAllAvailableProductByCategoryUseCase {
 
-    private final ProductReaderService readerService;
+    private final ProductReaderGateway readerService;
 
     @Override
     public ResponseList<Product> list(ProductCategory category, Page page) {

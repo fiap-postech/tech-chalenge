@@ -1,10 +1,10 @@
-package br.com.fiap.tech.challenge.port.driver;
+package br.com.fiap.tech.challenge.usecase.product;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 
 import java.util.UUID;
 
-public interface FindProductByUUIDService {
+public interface FindProductByUUIDUseCase {
 
     Product get(UUID uuid);
 
