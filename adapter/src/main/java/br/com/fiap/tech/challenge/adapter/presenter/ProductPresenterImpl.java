@@ -12,6 +12,7 @@ import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
+import br.com.fiap.tech.challenge.util.ResponseList;
 
 class ProductPresenterImpl implements ProductPresenter{
     @Override
@@ -23,5 +24,10 @@ class ProductPresenterImpl implements ProductPresenter{
             case BEVERAGE -> BeverageMapper.INSTANCE.toDTO((Beverage) product);
             case SANDWICH -> SandwichMapper.INSTANCE.toDTO((Sandwich) product);
         };
+    }
+
+    @Override
+    public ResponseList<ProductDTO> present(ResponseList<Product> list) {
+        return ResponseList.from(list, this::present);
     }
 }
