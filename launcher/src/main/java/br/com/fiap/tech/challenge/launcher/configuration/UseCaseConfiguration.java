@@ -9,7 +9,7 @@ import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCateg
 import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.impl.ProductUseCaseFactory;
+import br.com.fiap.tech.challenge.usecase.product.ProductUseCaseFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,9 +1,8 @@
-package br.com.fiap.tech.challenge.usecase.product.impl;
+package br.com.fiap.tech.challenge.usecase.product;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.product.ProductWriterGateway;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

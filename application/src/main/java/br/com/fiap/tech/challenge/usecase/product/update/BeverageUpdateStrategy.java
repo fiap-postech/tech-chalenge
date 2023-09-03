@@ -1,20 +1,20 @@
-package br.com.fiap.tech.challenge.usecase.product.impl.update;
+package br.com.fiap.tech.challenge.usecase.product.update;
 
 import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
-import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
+import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
-class DessertUpdateStrategy extends AbstractProductUpdateStrategy<Dessert> {
-    public DessertUpdateStrategy(UpdateProductDTO request) {
-        super(Dessert.class, request);
+class BeverageUpdateStrategy extends AbstractProductUpdateStrategy<Beverage> {
+    public BeverageUpdateStrategy(UpdateProductDTO request) {
+        super(Beverage.class, request);
     }
 
     @Override
-    protected Dessert doUpdate(Dessert dessert) {
-        var builder = dessert.toBuilder();
+    protected Beverage doUpdate(Beverage beverage) {
+        var builder = beverage.toBuilder();
 
         updateName(builder::name);
         updateDescription(builder::description);

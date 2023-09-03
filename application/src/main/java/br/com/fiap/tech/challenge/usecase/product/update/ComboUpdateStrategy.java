@@ -1,20 +1,20 @@
-package br.com.fiap.tech.challenge.usecase.product.impl.update;
+package br.com.fiap.tech.challenge.usecase.product.update;
 
 import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
-import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
+import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
 
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
-class SandwichUpdateStrategy extends AbstractProductUpdateStrategy<Sandwich> {
-    public SandwichUpdateStrategy(UpdateProductDTO request) {
-        super(Sandwich.class, request);
+class ComboUpdateStrategy extends AbstractProductUpdateStrategy<Combo> {
+    public ComboUpdateStrategy(UpdateProductDTO request) {
+        super(Combo.class, request);
     }
 
     @Override
-    protected Sandwich doUpdate(Sandwich sandwich) {
-        var builder = sandwich.toBuilder();
+    protected Combo doUpdate(Combo combo) {
+        var builder = combo.toBuilder();
 
         updateName(builder::name);
         updateDescription(builder::description);

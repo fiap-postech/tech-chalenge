@@ -1,11 +1,10 @@
-package br.com.fiap.tech.challenge.usecase.product.impl;
+package br.com.fiap.tech.challenge.usecase.product;
 
 import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.product.ProductWriterGateway;
-import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.impl.update.UpdateStrategyFactory;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.usecase.product.update.UpdateStrategyFactory;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

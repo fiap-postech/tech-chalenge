@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.usecase.product.impl;
+package br.com.fiap.tech.challenge.usecase.product;
 
 import br.com.fiap.tech.challenge.dto.CreateComboProductDTO;
 import br.com.fiap.tech.challenge.dto.CreateProductDTO;
@@ -8,9 +8,8 @@ import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.product.ProductWriterGateway;
-import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
 import lombok.AllArgsConstructor;
 
 import java.util.UUID;

@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.usecase.product.impl.update;
+package br.com.fiap.tech.challenge.usecase.product.update;
 
 import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;

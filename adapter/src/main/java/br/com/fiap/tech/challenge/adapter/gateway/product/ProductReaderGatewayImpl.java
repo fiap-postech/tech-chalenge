@@ -10,7 +10,7 @@ import br.com.fiap.tech.challenge.adapter.mapping.SideDishMapper;
 import br.com.fiap.tech.challenge.adapter.repository.ProductReaderRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.util.Page;
 import br.com.fiap.tech.challenge.util.ResponseList;
 import lombok.RequiredArgsConstructor;

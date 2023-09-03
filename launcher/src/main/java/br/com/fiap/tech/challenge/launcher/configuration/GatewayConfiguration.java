@@ -3,8 +3,8 @@ package br.com.fiap.tech.challenge.launcher.configuration;
 import br.com.fiap.tech.challenge.adapter.gateway.product.GatewayFactory;
 import br.com.fiap.tech.challenge.adapter.repository.ProductReaderRepository;
 import br.com.fiap.tech.challenge.adapter.repository.ProductWriterRepository;
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.product.ProductWriterGateway;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

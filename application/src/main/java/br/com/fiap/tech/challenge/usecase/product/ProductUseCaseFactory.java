@@ -1,14 +1,7 @@
-package br.com.fiap.tech.challenge.usecase.product.impl;
+package br.com.fiap.tech.challenge.usecase.product;
 
-import br.com.fiap.tech.challenge.gateway.product.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.product.ProductWriterGateway;
-import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCategoryUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
