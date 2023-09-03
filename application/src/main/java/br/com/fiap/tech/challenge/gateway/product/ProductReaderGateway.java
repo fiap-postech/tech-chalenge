@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.port.driven;
+package br.com.fiap.tech.challenge.gateway.product;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
@@ -7,7 +7,7 @@ import br.com.fiap.tech.challenge.util.ResponseList;
 
 import java.util.UUID;
 
-public interface ProductReaderService {
+public interface ProductReaderGateway {
 
     ResponseList<Product> readAll(Page page);
 
