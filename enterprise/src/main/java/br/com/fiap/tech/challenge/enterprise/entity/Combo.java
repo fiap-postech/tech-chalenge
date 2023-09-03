@@ -13,6 +13,8 @@ import java.io.Serial;
 import java.util.UUID;
 import java.util.stream.Stream;
 
+import static java.util.Objects.isNull;
+
 @Getter
 @Accessors(fluent = true)
 @ComboValid
@@ -43,14 +45,12 @@ public class Combo extends Product {
                 description,
                 price,
                 image,
-                currentEnabled(enabled, sandwich.enabled(), beverage.enabled(), sideDish.enabled())
+                currentEnabled(enabled, sandwich, beverage, sideDish)
         );
 
         this.sandwich = sandwich;
         this.beverage = beverage;
         this.sideDish = sideDish;
-
-        validate();
     }
 
     @Override
@@ -84,19 +84,8 @@ public class Combo extends Product {
         return Discount.of(fullPrice().subtract(price()).amount());
     }
 
-    @Override
-    public Product doUpdate(Product product) {
-        return toBuilder()
-                .name(product.name())
-                .description(product.description())
-                .image(product.image())
-                .price(product.price())
-                .enabled(product.enabled())
-                .build();
-    }
-
-    private static boolean currentEnabled(boolean enabled, Boolean... dependentsEnabled){
-        if (Stream.of(dependentsEnabled).anyMatch(b -> !b)){
+    private static boolean currentEnabled(boolean enabled, Product... products) {
+        if (Stream.of(products).filter(p -> !isNull(p)).map(Product::enabled).anyMatch(b -> !b)) {
             return false;
         }
 

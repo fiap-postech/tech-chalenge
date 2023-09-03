@@ -25,6 +25,7 @@ public enum ApplicationError implements BaseApplicationError {
     PAYMENT_ERROR("AE-010", UNPROCESSABLE_ENTITY, FALSE, "There was an error in payment attempt, please try again soon"),
     PAYMENT_NOT_FOUND("AE-011", NOT_FOUND, TRUE, "There are no payment registered for purchase [purchaseUUID={}]"),
     PURCHASE_NOT_FOUND_BY_UUID("AE-012", INVALID_PARAMETER, TRUE, "Purchase not found [uuid={}]"),
+    INVALID_CATEGORY_FOR_PRODUCT("AE-013", INVALID_PARAMETER, FALSE, "Received category is not valid for this product"),
     ;
 
     private final String code;

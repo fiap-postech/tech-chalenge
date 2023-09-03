@@ -12,6 +12,7 @@ dependencies {
     compileOnly "org.flywaydb:flyway-mysql:$flywayVersion"
 
     compileOnly project(":application")
+    compileOnly project(":adapter")
 
     api 'com.mysql:mysql-connector-j:8.0.33'
 }

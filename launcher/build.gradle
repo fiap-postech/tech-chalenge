@@ -30,7 +30,7 @@ dependencies {
 
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
-    implementation project(":application")
+    implementation project(":adapter")
     implementation project(":drivers:rest")
     implementation project(":drivers:mysql")
     implementation project(":drivers:redis")

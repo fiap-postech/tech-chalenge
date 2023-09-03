@@ -6,6 +6,8 @@ include 'launcher'
 
 include 'enterprise'
 
+include 'adapter'
+
 include 'drivers:mysql'
 findProject(':drivers:mysql')?.name = 'mysql'
 

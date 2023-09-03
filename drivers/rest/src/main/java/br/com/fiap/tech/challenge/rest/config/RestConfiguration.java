@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.config;
 
 import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.mapping.AddCartItemRequestMapper;
 import br.com.fiap.tech.challenge.rest.mapping.CreateCartRequestMapper;
 import br.com.fiap.tech.challenge.rest.util.Mappings;
@@ -16,8 +16,8 @@ public class RestConfiguration {
 
     @Bean("restMappings")
     @Autowired
-    public Mappings loadMappings(FindProductByUUIDService findProductByUUIDService) {
-        return Mappings.init(findProductByUUIDService);
+    public Mappings loadMappings(FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return Mappings.init(findProductByUUIDUseCase);
     }
 
     @Bean("restMappingCustomer")
@@ -28,8 +28,8 @@ public class RestConfiguration {
 
     @Bean("restMappingAddCart")
     @Autowired
-    public AddCartItemRequestMapper loadMappingAddCart(FindProductByUUIDService findProductByUUIDService) {
-        return AddCartItemRequestMapper.init(findProductByUUIDService);
+    public AddCartItemRequestMapper loadMappingAddCart(FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return AddCartItemRequestMapper.init(findProductByUUIDUseCase);
     }
 
 }

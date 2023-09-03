@@ -15,6 +15,7 @@ public abstract class Request<T extends AssertionConcern> implements Serializabl
     @Serial
     private static final long serialVersionUID = -529940882058735178L;
 
+    @Deprecated(forRemoval = true)
     public abstract T toDomain();
 
 }
