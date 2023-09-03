@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.rest.mapping.product.update;
+package br.com.fiap.tech.challenge.usecase.product.impl.update;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 

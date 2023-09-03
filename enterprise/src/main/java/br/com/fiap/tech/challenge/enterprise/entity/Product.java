@@ -50,14 +50,6 @@ public abstract class Product extends Entity {
         this.enabled = enabled;
     }
 
-    public Product update(Product product) {
-        if (product.category() != category()) {
-            throw new ApplicationException(PRODUCT_SHOULD_BE_SAME_CATEGORY_FOR_UPDATE, category(), product.category());
-        }
-
-        return doUpdate(product);
-    }
-
     public Discount discount() {
         return Discount.withoutDiscount();
     }
@@ -69,5 +61,4 @@ public abstract class Product extends Entity {
     public abstract ProductCategory category();
     public abstract Product enable();
     public abstract Product disable();
-    public abstract Product doUpdate(Product product);
 }

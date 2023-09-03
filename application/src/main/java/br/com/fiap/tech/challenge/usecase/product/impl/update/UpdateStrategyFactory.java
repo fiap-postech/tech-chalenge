@@ -1,13 +1,13 @@
-package br.com.fiap.tech.challenge.rest.mapping.product.update;
+package br.com.fiap.tech.challenge.usecase.product.impl.update;
 
+import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class UpdateStrategyFactory {
-    public static UpdateStrategy getStrategy(ProductCategory category, UpdateProductRequest request){
+    public static UpdateStrategy getStrategy(ProductCategory category, UpdateProductDTO request){
         return switch (category){
             case COMBO -> new ComboUpdateStrategy(request);
             case DESSERT -> new DessertUpdateStrategy(request);

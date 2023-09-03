@@ -84,17 +84,6 @@ public class Combo extends Product {
         return Discount.of(fullPrice().subtract(price()).amount());
     }
 
-    @Override
-    public Product doUpdate(Product product) {
-        return toBuilder()
-                .name(product.name())
-                .description(product.description())
-                .image(product.image())
-                .price(product.price())
-                .enabled(product.enabled())
-                .build();
-    }
-
     private static boolean currentEnabled(boolean enabled, Product... products) {
         if (Stream.of(products).filter(p -> !isNull(p)).map(Product::enabled).anyMatch(b -> !b)) {
             return false;

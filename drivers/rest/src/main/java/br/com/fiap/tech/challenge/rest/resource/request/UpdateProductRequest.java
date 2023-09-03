@@ -29,6 +29,6 @@ public class UpdateProductRequest extends Request<Product> {
 
     @Override
     public Product toDomain() {
-        return null; // UpdateProductRequestMapper.INSTANCE.toProduct(this);
+        throw new IllegalStateException("this method is deprecated and will be removed soon");
     }
 }
