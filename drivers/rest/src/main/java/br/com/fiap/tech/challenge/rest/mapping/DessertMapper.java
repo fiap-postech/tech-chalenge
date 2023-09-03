@@ -24,10 +24,6 @@ public interface DessertMapper {
 
     DessertMapper INSTANCE = Mappers.getMapper(DessertMapper.class);
 
-    @Mapping(target = "uuid", source = "request", qualifiedByName = "generateUuid")
-    @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
-    @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
-    Dessert toDessert(CreateSingleProductRequest request);
 
     @Mapping(target = "id", source = "request", qualifiedByName = "getUuid")
     @Mapping(target = "price", source = "request", qualifiedByName = "priceToBigDecimal")

@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.rest.mapping;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.enterprise.entity.Customer;
-import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
+import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -20,7 +20,7 @@ public abstract class CreateCartRequestMapper {
 
     public static final CreateCartRequestMapper INSTANCE = Mappers.getMapper(CreateCartRequestMapper.class);
 
-    protected static FindCustomerByUUIDService findCustomerByUUIDService;
+    protected static FindCustomerByUUIDUseCase findCustomerByUUIDUseCase;
 
     @Mapping(target = "customer", source = "source", qualifiedByName = "getCustomer")
     @Mapping(target = "items", ignore = true)
@@ -31,11 +31,11 @@ public abstract class CreateCartRequestMapper {
     @Named("getCustomer")
     Customer getCustomer(CreateCartRequest source) {
         var customerId = source.getCustomerId();
-        return isNull(customerId) ? null : findCustomerByUUIDService.get(UUID.fromString(customerId));
+        return isNull(customerId) ? null : findCustomerByUUIDUseCase.get(UUID.fromString(customerId));
     }
 
-    public static CreateCartRequestMapper init(FindCustomerByUUIDService service) {
-        findCustomerByUUIDService = service;
+    public static CreateCartRequestMapper init(FindCustomerByUUIDUseCase service) {
+        findCustomerByUUIDUseCase = service;
         return CreateCartRequestMapper.INSTANCE;
     }
 }
