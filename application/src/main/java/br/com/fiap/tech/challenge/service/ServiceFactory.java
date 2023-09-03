@@ -19,6 +19,7 @@ import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;
 
 public class ServiceFactory {
@@ -26,19 +27,19 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
-    public static CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader){
+    public static CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader) {
         return new CreateCustomerServiceImpl(writer, reader);
     }
 
-    public static FindCustomerByDocumentService findCustomerByDocumentService(CustomerReaderService reader){
+    public static FindCustomerByDocumentService findCustomerByDocumentService(CustomerReaderService reader) {
         return new FindCustomerByDocumentServiceImpl(reader);
     }
 
-    public static FindCustomerByUUIDService findFindCustomerByUUIDService(CustomerReaderService reader){
+    public static FindCustomerByUUIDService findFindCustomerByUUIDService(CustomerReaderService reader) {
         return new FindCustomerByUUIDServiceImpl(reader);
     }
 
-    public static UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer){
+    public static UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer) {
         return new UpgradeCustomerServiceImpl(writer);
     }
 
@@ -50,15 +51,15 @@ public class ServiceFactory {
         return new CreateCartServiceImpl(writer);
     }
 
-    public  static AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer) {
         return new AddCartItemServiceImpl(reader, writer);
     }
 
-    public  static UpdateCartItemService updateCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static UpdateCartItemService updateCartItemService(CartReaderService reader, CartWriterService writer) {
         return new UpdateCartItemServiceImpl(reader, writer);
     }
 
-    public  static RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
         return new RemoveCartItemServiceImpl(reader, writer);
     }
 
@@ -66,6 +67,10 @@ public class ServiceFactory {
                                                   CreatePurchaseService purchaseService,
                                                   PaymentGatewayService paymentGateway) {
         return new CheckoutServiceImpl(findCartService, purchaseService, paymentGateway);
+    }
+
+    public static UpdatePurchaseService updatePurchaseService(PurchaseWriterService writer) {
+        return new UpdatePurchaseServiceImpl(writer);
     }
 
     public static CreatePurchaseService createPurchaseService(PurchaseWriterService writer) {

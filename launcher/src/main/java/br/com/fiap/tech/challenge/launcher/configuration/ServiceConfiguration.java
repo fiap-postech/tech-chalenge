@@ -19,6 +19,7 @@ import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
 import org.springframework.context.annotation.Bean;
@@ -33,12 +34,12 @@ public class ServiceConfiguration {
     }
 
     @Bean
-    public FindCustomerByDocumentService findCustomerByDocumentService (CustomerReaderService reader){
+    public FindCustomerByDocumentService findCustomerByDocumentService(CustomerReaderService reader) {
         return ServiceFactory.findCustomerByDocumentService(reader);
     }
 
     @Bean
-    public FindCustomerByUUIDService findCustomerByUUIDService (CustomerReaderService reader){
+    public FindCustomerByUUIDService findCustomerByUUIDService(CustomerReaderService reader) {
         return ServiceFactory.findFindCustomerByUUIDService(reader);
     }
 
@@ -82,6 +83,11 @@ public class ServiceConfiguration {
     @Bean
     public CreatePurchaseService createPurchaseService(PurchaseWriterService writer) {
         return ServiceFactory.createPurchaseService(writer);
+    }
+
+    @Bean
+    public UpdatePurchaseService updatePurchaseService(PurchaseWriterService writer) {
+        return ServiceFactory.updatePurchaseService(writer);
     }
 
     @Bean

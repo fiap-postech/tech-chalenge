@@ -12,10 +12,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 import java.util.function.Function;
 
+import static br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus.FINISHED;
 import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PURCHASE_NOT_FOUND_BY_UUID;
+import static java.util.Comparator.comparing;
 
 @Service
 public class PurchaseEntityReaderService implements PurchaseReaderService {
@@ -48,7 +51,15 @@ public class PurchaseEntityReaderService implements PurchaseReaderService {
                 result.getSize(),
                 result.getNumberOfElements(),
                 result.getTotalElements(),
-                result.getContent().stream().map(p -> p.toDomain(purchaseMapper)).toList()
+                getPurchases(result)
         );
+    }
+
+    private List<Purchase> getPurchases(org.springframework.data.domain.Page<PurchaseEntity> result) {
+        return result.getContent().stream()
+                .map(p -> p.toDomain(purchaseMapper))
+                .filter(p -> p.status() != FINISHED)
+                .sorted(comparing(p -> p.status().toString()))
+                .toList();
     }
 }
