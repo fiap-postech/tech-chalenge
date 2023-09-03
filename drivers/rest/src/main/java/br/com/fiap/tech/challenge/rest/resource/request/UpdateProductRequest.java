@@ -2,7 +2,6 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
-import br.com.fiap.tech.challenge.rest.mapping.UpdateProductRequestMapper;
 import jakarta.validation.constraints.NotBlank;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,6 +29,6 @@ public class UpdateProductRequest extends Request<Product> {
 
     @Override
     public Product toDomain() {
-        return UpdateProductRequestMapper.INSTANCE.toProduct(this);
+        return null; // UpdateProductRequestMapper.INSTANCE.toProduct(this);
     }
 }

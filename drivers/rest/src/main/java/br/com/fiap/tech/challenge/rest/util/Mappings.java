@@ -1,12 +1,14 @@
 package br.com.fiap.tech.challenge.rest.util;
 
+import br.com.fiap.tech.challenge.adapter.dto.ComboDTO;
+import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
 import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
-import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.mapping.BeverageMapper;
 import br.com.fiap.tech.challenge.rest.mapping.ComboMapper;
 import br.com.fiap.tech.challenge.rest.mapping.DessertMapper;
@@ -18,12 +20,13 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.enterprise.enums.ProductCategory.BEVERAGE;
 import static java.util.Objects.isNull;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
 public class Mappings {
 
-    private static FindProductByUUIDService findProductByUUIDService;
+    private static FindProductByUUIDUseCase findProductByUUIDUseCase;
 
 
     public static ProductResponse toProductResponse(Product product) {
@@ -38,14 +41,13 @@ public class Mappings {
         };
     }
 
-
     public static Product getProduct(String productId) {
-        return isNull(productId) ? null : findProductByUUIDService.get(UUID.fromString(productId));
+        return isNull(productId) ? null : findProductByUUIDUseCase.get(UUID.fromString(productId));
     }
 
 
-    public static Mappings init(FindProductByUUIDService service) {
-        findProductByUUIDService = service;
+    public static Mappings init(FindProductByUUIDUseCase service) {
+        findProductByUUIDUseCase = service;
         return new Mappings();
     }
 }

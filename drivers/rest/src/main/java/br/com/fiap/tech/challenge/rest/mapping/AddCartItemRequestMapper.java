@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.rest.mapping;
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
-import br.com.fiap.tech.challenge.port.driver.FindProductByUUIDService;
+import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -19,7 +19,7 @@ public abstract class AddCartItemRequestMapper {
 
     public static AddCartItemRequestMapper INSTANCE = Mappers.getMapper(AddCartItemRequestMapper.class);
 
-    protected static FindProductByUUIDService findProductByUUIDService;
+    protected static FindProductByUUIDUseCase findProductByUUIDUseCase;
 
     @Mapping(target = "product", source = "source", qualifiedByName = "getProduct")
     @Mapping(target = "quantity", source = "source", qualifiedByName = "getQuantity")
@@ -28,7 +28,7 @@ public abstract class AddCartItemRequestMapper {
     @Named("getProduct")
     Product getProduct(AddCartItemRequest source) {
         var id = source.getProductId();
-        return findProductByUUIDService.get(UUID.fromString(id));
+        return findProductByUUIDUseCase.get(UUID.fromString(id));
     }
 
     @Named("getQuantity")
@@ -36,8 +36,8 @@ public abstract class AddCartItemRequestMapper {
         return Quantity.of(source.getQuantity());
     }
 
-    public static AddCartItemRequestMapper init(FindProductByUUIDService service) {
-        findProductByUUIDService = service;
+    public static AddCartItemRequestMapper init(FindProductByUUIDUseCase service) {
+        findProductByUUIDUseCase = service;
         return AddCartItemRequestMapper.INSTANCE;
     }
 

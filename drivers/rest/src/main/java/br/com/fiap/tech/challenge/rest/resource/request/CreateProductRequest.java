@@ -1,14 +1,13 @@
 package br.com.fiap.tech.challenge.rest.resource.request;
 
-import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
-import br.com.fiap.tech.challenge.enterprise.entity.Combo;
-import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
-import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
-import br.com.fiap.tech.challenge.rest.mapping.*;
+import br.com.fiap.tech.challenge.rest.mapping.BeverageMapper;
+import br.com.fiap.tech.challenge.rest.mapping.ComboMapper;
+import br.com.fiap.tech.challenge.rest.mapping.DessertMapper;
+import br.com.fiap.tech.challenge.rest.mapping.SandwichMapper;
+import br.com.fiap.tech.challenge.rest.mapping.SideDishMapper;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import jakarta.validation.constraints.NotBlank;
