@@ -42,12 +42,12 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public EnableProductUseCase enableProductService(ProductWriterGateway writer) {
-        return ProductUseCaseFactory.enableProductService(writer);
+    public EnableProductUseCase enableProductService(ProductWriterGateway writer, ProductReaderGateway reader) {
+        return ProductUseCaseFactory.enableProductService(writer, reader);
     }
 
     @Bean
-    public DisableProductUseCase disableProductService(ProductWriterGateway writer) {
-        return ProductUseCaseFactory.disableProductService(writer);
+    public DisableProductUseCase disableProductService(ProductWriterGateway writer, ProductReaderGateway reader) {
+        return ProductUseCaseFactory.disableProductService(writer, reader);
     }
 }
