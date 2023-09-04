@@ -16,7 +16,7 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.CUSTO
 
 @Service
 @RequiredArgsConstructor
-public class CustomerEntityGateway implements CustomerWriterRepository, CustomerReaderRepository {
+public class DBCustomerEntityRepositoryImpl implements CustomerWriterRepository, CustomerReaderRepository {
 
     private final CustomerEntityRepository repository;
     private final DBCustomerMapper mapper;

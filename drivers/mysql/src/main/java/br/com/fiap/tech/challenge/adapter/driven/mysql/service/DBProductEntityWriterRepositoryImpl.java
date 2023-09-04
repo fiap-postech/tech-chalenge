@@ -16,7 +16,7 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PRODU
 
 @Service
 @RequiredArgsConstructor
-public class ProductEntityWriterGateway implements ProductWriterRepository {
+public class DBProductEntityWriterRepositoryImpl implements ProductWriterRepository {
 
     private final ProductEntityRepository repository;
     private final DBComboProductMapper comboProductMapper;

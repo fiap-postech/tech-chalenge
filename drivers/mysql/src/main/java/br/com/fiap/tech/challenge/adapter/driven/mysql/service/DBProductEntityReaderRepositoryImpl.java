@@ -22,7 +22,7 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PRODU
 
 @Service
 @RequiredArgsConstructor
-public class ProductEntityReaderGateway implements ProductReaderRepository {
+public class DBProductEntityReaderRepositoryImpl implements ProductReaderRepository {
 
     private final DBComboProductMapper comboMapper;
     private final DBSingleProductMapper singleMapper;
