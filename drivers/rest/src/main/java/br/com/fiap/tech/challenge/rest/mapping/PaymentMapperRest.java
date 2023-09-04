@@ -18,6 +18,7 @@ public interface PaymentMapperRest {
     @Mapping(target = "date", expression = "java(source.date())")
     @Mapping(target = "status", expression = "java(source.status())")
     @Mapping(target = "method", expression = "java(source.method())")
+    @Mapping(target = "urlPayment", expression = "java(source.urlPayment())")
     @Mapping(target = "amount", source = "source", qualifiedByName = "getAmount")
     PaymentResponse toPaymentResponse(Payment source);
 

@@ -8,6 +8,7 @@ import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
+import br.com.fiap.tech.challenge.port.driver.FindPurchaseByPaymentIdService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
@@ -49,5 +50,11 @@ public class ServiceConfiguration {
     @Bean
     public FindPurchaseByUUIDService findPurchaseByUUIDService(PurchaseReaderService reader) {
         return ServiceFactory.findPurchaseByUUIDService(reader);
+    }
+
+    @Bean
+    public FindPurchaseByPaymentIdService findPurchaseByPaymentIdService(PaymentGatewayService paymentGateway,
+                                                                         PurchaseReaderService readerService) {
+        return ServiceFactory.findPurchaseByPaymentIdService(paymentGateway, readerService);
     }
 }
