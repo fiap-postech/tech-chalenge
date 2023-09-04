@@ -11,6 +11,7 @@ import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.FindPurchaseByPaymentIdService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
