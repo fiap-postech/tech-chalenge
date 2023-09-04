@@ -25,4 +25,8 @@ public class CartUseCaseFactory {
     public static UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
         return new UpdateCartItemUseCaseImpl(reader, writer, findProductByUUIDUseCase);
     }
+
+    public static RemoveCartItemUseCase removeCartItemUseCase(CartReaderGateway useCase, CartWriterGateway presenter) {
+        return new RemoveCartItemUseCaseImpl(useCase, presenter);
+    }
 }

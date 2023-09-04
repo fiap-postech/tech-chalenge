@@ -58,6 +58,13 @@ public class Purchase extends Entity {
         validate();
     }
 
+    public Purchase paid() {
+        return toBuilder()
+                .payment(payment.paid())
+                .status(PurchaseStatus.PAID)
+                .build();
+    }
+
     public Purchase made() {
         return toBuilder()
                 .status(PurchaseStatus.MADE)
@@ -101,7 +108,7 @@ public class Purchase extends Entity {
         return Purchase.builder()
                 .date(LocalDate.now())
                 .customer(cart.customer())
-                .status(PurchaseStatus.PAID)
+                .status(PurchaseStatus.WAITING_PAID)
                 .items(
                         cart.items()
                                 .stream()

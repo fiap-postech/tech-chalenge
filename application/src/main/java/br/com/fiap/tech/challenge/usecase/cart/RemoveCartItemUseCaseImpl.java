@@ -11,7 +11,7 @@ import java.util.UUID;
 import static java.util.UUID.fromString;
 
 @AllArgsConstructor
-public class RemoveCartItemUseCaseImpl implements RemoveCartItemUseCase {
+class RemoveCartItemUseCaseImpl implements RemoveCartItemUseCase {
 
     private CartReaderGateway cartReaderGateway;
     private CartWriterGateway writerService;

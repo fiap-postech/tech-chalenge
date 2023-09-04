@@ -31,6 +31,8 @@ public class Payment extends Entity {
     @NotNull
     private final PaymentMethod method;
 
+    private String urlPayment;
+
     @NotNull
     @Positive
     private final Money amount;
@@ -69,5 +71,9 @@ public class Payment extends Entity {
         return toBuilder()
                 .status(PaymentStatus.ERROR)
                 .build();
+    }
+
+    public void setUrlPayment(String urlPayment) {
+        this.urlPayment = urlPayment;
     }
 }
