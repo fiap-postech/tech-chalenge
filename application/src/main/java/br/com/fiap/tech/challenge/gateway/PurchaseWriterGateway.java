@@ -1,7 +1,7 @@
-package br.com.fiap.tech.challenge.port.driven;
+package br.com.fiap.tech.challenge.gateway;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 
-public interface PurchaseWriterService {
+public interface PurchaseWriterGateway {
     Purchase write(Purchase purchase);
 }
