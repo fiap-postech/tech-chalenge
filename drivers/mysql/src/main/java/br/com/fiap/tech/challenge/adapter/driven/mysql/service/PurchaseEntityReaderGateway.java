@@ -5,7 +5,7 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
-import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
+import br.com.fiap.tech.challenge.gateway.PurchaseReaderGateway;
 import br.com.fiap.tech.challenge.util.Page;
 import br.com.fiap.tech.challenge.util.ResponseList;
 import org.springframework.data.domain.PageRequest;
@@ -21,12 +21,12 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PURCH
 import static java.util.Comparator.comparing;
 
 @Service
-public class PurchaseEntityReaderService implements PurchaseReaderService {
+public class PurchaseEntityReaderGateway implements PurchaseReaderGateway {
 
     private final PurchaseMapper purchaseMapper;
     private final PurchaseEntityRepository repository;
 
-    public PurchaseEntityReaderService(PurchaseMapper purchaseMapper, PurchaseEntityRepository repository) {
+    public PurchaseEntityReaderGateway(PurchaseMapper purchaseMapper, PurchaseEntityRepository repository) {
         this.purchaseMapper = purchaseMapper;
         this.repository = repository;
     }

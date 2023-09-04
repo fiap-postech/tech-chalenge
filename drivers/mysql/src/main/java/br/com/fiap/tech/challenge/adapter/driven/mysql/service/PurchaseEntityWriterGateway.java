@@ -8,13 +8,13 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.model.PurchaseEntity;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PaymentEntityRepository;
 import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntityRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
-import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
+import br.com.fiap.tech.challenge.gateway.PurchaseWriterGateway;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-public class PurchaseEntityWriterService implements PurchaseWriterService {
+public class PurchaseEntityWriterGateway implements PurchaseWriterGateway {
 
     private final PurchaseMapper purchaseMapper;
     private final PurchaseItemMapper purchaseItemMapper;
@@ -22,7 +22,7 @@ public class PurchaseEntityWriterService implements PurchaseWriterService {
     private final PurchaseEntityRepository purchaseRepository;
     private final PaymentEntityRepository paymentRepository;
 
-    public PurchaseEntityWriterService(
+    public PurchaseEntityWriterGateway(
             PurchaseMapper purchaseMapper,
             PurchaseItemMapper purchaseItemMapper,
             PaymentMapper paymentMapper,
