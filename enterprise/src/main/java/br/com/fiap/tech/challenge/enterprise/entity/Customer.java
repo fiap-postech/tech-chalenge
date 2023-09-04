@@ -25,10 +25,10 @@ public class Customer extends Entity {
 
     private final Document document;
 
-    private boolean enabled;
+    private final boolean enabled;
 
-    @Builder
-    public Customer(UUID uuid, String name, EmailRegistration email, Document document, boolean enabled) {
+    @Builder(toBuilder = true)
+    public Customer(@Builder.ObtainVia(method = "uuid") UUID uuid, String name, EmailRegistration email, Document document, boolean enabled) {
         super(uuid);
 
         this.name = name;
@@ -37,6 +37,12 @@ public class Customer extends Entity {
         this.enabled = enabled;
 
         validate();
+    }
+
+    public Customer disable(){
+        return toBuilder()
+                .enabled(false)
+                .build();
     }
 
     public String toDocument() {

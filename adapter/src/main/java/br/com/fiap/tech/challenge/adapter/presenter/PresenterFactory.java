@@ -9,4 +9,8 @@ public class PresenterFactory {
     public static ProductPresenter productPresenter(){
         return new ProductPresenterImpl();
     }
+
+    public static CustomerPresenter customerPresenter() {
+        return new CustomerPresenterImpl();
+    }
 }

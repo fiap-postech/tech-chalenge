@@ -24,11 +24,6 @@ public interface SandwichMapper {
 
     SandwichMapper INSTANCE = Mappers.getMapper(SandwichMapper.class);
 
-    @Mapping(target = "uuid", source = "request", qualifiedByName = "generateUuid")
-    @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
-    @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
-    Sandwich toSandwich(CreateSingleProductRequest request);
-
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "name", expression = "java(source.name())")
     @Mapping(target = "description", expression = "java(source.description())")

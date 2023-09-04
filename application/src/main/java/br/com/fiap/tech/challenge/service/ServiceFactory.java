@@ -1,27 +1,25 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.port.driven.*;
-import br.com.fiap.tech.challenge.port.driver.*;
+
+import br.com.fiap.tech.challenge.port.driven.CartReaderService;
+import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
+import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
+import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
+import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
+import br.com.fiap.tech.challenge.port.driver.CreateCartService;
+import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
+import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
+import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 
 public class ServiceFactory {
 
     private ServiceFactory() {
-    }
-
-    public static CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader) {
-        return new CreateCustomerServiceImpl(writer, reader);
-    }
-
-    public static FindCustomerByDocumentService findCustomerByDocumentService(CustomerReaderService reader) {
-        return new FindCustomerByDocumentServiceImpl(reader);
-    }
-
-    public static FindCustomerByUUIDService findFindCustomerByUUIDService(CustomerReaderService reader) {
-        return new FindCustomerByUUIDServiceImpl(reader);
-    }
-
-    public static UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer) {
-        return new UpgradeCustomerServiceImpl(writer);
     }
 
     public static FindCartByUUIDService findCartByUUIDService(CartReaderService reader) {

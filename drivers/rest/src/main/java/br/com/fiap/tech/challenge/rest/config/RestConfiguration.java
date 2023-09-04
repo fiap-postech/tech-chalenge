@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.config;
 
-import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
+import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.mapping.AddCartItemRequestMapper;
 import br.com.fiap.tech.challenge.rest.mapping.CreateCartRequestMapper;
@@ -22,8 +22,8 @@ public class RestConfiguration {
 
     @Bean("restMappingCustomer")
     @Autowired
-    public CreateCartRequestMapper loadMappingCustomer(FindCustomerByUUIDService findCustomerByUUIDService) {
-        return CreateCartRequestMapper.init(findCustomerByUUIDService);
+    public CreateCartRequestMapper loadMappingCustomer(FindCustomerByUUIDUseCase findCustomerByUUIDUseCase) {
+        return CreateCartRequestMapper.init(findCustomerByUUIDUseCase);
     }
 
     @Bean("restMappingAddCart")

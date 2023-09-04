@@ -1,33 +1,26 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.port.driven.*;
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.port.driven.CartReaderService;
+import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
+import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
+import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
+import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
+import br.com.fiap.tech.challenge.port.driver.CreateCartService;
+import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
+import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
+import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
+import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ServiceConfiguration {
-
-    @Bean
-    public CreateCustomerService createCustomerService(CustomerWriterService writer, CustomerReaderService reader) {
-        return ServiceFactory.createCustomerService(writer, reader);
-    }
-
-    @Bean
-    public FindCustomerByDocumentService findCustomerByDocumentService(CustomerReaderService reader) {
-        return ServiceFactory.findCustomerByDocumentService(reader);
-    }
-
-    @Bean
-    public FindCustomerByUUIDService findCustomerByUUIDService(CustomerReaderService reader) {
-        return ServiceFactory.findFindCustomerByUUIDService(reader);
-    }
-
-    @Bean
-    public UpgradeCustomerService upgradeCustomerService(CustomerWriterService writer) {
-        return ServiceFactory.upgradeCustomerService(writer);
-    }
 
     @Bean
     public FindCartByUUIDService findCartByUUIDService(CartReaderService reader) {
