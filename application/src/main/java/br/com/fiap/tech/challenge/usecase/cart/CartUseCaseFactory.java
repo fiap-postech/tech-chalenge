@@ -3,6 +3,7 @@ package br.com.fiap.tech.challenge.usecase.cart;
 import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
@@ -17,11 +18,11 @@ public class CartUseCaseFactory {
         return new CreateCartUseCaseImpl(useCase, writer);
     }
 
-    public static AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
-        return new AddCartItemUseCaseImpl(reader, writer);
+    public static AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return new AddCartItemUseCaseImpl(reader, writer, findProductByUUIDUseCase);
     }
 
-    public static UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
-        return new UpdateCartItemUseCaseImpl(reader, writer);
+    public static UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return new UpdateCartItemUseCaseImpl(reader, writer, findProductByUUIDUseCase);
     }
 }
