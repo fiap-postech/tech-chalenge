@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
@@ -20,7 +20,7 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfiguration {
 
     @Bean
-    public RemoveCartItemUseCase removeCartItemService(CartReaderService reader, CartWriterService writer) {
+    public RemoveCartItemUseCase removeCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return ServiceFactory.removeCartItemService(reader, writer);
     }
 

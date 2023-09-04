@@ -4,8 +4,8 @@ import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
 import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.CartUseCaseFactory;
 import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
@@ -85,22 +85,22 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public FindCartByUUIDUseCase findCartByUUIDService(CartReaderService reader) {
+    public FindCartByUUIDUseCase findCartByUUIDService(CartReaderGateway reader) {
         return CartUseCaseFactory.findCartByUUIDService(reader);
     }
 
     @Bean
-    public CreateCartUseCase createCartService(CartWriterService writer) {
-        return CartUseCaseFactory.createCartService(writer);
+    public CreateCartUseCase createCartService(FindCustomerByUUIDUseCase useCase, CartWriterGateway writer) {
+        return CartUseCaseFactory.createCartService(useCase, writer);
     }
 
     @Bean
-    public AddCartItemUseCase addCartItemService(CartReaderService reader, CartWriterService writer) {
+    public AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return CartUseCaseFactory.addCartItemService(reader, writer);
     }
 
     @Bean
-    public UpdateCartItemUseCase updateCartItemService(CartReaderService reader, CartWriterService writer) {
+    public UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return CartUseCaseFactory.updateCartItemService(reader, writer);
     }
 }

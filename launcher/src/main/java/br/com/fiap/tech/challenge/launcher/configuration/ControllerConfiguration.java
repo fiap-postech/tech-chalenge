@@ -1,5 +1,7 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
+import br.com.fiap.tech.challenge.adapter.controller.cart.CartControllerFactory;
+import br.com.fiap.tech.challenge.adapter.controller.cart.CreateCartController;
 import br.com.fiap.tech.challenge.adapter.controller.customer.CreateCustomerController;
 import br.com.fiap.tech.challenge.adapter.controller.customer.CustomerControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.customer.FindCustomerByDocumentController;
@@ -12,8 +14,10 @@ import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDCo
 import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
+import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
+import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
@@ -79,5 +83,10 @@ public class ControllerConfiguration {
     @Bean
     public UpgradeCustomerController upgradeCustomerController(UpgradeCustomerUseCase useCase, CustomerPresenter presenter) {
         return CustomerControllerFactory.upgradeCustomerController(useCase, presenter);
+    }
+
+    @Bean
+    public CreateCartController createCartController(CreateCartUseCase useCase, CartPresenter presenter) {
+        return CartControllerFactory.createCartController(useCase, presenter);
     }
 }
