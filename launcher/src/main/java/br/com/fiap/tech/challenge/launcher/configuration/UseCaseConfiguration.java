@@ -95,12 +95,12 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
-        return CartUseCaseFactory.addCartItemService(reader, writer);
+    public AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return CartUseCaseFactory.addCartItemService(reader, writer, findProductByUUIDUseCase);
     }
 
     @Bean
-    public UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
-        return CartUseCaseFactory.updateCartItemService(reader, writer);
+    public UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return CartUseCaseFactory.updateCartItemService(reader, writer, findProductByUUIDUseCase);
     }
 }
