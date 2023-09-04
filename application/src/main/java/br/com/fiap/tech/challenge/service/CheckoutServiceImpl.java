@@ -9,7 +9,7 @@ import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
-import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
+import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDate;
@@ -20,7 +20,7 @@ import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PAYME
 @RequiredArgsConstructor
 class CheckoutServiceImpl implements CheckoutService {
 
-    private final FindCartByUUIDService cartFinder;
+    private final FindCartByUUIDUseCase cartFinder;
     private final CreatePurchaseService purchaseService;
     private final PaymentGatewayService paymentGateway;
 

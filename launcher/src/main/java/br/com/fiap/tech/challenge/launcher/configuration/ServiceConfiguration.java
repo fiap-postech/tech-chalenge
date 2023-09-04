@@ -5,17 +5,14 @@ import br.com.fiap.tech.challenge.port.driven.CartWriterService;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
-import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
-import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
-import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
-import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
 import br.com.fiap.tech.challenge.service.ServiceFactory;
+import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -23,32 +20,12 @@ import org.springframework.context.annotation.Configuration;
 public class ServiceConfiguration {
 
     @Bean
-    public FindCartByUUIDService findCartByUUIDService(CartReaderService reader) {
-        return ServiceFactory.findCartByUUIDService(reader);
-    }
-
-    @Bean
-    public CreateCartService createCartService(CartWriterService writer) {
-        return ServiceFactory.createCartService(writer);
-    }
-
-    @Bean
-    public AddCartItemService addCartItemService(CartReaderService reader, CartWriterService writer) {
-        return ServiceFactory.addCartItemService(reader, writer);
-    }
-
-    @Bean
-    public UpdateCartItemService updateCartItemService(CartReaderService reader, CartWriterService writer) {
-        return ServiceFactory.updateCartItemService(reader, writer);
-    }
-
-    @Bean
-    public RemoveCartItemService removeCartItemService(CartReaderService reader, CartWriterService writer) {
+    public RemoveCartItemUseCase removeCartItemService(CartReaderService reader, CartWriterService writer) {
         return ServiceFactory.removeCartItemService(reader, writer);
     }
 
     @Bean
-    public CheckoutService checkoutService(FindCartByUUIDService findCartService,
+    public CheckoutService checkoutService(FindCartByUUIDUseCase findCartService,
                                            CreatePurchaseService purchaseService,
                                            PaymentGatewayService paymentGateway) {
         return ServiceFactory.checkoutService(findCartService, purchaseService, paymentGateway);

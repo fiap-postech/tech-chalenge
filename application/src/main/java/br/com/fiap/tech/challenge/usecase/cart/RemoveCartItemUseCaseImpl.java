@@ -1,16 +1,15 @@
-package br.com.fiap.tech.challenge.service;
+package br.com.fiap.tech.challenge.usecase.cart;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.port.driven.CartReaderService;
 import br.com.fiap.tech.challenge.port.driven.CartWriterService;
-import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import lombok.AllArgsConstructor;
 
 import java.util.UUID;
 
 @AllArgsConstructor
-public class RemoveCartItemServiceImpl implements RemoveCartItemService {
+public class RemoveCartItemUseCaseImpl implements RemoveCartItemUseCase {
 
     private CartReaderService cartReaderService;
     private CartWriterService writerService;

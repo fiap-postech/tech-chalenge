@@ -4,6 +4,13 @@ import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
 import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.port.driven.CartReaderService;
+import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.CartUseCaseFactory;
+import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.CustomerUseCaseFactory;
 import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
@@ -75,5 +82,25 @@ public class UseCaseConfiguration {
     @Bean
     public FindCustomerByUUIDUseCase findCustomerByUUIDService(CustomerReaderGateway reader) {
         return CustomerUseCaseFactory.findFindCustomerByUUIDService(reader);
+    }
+
+    @Bean
+    public FindCartByUUIDUseCase findCartByUUIDService(CartReaderService reader) {
+        return CartUseCaseFactory.findCartByUUIDService(reader);
+    }
+
+    @Bean
+    public CreateCartUseCase createCartService(CartWriterService writer) {
+        return CartUseCaseFactory.createCartService(writer);
+    }
+
+    @Bean
+    public AddCartItemUseCase addCartItemService(CartReaderService reader, CartWriterService writer) {
+        return CartUseCaseFactory.addCartItemService(reader, writer);
+    }
+
+    @Bean
+    public UpdateCartItemUseCase updateCartItemService(CartReaderService reader, CartWriterService writer) {
+        return CartUseCaseFactory.updateCartItemService(reader, writer);
     }
 }
