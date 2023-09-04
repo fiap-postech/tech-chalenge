@@ -14,7 +14,8 @@ public class UpdatePurchaseServiceImpl implements UpdatePurchaseService {
     @Override
     public Purchase updateStatus(Purchase purchase, PurchaseStatus status) {
         var purchaseByUpdate = switch (status) {
-            case PAID -> purchase;
+            case WAITING_PAID -> purchase;
+            case PAID -> purchase.paid();
             case MAKING -> purchase.making();
             case MADE -> purchase.made();
             case DELIVERED -> purchase.delivered();

@@ -1,26 +1,7 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
-import br.com.fiap.tech.challenge.port.driven.CustomerReaderService;
-import br.com.fiap.tech.challenge.port.driven.CustomerWriterService;
-import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
-import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
-import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
-import br.com.fiap.tech.challenge.port.driver.AddCartItemService;
-import br.com.fiap.tech.challenge.port.driver.CheckoutService;
-import br.com.fiap.tech.challenge.port.driver.CreateCartService;
-import br.com.fiap.tech.challenge.port.driver.CreateCustomerService;
-import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
-import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
-import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.FindCustomerByDocumentService;
-import br.com.fiap.tech.challenge.port.driver.FindCustomerByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
-import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
-import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
-import br.com.fiap.tech.challenge.port.driver.UpgradeCustomerService;
+import br.com.fiap.tech.challenge.port.driven.*;
+import br.com.fiap.tech.challenge.port.driver.*;
 
 public class ServiceFactory {
 
@@ -83,5 +64,10 @@ public class ServiceFactory {
 
     public static FindPurchaseByUUIDService findPurchaseByUUIDService(PurchaseReaderService reader) {
         return new FindPurchaseByUUIDServiceImpl(reader);
+    }
+
+    public static FindPurchaseByPaymentIdService findPurchaseByPaymentIdService(PaymentGatewayService paymentGateway,
+                                                                                PurchaseReaderService readerService) {
+        return new FindPurchaseByPaymentIdServiceImpl(paymentGateway, readerService);
     }
 }
