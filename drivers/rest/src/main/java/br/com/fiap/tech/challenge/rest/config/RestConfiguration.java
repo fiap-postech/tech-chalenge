@@ -1,10 +1,8 @@
 package br.com.fiap.tech.challenge.rest.config;
 
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.rest.mapping.AddCartItemRequestMapper;
-import br.com.fiap.tech.challenge.rest.mapping.CreateCartRequestMapper;
 import br.com.fiap.tech.challenge.rest.util.Mappings;
+import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,12 +16,6 @@ public class RestConfiguration {
     @Autowired
     public Mappings loadMappings(FindProductByUUIDUseCase findProductByUUIDUseCase) {
         return Mappings.init(findProductByUUIDUseCase);
-    }
-
-    @Bean("restMappingCustomer")
-    @Autowired
-    public CreateCartRequestMapper loadMappingCustomer(FindCustomerByUUIDUseCase findCustomerByUUIDUseCase) {
-        return CreateCartRequestMapper.init(findCustomerByUUIDUseCase);
     }
 
     @Bean("restMappingAddCart")

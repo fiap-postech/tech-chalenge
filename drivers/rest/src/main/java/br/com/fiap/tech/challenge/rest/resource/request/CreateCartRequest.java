@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.enterprise.validation.UUID;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
-import br.com.fiap.tech.challenge.rest.mapping.CreateCartRequestMapper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -25,6 +24,6 @@ public class CreateCartRequest extends Request<Cart> {
 
     @Override
     public Cart toDomain() {
-        return CreateCartRequestMapper.INSTANCE.toCart(this);
+        throw new IllegalStateException("you shall not pass!");
     }
 }

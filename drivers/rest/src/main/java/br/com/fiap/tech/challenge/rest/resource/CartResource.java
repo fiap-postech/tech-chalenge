@@ -1,7 +1,10 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
-import br.com.fiap.tech.challenge.port.driver.*;
+import br.com.fiap.tech.challenge.adapter.controller.cart.CreateCartController;
+import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.rest.mapping.CartMapperRest;
+import br.com.fiap.tech.challenge.rest.mapping.CartResponseMapper;
+import br.com.fiap.tech.challenge.rest.mapping.CreateCartMapper;
 import br.com.fiap.tech.challenge.rest.mapping.PurchaseMapperRest;
 import br.com.fiap.tech.challenge.rest.resource.doc.CartResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
@@ -11,13 +14,21 @@ import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
@@ -25,34 +36,21 @@ import static java.util.UUID.fromString;
 
 @RestController
 @RequestMapping("/cart")
+@RequiredArgsConstructor
 public class CartResource implements CartResourceDoc {
+
+    private final CreateCartMapper createCartMapper;
+    private final CartResponseMapper cartResponseMapper;
 
     private final CartMapperRest mapper;
     private final PurchaseMapperRest purchaseMapperRest;
     private final FindCartByUUIDUseCase findCartByUUIDUseCase;
-    private final CreateCartUseCase createCartUseCase;
+    private final CreateCartController createCartController;
     private final AddCartItemUseCase addCartItemUseCase;
     private final UpdateCartItemUseCase updateCartItemUseCase;
     private final RemoveCartItemUseCase removeCartItemUseCase;
     private final CheckoutService checkoutService;
 
-    public CartResource(CartMapperRest mapper,
-                        PurchaseMapperRest purchaseMapperRest,
-                        FindCartByUUIDUseCase findCartByUUIDUseCase,
-                        CreateCartUseCase createCartUseCase,
-                        AddCartItemUseCase addCartItemUseCase,
-                        UpdateCartItemUseCase updateCartItemUseCase,
-                        RemoveCartItemUseCase removeCartItemUseCase,
-                        CheckoutService checkoutService) {
-        this.mapper = mapper;
-        this.purchaseMapperRest = purchaseMapperRest;
-        this.findCartByUUIDUseCase = findCartByUUIDUseCase;
-        this.createCartUseCase = createCartUseCase;
-        this.addCartItemUseCase = addCartItemUseCase;
-        this.updateCartItemUseCase = updateCartItemUseCase;
-        this.removeCartItemUseCase = removeCartItemUseCase;
-        this.checkoutService = checkoutService;
-    }
 
     @GetMapping("/{uuid}")
     @ResponseStatus(HttpStatus.OK)
@@ -63,7 +61,7 @@ public class CartResource implements CartResourceDoc {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CartResponse create(@RequestBody @Valid CreateCartRequest request) {
-        return mapper.toCartResponse(createCartUseCase.create(request.toDomain()));
+        return cartResponseMapper.toResponse(createCartController.create(createCartMapper.toDTO(request)));
     }
 
     @PostMapping("{cartId}/items")
