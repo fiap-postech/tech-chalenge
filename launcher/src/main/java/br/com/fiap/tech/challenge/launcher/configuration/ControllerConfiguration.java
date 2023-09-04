@@ -18,9 +18,12 @@ import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDCo
 import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.CheckoutController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.PurchaseControllerFactory;
 import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
+import br.com.fiap.tech.challenge.adapter.presenter.PurchasePresenter;
 import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
@@ -37,6 +40,7 @@ import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCateg
 import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.CheckoutUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -116,5 +120,10 @@ public class ControllerConfiguration {
     @Bean
     public RemoveCartItemController removeCartItemController(RemoveCartItemUseCase useCase, CartPresenter presenter) {
         return CartControllerFactory.removeCartItemController(useCase, presenter);
+    }
+
+    @Bean
+    public CheckoutController checkoutController(CheckoutUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.checkoutController(useCase, presenter);
     }
 }

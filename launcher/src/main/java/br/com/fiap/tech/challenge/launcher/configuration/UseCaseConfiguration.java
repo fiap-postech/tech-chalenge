@@ -1,11 +1,14 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
-import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
-import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
 import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
+import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
+import br.com.fiap.tech.challenge.gateway.PaymentGateway;
+import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.gateway.PurchaseReaderGateway;
+import br.com.fiap.tech.challenge.gateway.PurchaseWriterGateway;
 import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.cart.CartUseCaseFactory;
 import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
@@ -25,6 +28,13 @@ import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.ProductUseCaseFactory;
 import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.CreatePurchaseUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByPaymentIdUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.PurchaseUseCaseFactory;
+import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -108,5 +118,35 @@ public class UseCaseConfiguration {
     @Bean
     public RemoveCartItemUseCase removeCartItemUseCase(CartReaderGateway useCase, CartWriterGateway presenter) {
         return CartUseCaseFactory.removeCartItemUseCase(useCase, presenter);
+    }
+
+    @Bean
+    public CheckoutUseCase checkoutUseCase(FindCartByUUIDUseCase cartFinderUseCase, CreatePurchaseUseCase createPurchaseUseCase, PaymentGateway paymentGateway) {
+        return PurchaseUseCaseFactory.checkoutUseCase(cartFinderUseCase, createPurchaseUseCase, paymentGateway);
+    }
+
+    @Bean
+    public CreatePurchaseUseCase createPurchaseUseCase(PurchaseWriterGateway writer) {
+        return PurchaseUseCaseFactory.createPurchaseUseCase(writer);
+    }
+
+    @Bean
+    public UpdatePurchaseUseCase updatePurchaseUseCase(PurchaseWriterGateway gateway) {
+        return PurchaseUseCaseFactory.updatePurchaseUseCase(gateway);
+    }
+
+    @Bean
+    public FindAllPurchasesUseCase findAllPurchasesUseCase(PurchaseReaderGateway gateway) {
+        return PurchaseUseCaseFactory.findAllPurchasesUseCase(gateway);
+    }
+
+    @Bean
+    public FindPurchaseByPaymentIdUseCase findPurchaseByPaymentIdUseCase(PaymentGateway paymentGateway, PurchaseReaderGateway purchaseReaderGateway) {
+        return PurchaseUseCaseFactory.findPurchaseByPaymentIdUseCase(paymentGateway, purchaseReaderGateway);
+    }
+
+    @Bean
+    public FindPurchaseByUUIDUseCase findPurchaseByUUIDUseCase(PurchaseReaderGateway gateway) {
+        return PurchaseUseCaseFactory.findPurchaseByUUIDUseCase(gateway);
     }
 }
