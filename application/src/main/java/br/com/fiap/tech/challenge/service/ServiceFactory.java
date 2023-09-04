@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.service;
 
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseReaderService;
 import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
@@ -19,7 +19,7 @@ public class ServiceFactory {
     private ServiceFactory() {
     }
 
-    public static RemoveCartItemUseCase removeCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static RemoveCartItemUseCase removeCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return new RemoveCartItemUseCaseImpl(reader, writer);
     }
 
