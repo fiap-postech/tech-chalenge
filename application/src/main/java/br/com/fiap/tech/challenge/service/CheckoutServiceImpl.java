@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.service;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
+import br.com.fiap.tech.challenge.enterprise.entity.Payment;
+import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
-import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
-import br.com.fiap.tech.challenge.enterprise.entity.Payment;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
@@ -27,20 +27,23 @@ class CheckoutServiceImpl implements CheckoutService {
     @Override
     public Purchase checkout(UUID cartId) {
         var cart = cartFinder.get(cartId);
+        var payment = createPayment(cart);
+        var purchase = Purchase.newPurchase(cart, payment);
 
-        var payment = doPayment(cart);
+        var urlPayment = doPayment(purchase);
+        var purchaseResult = purchaseService.create(purchase);
 
-        return purchaseService.create(Purchase.newPurchase(cart, payment));
+        purchaseResult.payment().setUrlPayment(urlPayment);
+        return purchaseResult;
     }
 
-    private Payment doPayment(Cart cart) {
-        var payment = paymentGateway.pay(createPayment(cart));
+    private String doPayment(Purchase purchase) {
+        var urlPaymentOpt = paymentGateway.pay(purchase);
 
-        if (payment.isError()) {
+        if (urlPaymentOpt.isEmpty()) {
             throw new ApplicationException(PAYMENT_ERROR);
         }
-
-        return payment;
+        return urlPaymentOpt.get();
     }
 
     private Payment createPayment(Cart cart) {

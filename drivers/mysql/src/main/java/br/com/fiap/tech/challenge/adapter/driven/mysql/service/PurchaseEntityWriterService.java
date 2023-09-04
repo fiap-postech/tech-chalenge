@@ -50,8 +50,10 @@ public class PurchaseEntityWriterService implements PurchaseWriterService {
     }
 
     private PaymentEntity getPaymentEntity(Purchase purchase) {
-        return paymentRepository.findByPurchaseUuid(purchase.uuid().toString())
-                .orElse(paymentMapper.toPaymentEntity(purchase.payment()));
+        var paymentEntity = paymentMapper.toPaymentEntity(purchase.payment());
+        var paymentEntityOpt = paymentRepository.findByPurchaseUuid(purchase.uuid().toString());
+        paymentEntityOpt.ifPresent(entity -> BeanUtils.copyProperties(entity, paymentEntity, "status"));
+        return paymentEntity;
     }
 
     private PurchaseEntity savePurchase(Purchase purchase) {

@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.service;
 
+
 import br.com.fiap.tech.challenge.port.driven.CartReaderService;
 import br.com.fiap.tech.challenge.port.driven.CartWriterService;
 import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
@@ -11,6 +12,7 @@ import br.com.fiap.tech.challenge.port.driver.CreateCartService;
 import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
 import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
 import br.com.fiap.tech.challenge.port.driver.FindCartByUUIDService;
+import br.com.fiap.tech.challenge.port.driver.FindPurchaseByPaymentIdService;
 import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
 import br.com.fiap.tech.challenge.port.driver.RemoveCartItemService;
 import br.com.fiap.tech.challenge.port.driver.UpdateCartItemService;
@@ -61,5 +63,10 @@ public class ServiceFactory {
 
     public static FindPurchaseByUUIDService findPurchaseByUUIDService(PurchaseReaderService reader) {
         return new FindPurchaseByUUIDServiceImpl(reader);
+    }
+
+    public static FindPurchaseByPaymentIdService findPurchaseByPaymentIdService(PaymentGatewayService paymentGateway,
+                                                                                PurchaseReaderService readerService) {
+        return new FindPurchaseByPaymentIdServiceImpl(paymentGateway, readerService);
     }
 }
