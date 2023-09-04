@@ -1,10 +1,15 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
+import br.com.fiap.tech.challenge.adapter.controller.cart.AddCartItemController;
 import br.com.fiap.tech.challenge.adapter.controller.cart.CreateCartController;
+import br.com.fiap.tech.challenge.adapter.controller.cart.FindCartByUUIDController;
+import br.com.fiap.tech.challenge.adapter.controller.cart.RemoveCartItemController;
+import br.com.fiap.tech.challenge.adapter.controller.cart.UpdateCartItemController;
 import br.com.fiap.tech.challenge.port.driver.CheckoutService;
 import br.com.fiap.tech.challenge.rest.mapping.CartMapperRest;
 import br.com.fiap.tech.challenge.rest.mapping.CartResponseMapper;
 import br.com.fiap.tech.challenge.rest.mapping.CreateCartMapper;
+import br.com.fiap.tech.challenge.rest.mapping.ManageCartItemMapper;
 import br.com.fiap.tech.challenge.rest.mapping.PurchaseMapperRest;
 import br.com.fiap.tech.challenge.rest.resource.doc.CartResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
@@ -13,10 +18,6 @@ import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.CartResponse;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
-import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -32,30 +33,29 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.UUID;
 
-import static java.util.UUID.fromString;
-
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
 public class CartResource implements CartResourceDoc {
 
     private final CreateCartMapper createCartMapper;
+    private final ManageCartItemMapper manageCartItemMapper;
     private final CartResponseMapper cartResponseMapper;
 
     private final CartMapperRest mapper;
     private final PurchaseMapperRest purchaseMapperRest;
-    private final FindCartByUUIDUseCase findCartByUUIDUseCase;
+    private final FindCartByUUIDController findCartByUUIDController;
     private final CreateCartController createCartController;
-    private final AddCartItemUseCase addCartItemUseCase;
-    private final UpdateCartItemUseCase updateCartItemUseCase;
-    private final RemoveCartItemUseCase removeCartItemUseCase;
+    private final AddCartItemController addCartItemController;
+    private final UpdateCartItemController updateCartItemController;
+    private final RemoveCartItemController removeCartItemController;
     private final CheckoutService checkoutService;
 
 
     @GetMapping("/{uuid}")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse get(@PathVariable("uuid") String uuid) {
-        return mapper.toCartResponse(findCartByUUIDUseCase.get(fromString(uuid)));
+        return cartResponseMapper.toResponse(findCartByUUIDController.get(uuid));
     }
 
     @PostMapping
@@ -67,19 +67,25 @@ public class CartResource implements CartResourceDoc {
     @PostMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse addItem(@PathVariable("cartId") String cartId, @RequestBody @Valid AddCartItemRequest request) {
-        return mapper.toCartResponse(addCartItemUseCase.add(fromString(cartId), request.toDomain()));
+        return cartResponseMapper.toResponse(
+                addCartItemController.add(cartId, manageCartItemMapper.toDTO(request))
+        );
     }
 
     @PatchMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse updateItem(@PathVariable("cartId") String cartId, @RequestBody @Valid UpdateCartItemRequest request) {
-        return mapper.toCartResponse(updateCartItemUseCase.update(fromString(cartId), request.toDomain()));
+        return cartResponseMapper.toResponse(
+                updateCartItemController.update(cartId, manageCartItemMapper.toDTO(request))
+        );
     }
 
     @DeleteMapping("{cartId}/items")
     @ResponseStatus(HttpStatus.OK)
     public CartResponse removeItem(@PathVariable("cartId") String cartId, @RequestBody @Valid RemoveCartItemRequest request) {
-        return mapper.toCartResponse(removeCartItemUseCase.remove(fromString(cartId), request.toDomain()));
+        return cartResponseMapper.toResponse(
+                removeCartItemController.remove(cartId, manageCartItemMapper.toDTO(request))
+        );
     }
 
     @PostMapping("/{uuid}/checkout")

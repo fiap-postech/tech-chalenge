@@ -1,7 +1,5 @@
 package br.com.fiap.tech.challenge.rest.util;
 
-import br.com.fiap.tech.challenge.adapter.dto.ComboDTO;
-import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
 import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
@@ -20,7 +18,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
-import static br.com.fiap.tech.challenge.enterprise.enums.ProductCategory.BEVERAGE;
 import static java.util.Objects.isNull;
 
 @RequiredArgsConstructor(access = AccessLevel.PRIVATE)
