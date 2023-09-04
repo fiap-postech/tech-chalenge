@@ -30,6 +30,7 @@ public abstract class RedisCartItemMapper {
 
     @Mapping(target = "product", source = "source", qualifiedByName = "getProductDTO")
     @Mapping(target = "total", source = "price")
+    @Mapping(target = "subtotal", ignore = true)
     abstract CartItemDTO toDTO(CartItemEntity source);
 
 
