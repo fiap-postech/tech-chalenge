@@ -1,10 +1,10 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
 import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
-import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
-import br.com.fiap.tech.challenge.port.driver.FindPurchaseByPaymentIdService;
-import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
+import br.com.fiap.tech.challenge.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByPaymentIdUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseUseCase;
 import br.com.fiap.tech.challenge.rest.mapping.PurchaseMapperRest;
 import br.com.fiap.tech.challenge.rest.resource.doc.PurchaseResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.PaymentConfirmRequest;
@@ -22,46 +22,46 @@ import java.util.UUID;
 public class PurchaseResource implements PurchaseResourceDoc {
 
     private final PurchaseMapperRest purchaseMapperRest;
-    private final FindAllPurchasesService findAllPurchasesService;
-    private final FindPurchaseByUUIDService findPurchaseByUUIDService;
-    private final FindPurchaseByPaymentIdService findPurchaseByPaymentIdService;
-    private final UpdatePurchaseService updatePurchaseService;
+    private final FindAllPurchasesUseCase findAllPurchasesUseCase;
+    private final FindPurchaseByUUIDUseCase findPurchaseByUUIDUseCase;
+    private final FindPurchaseByPaymentIdUseCase findPurchaseByPaymentIdUseCase;
+    private final UpdatePurchaseUseCase updatePurchaseUseCase;
 
     public PurchaseResource(
             PurchaseMapperRest purchaseMapperRest,
-            FindAllPurchasesService findAllPurchasesService,
-            FindPurchaseByUUIDService findPurchaseByUUIDService,
-            FindPurchaseByPaymentIdService findPurchaseByPaymentIdService,
-            UpdatePurchaseService updatePurchaseService) {
+            FindAllPurchasesUseCase findAllPurchasesUseCase,
+            FindPurchaseByUUIDUseCase findPurchaseByUUIDUseCase,
+            FindPurchaseByPaymentIdUseCase findPurchaseByPaymentIdUseCase,
+            UpdatePurchaseUseCase updatePurchaseUseCase) {
         this.purchaseMapperRest = purchaseMapperRest;
-        this.findAllPurchasesService = findAllPurchasesService;
-        this.findPurchaseByUUIDService = findPurchaseByUUIDService;
-        this.findPurchaseByPaymentIdService = findPurchaseByPaymentIdService;
-        this.updatePurchaseService = updatePurchaseService;
+        this.findAllPurchasesUseCase = findAllPurchasesUseCase;
+        this.findPurchaseByUUIDUseCase = findPurchaseByUUIDUseCase;
+        this.findPurchaseByPaymentIdUseCase = findPurchaseByPaymentIdUseCase;
+        this.updatePurchaseUseCase = updatePurchaseUseCase;
     }
 
     @GetMapping
     public ResponseList<PurchseResponse> getAllAvailable(@ParameterObject Pageable pageable) {
         return ResponseList.from(
-                findAllPurchasesService.list(Pages.of(pageable)),
+                findAllPurchasesUseCase.list(Pages.of(pageable)),
                 purchaseMapperRest::toPurchseResponse
         );
     }
 
     @GetMapping("/{uuid}")
     public PurchseResponse getByUUID(@PathVariable String uuid) {
-        return purchaseMapperRest.toPurchseResponse(findPurchaseByUUIDService.get(UUID.fromString(uuid)));
+        return purchaseMapperRest.toPurchseResponse(findPurchaseByUUIDUseCase.get(UUID.fromString(uuid)));
     }
 
     @PatchMapping("/{uuid}/{status}")
     public PurchseResponse updatePurchaseStatus(@PathVariable String uuid, @PathVariable PurchaseStatus status) {
-        var purchase = findPurchaseByUUIDService.get(UUID.fromString(uuid));
-        return purchaseMapperRest.toPurchseResponse(updatePurchaseService.updateStatus(purchase, status));
+        var purchase = findPurchaseByUUIDUseCase.get(UUID.fromString(uuid));
+        return purchaseMapperRest.toPurchseResponse(updatePurchaseUseCase.updateStatus(purchase, status));
     }
 
     @PostMapping("/confirm")
     public PurchseResponse confirmPaymentForPurchase(@RequestBody PaymentConfirmRequest confirmRequest) {
-        var purchase = findPurchaseByPaymentIdService.getPurchase(confirmRequest.paymentId());
-        return purchaseMapperRest.toPurchseResponse(updatePurchaseService.updateStatus(purchase, PurchaseStatus.PAID));
+        var purchase = findPurchaseByPaymentIdUseCase.getPurchase(confirmRequest.paymentId());
+        return purchaseMapperRest.toPurchseResponse(updatePurchaseUseCase.updateStatus(purchase, PurchaseStatus.PAID));
     }
 }
