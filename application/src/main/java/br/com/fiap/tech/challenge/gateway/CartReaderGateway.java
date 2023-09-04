@@ -1,10 +1,10 @@
-package br.com.fiap.tech.challenge.port.driven;
+package br.com.fiap.tech.challenge.gateway;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 
 import java.util.UUID;
 
-public interface CartReaderService {
+public interface CartReaderGateway {
 
     Cart readById(UUID id);
 

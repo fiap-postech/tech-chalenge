@@ -6,8 +6,8 @@ import br.com.fiap.tech.challenge.adapter.driven.redis.mapping.CustomerMapper;
 import br.com.fiap.tech.challenge.adapter.driven.redis.repository.CartEntityRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import org.springframework.stereotype.Service;
 
 import java.util.UUID;
@@ -15,14 +15,14 @@ import java.util.UUID;
 import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.CART_NOT_FOUND_BY_UUID;
 
 @Service
-public class CartEntityService implements CartReaderService, CartWriterService {
+public class CartEntityGateway implements CartReaderGateway, CartWriterGateway {
 
     private final CartEntityRepository cartEntityRepository;
     private final CartMapper cartMapper;
     private final CustomerMapper customerMapper;
     private final CartItemMapper cartItemMapper;
 
-    public CartEntityService(
+    public CartEntityGateway(
             CartEntityRepository cartEntityRepository,
             CartMapper cartMapper,
             CustomerMapper customerMapper,

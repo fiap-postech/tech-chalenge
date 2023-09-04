@@ -1,8 +1,8 @@
-package br.com.fiap.tech.challenge.port.driven;
+package br.com.fiap.tech.challenge.gateway;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 
-public interface CartWriterService {
+public interface CartWriterGateway {
 
     Cart write(Cart cart);
 }

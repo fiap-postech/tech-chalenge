@@ -1,26 +1,27 @@
 package br.com.fiap.tech.challenge.usecase.cart;
 
-import br.com.fiap.tech.challenge.port.driven.CartReaderService;
-import br.com.fiap.tech.challenge.port.driven.CartWriterService;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
+import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CartUseCaseFactory {
 
-    public static FindCartByUUIDUseCase findCartByUUIDService(CartReaderService reader) {
+    public static FindCartByUUIDUseCase findCartByUUIDService(CartReaderGateway reader) {
         return new FindCartByUUIDUseCaseImpl(reader);
     }
 
-    public static CreateCartUseCase createCartService(CartWriterService writer) {
-        return new CreateCartUseCaseImpl(writer);
+    public static CreateCartUseCase createCartService(FindCustomerByUUIDUseCase useCase, CartWriterGateway writer) {
+        return new CreateCartUseCaseImpl(useCase, writer);
     }
 
-    public static AddCartItemUseCase addCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return new AddCartItemUseCaseImpl(reader, writer);
     }
 
-    public static UpdateCartItemUseCase updateCartItemService(CartReaderService reader, CartWriterService writer) {
+    public static UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer) {
         return new UpdateCartItemUseCaseImpl(reader, writer);
     }
 }
