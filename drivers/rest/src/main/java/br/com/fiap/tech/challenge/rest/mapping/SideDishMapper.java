@@ -24,10 +24,6 @@ public interface SideDishMapper {
 
     SideDishMapper INSTANCE = Mappers.getMapper(SideDishMapper.class);
 
-    @Mapping(target = "uuid", source = "request", qualifiedByName = "generateUuid")
-    @Mapping(target = "price", source = "price", qualifiedByName = "getPrice")
-    @Mapping(target = "image", source = "image", qualifiedByName = "getImage")
-    SideDish toSideDish(CreateSingleProductRequest request);
 
     @Mapping(target = "id", expression = "java(source.uuid().toString())")
     @Mapping(target = "price", source = "source", qualifiedByName = "priceToBigDecimal")

@@ -27,21 +27,6 @@ public interface ComboMapper {
     @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
     Combo toCombo(ComboEntity source);
 
-    @Mapping(target = "uuid", expression = "java(combo.uuid().toString())")
-    @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
-    @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
-    @Mapping(target = "category", expression = "java(combo.category())")
-    @Mapping(target = "name", expression = "java(combo.name())")
-    @Mapping(target = "description", expression = "java(combo.description())")
-    @Mapping(target = "enabled", expression = "java(combo.enabled())")
-    @Mapping(target = "beverage", source = "combo", qualifiedByName = "toBeverageEntity")
-    @Mapping(target = "sideDish", source = "combo", qualifiedByName = "toSideDishEntity")
-    @Mapping(target = "sandwich", source = "combo", qualifiedByName = "toSandwichEntity")
-    @Mapping(target = "created", ignore = true)
-    @Mapping(target = "lastUpdated", ignore = true)
-    @Mapping(target = "id", ignore = true)
-    @Mapping(target = "version", ignore = true)
-    ComboEntity toProductType(Combo combo);
 
     @Named("generateUuidCombo")
     static UUID generateUuidCombo(String uuid) {

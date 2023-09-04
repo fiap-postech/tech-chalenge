@@ -16,24 +16,16 @@ import org.mapstruct.factory.Mappers;
 
 import java.math.BigDecimal;
 
+import static br.com.fiap.tech.challenge.rest.util.Mappings.getProduct;
 import static br.com.fiap.tech.challenge.util.Mappings.discountToBigDecimalConverter;
 import static br.com.fiap.tech.challenge.util.Mappings.imageToStringConverter;
 import static br.com.fiap.tech.challenge.util.Mappings.priceToBigDecimalConverter;
-import static br.com.fiap.tech.challenge.rest.util.Mappings.getProduct;
 import static br.com.fiap.tech.challenge.util.Moneys.makeMoney;
 
 @Mapper(uses = {BeverageMapper.class, SideDishMapper.class, SandwichMapper.class})
 public interface ComboMapper {
 
     ComboMapper INSTANCE = Mappers.getMapper(ComboMapper.class);
-
-    @Mapping(target = "price", source = "price", qualifiedByName = "getComboPrice")
-    @Mapping(target = "image", source = "image", qualifiedByName = "getComboImage")
-    @Mapping(target = "beverage", source = "source", qualifiedByName = "getBeverage")
-    @Mapping(target = "sideDish", source = "source", qualifiedByName = "getSideDish")
-    @Mapping(target = "sandwich", source = "source", qualifiedByName = "getSandwich")
-    @Mapping(target = "uuid", ignore = true)
-    Combo toCombo(CreateComboProductRequest source);
 
     @Mapping(target = "price", source = "combo", qualifiedByName = "priceToBigDecimalCombo")
     @Mapping(target = "image", source = "combo", qualifiedByName = "imageToStringConverterCombo")
