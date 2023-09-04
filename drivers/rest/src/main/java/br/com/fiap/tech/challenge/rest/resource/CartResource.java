@@ -5,12 +5,11 @@ import br.com.fiap.tech.challenge.adapter.controller.cart.CreateCartController;
 import br.com.fiap.tech.challenge.adapter.controller.cart.FindCartByUUIDController;
 import br.com.fiap.tech.challenge.adapter.controller.cart.RemoveCartItemController;
 import br.com.fiap.tech.challenge.adapter.controller.cart.UpdateCartItemController;
-import br.com.fiap.tech.challenge.port.driver.CheckoutService;
-import br.com.fiap.tech.challenge.rest.mapping.CartMapperRest;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.CheckoutController;
 import br.com.fiap.tech.challenge.rest.mapping.CartResponseMapper;
 import br.com.fiap.tech.challenge.rest.mapping.CreateCartMapper;
 import br.com.fiap.tech.challenge.rest.mapping.ManageCartItemMapper;
-import br.com.fiap.tech.challenge.rest.mapping.PurchaseMapperRest;
+import br.com.fiap.tech.challenge.rest.mapping.PurchaseResponseMapper;
 import br.com.fiap.tech.challenge.rest.resource.doc.CartResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
@@ -31,8 +30,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.UUID;
-
 @RestController
 @RequestMapping("/cart")
 @RequiredArgsConstructor
@@ -41,15 +38,14 @@ public class CartResource implements CartResourceDoc {
     private final CreateCartMapper createCartMapper;
     private final ManageCartItemMapper manageCartItemMapper;
     private final CartResponseMapper cartResponseMapper;
+    private final PurchaseResponseMapper purchaseResponseMapper;
 
-    private final CartMapperRest mapper;
-    private final PurchaseMapperRest purchaseMapperRest;
     private final FindCartByUUIDController findCartByUUIDController;
     private final CreateCartController createCartController;
     private final AddCartItemController addCartItemController;
     private final UpdateCartItemController updateCartItemController;
     private final RemoveCartItemController removeCartItemController;
-    private final CheckoutService checkoutService;
+    private final CheckoutController checkoutController;
 
 
     @GetMapping("/{uuid}")
@@ -91,6 +87,6 @@ public class CartResource implements CartResourceDoc {
     @PostMapping("/{uuid}/checkout")
     @ResponseStatus(HttpStatus.CREATED)
     public PurchseResponse checkout(@PathVariable String uuid) {
-        return purchaseMapperRest.toPurchseResponse(checkoutService.checkout(UUID.fromString(uuid)));
+        return purchaseResponseMapper.toResponse(checkoutController.checkout(uuid));
     }
 }
