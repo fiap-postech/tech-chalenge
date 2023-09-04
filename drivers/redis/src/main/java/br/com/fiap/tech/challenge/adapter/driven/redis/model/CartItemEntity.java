@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 import static java.util.Objects.nonNull;
@@ -13,7 +15,10 @@ import static java.util.Objects.nonNull;
 @Getter
 @Setter
 @ToString
-public class CartItemEntity {
+public class CartItemEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -304755728066875717L;
 
     private ProductEntity product;
     private BigDecimal price;

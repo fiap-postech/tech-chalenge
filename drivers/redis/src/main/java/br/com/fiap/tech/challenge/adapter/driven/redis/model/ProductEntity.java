@@ -11,12 +11,17 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
 @ToString
-public class ProductEntity {
+public class ProductEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 1613694852732417701L;
 
     private String id;
     private String name;

@@ -12,6 +12,7 @@ import org.springframework.data.redis.core.TimeToLive;
 
 import java.io.Serial;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -30,10 +31,11 @@ public class CartEntity implements Serializable {
 
     @Id
     private String id;
-
     private CustomerEntity customer;
-
     private List<CartItemEntity> items;
+    private BigDecimal total;
+    private BigDecimal subtotal;
+    private BigDecimal discount;
 
     @TimeToLive(unit = TimeUnit.MILLISECONDS)
     private Long ttl;
