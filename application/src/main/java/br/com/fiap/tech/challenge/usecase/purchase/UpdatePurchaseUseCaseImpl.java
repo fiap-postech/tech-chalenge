@@ -1,15 +1,14 @@
-package br.com.fiap.tech.challenge.service;
+package br.com.fiap.tech.challenge.usecase.purchase;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
-import br.com.fiap.tech.challenge.port.driven.PurchaseWriterService;
-import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
+import br.com.fiap.tech.challenge.gateway.PurchaseWriterGateway;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
-public class UpdatePurchaseServiceImpl implements UpdatePurchaseService {
+class UpdatePurchaseUseCaseImpl implements UpdatePurchaseUseCase {
 
-    private final PurchaseWriterService purchaseWriterService;
+    private final PurchaseWriterGateway gateway;
 
     @Override
     public Purchase updateStatus(Purchase purchase, PurchaseStatus status) {
@@ -22,6 +21,6 @@ public class UpdatePurchaseServiceImpl implements UpdatePurchaseService {
             case FINISHED -> purchase.finished();
         };
 
-        return purchaseWriterService.write(purchaseByUpdate);
+        return gateway.write(purchaseByUpdate);
     }
 }

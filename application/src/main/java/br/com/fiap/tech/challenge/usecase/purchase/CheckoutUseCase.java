@@ -1,9 +1,9 @@
-package br.com.fiap.tech.challenge.port.driver;
+package br.com.fiap.tech.challenge.usecase.purchase;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 
 import java.util.UUID;
 
-public interface CheckoutService {
+public interface CheckoutUseCase {
     Purchase checkout(UUID cartId);
 }

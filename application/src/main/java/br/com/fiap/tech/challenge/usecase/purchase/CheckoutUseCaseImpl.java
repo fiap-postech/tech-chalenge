@@ -1,4 +1,4 @@
-package br.com.fiap.tech.challenge.service;
+package br.com.fiap.tech.challenge.usecase.purchase;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 import br.com.fiap.tech.challenge.enterprise.entity.Payment;
@@ -6,9 +6,7 @@ import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentMethod;
 import br.com.fiap.tech.challenge.enterprise.enums.PaymentStatus;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
-import br.com.fiap.tech.challenge.port.driven.PaymentGatewayService;
-import br.com.fiap.tech.challenge.port.driver.CheckoutService;
-import br.com.fiap.tech.challenge.port.driver.CreatePurchaseService;
+import br.com.fiap.tech.challenge.gateway.PaymentGateway;
 import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
 import lombok.RequiredArgsConstructor;
 
@@ -18,20 +16,20 @@ import java.util.UUID;
 import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PAYMENT_ERROR;
 
 @RequiredArgsConstructor
-class CheckoutServiceImpl implements CheckoutService {
+class CheckoutUseCaseImpl implements CheckoutUseCase {
 
-    private final FindCartByUUIDUseCase cartFinder;
-    private final CreatePurchaseService purchaseService;
-    private final PaymentGatewayService paymentGateway;
+    private final FindCartByUUIDUseCase cartFinderUseCase;
+    private final CreatePurchaseUseCase createPurchaseUseCase;
+    private final PaymentGateway paymentGateway;
 
     @Override
     public Purchase checkout(UUID cartId) {
-        var cart = cartFinder.get(cartId);
+        var cart = cartFinderUseCase.get(cartId);
         var payment = createPayment(cart);
         var purchase = Purchase.newPurchase(cart, payment);
 
         var urlPayment = doPayment(purchase);
-        var purchaseResult = purchaseService.create(purchase);
+        var purchaseResult = createPurchaseUseCase.create(purchase);
 
         purchaseResult.payment().setUrlPayment(urlPayment);
         return purchaseResult;
