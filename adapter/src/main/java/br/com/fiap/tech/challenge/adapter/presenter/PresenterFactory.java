@@ -17,4 +17,8 @@ public class PresenterFactory {
     public static CartPresenter cartPresenter() {
         return new CartPresenterImpl();
     }
+
+    public static PurchasePresenter purchasePresenter() {
+        return new PurchasePresenterImpl();
+    }
 }
