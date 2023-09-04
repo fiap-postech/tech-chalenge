@@ -1,12 +1,6 @@
 package br.com.fiap.tech.challenge.adapter.gateway.product;
 
-import br.com.fiap.tech.challenge.adapter.dto.ComboDTO;
-import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
-import br.com.fiap.tech.challenge.adapter.mapping.BeverageMapper;
-import br.com.fiap.tech.challenge.adapter.mapping.ComboMapper;
-import br.com.fiap.tech.challenge.adapter.mapping.DessertMapper;
-import br.com.fiap.tech.challenge.adapter.mapping.SandwichMapper;
-import br.com.fiap.tech.challenge.adapter.mapping.SideDishMapper;
+import br.com.fiap.tech.challenge.adapter.mapping.util.ProductMappers;
 import br.com.fiap.tech.challenge.adapter.repository.ProductReaderRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
@@ -17,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;
 
+import static br.com.fiap.tech.challenge.adapter.mapping.util.ProductMappers.toProductDomain;
+
 @RequiredArgsConstructor
 class ProductReaderGatewayImpl implements ProductReaderGateway {
 
@@ -24,26 +20,16 @@ class ProductReaderGatewayImpl implements ProductReaderGateway {
 
     @Override
     public ResponseList<Product> readAll(Page page) {
-        return ResponseList.from(repository.readAll(page), this::toDomain);
+        return ResponseList.from(repository.readAll(page), ProductMappers::toProductDomain);
     }
 
     @Override
     public ResponseList<Product> readAllByCategory(ProductCategory category, Page page) {
-        return ResponseList.from(repository.readAllByCategory(category, page), this::toDomain);
+        return ResponseList.from(repository.readAllByCategory(category, page), ProductMappers::toProductDomain);
     }
 
     @Override
     public Product readById(UUID id) {
-        return toDomain(repository.readById(id.toString()));
-    }
-
-    private Product toDomain(ProductDTO dto) {
-        return switch (dto.getCategory()){
-            case SANDWICH -> SandwichMapper.INSTANCE.toDomain(dto);
-            case BEVERAGE -> BeverageMapper.INSTANCE.toDomain(dto);
-            case SIDE_DISH -> SideDishMapper.INSTANCE.toDomain(dto);
-            case DESSERT -> DessertMapper.INSTANCE.toDomain(dto);
-            case COMBO -> ComboMapper.INSTANCE.toDomain((ComboDTO) dto);
-        };
+        return toProductDomain(repository.readById(id.toString()));
     }
 }

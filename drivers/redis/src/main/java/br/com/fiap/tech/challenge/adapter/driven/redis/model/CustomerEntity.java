@@ -6,10 +6,16 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.io.Serial;
+import java.io.Serializable;
+
 @Getter
 @Setter
 @ToString
-public class CustomerEntity {
+public class CustomerEntity implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = -3460260434106384272L;
 
     private String id;
     private String name;

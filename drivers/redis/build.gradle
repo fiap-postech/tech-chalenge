@@ -7,5 +7,5 @@ version '1.0.0'
 dependencies {
     compileOnly "org.springframework.boot:spring-boot-starter-data-redis:$springBootVersion"
 
-    compileOnly project(":application")
+    compileOnly project(":adapter")
 }

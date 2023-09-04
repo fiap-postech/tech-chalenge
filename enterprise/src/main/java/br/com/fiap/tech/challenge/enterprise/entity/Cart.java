@@ -78,9 +78,10 @@ public class Cart extends Entity {
                 .build();
     }
 
-    public Cart removeItem(CartItem cartItem) {
+    public Cart removeItem(UUID productId) {
         var newItems = new ArrayList<>(items);
-        newItems.removeIf(i -> i.product().uuid().equals(cartItem.product().uuid()));
+
+        newItems.removeIf(i -> i.product().uuid().equals(productId));
 
         return toBuilder()
                 .items(newItems)
