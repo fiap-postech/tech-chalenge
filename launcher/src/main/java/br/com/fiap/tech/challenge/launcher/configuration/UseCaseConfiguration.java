@@ -4,6 +4,14 @@ import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
 import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
+import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.CartUseCaseFactory;
+import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
+import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
 import br.com.fiap.tech.challenge.usecase.customer.CustomerUseCaseFactory;
 import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
@@ -75,5 +83,30 @@ public class UseCaseConfiguration {
     @Bean
     public FindCustomerByUUIDUseCase findCustomerByUUIDService(CustomerReaderGateway reader) {
         return CustomerUseCaseFactory.findFindCustomerByUUIDService(reader);
+    }
+
+    @Bean
+    public FindCartByUUIDUseCase findCartByUUIDService(CartReaderGateway reader) {
+        return CartUseCaseFactory.findCartByUUIDService(reader);
+    }
+
+    @Bean
+    public CreateCartUseCase createCartService(FindCustomerByUUIDUseCase useCase, CartWriterGateway writer) {
+        return CartUseCaseFactory.createCartService(useCase, writer);
+    }
+
+    @Bean
+    public AddCartItemUseCase addCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return CartUseCaseFactory.addCartItemService(reader, writer, findProductByUUIDUseCase);
+    }
+
+    @Bean
+    public UpdateCartItemUseCase updateCartItemService(CartReaderGateway reader, CartWriterGateway writer, FindProductByUUIDUseCase findProductByUUIDUseCase) {
+        return CartUseCaseFactory.updateCartItemService(reader, writer, findProductByUUIDUseCase);
+    }
+
+    @Bean
+    public RemoveCartItemUseCase removeCartItemUseCase(CartReaderGateway useCase, CartWriterGateway presenter) {
+        return CartUseCaseFactory.removeCartItemUseCase(useCase, presenter);
     }
 }

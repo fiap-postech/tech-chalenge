@@ -2,6 +2,7 @@ package br.com.fiap.tech.challenge.adapter.mapping;
 
 import br.com.fiap.tech.challenge.enterprise.valueobject.Image;
 import br.com.fiap.tech.challenge.enterprise.valueobject.Price;
+import br.com.fiap.tech.challenge.enterprise.valueobject.Quantity;
 import org.mapstruct.Named;
 
 import java.math.BigDecimal;
@@ -24,5 +25,10 @@ public interface CommonMapper {
     @Named("getImage")
     static Image map(String source) {
         return Image.of(source);
+    }
+
+    @Named("getQuantityVO")
+    static Quantity mapQuantity(int quantity){
+        return Quantity.of(quantity);
     }
 }

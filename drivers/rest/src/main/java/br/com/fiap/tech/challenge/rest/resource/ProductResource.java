@@ -6,7 +6,6 @@ import br.com.fiap.tech.challenge.adapter.controller.product.FindAllAvailablePro
 import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDController;
 import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
-import br.com.fiap.tech.challenge.adapter.dto.ComboDTO;
 import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import br.com.fiap.tech.challenge.rest.mapping.CreateProductMapper;
@@ -99,10 +98,6 @@ public class ProductResource implements ProductResourceDoc {
     }
 
     private ProductResponse toResponse(ProductDTO dto) {
-        if (dto instanceof ComboDTO combo) {
-            return productResponseMapper.toResponse(combo);
-        }
-
         return productResponseMapper.toResponse(dto);
     }
 }

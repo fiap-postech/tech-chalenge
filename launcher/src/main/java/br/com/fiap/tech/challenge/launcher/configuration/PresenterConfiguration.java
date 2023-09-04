@@ -1,5 +1,6 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
+import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.PresenterFactory;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
@@ -17,6 +18,11 @@ public class PresenterConfiguration {
     @Bean
     public CustomerPresenter customerPresenter() {
         return PresenterFactory.customerPresenter();
+    }
+
+    @Bean
+    public CartPresenter cartPresenter() {
+        return PresenterFactory.cartPresenter();
     }
 
 }

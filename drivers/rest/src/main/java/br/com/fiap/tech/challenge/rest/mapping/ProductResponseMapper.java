@@ -11,7 +11,15 @@ import static org.mapstruct.MappingConstants.ComponentModel.SPRING;
 @Mapper(componentModel = SPRING)
 public interface ProductResponseMapper {
 
-    ProductResponse toResponse(ProductDTO dto);
+    default ProductResponse toResponse(Object dto) {
+        if (dto instanceof ComboDTO comboDTO){
+            return toComboResponse(comboDTO);
+        }
 
-    ComboResponse toResponse(ComboDTO dto);
+        return toSingleResponse((ProductDTO) dto);
+    }
+
+    ProductResponse toSingleResponse(ProductDTO dto);
+
+    ComboResponse toComboResponse(ComboDTO dto);
 }
