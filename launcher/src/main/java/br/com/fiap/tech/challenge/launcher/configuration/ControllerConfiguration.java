@@ -19,6 +19,7 @@ import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductContro
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
 import br.com.fiap.tech.challenge.adapter.controller.purchase.CheckoutController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.PaymentConfirmController;
 import br.com.fiap.tech.challenge.adapter.controller.purchase.PurchaseControllerFactory;
 import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
@@ -41,6 +42,7 @@ import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
 import br.com.fiap.tech.challenge.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.PaymentConfirmUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -125,5 +127,11 @@ public class ControllerConfiguration {
     @Bean
     public CheckoutController checkoutController(CheckoutUseCase useCase, PurchasePresenter presenter) {
         return PurchaseControllerFactory.checkoutController(useCase, presenter);
+    }
+
+
+    @Bean
+    public PaymentConfirmController paymentConfirmController(PaymentConfirmUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.paymentConfirmController(useCase, presenter);
     }
 }

@@ -34,4 +34,8 @@ public class PurchaseUseCaseFactory {
         return new FindPurchaseByUUIDUseCaseImpl(gateway);
     }
 
+    public static PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseUseCase updatePurchaseUseCase) {
+        return new PaymentConfirmUseCaseImpl(findPurchaseUseCase, updatePurchaseUseCase);
+    }
+
 }
