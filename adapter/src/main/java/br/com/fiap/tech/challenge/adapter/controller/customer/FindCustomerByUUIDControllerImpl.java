@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.controller.customer;
 
 import br.com.fiap.tech.challenge.adapter.dto.CustomerDTO;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByUUIDUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

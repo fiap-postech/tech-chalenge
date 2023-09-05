@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.presenter;
 import br.com.fiap.tech.challenge.adapter.dto.CustomerDTO;
 import br.com.fiap.tech.challenge.adapter.mapping.CustomerMapper;
 import br.com.fiap.tech.challenge.enterprise.entity.Customer;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 
 class CustomerPresenterImpl implements CustomerPresenter {
     @Override

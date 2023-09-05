@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.CreateCustomerDTO;
+import br.com.fiap.tech.challenge.application.dto.CreateCustomerDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCustomerRequest;
 import org.mapstruct.Mapper;
 

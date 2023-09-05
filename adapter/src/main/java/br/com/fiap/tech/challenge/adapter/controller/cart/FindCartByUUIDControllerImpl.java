@@ -2,7 +2,7 @@ package br.com.fiap.tech.challenge.adapter.controller.cart;
 
 import br.com.fiap.tech.challenge.adapter.dto.CartDTO;
 import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
-import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.FindCartByUUIDUseCase;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

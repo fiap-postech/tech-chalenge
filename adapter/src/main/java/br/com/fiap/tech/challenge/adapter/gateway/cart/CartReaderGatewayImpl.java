@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.gateway.cart;
 import br.com.fiap.tech.challenge.adapter.mapping.CartMapper;
 import br.com.fiap.tech.challenge.adapter.repository.CartReaderRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
-import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.application.gateway.CartReaderGateway;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

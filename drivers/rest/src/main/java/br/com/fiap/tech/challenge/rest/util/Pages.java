@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.util;
 
-import br.com.fiap.tech.challenge.util.Page;
+import br.com.fiap.tech.challenge.application.util.Page;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 import org.springframework.data.domain.Pageable;

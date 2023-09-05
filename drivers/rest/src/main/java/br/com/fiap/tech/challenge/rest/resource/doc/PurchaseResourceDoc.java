@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.resource.doc;
 
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

@@ -2,7 +2,6 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
-import br.com.fiap.tech.challenge.rest.mapping.UpdateCartItemRequestMapper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -28,9 +27,4 @@ public class UpdateCartItemRequest extends Request<CartItem> {
     @PositiveOrZero
     @Schema(description = "Quantidade do produto que será atualizado no carrinho", example = "2")
     private int quantity;
-
-    @Override
-    public CartItem toDomain() {
-        return UpdateCartItemRequestMapper.INSTANCE.toCartItem(this);
-    }
 }

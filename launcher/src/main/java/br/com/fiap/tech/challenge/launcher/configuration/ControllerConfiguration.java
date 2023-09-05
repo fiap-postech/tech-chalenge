@@ -18,25 +18,37 @@ import br.com.fiap.tech.challenge.adapter.controller.product.FindProductByUUIDCo
 import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductController;
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.CheckoutController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindAllPurchasesController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindPurchaseByUUIDController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.PaymentConfirmController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.PurchaseControllerFactory;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.UpdatePurchaseStatusController;
 import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
-import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.UpgradeCustomerUseCase;
-import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCategoryUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.adapter.presenter.PurchasePresenter;
+import br.com.fiap.tech.challenge.application.usecase.cart.AddCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.CreateCartUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.RemoveCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.UpdateCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.CreateCustomerUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByDocumentUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.UpgradeCustomerUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.CreateProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.DisableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.EnableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindAllAvailableProductByCategoryUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindAllAvailableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindProductByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindPurchaseByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.PaymentConfirmUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.UpdatePurchaseStatusUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -116,5 +128,31 @@ public class ControllerConfiguration {
     @Bean
     public RemoveCartItemController removeCartItemController(RemoveCartItemUseCase useCase, CartPresenter presenter) {
         return CartControllerFactory.removeCartItemController(useCase, presenter);
+    }
+
+    @Bean
+    public CheckoutController checkoutController(CheckoutUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.checkoutController(useCase, presenter);
+    }
+
+
+    @Bean
+    public PaymentConfirmController paymentConfirmController(PaymentConfirmUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.paymentConfirmController(useCase, presenter);
+    }
+
+    @Bean
+    public UpdatePurchaseStatusController updatePurchaseStatusController(UpdatePurchaseStatusUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.updatePurchaseStatusController(useCase, presenter);
+    }
+
+    @Bean
+    public FindPurchaseByUUIDController findPurchaseByUUIDController(FindPurchaseByUUIDUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.findPurchaseByUUIDController(useCase, presenter);
+    }
+
+    @Bean
+    public static FindAllPurchasesController findAllPurchasesController(FindAllPurchasesUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.findAllPurchasesController(useCase, presenter);
     }
 }

@@ -3,7 +3,6 @@ package br.com.fiap.tech.challenge.rest.resource.request;
 import br.com.fiap.tech.challenge.enterprise.entity.CartItem;
 import br.com.fiap.tech.challenge.enterprise.validation.UUID;
 import br.com.fiap.tech.challenge.rest.common.request.Request;
-import br.com.fiap.tech.challenge.rest.mapping.AddCartItemRequestMapper;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PositiveOrZero;
@@ -30,9 +29,4 @@ public class AddCartItemRequest extends Request<CartItem> {
     @PositiveOrZero
     @Schema(description = "Quantidade do produto que será adicionado ao carrinho", example = "1")
     private int quantity;
-
-    @Override
-    public CartItem toDomain() {
-        return AddCartItemRequestMapper.INSTANCE.toCartItem(this);
-    }
 }

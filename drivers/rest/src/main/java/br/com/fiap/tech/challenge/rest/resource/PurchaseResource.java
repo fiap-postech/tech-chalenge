@@ -1,67 +1,63 @@
 package br.com.fiap.tech.challenge.rest.resource;
 
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindAllPurchasesController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindPurchaseByUUIDController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.PaymentConfirmController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.UpdatePurchaseStatusController;
 import br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus;
-import br.com.fiap.tech.challenge.port.driver.FindAllPurchasesService;
-import br.com.fiap.tech.challenge.port.driver.FindPurchaseByPaymentIdService;
-import br.com.fiap.tech.challenge.port.driver.FindPurchaseByUUIDService;
-import br.com.fiap.tech.challenge.port.driver.UpdatePurchaseService;
-import br.com.fiap.tech.challenge.rest.mapping.PurchaseMapperRest;
+import br.com.fiap.tech.challenge.rest.mapping.PaymentConfirmMapper;
+import br.com.fiap.tech.challenge.rest.mapping.PurchaseResponseMapper;
 import br.com.fiap.tech.challenge.rest.resource.doc.PurchaseResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.PaymentConfirmRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
+import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.UUID;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/purchase")
+@RequiredArgsConstructor
 public class PurchaseResource implements PurchaseResourceDoc {
 
-    private final PurchaseMapperRest purchaseMapperRest;
-    private final FindAllPurchasesService findAllPurchasesService;
-    private final FindPurchaseByUUIDService findPurchaseByUUIDService;
-    private final FindPurchaseByPaymentIdService findPurchaseByPaymentIdService;
-    private final UpdatePurchaseService updatePurchaseService;
+    private final PaymentConfirmMapper paymentConfirmMapper;
+    private final PurchaseResponseMapper purchaseResponseMapper;
 
-    public PurchaseResource(
-            PurchaseMapperRest purchaseMapperRest,
-            FindAllPurchasesService findAllPurchasesService,
-            FindPurchaseByUUIDService findPurchaseByUUIDService,
-            FindPurchaseByPaymentIdService findPurchaseByPaymentIdService,
-            UpdatePurchaseService updatePurchaseService) {
-        this.purchaseMapperRest = purchaseMapperRest;
-        this.findAllPurchasesService = findAllPurchasesService;
-        this.findPurchaseByUUIDService = findPurchaseByUUIDService;
-        this.findPurchaseByPaymentIdService = findPurchaseByPaymentIdService;
-        this.updatePurchaseService = updatePurchaseService;
-    }
+    private final FindAllPurchasesController findAllPurchasesController;
+    private final FindPurchaseByUUIDController findPurchaseByUUIDController;
+    private final UpdatePurchaseStatusController updatePurchaseStatusController;
+    private final PaymentConfirmController paymentConfirmController;
 
     @GetMapping
     public ResponseList<PurchseResponse> getAllAvailable(@ParameterObject Pageable pageable) {
         return ResponseList.from(
-                findAllPurchasesService.list(Pages.of(pageable)),
-                purchaseMapperRest::toPurchseResponse
+                findAllPurchasesController.list(Pages.of(pageable)),
+                purchaseResponseMapper::toResponse
         );
     }
 
     @GetMapping("/{uuid}")
     public PurchseResponse getByUUID(@PathVariable String uuid) {
-        return purchaseMapperRest.toPurchseResponse(findPurchaseByUUIDService.get(UUID.fromString(uuid)));
+        return purchaseResponseMapper.toResponse(findPurchaseByUUIDController.get(uuid));
     }
 
     @PatchMapping("/{uuid}/{status}")
     public PurchseResponse updatePurchaseStatus(@PathVariable String uuid, @PathVariable PurchaseStatus status) {
-        var purchase = findPurchaseByUUIDService.get(UUID.fromString(uuid));
-        return purchaseMapperRest.toPurchseResponse(updatePurchaseService.updateStatus(purchase, status));
+        return purchaseResponseMapper.toResponse(updatePurchaseStatusController.update(uuid, status));
     }
 
     @PostMapping("/confirm")
     public PurchseResponse confirmPaymentForPurchase(@RequestBody PaymentConfirmRequest confirmRequest) {
-        var purchase = findPurchaseByPaymentIdService.getPurchase(confirmRequest.paymentId());
-        return purchaseMapperRest.toPurchseResponse(updatePurchaseService.updateStatus(purchase, PurchaseStatus.PAID));
+        return purchaseResponseMapper.toResponse(
+                paymentConfirmController.confirm(paymentConfirmMapper.toDTO(confirmRequest))
+        );
     }
 }

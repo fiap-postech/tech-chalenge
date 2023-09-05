@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.controller.product;
 
 import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.DisableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.EnableProductUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

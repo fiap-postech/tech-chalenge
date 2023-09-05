@@ -4,9 +4,9 @@ import br.com.fiap.tech.challenge.adapter.mapping.util.ProductMappers;
 import br.com.fiap.tech.challenge.adapter.repository.ProductReaderRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
-import br.com.fiap.tech.challenge.util.Page;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.application.util.Page;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

@@ -5,7 +5,7 @@ import br.com.fiap.tech.challenge.rest.common.handler.error.ApiErrorResponse;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;

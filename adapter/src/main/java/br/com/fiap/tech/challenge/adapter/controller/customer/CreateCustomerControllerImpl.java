@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.controller.customer;
 
 import br.com.fiap.tech.challenge.adapter.dto.CustomerDTO;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
-import br.com.fiap.tech.challenge.dto.CreateCustomerDTO;
-import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
+import br.com.fiap.tech.challenge.application.dto.CreateCustomerDTO;
+import br.com.fiap.tech.challenge.application.usecase.customer.CreateCustomerUseCase;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.CreateCartDTO;
+import br.com.fiap.tech.challenge.application.dto.CreateCartDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateCartRequest;
 import org.mapstruct.Mapper;
 

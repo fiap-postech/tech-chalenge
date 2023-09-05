@@ -12,7 +12,7 @@ import br.com.fiap.tech.challenge.enterprise.entity.Dessert;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 
 class ProductPresenterImpl implements ProductPresenter{
     @Override

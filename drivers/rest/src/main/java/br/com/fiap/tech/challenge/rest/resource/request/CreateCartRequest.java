@@ -21,9 +21,4 @@ public class CreateCartRequest extends Request<Cart> {
 
     @UUID(required = false)
     private String customerId;
-
-    @Override
-    public Cart toDomain() {
-        throw new IllegalStateException("you shall not pass!");
-    }
 }

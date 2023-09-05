@@ -1,30 +1,41 @@
 package br.com.fiap.tech.challenge.launcher.configuration;
 
-import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
-import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
-import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
-import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
-import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
-import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
-import br.com.fiap.tech.challenge.usecase.cart.AddCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.CartUseCaseFactory;
-import br.com.fiap.tech.challenge.usecase.cart.CreateCartUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.FindCartByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.RemoveCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.cart.UpdateCartItemUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.CreateCustomerUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.CustomerUseCaseFactory;
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByDocumentUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.FindCustomerByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.customer.UpgradeCustomerUseCase;
-import br.com.fiap.tech.challenge.usecase.product.CreateProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.DisableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.EnableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductByCategoryUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase;
-import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.product.ProductUseCaseFactory;
-import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.application.gateway.CartReaderGateway;
+import br.com.fiap.tech.challenge.application.gateway.CartWriterGateway;
+import br.com.fiap.tech.challenge.application.gateway.CustomerReaderGateway;
+import br.com.fiap.tech.challenge.application.gateway.CustomerWriterGateway;
+import br.com.fiap.tech.challenge.application.gateway.PaymentGateway;
+import br.com.fiap.tech.challenge.application.gateway.ProductReaderGateway;
+import br.com.fiap.tech.challenge.application.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.application.gateway.PurchaseReaderGateway;
+import br.com.fiap.tech.challenge.application.gateway.PurchaseWriterGateway;
+import br.com.fiap.tech.challenge.application.usecase.cart.AddCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.CartUseCaseFactory;
+import br.com.fiap.tech.challenge.application.usecase.cart.CreateCartUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.FindCartByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.RemoveCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.cart.UpdateCartItemUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.CreateCustomerUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.CustomerUseCaseFactory;
+import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByDocumentUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.FindCustomerByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.customer.UpgradeCustomerUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.CreateProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.DisableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.EnableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindAllAvailableProductByCategoryUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindAllAvailableProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.FindProductByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.product.ProductUseCaseFactory;
+import br.com.fiap.tech.challenge.application.usecase.product.UpdateProductUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.CreatePurchaseUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindPurchaseByPaymentIdUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindPurchaseByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.PaymentConfirmUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.PurchaseUseCaseFactory;
+import br.com.fiap.tech.challenge.application.usecase.purchase.UpdatePurchaseStatusUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -108,5 +119,40 @@ public class UseCaseConfiguration {
     @Bean
     public RemoveCartItemUseCase removeCartItemUseCase(CartReaderGateway useCase, CartWriterGateway presenter) {
         return CartUseCaseFactory.removeCartItemUseCase(useCase, presenter);
+    }
+
+    @Bean
+    public CheckoutUseCase checkoutUseCase(FindCartByUUIDUseCase cartFinderUseCase, CreatePurchaseUseCase createPurchaseUseCase, PaymentGateway paymentGateway) {
+        return PurchaseUseCaseFactory.checkoutUseCase(cartFinderUseCase, createPurchaseUseCase, paymentGateway);
+    }
+
+    @Bean
+    public CreatePurchaseUseCase createPurchaseUseCase(PurchaseWriterGateway writer) {
+        return PurchaseUseCaseFactory.createPurchaseUseCase(writer);
+    }
+
+    @Bean
+    public UpdatePurchaseStatusUseCase updatePurchaseUseCase(FindPurchaseByUUIDUseCase findPurchaseUseCase, PurchaseWriterGateway gateway) {
+        return PurchaseUseCaseFactory.updatePurchaseUseCase(findPurchaseUseCase, gateway);
+    }
+
+    @Bean
+    public FindAllPurchasesUseCase findAllPurchasesUseCase(PurchaseReaderGateway gateway) {
+        return PurchaseUseCaseFactory.findAllPurchasesUseCase(gateway);
+    }
+
+    @Bean
+    public FindPurchaseByPaymentIdUseCase findPurchaseByPaymentIdUseCase(PaymentGateway paymentGateway, PurchaseReaderGateway purchaseReaderGateway) {
+        return PurchaseUseCaseFactory.findPurchaseByPaymentIdUseCase(paymentGateway, purchaseReaderGateway);
+    }
+
+    @Bean
+    public FindPurchaseByUUIDUseCase findPurchaseByUUIDUseCase(PurchaseReaderGateway gateway) {
+        return PurchaseUseCaseFactory.findPurchaseByUUIDUseCase(gateway);
+    }
+
+    @Bean
+    public PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseStatusUseCase updatePurchaseStatusUseCase) {
+        return PurchaseUseCaseFactory.paymentConfirmUseCase(findPurchaseUseCase, updatePurchaseStatusUseCase);
     }
 }
