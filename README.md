@@ -75,10 +75,19 @@ O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos 
       ├── validation
       └── valueobject
 ├── infra
-|  ├── docker
-|  ├── docker-compose-ga.yml
-|  ├── docker-compose-local.yml
-|  └── docker-compose.yml
+   ├── docker
+   |  ├── mysql
+   |  └── nginx
+   ├── docker-compose-ga.yml
+   ├── docker-compose-local.yml
+   ├── docker-compose.yml
+   └── kubernetes
+      ├── app
+      ├── cdn
+      ├── components.yaml
+      ├── mysql
+      ├── redis
+      └── script
 ├── launcher
 |  └── src
       ├── Application.java
