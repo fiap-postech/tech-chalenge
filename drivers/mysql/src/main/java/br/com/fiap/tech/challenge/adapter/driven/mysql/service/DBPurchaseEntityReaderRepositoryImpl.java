@@ -6,8 +6,8 @@ import br.com.fiap.tech.challenge.adapter.driven.mysql.repository.PurchaseEntity
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
 import br.com.fiap.tech.challenge.adapter.repository.PurchaseReaderRepository;
 import br.com.fiap.tech.challenge.exception.ApplicationException;
-import br.com.fiap.tech.challenge.util.Page;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.Page;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;

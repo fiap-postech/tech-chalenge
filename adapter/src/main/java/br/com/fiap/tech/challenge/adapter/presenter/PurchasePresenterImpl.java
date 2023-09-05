@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.presenter;
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
 import br.com.fiap.tech.challenge.adapter.mapping.PurchaseMapper;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 
 class PurchasePresenterImpl implements PurchasePresenter{
     @Override

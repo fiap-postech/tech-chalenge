@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.gateway.purchase;
 import br.com.fiap.tech.challenge.adapter.mapping.PurchaseMapper;
 import br.com.fiap.tech.challenge.adapter.repository.PurchaseWriterRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Purchase;
-import br.com.fiap.tech.challenge.gateway.PurchaseWriterGateway;
+import br.com.fiap.tech.challenge.application.gateway.PurchaseWriterGateway;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

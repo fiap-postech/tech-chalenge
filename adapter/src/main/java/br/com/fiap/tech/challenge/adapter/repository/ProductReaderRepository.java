@@ -2,8 +2,8 @@ package br.com.fiap.tech.challenge.adapter.repository;
 
 import br.com.fiap.tech.challenge.adapter.dto.ProductDTO;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
-import br.com.fiap.tech.challenge.util.Page;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.Page;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 
 public interface ProductReaderRepository {
 

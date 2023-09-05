@@ -1,7 +1,7 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.CreateComboProductDTO;
-import br.com.fiap.tech.challenge.dto.CreateSingleProductDTO;
+import br.com.fiap.tech.challenge.application.dto.CreateComboProductDTO;
+import br.com.fiap.tech.challenge.application.dto.CreateSingleProductDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateComboProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductRequest;
 import org.mapstruct.Mapper;

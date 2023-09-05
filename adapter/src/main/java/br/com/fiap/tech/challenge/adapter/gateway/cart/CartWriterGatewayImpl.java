@@ -3,7 +3,7 @@ package br.com.fiap.tech.challenge.adapter.gateway.cart;
 import br.com.fiap.tech.challenge.adapter.mapping.CartMapper;
 import br.com.fiap.tech.challenge.adapter.repository.CartWriterRepository;
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
-import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
+import br.com.fiap.tech.challenge.application.gateway.CartWriterGateway;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor

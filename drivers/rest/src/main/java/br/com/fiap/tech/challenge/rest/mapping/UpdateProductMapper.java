@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.UpdateProductDTO;
+import br.com.fiap.tech.challenge.application.dto.UpdateProductDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import org.mapstruct.Mapper;
 

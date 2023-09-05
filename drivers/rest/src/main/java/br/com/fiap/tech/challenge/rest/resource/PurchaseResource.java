@@ -11,7 +11,7 @@ import br.com.fiap.tech.challenge.rest.resource.doc.PurchaseResourceDoc;
 import br.com.fiap.tech.challenge.rest.resource.request.PaymentConfirmRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.PurchseResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.data.domain.Pageable;

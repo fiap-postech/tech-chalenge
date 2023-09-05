@@ -1,11 +1,11 @@
 package br.com.fiap.tech.challenge.adapter.controller.purchase;
 
 import br.com.fiap.tech.challenge.adapter.presenter.PurchasePresenter;
-import br.com.fiap.tech.challenge.usecase.purchase.CheckoutUseCase;
-import br.com.fiap.tech.challenge.usecase.purchase.FindAllPurchasesUseCase;
-import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByUUIDUseCase;
-import br.com.fiap.tech.challenge.usecase.purchase.PaymentConfirmUseCase;
-import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseStatusUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindPurchaseByUUIDUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.PaymentConfirmUseCase;
+import br.com.fiap.tech.challenge.application.usecase.purchase.UpdatePurchaseStatusUseCase;
 import lombok.AccessLevel;
 import lombok.NoArgsConstructor;
 

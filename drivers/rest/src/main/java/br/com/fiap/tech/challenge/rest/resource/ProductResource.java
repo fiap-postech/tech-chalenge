@@ -18,7 +18,7 @@ import br.com.fiap.tech.challenge.rest.resource.request.CreateSingleProductReque
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateProductRequest;
 import br.com.fiap.tech.challenge.rest.resource.response.ProductResponse;
 import br.com.fiap.tech.challenge.rest.util.Pages;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springdoc.core.annotations.ParameterObject;

@@ -1,6 +1,6 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.PaymentConfirmDTO;
+import br.com.fiap.tech.challenge.application.dto.PaymentConfirmDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.PaymentConfirmRequest;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;

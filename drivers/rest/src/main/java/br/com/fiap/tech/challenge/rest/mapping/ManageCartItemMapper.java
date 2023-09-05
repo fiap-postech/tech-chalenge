@@ -1,8 +1,8 @@
 package br.com.fiap.tech.challenge.rest.mapping;
 
-import br.com.fiap.tech.challenge.dto.AddCartItemDTO;
-import br.com.fiap.tech.challenge.dto.RemoveCartItemDTO;
-import br.com.fiap.tech.challenge.dto.UpdateCartItemDTO;
+import br.com.fiap.tech.challenge.application.dto.AddCartItemDTO;
+import br.com.fiap.tech.challenge.application.dto.RemoveCartItemDTO;
+import br.com.fiap.tech.challenge.application.dto.UpdateCartItemDTO;
 import br.com.fiap.tech.challenge.rest.resource.request.AddCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.RemoveCartItemRequest;
 import br.com.fiap.tech.challenge.rest.resource.request.UpdateCartItemRequest;

@@ -2,9 +2,9 @@ package br.com.fiap.tech.challenge.adapter.controller.purchase;
 
 import br.com.fiap.tech.challenge.adapter.dto.PurchaseDTO;
 import br.com.fiap.tech.challenge.adapter.presenter.PurchasePresenter;
-import br.com.fiap.tech.challenge.usecase.purchase.FindAllPurchasesUseCase;
-import br.com.fiap.tech.challenge.util.Page;
-import br.com.fiap.tech.challenge.util.ResponseList;
+import br.com.fiap.tech.challenge.application.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.application.util.Page;
+import br.com.fiap.tech.challenge.application.util.ResponseList;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
