@@ -35,7 +35,7 @@ import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByPaymentIdUseCas
 import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.purchase.PaymentConfirmUseCase;
 import br.com.fiap.tech.challenge.usecase.purchase.PurchaseUseCaseFactory;
-import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseStatusUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -132,8 +132,8 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public UpdatePurchaseUseCase updatePurchaseUseCase(PurchaseWriterGateway gateway) {
-        return PurchaseUseCaseFactory.updatePurchaseUseCase(gateway);
+    public UpdatePurchaseStatusUseCase updatePurchaseUseCase(FindPurchaseByUUIDUseCase findPurchaseUseCase, PurchaseWriterGateway gateway) {
+        return PurchaseUseCaseFactory.updatePurchaseUseCase(findPurchaseUseCase, gateway);
     }
 
     @Bean
@@ -152,7 +152,7 @@ public class UseCaseConfiguration {
     }
 
     @Bean
-    public PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseUseCase updatePurchaseUseCase) {
-        return PurchaseUseCaseFactory.paymentConfirmUseCase(findPurchaseUseCase, updatePurchaseUseCase);
+    public PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseStatusUseCase updatePurchaseStatusUseCase) {
+        return PurchaseUseCaseFactory.paymentConfirmUseCase(findPurchaseUseCase, updatePurchaseStatusUseCase);
     }
 }

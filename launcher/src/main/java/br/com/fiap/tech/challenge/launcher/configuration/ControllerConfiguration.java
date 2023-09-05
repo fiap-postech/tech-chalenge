@@ -19,8 +19,11 @@ import br.com.fiap.tech.challenge.adapter.controller.product.ManageProductContro
 import br.com.fiap.tech.challenge.adapter.controller.product.ProductControllerFactory;
 import br.com.fiap.tech.challenge.adapter.controller.product.UpdateProductController;
 import br.com.fiap.tech.challenge.adapter.controller.purchase.CheckoutController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindAllPurchasesController;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.FindPurchaseByUUIDController;
 import br.com.fiap.tech.challenge.adapter.controller.purchase.PaymentConfirmController;
 import br.com.fiap.tech.challenge.adapter.controller.purchase.PurchaseControllerFactory;
+import br.com.fiap.tech.challenge.adapter.controller.purchase.UpdatePurchaseStatusController;
 import br.com.fiap.tech.challenge.adapter.presenter.CartPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.CustomerPresenter;
 import br.com.fiap.tech.challenge.adapter.presenter.ProductPresenter;
@@ -42,7 +45,10 @@ import br.com.fiap.tech.challenge.usecase.product.FindAllAvailableProductUseCase
 import br.com.fiap.tech.challenge.usecase.product.FindProductByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.product.UpdateProductUseCase;
 import br.com.fiap.tech.challenge.usecase.purchase.CheckoutUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindAllPurchasesUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.FindPurchaseByUUIDUseCase;
 import br.com.fiap.tech.challenge.usecase.purchase.PaymentConfirmUseCase;
+import br.com.fiap.tech.challenge.usecase.purchase.UpdatePurchaseStatusUseCase;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -133,5 +139,20 @@ public class ControllerConfiguration {
     @Bean
     public PaymentConfirmController paymentConfirmController(PaymentConfirmUseCase useCase, PurchasePresenter presenter) {
         return PurchaseControllerFactory.paymentConfirmController(useCase, presenter);
+    }
+
+    @Bean
+    public UpdatePurchaseStatusController updatePurchaseStatusController(UpdatePurchaseStatusUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.updatePurchaseStatusController(useCase, presenter);
+    }
+
+    @Bean
+    public FindPurchaseByUUIDController findPurchaseByUUIDController(FindPurchaseByUUIDUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.findPurchaseByUUIDController(useCase, presenter);
+    }
+
+    @Bean
+    public static FindAllPurchasesController findAllPurchasesController(FindAllPurchasesUseCase useCase, PurchasePresenter presenter) {
+        return PurchaseControllerFactory.findAllPurchasesController(useCase, presenter);
     }
 }
