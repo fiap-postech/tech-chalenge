@@ -9,11 +9,11 @@ import lombok.RequiredArgsConstructor;
 class PaymentConfirmUseCaseImpl implements PaymentConfirmUseCase {
 
     private final FindPurchaseByPaymentIdUseCase findPurchaseUseCase;
-    private final UpdatePurchaseUseCase updatePurchaseUseCase;
+    private final UpdatePurchaseStatusUseCase updatePurchaseStatusUseCase;
 
     @Override
     public Purchase confirm(PaymentConfirmDTO dto) {
         var purchase = findPurchaseUseCase.getPurchase(dto.getData().getId());
-        return updatePurchaseUseCase.updateStatus(purchase, PurchaseStatus.PAID);
+        return updatePurchaseStatusUseCase.update(purchase, PurchaseStatus.PAID);
     }
 }

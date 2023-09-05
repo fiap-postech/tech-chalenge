@@ -18,8 +18,8 @@ public class PurchaseUseCaseFactory {
         return new CreatePurchaseUseCaseImpl(writer);
     }
 
-    public static UpdatePurchaseUseCase updatePurchaseUseCase(PurchaseWriterGateway gateway) {
-        return new UpdatePurchaseUseCaseImpl(gateway);
+    public static UpdatePurchaseStatusUseCase updatePurchaseUseCase(FindPurchaseByUUIDUseCase findPurchaseUseCase, PurchaseWriterGateway gateway) {
+        return new UpdatePurchaseStatusUseCaseImpl(findPurchaseUseCase, gateway);
     }
 
     public static FindAllPurchasesUseCase findAllPurchasesUseCase(PurchaseReaderGateway gateway) {
@@ -34,8 +34,8 @@ public class PurchaseUseCaseFactory {
         return new FindPurchaseByUUIDUseCaseImpl(gateway);
     }
 
-    public static PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseUseCase updatePurchaseUseCase) {
-        return new PaymentConfirmUseCaseImpl(findPurchaseUseCase, updatePurchaseUseCase);
+    public static PaymentConfirmUseCase paymentConfirmUseCase(FindPurchaseByPaymentIdUseCase findPurchaseUseCase, UpdatePurchaseStatusUseCase updatePurchaseStatusUseCase) {
+        return new PaymentConfirmUseCaseImpl(findPurchaseUseCase, updatePurchaseStatusUseCase);
     }
 
 }
