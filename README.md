@@ -10,7 +10,92 @@ Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo
 
 O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos de DDD, cujo Event Storming pode ser acessado [Aqui](https://miro.com/app/board/uXjVM5IDnUo=/?share_link_id=798761038531).
 
-
+## Arvore de Arquivos do Projeto
+```
+./tech-chalenge
+├── Dockerfile
+├── README.md
+├── RUN-BUILDING-IMAGE.md
+├── RUN-DOCKER-HUB-IMAGE.md
+├── RUN-OWN-CODE.md
+├── application
+|  └── src
+       ├── dto
+       ├── gateway
+       ├── mapper
+       ├── port
+           ├── driven
+           └── driver
+       ├── usecase
+           ├── cart
+           ├── customer
+           └── product
+       └── util
+├── common-libraries
+|  ├── domain-common
+      ├── enterprise
+      ├── exception
+      |  └── error
+      └── util
+|  └── rest-common
+      ├── handler
+      |  └── error
+      ├── request
+      └── response
+├── documentation
+├── drivers
+|  ├── mysql
+      ├── config
+      ├── mapping
+      ├── model
+      ├── repository
+      └── service
+|  ├── payment-gateway
+      ├── client
+      ├── config
+      ├── request
+      ├── respose
+      └── service
+|  ├── redis
+      ├── config
+      ├── mapping
+      ├── model
+      ├── repository
+      └── service
+|  └── rest
+      ├── config
+      ├── mapping
+      ├── resource
+      └── util
+├── enterprise
+|  └── src
+      ├── entity
+      ├── enums
+      ├── error
+      ├── validation
+      └── valueobject
+├── infra
+   ├── docker
+   |  ├── mysql
+   |  └── nginx
+   ├── docker-compose-ga.yml
+   ├── docker-compose-local.yml
+   ├── docker-compose.yml
+   └── kubernetes
+      ├── app
+      ├── cdn
+      ├── components.yaml
+      ├── mysql
+      ├── redis
+      └── script
+├── launcher
+|  └── src
+      ├── Application.java
+      └── configuration
+├── package-lock.json
+├── package.json
+└── settings.gradle
+```
 ## Tópicos
 
 - [Pré-Requisitos](#pré-requisitos-)
