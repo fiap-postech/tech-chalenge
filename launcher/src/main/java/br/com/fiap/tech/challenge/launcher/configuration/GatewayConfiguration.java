@@ -3,18 +3,23 @@ package br.com.fiap.tech.challenge.launcher.configuration;
 import br.com.fiap.tech.challenge.adapter.gateway.cart.CartGatewayFactory;
 import br.com.fiap.tech.challenge.adapter.gateway.customer.CustomerGatewayFactory;
 import br.com.fiap.tech.challenge.adapter.gateway.product.ProductGatewayFactory;
+import br.com.fiap.tech.challenge.adapter.gateway.purchase.PurchaseGatewayFactory;
 import br.com.fiap.tech.challenge.adapter.repository.CartReaderRepository;
 import br.com.fiap.tech.challenge.adapter.repository.CartWriterRepository;
 import br.com.fiap.tech.challenge.adapter.repository.CustomerReaderRepository;
 import br.com.fiap.tech.challenge.adapter.repository.CustomerWriterRepository;
 import br.com.fiap.tech.challenge.adapter.repository.ProductReaderRepository;
 import br.com.fiap.tech.challenge.adapter.repository.ProductWriterRepository;
+import br.com.fiap.tech.challenge.adapter.repository.PurchaseReaderRepository;
+import br.com.fiap.tech.challenge.adapter.repository.PurchaseWriterRepository;
 import br.com.fiap.tech.challenge.gateway.CartReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CartWriterGateway;
 import br.com.fiap.tech.challenge.gateway.CustomerReaderGateway;
 import br.com.fiap.tech.challenge.gateway.CustomerWriterGateway;
 import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.gateway.PurchaseReaderGateway;
+import br.com.fiap.tech.challenge.gateway.PurchaseWriterGateway;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -49,6 +54,16 @@ public class GatewayConfiguration {
     @Bean
     public CartReaderGateway cartReaderGateway(CartReaderRepository repository) {
         return CartGatewayFactory.cartReaderGateway(repository);
+    }
+
+    @Bean
+    public PurchaseReaderGateway purchaseReaderGateway(PurchaseReaderRepository repository) {
+        return PurchaseGatewayFactory.purchaseReaderGateway(repository);
+    }
+
+    @Bean
+    public PurchaseWriterGateway purchaseWriterGateway(PurchaseWriterRepository repository) {
+        return PurchaseGatewayFactory.purchaseWriterGateway(repository);
     }
 
 }
