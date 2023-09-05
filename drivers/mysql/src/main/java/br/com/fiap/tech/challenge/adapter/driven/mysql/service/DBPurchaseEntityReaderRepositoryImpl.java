@@ -13,12 +13,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 import java.util.function.Function;
 
-import static br.com.fiap.tech.challenge.enterprise.enums.PurchaseStatus.FINISHED;
 import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.PURCHASE_NOT_FOUND_BY_UUID;
-import static java.util.Comparator.comparing;
 
 @Service
 @RequiredArgsConstructor
@@ -29,7 +26,7 @@ public class DBPurchaseEntityReaderRepositoryImpl implements PurchaseReaderRepos
 
     @Override
     public ResponseList<PurchaseDTO> readAll(Page page) {
-        return readAll(page, repository::findAll);
+        return readAll(page, repository::findPurchaseQueue);
     }
 
     @Override
@@ -42,20 +39,13 @@ public class DBPurchaseEntityReaderRepositoryImpl implements PurchaseReaderRepos
     private ResponseList<PurchaseDTO> readAll(Page page, Function<Pageable, org.springframework.data.domain.Page<PurchaseEntity>> reader) {
         var result = reader.apply(PageRequest.of(page.number(), page.size()));
 
+
         return new ResponseList<>(
                 result.getNumber(),
                 result.getSize(),
                 result.getNumberOfElements(),
                 result.getTotalElements(),
-                getPurchases(result)
+                result.getContent().stream().map(dbPurchaseMapper::toDTO).toList()
         );
-    }
-
-    private List<PurchaseDTO> getPurchases(org.springframework.data.domain.Page<PurchaseEntity> result) {
-        return result.getContent().stream()
-                .map(dbPurchaseMapper::toDTO)
-                .filter(p -> p.getStatus() != FINISHED)
-                .sorted(comparing(p -> p.getStatus().toString()))
-                .toList();
     }
 }
