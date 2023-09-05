@@ -4,12 +4,16 @@ import br.com.fiap.tech.challenge.dto.CreateComboProductDTO;
 import br.com.fiap.tech.challenge.dto.CreateProductDTO;
 import br.com.fiap.tech.challenge.dto.CreateSingleProductDTO;
 import br.com.fiap.tech.challenge.enterprise.entity.Beverage;
-import br.com.fiap.tech.challenge.enterprise.entity.Combo;
 import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.entity.Sandwich;
 import br.com.fiap.tech.challenge.enterprise.entity.SideDish;
 import br.com.fiap.tech.challenge.gateway.ProductReaderGateway;
 import br.com.fiap.tech.challenge.gateway.ProductWriterGateway;
+import br.com.fiap.tech.challenge.mapper.CreateBeverageMapper;
+import br.com.fiap.tech.challenge.mapper.CreateComboMapper;
+import br.com.fiap.tech.challenge.mapper.CreateDessertMapper;
+import br.com.fiap.tech.challenge.mapper.CreateSandwichMapper;
+import br.com.fiap.tech.challenge.mapper.CreateSideDishMapper;
 import lombok.AllArgsConstructor;
 
 import java.util.UUID;
@@ -34,11 +38,21 @@ class CreateProductUseCaseImpl implements CreateProductUseCase {
     }
 
     private Product createSingleProduct(CreateSingleProductDTO dto) {
-        return writerGateway.write(dto.toDomain());
+        return writerGateway.write(mapProduct(dto));
+    }
+
+    private Product mapProduct(CreateSingleProductDTO dto) {
+        return switch (dto.getCategory()){
+            case SANDWICH -> CreateSandwichMapper.INSTANCE.toSandwich(dto);
+            case BEVERAGE -> CreateBeverageMapper.INSTANCE.toBeverage(dto);
+            case DESSERT -> CreateDessertMapper.INSTANCE.toDessert(dto);
+            case SIDE_DISH -> CreateSideDishMapper.INSTANCE.toSideDish(dto);
+            case COMBO -> throw new IllegalStateException();
+        };
     }
 
     private Product createComboProduct(CreateComboProductDTO dto) {
-        var product = (Combo) dto.toDomain();
+        var product = CreateComboMapper.INSTANCE.toCombo(dto);
 
         product = product.toBuilder()
                 .beverage((Beverage) readerGateway.readById(UUID.fromString(dto.getBeverageId())))

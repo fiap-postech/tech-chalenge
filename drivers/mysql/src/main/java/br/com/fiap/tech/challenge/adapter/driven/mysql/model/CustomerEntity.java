@@ -1,8 +1,5 @@
 package br.com.fiap.tech.challenge.adapter.driven.mysql.model;
 
-import br.com.fiap.tech.challenge.enterprise.entity.Customer;
-import br.com.fiap.tech.challenge.enterprise.valueobject.Document;
-import br.com.fiap.tech.challenge.enterprise.valueobject.EmailRegistration;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
@@ -12,7 +9,6 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.io.Serial;
-import java.util.UUID;
 
 @Entity
 @Table(name = "customer")
@@ -35,14 +31,4 @@ public class CustomerEntity extends JPAEntity{
     private String document;
 
     private boolean enabled;
-
-    public Customer toDomain(){
-        return Customer.builder()
-                .uuid(UUID.fromString(getUuid()))
-                .name(getName())
-                .email(EmailRegistration.of(getEmail()))
-                .document(Document.of(getDocument()))
-                .enabled(isEnabled())
-                .build();
-    }
 }

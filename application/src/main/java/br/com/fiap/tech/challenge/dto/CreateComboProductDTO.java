@@ -1,17 +1,11 @@
 package br.com.fiap.tech.challenge.dto;
 
-import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.validation.UUID;
-import br.com.fiap.tech.challenge.exception.ApplicationException;
-import br.com.fiap.tech.challenge.mapper.CreateComboMapper;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serial;
-
-import static br.com.fiap.tech.challenge.enterprise.enums.ProductCategory.COMBO;
-import static br.com.fiap.tech.challenge.enterprise.error.ApplicationError.INVALID_CATEGORY_FOR_PRODUCT;
 
 @Getter
 @Setter
@@ -28,13 +22,4 @@ public class CreateComboProductDTO extends CreateProductDTO {
 
     @UUID
     private String sideDishId;
-
-    @Override
-    public Product toDomain() {
-        if (getCategory() == COMBO) {
-            return CreateComboMapper.INSTANCE.toCombo(this);
-        }
-
-        throw new ApplicationException(INVALID_CATEGORY_FOR_PRODUCT);
-    }
 }

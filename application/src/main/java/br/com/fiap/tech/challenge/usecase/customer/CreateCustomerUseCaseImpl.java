@@ -34,6 +34,7 @@ class CreateCustomerUseCaseImpl implements CreateCustomerUseCase {
                 .email(EmailRegistration.of(dto.getEmail()))
                 .document(Document.of(dto.getDocument()))
                 .name(dto.getName())
+                .enabled(true)
                 .build();
 
         return writerService.write(customer);

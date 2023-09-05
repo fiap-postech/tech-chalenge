@@ -1,6 +1,5 @@
 package br.com.fiap.tech.challenge.dto;
 
-import br.com.fiap.tech.challenge.enterprise.entity.Product;
 import br.com.fiap.tech.challenge.enterprise.enums.ProductCategory;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
@@ -34,6 +33,4 @@ public abstract class CreateProductDTO implements Serializable {
     private ProductCategory category;
 
     private boolean enabled = true;
-
-    public abstract Product toDomain();
 }

@@ -26,9 +26,4 @@ public class UpdateProductRequest extends Request<Product> {
     private String image;
     private BigDecimal price;
     private Boolean enabled;
-
-    @Override
-    public Product toDomain() {
-        throw new IllegalStateException("this method is deprecated and will be removed soon");
-    }
 }

@@ -35,9 +35,4 @@ public class ProductRequest extends Request<Product> {
 
     @NotNull
     private ProductCategory category;
-
-    @Override
-    public Product toDomain() {
-        return null;
-    }
 }
