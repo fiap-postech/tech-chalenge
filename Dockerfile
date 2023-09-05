@@ -2,13 +2,16 @@ FROM --platform=linux/amd64 gradle:8.1.1-jdk17 AS builder
 
 WORKDIR /build
 
-COPY adapter/driven/mysql/build.gradle ./adapter/driven/mysql/build.gradle
-COPY adapter/driven/redis/build.gradle ./adapter/driven/redis/build.gradle
-COPY adapter/driver/rest/build.gradle ./adapter/driver/rest/build.gradle
+
+COPY common-libraries/domain-common/build.gradle ./common-libraries/domain-common/build.gradle
+COPY common-libraries/rest-common/build.gradle ./common-libraries/rest-common/build.gradle
+COPY enterprise/build.gradle ./enterprise/build.gradle
 COPY application/build.gradle ./application/build.gradle
-COPY commons/domain-common/build.gradle ./commons/domain-common/build.gradle
-COPY commons/mapper-common/build.gradle ./commons/mapper-common/build.gradle
-COPY commons/rest-common/build.gradle ./commons/rest-common/build.gradle
+COPY adapter/build.gradle ./adapter/build.gradle
+COPY drivers/mysql/build.gradle ./drivers/mysql/build.gradle
+COPY drivers/payment-gateway/build.gradle ./drivers/payment-gateway/build.gradle
+COPY drivers/redis/build.gradle ./drivers/redis/build.gradle
+COPY drivers/rest/build.gradle ./drivers/rest/build.gradle
 COPY launcher/build.gradle ./launcher/build.gradle
 COPY build.gradle .
 COPY settings.gradle .
