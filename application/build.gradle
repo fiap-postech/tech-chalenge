@@ -5,6 +5,9 @@ plugins {
 version '1.0.0'
 
 dependencies {
+    implementation 'org.junit.jupiter:junit-jupiter-engine:5.9.2'
+    implementation 'org.mockito:mockito-core:5.6.0'
+    testImplementation project(path: ':application')
     compileOnly 'jakarta.validation:jakarta.validation-api:3.0.2'
 
     api 'org.javamoney:moneta:1.4.2'
@@ -14,4 +17,8 @@ dependencies {
 
 configurations.implementation {
     exclude group: 'org.testng ', module: 'testng'
+}
+
+test {
+    useJUnitPlatform()
 }
