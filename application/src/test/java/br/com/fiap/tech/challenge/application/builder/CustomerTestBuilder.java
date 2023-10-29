@@ -8,10 +8,11 @@ import java.util.UUID;
 
 public class CustomerTestBuilder {
 
+    public static final UUID CUSTOMER_UUID = UUID.randomUUID();
+
     public static class Builder {
 
         private static final Customer.CustomerBuilder builder = Customer.builder();
-        private static final UUID CUSTOMER_UUID = UUID.randomUUID();
 
         public Builder withUUID() {
             builder.uuid(CUSTOMER_UUID);

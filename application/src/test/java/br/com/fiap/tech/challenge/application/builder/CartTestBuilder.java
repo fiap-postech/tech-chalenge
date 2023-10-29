@@ -2,16 +2,42 @@ package br.com.fiap.tech.challenge.application.builder;
 
 import br.com.fiap.tech.challenge.enterprise.entity.Cart;
 
+import java.util.List;
 import java.util.UUID;
 
 public class CartTestBuilder {
 
-    private static UUID UUID_CART = UUID.randomUUID();
+    public static final UUID CART_UUID = UUID.randomUUID();
 
-    public static Cart buildWithoutCartItem() {
-        return Cart.builder()
-                .customer(new CustomerTestBuilder.Builder().fullFields())
-                .uuid(UUID_CART)
-                .build();
+    public static class Builder {
+        private static final Cart.CartBuilder builder = Cart.builder();
+
+        public Builder withUUID() {
+            builder.uuid(CART_UUID);
+            return this;
+        }
+
+        public Builder withCustomer() {
+            builder.customer(new CustomerTestBuilder.Builder().fullFields());
+            return this;
+        }
+
+        public Builder withCartItem() {
+            builder.items(List.of(new CartItemTestBuilder.Builder().fullFields()));
+            return this;
+        }
+
+        public Cart buildWithoutCartItem() {
+            withUUID();
+            withCustomer();
+            return builder.build();
+        }
+
+        public Cart buildWithCartItem() {
+            withUUID();
+            withCustomer();
+            withCartItem();
+            return builder.build();
+        }
     }
 }
