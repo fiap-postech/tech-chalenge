@@ -18,6 +18,17 @@ public class CartItemTestBuilder {
             return this;
         }
 
+        public CartItemTestBuilder.Builder withTwoQuantity() {
+            builder.quantity(Quantity.of(2));
+            return this;
+        }
+
+        public CartItem buildWithTwoQuantity() {
+            withProduct();
+            withTwoQuantity();
+            return builder.build();
+        }
+
         public CartItem fullFields() {
             withProduct();
             withQuantity();

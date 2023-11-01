@@ -1,6 +1,7 @@
 package br.com.fiap.tech.challenge.enterprise.valueobject;
 
 import br.com.fiap.tech.challenge.enterprise.validation.DocumentCustomer;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.experimental.Accessors;
 
@@ -8,6 +9,7 @@ import java.io.Serial;
 
 @Accessors(fluent = true)
 @Getter
+@EqualsAndHashCode
 public class Document extends ValueObject {
     @Serial
     private static final long serialVersionUID = -7027977210412190271L;

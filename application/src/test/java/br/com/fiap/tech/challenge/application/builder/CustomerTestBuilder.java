@@ -56,5 +56,14 @@ public class CustomerTestBuilder {
             enableTrue();
             return builder.build();
         }
+
+        public Customer buildDisable() {
+            withUUID();
+            withName();
+            withEmail();
+            withDocument();
+            enableFalse();
+            return builder.build();
+        }
     }
 }

@@ -27,6 +27,15 @@ public class CartTestBuilder {
             return this;
         }
 
+        public Builder withCartItemTwoQuantity() {
+            builder.items(List.of(new CartItemTestBuilder.Builder().buildWithTwoQuantity()));
+            return this;
+        }
+
+        public Cart build() {
+            return builder.build();
+        }
+
         public Cart buildWithoutCartItem() {
             withUUID();
             withCustomer();
@@ -37,6 +46,13 @@ public class CartTestBuilder {
             withUUID();
             withCustomer();
             withCartItem();
+            return builder.build();
+        }
+
+        public Cart buildWithCartItemTwoQuantity() {
+            withUUID();
+            withCustomer();
+            withCartItemTwoQuantity();
             return builder.build();
         }
     }
