@@ -72,5 +72,6 @@ create table payment(
     amount numeric(12,2) not null,
     created datetime not null,
     last_updated datetime not null,
-    version integer not null
+    version integer not null,
+    constraint fk_payment_purchase_id foreign key (purchase_id) references purchase(id)
 );

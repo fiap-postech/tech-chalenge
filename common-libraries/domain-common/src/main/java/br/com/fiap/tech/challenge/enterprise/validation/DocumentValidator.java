@@ -17,6 +17,7 @@ public class DocumentValidator implements ConstraintValidator<DocumentCustomer, 
     //TODO: verificar se teremos Customer de PJ???
     public static final int ELEVEN = 11;
     public static final int FOURTEEN = 14;
+    private static final String ANONYMOUS = "00000000000";
 
     private static final List<String> INVALID_CPFS = IntStream.range(ZERO.intValue(), TEN.intValue())
             .mapToObj(i -> StringUtils.repeat(String.valueOf(i), ELEVEN))
@@ -45,6 +46,9 @@ public class DocumentValidator implements ConstraintValidator<DocumentCustomer, 
     }
 
     public static boolean isValidCPF(String document) {
+        if (ANONYMOUS.equals(document)) {
+            return true;
+        }
         if (Objects.isNull(document) || document.length() != ELEVEN || INVALID_CPFS.contains(document)) {
             return false;
         }
