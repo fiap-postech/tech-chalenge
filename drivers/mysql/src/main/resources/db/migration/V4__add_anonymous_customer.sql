@@ -1,2 +1,2 @@
 insert into customer (`id`, `uuid`, `document`, `name`, `email`, `enabled`, `created`, `last_updated`, `version`)
-values (id, UUID(), '00000000000', 'Anônimo', 'anonimo@techchallenge.com', 1, now(), now(), 0);
+values (id, UUID(), '00000000000', 'Consumidor', 'consumidor@techchallenge.com', 1, now(), now(), 0);
