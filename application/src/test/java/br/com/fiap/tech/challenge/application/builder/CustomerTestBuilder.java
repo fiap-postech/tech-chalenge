@@ -9,6 +9,11 @@ import java.util.UUID;
 public class CustomerTestBuilder {
 
     public static final UUID CUSTOMER_UUID = UUID.randomUUID();
+    public static final String NAME = "Ronald McDonald";
+    public static final String EMAIL = "ceo@mcdonalds.com";
+    public static final String DOCUMENT = "33104138028";
+
+
 
     public static class Builder {
 
@@ -20,17 +25,17 @@ public class CustomerTestBuilder {
         }
 
         public Builder withName() {
-            builder.name("Ronald McDonald");
+            builder.name(NAME);
             return this;
         }
 
         public Builder withEmail() {
-            builder.email(EmailRegistration.of("ceo@mcdonalds.com"));
+            builder.email(EmailRegistration.of(EMAIL));
             return this;
         }
 
         public Builder withDocument() {
-            builder.document(Document.of("33104138028"));
+            builder.document(Document.of(DOCUMENT));
             return this;
         }
 

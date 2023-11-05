@@ -66,5 +66,15 @@ public class SandwichTestBuilder {
             enableTrue();
             return builder.build();
         }
+
+        public Sandwich buildDisable() {
+            withUUID();
+            withName();
+            withDescription();
+            withImage();
+            withPrice();
+            enableFalse();
+            return builder.build();
+        }
     }
 }

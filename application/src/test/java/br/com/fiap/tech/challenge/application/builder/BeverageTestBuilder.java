@@ -12,10 +12,11 @@ import static javax.money.Monetary.getCurrency;
 
 public class BeverageTestBuilder {
 
+    public static final UUID BEVERAGE_UUID = UUID.randomUUID();
+
     public static class Builder {
 
         private static final Beverage.BeverageBuilder builder = Beverage.builder();
-        private static final UUID BEVERAGE_UUID = UUID.randomUUID();
 
         public BeverageTestBuilder.Builder withUUID() {
             builder.uuid(BEVERAGE_UUID);

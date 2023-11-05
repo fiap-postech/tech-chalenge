@@ -12,10 +12,11 @@ import static javax.money.Monetary.getCurrency;
 
 public class SideDishTestBuilder {
 
+    public static final UUID SIDEDISH_UUID = UUID.randomUUID();
+
     public static class Builder {
 
         private static final SideDish.SideDishBuilder builder = SideDish.builder();
-        private static final UUID SIDEDISH_UUID = UUID.randomUUID();
 
         public SideDishTestBuilder.Builder withUUID() {
             builder.uuid(SIDEDISH_UUID);

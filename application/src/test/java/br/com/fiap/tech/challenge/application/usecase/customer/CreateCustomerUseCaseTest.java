@@ -23,10 +23,6 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 public class CreateCustomerUseCaseTest {
 
-    private static final String DOCUMENT = "33104138028";
-    private static final String EMAIL = "ceo@mcdonalds.com";
-    private static final String NAME = "Ronald McDonald";
-
     @Mock
     private CustomerWriterGateway writerService;
 
@@ -64,9 +60,9 @@ public class CreateCustomerUseCaseTest {
 
     private static CreateCustomerDTO buildCreateCustomerDTO() {
         var createCustomerDTO = new CreateCustomerDTO();
-        createCustomerDTO.setDocument(DOCUMENT);
-        createCustomerDTO.setEmail(EMAIL);
-        createCustomerDTO.setName(NAME);
+        createCustomerDTO.setDocument(CustomerTestBuilder.DOCUMENT);
+        createCustomerDTO.setEmail(CustomerTestBuilder.EMAIL);
+        createCustomerDTO.setName(CustomerTestBuilder.NAME);
         return createCustomerDTO;
     }
 }
