@@ -24,8 +24,6 @@ jobs:
       - name: Setup Gradle
         uses: gradle/gradle-build-action@v2
     
-      - name: Execute Gradle build
+      - id: gradle_build
+        name: Execute Gradle build
         run: ./gradlew build
-
-      - run: gradle build --dry-run # just test build configuration
-      - run: echo "The release-candidate version was ${{ steps.setup-gradle.outputs.gradle-version }}"
