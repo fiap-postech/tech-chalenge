@@ -10,6 +10,10 @@ Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo
 
 O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos de DDD, cujo Event Storming pode ser acessado [Aqui](https://miro.com/app/board/uXjVM5IDnUo=/?share_link_id=798761038531).
 
+## Infraestrutra
+
+
+
 ## Arvore de Arquivos do Projeto
 ```
 ./tech-chalenge
@@ -98,9 +102,16 @@ O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos 
 ```
 ## Tópicos
 
-- [Pré-Requisitos](#pré-requisitos-)
-- [Como executar o projeto](#como-executar-o-projeto-)
-- [Funcionalidades](#funcionalidades-)
+- [Tech Chalenge Pos-Tech - Fiap](#tech-chalenge-pos-tech---fiap)
+  - [Problema](#problema)
+  - [Descrição do Sistema](#descrição-do-sistema)
+  - [Event Storming](#event-storming)
+  - [Infraestrutra](#infraestrutra)
+  - [Arvore de Arquivos do Projeto](#arvore-de-arquivos-do-projeto)
+  - [Tópicos](#tópicos)
+  - [Pré-Requisitos ⚙️](#pré-requisitos-️)
+  - [Como executar o projeto? 💻](#como-executar-o-projeto-)
+  - [Funcionalidades ✅](#funcionalidades-)
 
 ## Pré-Requisitos ⚙️
 
