@@ -10,9 +10,25 @@ Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo
 
 O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos de DDD, cujo Event Storming pode ser acessado [Aqui](https://miro.com/app/board/uXjVM5IDnUo=/?share_link_id=798761038531).
 
-## Infraestrutra
+## Arquitetura
 
+<img src="./documentation/tech-challenge-architecture.png">
 
+draw.io link: <https://github.com/fiap-postech/tech-challenge/blob/master/documentation/tech-challenge-architecture.drawio>
+
+## Repositórios Infra AWS Cloud
+
+Nossa infraestrutura de Cloud está dividida da seguinte forma:
+
+1) [infra-foundation](https://github.com/fiap-postech/infra-foundation) : Repositório com a infra-estrutura responsável por toda infra de fundação na qual inclui camada de rede (VPC), Security Groups, Subnets, Internet Gateway, API Gateway e etc.
+2) [infra-tech-challenge](https://github.com/fiap-postech/infra-tech-challenge) : Repositório com a infra-estrutura responsável por provisionar o serviço do tech-challenge e suas dependencias, nele está: ECS, banco de dados RDS, ElasticCache, bucket S3 e etc.
+
+## Repositórios Lambdas Autenticação JWT
+
+Os nossos repositórios para autenticação utilizando o conceito serverless são:
+
+1) [json-web-token-signer](https://github.com/fiap-postech/json-web-token-signer) : Repositório que contem a lógica da lambda de geração do token de da autenticação.
+2) [json-web-token-verifier](https://github.com/fiap-postech/json-web-token-verifier) : Repositório com a lambda que possui a chave privada para validar se o token passado no header de Authorization é um token válido.
 
 ## Arvore de Arquivos do Projeto
 ```
