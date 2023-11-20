@@ -1,12 +1,43 @@
 {
 	"info": {
-		"_postman_id": "d9bd8f10-2cbc-45aa-94b9-da6e413635cb",
+		"_postman_id": "3a721d47-bdc1-4dc6-b1fa-759734b24792",
 		"name": "Tech Challenge API",
 		"description": "Esta API expõe endpoints referentes ao Tech Challenge de criação de um sistema de gerenciamento de pedidos de fast food.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "7022127"
+		"_exporter_id": "1284287"
 	},
 	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "Auth Anonymous",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"document\": \"00000000000\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
 		{
 			"name": "purchase",
 			"item": [
