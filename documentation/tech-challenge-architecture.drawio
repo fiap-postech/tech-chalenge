@@ -1,4 +1,4 @@
-<mxfile host="Electron" modified="2024-02-17T18:41:53.385Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="WW4QWNzyORJrn6mXZObw" version="23.1.5" type="device" pages="15">
+<mxfile host="Electron" modified="2024-02-19T11:35:24.307Z" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/23.1.5 Chrome/120.0.6099.109 Electron/28.1.0 Safari/537.36" etag="mhAsqDKnSTdhQcxFSjKf" version="23.1.5" type="device" pages="15">
   <diagram name="mysql" id="c6zwNrqDTZMsuaxZCgcg">
     <mxGraphModel dx="1194" dy="590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
@@ -309,7 +309,7 @@
     </mxGraphModel>
   </diagram>
   <diagram id="StIiqH-MCabJ3pmnCwJI" name="infrastructure-v2">
-    <mxGraphModel dx="2294" dy="590" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="2463" dy="843" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -863,7 +863,7 @@
     </mxGraphModel>
   </diagram>
   <diagram name="saga" id="lkFMifglqTKqsJNOfbS_">
-    <mxGraphModel dx="1193" dy="1588" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
+    <mxGraphModel dx="1327" dy="1506" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1100" pageHeight="850" math="0" shadow="0">
       <root>
         <mxCell id="a0HSetSjJJNzj4FrT1Ey-0" />
         <mxCell id="a0HSetSjJJNzj4FrT1Ey-1" parent="a0HSetSjJJNzj4FrT1Ey-0" />
@@ -1283,6 +1283,9 @@
         </mxCell>
         <mxCell id="B3e1IrcnNp6zOXJSPGQE-3" value="local-notification-purchase-status-queue" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="a0HSetSjJJNzj4FrT1Ey-1">
           <mxGeometry x="926.17" y="500" width="246.81" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="S0EBIXuhWJTb922pXCbV-0" value="local-payment-created-queue" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="a0HSetSjJJNzj4FrT1Ey-1">
+          <mxGeometry x="1450" y="180" width="180" height="30" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
