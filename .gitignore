@@ -244,4 +244,6 @@ infra/kubernetes/mysql/data
 infra/kubernetes/script/package-lock.json
 infra/kubernetes/script/package.json
 
+documentation/.$tech-challenge*.drawio*
+
 docker-hub-env.sh
