@@ -11,14 +11,30 @@ services:
       - "3366:3306"
     healthcheck:
       test: [ "CMD", "mysqladmin" ,"ping", "-h", "localhost" ]
-      interval: 5s
+      interval: 10s
       timeout: 10s
-      retries: 10
+      retries: 30
     volumes:
       - ./docker/mysql/data:/var/lib/mysql
       - ./docker/mysql/script:/opt/scripts
-      - ./docker/mysql/script/setup.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./docker/mysql/script/customer-setup.sql:/docker-entrypoint-initdb.d/1.sql
+      - ./docker/mysql/script/product-setup.sql:/docker-entrypoint-initdb.d/2.sql
+      - ./docker/mysql/script/purchase-setup.sql:/docker-entrypoint-initdb.d/3.sql
+
     command: --default-authentication-plugin=mysql_native_password
+    networks:
+      - tech-challenge-network-dist
+
+  localstack:
+    container_name: localstack
+    image: fiapsoat2grupo13/localstack-resources:latest
+    ports:
+      - "127.0.0.1:4566:4566"            # LocalStack Gateway
+      - "127.0.0.1:4510-4559:4510-4559"  # external services port range
+    environment:
+      - DEBUG=${DEBUG:-0}
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
     networks:
       - tech-challenge-network-dist
 
@@ -30,40 +46,161 @@ services:
       - "6380:6379"
     healthcheck:
       test: [ "CMD", "redis-cli", "-p", "6379", "ping" ]
-      interval: 5s
-      timeout: 5s
-      retries: 3
+      interval: 10s
+      timeout: 10s
+      retries: 30
     networks:
       - tech-challenge-network-dist
 
-  cdn:
-    container_name: cdn
-    image: nginx:alpine
-    platform: linux/amd64
+  mongo:
+    container_name: mongodb
+    image: mongo
     restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: admin
     ports:
-      - "8888:8080"
-    volumes:
-      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
-      - ./docker/nginx/static:/tech-challenge/static
+      - "27017:27017"
     networks:
       - tech-challenge-network-dist
 
-  app:
-    container_name: app
-    image: fiapsoat2grupo13/tech-challenge-service
+  customer:
+    container_name: customer-microservice
+    image: fiapsoat2grupo13/customer-service
     pull_policy: always
     platform: linux/amd64
     restart: on-failure
     ports:
-      - "8080:8080"
+      - "8689:8689"
     environment:
-      spring.profiles.active: "prod"
+      spring.profiles.active: "local"
+      db.host: mysql
+      db.port: 3306
+      spring.cloud.aws.endpoint: http://localstack:4566
+      spring.cloud.aws.credentials.access-key: localstackAccessKeyId
+      spring.cloud.aws.credentials.secret-key: localstackSecretAccessKey
     depends_on:
       mysql:
         condition: service_healthy
-      redis:
+      localstack:
+        condition: service_started
+    networks:
+      - tech-challenge-network-dist
+
+  product:
+    container_name: product-microservice
+    image: fiapsoat2grupo13/product-service
+    pull_policy: always
+    platform: linux/amd64
+    restart: on-failure
+    ports:
+      - "8688:8688"
+    environment:
+      spring.profiles.active: "local"
+      db.username: "sys_product"
+      db.password: "product_6#233zJMNTjkQb#sgps#"
+      db.host: mysql
+      db.port: 3306
+    depends_on:
+      mysql:
         condition: service_healthy
+    networks:
+      - tech-challenge-network-dist
+
+  cart:
+   container_name: cart-microservice
+   image: fiapsoat2grupo13/cart-service
+   pull_policy: always
+   platform: linux/amd64
+   restart: on-failure
+   ports:
+     - "8690:8690"
+   environment:
+     spring.profiles.active: "local"
+     product.host: http://product:8688
+     customer.host: http://customer:8689
+     spring.cloud.aws.endpoint: http://localstack:4566
+     spring.cloud.aws.credentials.access-key: localstackAccessKeyId
+     spring.cloud.aws.credentials.secret-key: localstackSecretAccessKey
+     spring.data.redis.host: redis
+     spring.data.redis.port: 6379
+   depends_on:
+     customer:
+       condition: service_started
+     product:
+       condition: service_started
+     redis:
+       condition: service_healthy
+     localstack:
+       condition: service_started
+   networks:
+     - tech-challenge-network-dist
+
+  purchase:
+    container_name: purchase-microservice
+    image: fiapsoat2grupo13/purchase-service
+    pull_policy: always
+    platform: linux/amd64
+    restart: on-failure
+    ports:
+      - "8692:8692"
+    environment:
+      spring.profiles.active: "local"
+      db.host: mysql
+      db.port: 3306
+      spring.cloud.aws.endpoint: http://localstack:4566
+      spring.cloud.aws.credentials.access-key: localstackAccessKeyId
+      spring.cloud.aws.credentials.secret-key: localstackSecretAccessKey
+      aws.resources.sqs.payment-created.queue: local-purchase-payment-created-queue
+    depends_on:
+      mysql:
+        condition: service_healthy
+      localstack:
+        condition: service_started
+    networks:
+      - tech-challenge-network-dist
+
+  payment:
+    container_name: payment-microservice
+    image: fiapsoat2grupo13/payment-service
+    pull_policy: always
+    platform: linux/amd64
+    restart: on-failure
+    ports:
+      - "8691:8691"
+    environment:
+      spring.profiles.active: "local"
+      spring.data.mongodb.uri: mongodb://root:admin@mongo:27017
+      spring.cloud.aws.endpoint: http://localstack:4566
+      spring.cloud.aws.credentials.access-key: localstackAccessKeyId
+      spring.cloud.aws.credentials.secret-key: localstackSecretAccessKey
+    depends_on:
+      mongo:
+        condition: service_started
+      localstack:
+        condition: service_started
+    networks:
+      - tech-challenge-network-dist
+
+  manufacture:
+    container_name: manufacture-microservice
+    image: fiapsoat2grupo13/manufacture-service
+    pull_policy: always
+    platform: linux/amd64
+    restart: on-failure
+    ports:
+      - "8693:8693"
+    environment:
+      spring.profiles.active: "local"
+      purchase.host: http://purchase:8692/purchase
+      spring.cloud.aws.endpoint: http://localstack:4566
+      spring.cloud.aws.credentials.access-key: localstackAccessKeyId
+      spring.cloud.aws.credentials.secret-key: localstackSecretAccessKey
+    depends_on:
+      purchase:
+        condition: service_started
+      localstack:
+        condition: service_started
     networks:
       - tech-challenge-network-dist
 
