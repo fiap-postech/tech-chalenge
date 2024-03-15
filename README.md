@@ -141,8 +141,8 @@ Assim, segue os relatórios obtidos antes e depois da análise para cada fluxo:
   - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Confirmação_Pagamento.html)
   - [Relatório Após Melhorias](/doc/owasp/reports/depois/2024-03-14-ZAP-Report-Confirmação_Pagamento.html)
 
-Para facilitar a visualização do relatório, gerado em HTML, através do Github, sugerimos` o uso do plugin [Github Html Preview](https://chromewebstore.google.com/detail/github-html-preview/pmpjligbgooljdpakhophgddmcipglna?pli=1)
+Para facilitar a visualização do relatório, gerado em HTML, através do Github, sugerimos o uso do plugin [Github Html Preview](https://chromewebstore.google.com/detail/github-html-preview/pmpjligbgooljdpakhophgddmcipglna?pli=1)
 
 ## LGPD
 
-Visando atender às normas vigentes sobre LGPD (Lei Geral de Proteção de Dados) foi elaborado o [RIPD (Relatório de Impacto à Proteção de Dados Pessoais)](/doc/lgpd/tech_challenge_ripd.pdf) que atende a operação da Tech Challenge Fast Food.`
+Visando atender às normas vigentes sobre LGPD (Lei Geral de Proteção de Dados) foi elaborado o [RIPD (Relatório de Impacto à Proteção de Dados Pessoais)](/doc/lgpd/tech_challenge_ripd.pdf) que atende a operação da Tech Challenge Fast Food.
