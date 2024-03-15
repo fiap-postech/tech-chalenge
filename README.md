@@ -132,7 +132,7 @@ Não foi executada análise no fluxo de Geração de Pagamento, pois ele não fo
 Assim, segue os relatórios obtidos antes e depois da análise para cada fluxo:
 
 - Listar/exibir cardápio
-  - [Relatório Inicial](https://html-preview.github.io/?url=https://github.com/fiap-postech/tech-challenge/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Cardápio.html)
+  - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Cardápio.html)
   - [Relatório Após Melhorias](/doc/owasp/reports/depois/2024-03-14-ZAP-Report-Cardápio.html)
 - Realização do Pedido (Checkout)
   - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Checkout.html)
