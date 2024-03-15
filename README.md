@@ -1,5 +1,30 @@
 # Tech Chalenge Pos-Tech - Fiap
 
+## Tópicos
+
+- [Tech Chalenge Pos-Tech - Fiap](#tech-chalenge-pos-tech---fiap)
+  - [Tópicos](#tópicos)
+  - [Problema](#problema)
+  - [Descrição do Sistema](#descrição-do-sistema)
+  - [Event Storming](#event-storming)
+  - [Decisões Arquiteturais](#decisões-arquiteturais)
+    - [Padrão Saga](#padrão-saga)
+  - [Arquitetura](#arquitetura)
+    - [Visão Geral](#visão-geral)
+    - [Customer Microservice](#customer-microservice)
+    - [Product Microservice](#product-microservice)
+    - [Cart Microservice](#cart-microservice)
+    - [Purchase Microservice](#purchase-microservice)
+    - [Payment Microservice](#payment-microservice)
+    - [Manufacture Microservice](#manufacture-microservice)
+    - [Arquitetura Cloud](#arquitetura-cloud)
+  - [Como executar o projeto? 💻](#como-executar-o-projeto-)
+    - [Execução 🏃](#execução-)
+  - [Análise de Vulnerabilidades](#análise-de-vulnerabilidades)
+  - [LGPD](#lgpd)
+
+
+
 ## Problema
 Há uma lanchonete de bairro que está expandindo devido seu grande sucesso. Porém, com a expansão e sem um sistema de controle de pedidos, o atendimento aos clientes pode ser caótico e confuso. Por exemplo, imagine que um cliente faça um pedido complexo, como um hambúrguer personalizado com ingredientes específicos, acompanhado de batatas fritas e uma bebida. O atendente pode anotar o pedido em um papel e entregá-lo à cozinha, mas não há garantia de que o pedido será preparado corretamente. Sem um sistema de controle de pedidos, pode haver confusão entre os atendentes e a cozinha, resultando em atrasos na preparação e entrega dos pedidos. Os pedidos podem ser perdidos, mal interpretados ou esquecidos, levando à insatisfação dos clientes e a perda de negócios. Em resumo, um sistema de controle de pedidos é essencial para garantir que a lanchonete possa atender os clientes de maneira eficiente, gerenciando seus pedidos e estoques de forma adequada. Sem ele, expandir a lanchonete pode acabar não dando certo, resultando em clientes insatisfeitos e impactando os negócios de forma negativa. Para solucionar o problema, a lanchonete irá investir em um sistema de autoatendimento de fast food, que é composto por uma série de dispositivos e interfaces que permitem aos clientes selecionar e fazer pedidos sem precisar interagir com um atendente.
 
@@ -10,155 +35,112 @@ Sistema de gerenciamento de pedidos de fast food, este sistema tem como objetivo
 
 O projeto foi elaborado com base na Arquitetura Hexagonal seguindo os conceitos de DDD, cujo Event Storming pode ser acessado [Aqui](https://miro.com/app/board/uXjVM5IDnUo=/?share_link_id=798761038531).
 
+## Decisões Arquiteturais
+
+### Padrão Saga
+
+Dado que as nossas duas coreografias existentes: no fluxo de criação do pedido / pagamento / liberação para produção; no fluxo de anonimização dos dados dos clientes; envolvem, respectivametne, 3 e 2 serviços, a quantidade de participantes favorece a escolha da saga coreografada. 
+
+Além disso, os serviços já tinham uma comunicação baseada em mensageria. Logo, o custo de implementação é menor.
+
+A partir dessa escolha, evitamos a manutenção em um serviço adicional que seria responsável por orquestrar as sagas e ainda eliminamos o ponto único de falha que essa estratégia proporciona.
+
+Os desenhos de arquitetura que demonstram a coreografia em questão podem ser vistos nos desenhos de arquitetura, abaixo, e no diagrama da construção na cloud.
+
 ## Arquitetura
 
-<img src="./documentation/tech-challenge-architecture.png">
+### Visão Geral
 
-draw.io link: <https://github.com/fiap-postech/tech-challenge/blob/master/documentation/tech-challenge-architecture.drawio>
+<img src="./doc/c4/microservices-c1.png">
 
-## Repositórios Infra AWS Cloud
+### Customer Microservice
 
-Nossa infraestrutura de Cloud está dividida da seguinte forma:
+<img src="./doc/c4/customer-microservice-c2.png">
 
-1) [infra-foundation](https://github.com/fiap-postech/infra-foundation) : Repositório com a infra-estrutura responsável por toda infra de fundação na qual inclui camada de rede (VPC), Security Groups, Subnets, Internet Gateway, API Gateway e etc.
-2) [infra-tech-challenge](https://github.com/fiap-postech/infra-tech-challenge) : Repositório com a infra-estrutura responsável por provisionar o serviço do tech-challenge e suas dependencias, nele está: ECS, banco de dados RDS, ElasticCache, bucket S3 e etc.
+[Customer - Repositório do Serviço](https://github.com/fiap-postech/customer-microservice)
 
-## Repositórios Lambdas Autenticação JWT
+### Product Microservice
 
-Os nossos repositórios para autenticação utilizando o conceito serverless são:
+<img src="./doc/c4/product-microservice-c2.png">
 
-1) [json-web-token-signer](https://github.com/fiap-postech/json-web-token-signer) : Repositório que contem a lógica da lambda de geração do token de da autenticação.
-2) [json-web-token-verifier](https://github.com/fiap-postech/json-web-token-verifier) : Repositório com a lambda que possui a chave privada para validar se o token passado no header de Authorization é um token válido.
+[Product - Repositório do Serviço](https://github.com/fiap-postech/product-microservice)
 
-## Arvore de Arquivos do Projeto
-```
-./tech-chalenge
-├── Dockerfile
-├── README.md
-├── RUN-BUILDING-IMAGE.md
-├── RUN-DOCKER-HUB-IMAGE.md
-├── RUN-OWN-CODE.md
-├── application
-|  └── src
-       ├── dto
-       ├── gateway
-       ├── mapper
-       ├── port
-           ├── driven
-           └── driver
-       ├── usecase
-           ├── cart
-           ├── customer
-           └── product
-       └── util
-├── common-libraries
-|  ├── domain-common
-      ├── enterprise
-      ├── exception
-      |  └── error
-      └── util
-|  └── rest-common
-      ├── handler
-      |  └── error
-      ├── request
-      └── response
-├── documentation
-├── drivers
-|  ├── mysql
-      ├── config
-      ├── mapping
-      ├── model
-      ├── repository
-      └── service
-|  ├── payment-gateway
-      ├── client
-      ├── config
-      ├── request
-      ├── respose
-      └── service
-|  ├── redis
-      ├── config
-      ├── mapping
-      ├── model
-      ├── repository
-      └── service
-|  └── rest
-      ├── config
-      ├── mapping
-      ├── resource
-      └── util
-├── enterprise
-|  └── src
-      ├── entity
-      ├── enums
-      ├── error
-      ├── validation
-      └── valueobject
-├── infra
-   ├── docker
-   |  ├── mysql
-   |  └── nginx
-   ├── docker-compose-ga.yml
-   ├── docker-compose-local.yml
-   ├── docker-compose.yml
-   └── kubernetes
-      ├── app
-      ├── cdn
-      ├── components.yaml
-      ├── mysql
-      ├── redis
-      └── script
-├── launcher
-|  └── src
-      ├── Application.java
-      └── configuration
-├── package-lock.json
-├── package.json
-└── settings.gradle
-```
-## Tópicos
+### Cart Microservice
 
-- [Tech Chalenge Pos-Tech - Fiap](#tech-chalenge-pos-tech---fiap)
-  - [Problema](#problema)
-  - [Descrição do Sistema](#descrição-do-sistema)
-  - [Event Storming](#event-storming)
-  - [Infraestrutra](#infraestrutra)
-  - [Arvore de Arquivos do Projeto](#arvore-de-arquivos-do-projeto)
-  - [Tópicos](#tópicos)
-  - [Pré-Requisitos ⚙️](#pré-requisitos-️)
-  - [Como executar o projeto? 💻](#como-executar-o-projeto-)
-  - [Funcionalidades ✅](#funcionalidades-)
+<img src="./doc/c4/cart-microservice-c2.png">
 
-## Pré-Requisitos ⚙️
+[Cart - Repositório do Serviço](https://github.com/fiap-postech/cart-microservice)
 
-<br>![Static Badge](https://img.shields.io/badge/java-v17.0.0-blue)
-<br>![Static Badge](https://img.shields.io/badge/docker-latest-blue)
+### Purchase Microservice
+
+<img src="./doc/c4/purchase-microservice-c2.png">
+
+[Purchase - Repositório do Serviço](https://github.com/fiap-postech/purchase-microservice)
+
+### Payment Microservice
+
+<img src="./doc/c4/payment-microservice-c2.png">
+
+[Payment - Repositório do Serviço](https://github.com/fiap-postech/payment-microservice)
+
+### Manufacture Microservice
+
+<img src="./doc/c4/manufacture-microservice-c2.png">
+
+[Manufacture - Repositório do Serviço](https://github.com/fiap-postech/manufacture-microservice)
+
+### Arquitetura Cloud
+
+<img src="./doc/cloud/tech-challenge-architecture-cloud.png">
 
 ## Como executar o projeto? 💻
 
-Esse projeto está configurado de forma a ser executado de 3 formas:
+### Execução 🏃
 
-- **[Aprovisionamento apenas das dependências externas do projeto](RUN-OWN-CODE.md)**: indicado para os desenvolvedores 
-que estiverem atuando no projeto, pois constrói as dependências externas, baseadas em container, e deixa a carga da IDE 
-a execução do serviço em si.
-<br><br>
-- **[Aprovisionamento do ambiente completo incluindo build da imagem do serviço](RUN-BUILDING-IMAGE.md)**: indicado quem
- quer construir a imagem Docker do serviço localmente e usá-la para executar a aplicação como um todo (incluindo as dependências externas).
-<br><br>
-- **[Aprovisionamento do ambinete completo fazendo uso da imagem do DockerHub](RUN-DOCKER-HUB-IMAGE.md)**: indicado para
- quem apenas quer executar o projeto sem precisar construir nada na máquina. Nesse caso, todos os containers serão 
-baixados e executados. Esse projeto conta com um job, via Github Action, que atualiza a imagem no Docker Hub sempre que 
-ocorre uma alteração na branch master.
+1. Execute o docker-compose.yml para iniciar o provisionamento da solução
+```sh
+docker-compose -f docker/docker-compose.yml up -d
+```
+Ao executar o docker-compose será aprovisionado:
+* Database - MySQL 
+* Database - MongoDB
+* Localstack:
+  * SQS
+  * SNS
+  * DynamoDB
+  * S3
+* In-Memory Database - Redis
+* Microsserviços:
+  * Customer
+  * Product
+  * Cart
+  * Purchase
+  * Payment
+  * Manufacture
+  <br><br>
 
-  
-## Funcionalidades ✅
+## Análise de Vulnerabilidades
 
-Para ter acesso à documentação das API's expostas nesse serviço acesse:
+Foram executadas análise de vulnerabilidade através da ferramenta OWASP ZAP nos seguintes fluxos:
 
-> **localhost:8080/doc** e terá acesso ao swagger da aplicação.
-> 
-> Observação: caso opte por rodar o código direto, a porta deverá ser: 8688
+- Listar/exibir cardápio
+- Realização do Pedido (Checkout)
+- Confirmação de Pagamento (Webhook)
 
-Caso prefira executar as API's via a ferramenta Postman, a collection está disponível em:
+Não foi executada análise no fluxo de Geração de Pagamento, pois ele não foi elaborado para receber acesso HTTP/Rest. A geração do pagamento ocorre dentro da coreografia iniciada no Checkout do Pedido. Essa dispensa, contudo, foi alinhada com os stakeholders (professores).
 
-> [Tech Challenge API](./documentation/Tech%20Challenge%20API.postman_collection.json)
+Assim, segue os relatórios obtidos antes e depois da análise para cada fluxo:
+
+- Listar/exibir cardápio
+  - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Cardápio.html)
+  - [Relatório Após Melhorias](/doc/owasp/reports/depois/2024-03-14-ZAP-Report-Cardápio.html)
+- Realização do Pedido (Checkout)
+  - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Checkout.html)
+  - [Relatório Após Melhorias](/doc/owasp/reports/depois/2024-03-14-ZAP-Report-Checkout.html)
+- Confirmação de Pagamento (Webhook)
+  - [Relatório Inicial](/doc/owasp/reports/antes/2024-03-14-ZAP-Report-Confirmação_Pagamento.html)
+  - [Relatório Após Melhorias](/doc/owasp/reports/depois/2024-03-14-ZAP-Report-Confirmação_Pagamento.html)
+
+## LGPD
+
+Visando atender às normas vigentes sobre LGPD (Lei Geral de Proteção de Dados) foi elaborado o [RIPD (Relatório de Impacto à Proteção de Dados Pessoais)](/doc/lgpd/tech_challenge_ripd.pdf) que atende a operação da Tech Challenge Fast Food.`
