@@ -117,7 +117,9 @@ Ao executar o docker-compose será aprovisionado:
   * Purchase
   * Payment
   * Manufacture
-  <br><br>
+
+ 2. Utilize a collection do Postman que se encontra em: [Tech Challenge API.postman_collection](./doc/postman/Tech%20Challenge%20API.postman_collection.json) juntamente com o arquivo de environment: [local.postman_environment](./doc/postman/local.postman_environment.json) para realizar as requisições nos serviços.
+ 
 
 ## Análise de Vulnerabilidades
 
